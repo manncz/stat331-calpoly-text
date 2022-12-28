@@ -1,0 +1,42 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Stat 331/531 Statistical Computing with R"
+  author: "Emily Robinson"
+  date: "January 9, 2023"
+  chapters:
+    - index.qmd
+    - 00-prereading.qmd
+    - 01-introduction.qmd
+    - 02-tidy-data-and-basics-of-graphics.qmd
+  site-url: https://earobinson95.github.io/stat331-calpoly/
+  repo-url: https://github.com/earobinson95/stat331-calpoly
+  repo-branch: main
+  repo-actions: [edit]
+  sharing: [twitter, facebook, linkedin]
+  # toc:
+    # collapse: section
+
+bibliography: references.bib
+
+engine: knitr
+
+#pdf-engine: context
+
+from: markdown+emoji
+
+format:
+  html:
+    css: style.css
+    theme: cosmo
+    code-link: true
+
+  # pdf:
+  #   documentclass: scrreport
+  #epub:
+  #  cover-image: cover.png
+
+editor: visual
+

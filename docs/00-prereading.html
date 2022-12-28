@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.132">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Stat 331/531 Statistical Computing with R - Pre-reading</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./01-introduction.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="style.css">
+</head>
+<body class="nav-sidebar floating slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Pre-reading</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Stat 331/531 Statistical Computing with R</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/earobinson95/stat331-calpoly" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+<li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
+            <i class="bi bi-bi-linkedin pe-1"></i>
+          LinkedIn
+          </a>
+        </li>
+    </ul>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-prereading.html" class="sidebar-item-text sidebar-link active">Pre-reading</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-tidy-data-and-basics-of-graphics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tidy Data &amp; Basics of Graphics</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#prereading-checkins" id="toc-prereading-checkins" class="nav-link active" data-scroll-target="#prereading-checkins">Precourse Check-in</a></li>
+  <li>
+<a href="#computer-basics" id="toc-computer-basics" class="nav-link" data-scroll-target="#computer-basics">Computer Basics</a>
+  <ul class="collapse">
+<li><a href="#hardware" id="toc-hardware" class="nav-link" data-scroll-target="#hardware">Hardware</a></li>
+  <li><a href="#operating-systems" id="toc-operating-systems" class="nav-link" data-scroll-target="#operating-systems">Operating Systems</a></li>
+  <li><a href="#file-systems" id="toc-file-systems" class="nav-link" data-scroll-target="#file-systems">File Systems</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#vectors-matrices-and-arrays" id="toc-vectors-matrices-and-arrays" class="nav-link" data-scroll-target="#vectors-matrices-and-arrays">Vectors, Matrices, and Arrays</a>
+  <ul class="collapse">
+<li><a href="#mathematical-logic" id="toc-mathematical-logic" class="nav-link" data-scroll-target="#mathematical-logic">Mathematical Logic</a></li>
+  <li><a href="#data-structures" id="toc-data-structures" class="nav-link" data-scroll-target="#data-structures">Data Structures</a></li>
+  <li><a href="#matrices" id="toc-matrices" class="nav-link" data-scroll-target="#matrices">Matrices</a></li>
+  <li><a href="#arrays" id="toc-arrays" class="nav-link" data-scroll-target="#arrays">Arrays</a></li>
+  </ul>
+</li>
+  <li><a href="#checkin1-prereading" id="toc-checkin1-prereading" class="nav-link" data-scroll-target="#checkin1-prereading">Check-in 1: Pre-reading Quiz</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/earobinson95/stat331-calpoly/edit/main/00-prereading.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title d-none d-lg-block">Pre-reading</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header><div class="cell">
+
+</div>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C87.5 32 35.1 48.6 9 59.9c-5.6 2.4-9 8-9 14V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V73.9c0-6.1-3.4-11.6-9-14C540.9 48.6 488.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 10 minute(s) at 200 WPM.</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"></path></svg> Videos:</p>
+<section id="prereading-checkins" class="level3 unnumbered check-in"><h3 class="unnumbered anchored" data-anchor-id="prereading-checkins">Precourse Check-in</h3>
+<p>This chapter contains assumed knowledge from your prior programming course.</p>
+<ul>
+<li>Check-in 1: Pre-reading Quiz</li>
+</ul></section><section id="computer-basics" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="computer-basics">Computer Basics</h2>
+<p>It is helpful when teaching a topic as technical as programming to ensure that everyone starts from the same basic foundational understanding and mental model of how things work. When teaching geology, for instance, the instructor should probably make sure that everyone understands that the earth is a round ball and not a flat plate – it will save everyone some time later.</p>
+<p>We all use computers daily - we carry them around with us on our wrists, in our pockets, and in our backpacks. This is no guarantee, however, that we understand how they work or what makes them go.</p>
+<section id="hardware" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="hardware">Hardware</h3>
+<p>Here is a short 3-minute video on the basic hardware that makes up your computer. It is focused on desktops, but the same components (with the exception of the optical drive) are commonly found in cell phones, smart watches, and laptops.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="youtube-video-container">
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/Rdm8E59L8Og" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</div>
+</div></div><p>When programming, it is usually helpful to understand the distinction between RAM and disk storage (hard drives). We also need to know at least a little bit about processors (so that we know when we’ve asked our processor to do too much). Most of the other details aren’t necessary (for now).</p>
+<!-- ::: learn-more -->
+<!-- -   [Chapter 1 of Python for Everybody](https://www.py4e.com/html3/01-intro) - Computer hardware architecture -->
+<!-- ::: -->
+</section><section id="operating-systems" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="operating-systems">Operating Systems</h3>
+<p>Operating systems, such as Windows, MacOS, or Linux, are a sophisticated program that allows CPUs to keep track of multiple programs and tasks and execute them at the same time.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="youtube-video-container">
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/RhHMgkUdhdk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</div>
+</div></div></section><section id="file-systems" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="file-systems">File Systems</h3>
+<p>Evidently, there has been a bit of generational shift as computers have evolved: the “file system” metaphor itself is outdated because no one uses physical files anymore. <a href="https://futurism.com/the-byte/gen-z-kids-file-systems">This article</a> is an interesting discussion of the problem: it makes the argument that with modern search capabilities, most people use their computers as a laundry hamper instead of as a nice, organized filing cabinet.</p>
+<p>Regardless of how you tend to organize your personal files, it is probably helpful to understand the basics of what is meant by a computer <strong>file system</strong> – a way to organize data stored on a hard drive. Since data is always stored as 0’s and 1’s, it’s important to have some way to figure out what type of data is stored in a specific location, and how to interpret it.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="youtube-video-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BV0-EPUYuQc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</div>
+</div></div><p>That’s not enough, though - we also need to know how computers remember the location of what is stored where. Specifically, we need to understand <strong>file paths</strong>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="youtube-video-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BMT3JUWmqYY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</div>
+</div></div><p>When you write a program, you may have to reference external files - data stored in a .csv file, for instance, or a picture. Best practice is to create a file structure that contains everything you need to run your entire project in a single file folder (you can, and sometimes should, have sub-folders).</p>
+<p>For now, it is enough to know how to find files using file paths, and how to refer to a file using a relative file path from your base folder. In this situation, your “base folder” is known as your <strong>working directory</strong> - the place your program thinks of as home.</p>
+<p>::: check-in</p>
+</section></section><section id="vectors-matrices-and-arrays" class="level2"><h2 class="anchored" data-anchor-id="vectors-matrices-and-arrays">Vectors, Matrices, and Arrays</h2>
+<!-- Vectors, Matrices, and Numpy arrays. Logical indexing. For loops. -->
+<!-- Lego pictures made with https://www.mecabricks.com/en/workshop -->
+<p>This chapter introduces some of the most important tools for working with data: vectors, matrices, loops, and if statements. It would be nice to gradually introduce each one of these topics separately, but they tend to go together, especially when you’re talking about programming in the context of data processing.</p>
+<section id="mathematical-logic" class="level3"><h3 class="anchored" data-anchor-id="mathematical-logic">Mathematical Logic</h3>
+<p>Before we start talking about data structures and control structures, though, we’re going to take a minute to review some concepts from mathematical logic. This will be useful for both data structures and control structures, so stick with me for a few minutes.</p>
+<section id="and-or-and-not" class="level4"><h4 class="anchored" data-anchor-id="and-or-and-not">And, Or, and Not</h4>
+<p>We can combine logical statements using and, or, and not.</p>
+<ul>
+<li>(X AND Y) requires that both X and Y are true.</li>
+<li>(X OR Y) requires that one of X or Y is true.</li>
+<li>(NOT X) is true if X is false, and false if X is true. Sometimes called <strong>negation</strong>.</li>
+</ul>
+<p>In R, we use <code>!</code> to symbolize NOT, in Python, we use <code>~</code> for vector-wise negation (NOT).</p>
+<p>Order of operations dictates that NOT is applied before other operations. So <code>NOT X AND Y</code> is read as <code>(NOT X) AND (Y)</code>. You must use parentheses to change the way this is interpreted.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">x</span> <span class="op">&amp;</span> <span class="va">y</span> <span class="co"># AND</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">|</span> <span class="va">y</span> <span class="co"># OR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE  TRUE  TRUE FALSE</code></pre>
+</div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">!</span><span class="va">x</span> <span class="op">&amp;</span> <span class="va">y</span> <span class="co"># NOT X AND Y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE  TRUE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&amp;</span> <span class="op">!</span><span class="va">y</span> <span class="co"># X AND NOT Y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE  TRUE FALSE</code></pre>
+</div>
+</div>
+</section><section id="de-morgans-laws" class="level4"><h4 class="anchored" data-anchor-id="de-morgans-laws">De Morgan’s Laws</h4>
+<p><a href="https://en.wikipedia.org/wiki/De_Morgan%27s_laws">De Morgan’s Laws</a> are a set of rules for how to combine logical statements. You can represent them in a number of ways:</p>
+<ul>
+<li>NOT(A or B) is equivalent to NOT(A) and NOT(B)</li>
+<li>NOT(A and B) is equivalent to NOT(A) or NOT(B)</li>
+</ul>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Definitions</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">DeMorgan’s First Law</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">DeMorgan’s Second Law</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><img src="images/SetA%20and%20SetB.png" class="img-fluid" alt="Venn Diagram of Set A and Set B"> Suppose that we set the convention that <img src="images/TrueFalse.png" class="img-fluid" alt="Shaded regions are TRUE, unshaded regions are FALSE">.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/DeMorgan1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">A venn diagram illustration of De Morgan’s laws showing that the region that is outside of the union of A OR B (aka NOT (A OR B)) is the same as the region that is outside of (NOT A) and (NOT B)</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/DeMorgan2.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">A venn diagram illustration of De Morgan’s laws showing that the region that is outside of the union of A AND B (aka NOT (A AND B)) is the same as the region that is outside of (NOT A) OR (NOT B)</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section></section><section id="data-structures" class="level3"><h3 class="anchored" data-anchor-id="data-structures">Data Structures</h3>
+<p>In the previous chapter, we discussed 4 different data types: strings/characters, numeric/double/floats, integers, and logical/booleans. As you might imagine, things are about to get more complicated.</p>
+<p>Data <strong>structures</strong> are more complicated arrangements of information.</p>
+<table class="table">
+<thead><tr class="header">
+<th>Homogeneous</th>
+<th>Heterogeneous</th>
+<th></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>1D</td>
+<td>vector</td>
+<td>list</td>
+</tr>
+<tr class="even">
+<td>2D</td>
+<td>matrix</td>
+<td>data frame</td>
+</tr>
+<tr class="odd">
+<td>N-D</td>
+<td>array</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<section id="lists" class="level4"><h4 class="anchored" data-anchor-id="lists">Lists</h4>
+<p>A <strong>list</strong> is a one-dimensional column of heterogeneous data - the things stored in a list can be of different types.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/lego-list.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">A lego list: the bricks are all different types and colors, but they are still part of the same data structure.</figcaption><p></p>
+</figure>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="fl">3</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] "a"
+
+[[2]]
+[1] 3
+
+[[3]]
+[1] FALSE</code></pre>
+</div>
+</div>
+<p>The most important thing to know about lists, for the moment, is how to pull things out of the list. We call that process <strong>indexing</strong>.</p>
+<section id="indexing" class="level5"><h5 class="anchored" data-anchor-id="indexing">Indexing</h5>
+<p>Every element in a list has an <strong>index</strong> (a location, indicated by an integer position)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>In R, we count from 1.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/list-indexing-r.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">An R-indexed lego list, counting from 1 to 5</figcaption><p></p>
+</figure>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="fl">3</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="co"># This returns a list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] "a"</code></pre>
+</div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> <span class="co"># This returns multiple elements in the list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] "a"
+
+[[2]]
+[1] 3</code></pre>
+</div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co"># This returns the item</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "a"</code></pre>
+</div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span><span class="op">[[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="co"># This doesn't work - you can only use [[]] with a single index</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in x[[1:2]]: subscript out of bounds</code></pre>
+</div>
+</div>
+<p>In R, list indexing with <code>[]</code> will return a list with the specified elements.</p>
+<p>To actually retrieve the item in the list, use <code>[[]]</code>. The only downside to <code>[[]]</code> is that you can only access one thing at a time.</p>
+<p>We’ll talk more about indexing as it relates to vectors, but indexing is a general concept that applies to just about any multi-value object.</p>
+</section></section><section id="vectors" class="level4"><h4 class="anchored" data-anchor-id="vectors">Vectors</h4>
+<p>A <strong>vector</strong> is a one-dimensional column of homogeneous data. Homogeneous means that every element in a vector has the same data type.</p>
+<p>We can have vectors of any data type and length we want: <img src="images/lego-set-of-vectors.png" class="img-fluid" alt="vectors of different data types"></p>
+<!-- ![vector of purple 1x3 legos](images/lego-1x3-vector.png) -->
+<section id="indexing-by-location" class="level5"><h5 class="anchored" data-anchor-id="indexing-by-location">Indexing by Location</h5>
+<p>Each element in a vector has an <strong>index</strong> - an integer telling you what the item’s position within the vector is. I’m going to demonstrate indices with the string vector</p>
+<table class="table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 52%">
+</colgroup>
+<thead><tr class="header">
+<th>R</th>
+<th>Python</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>1-indexed language</td>
+<td>0-indexed language</td>
+</tr>
+<tr class="even">
+<td>Count elements as 1, 2, 3, 4, …, N</td>
+<td>Count elements as 0, 1, 2, 3, , …, N-1</td>
+</tr>
+<tr class="odd">
+<td><img src="images/lego-1x3-vector-R.png" class="img-fluid" alt="R lego vector, labeled with numbers 1-12"></td>
+<td><img src="images/lego-1x3-vector-python.png" class="img-fluid" alt="Python lego vector, labeled with numbers 0-11"></td>
+</tr>
+</tbody>
+</table>
+<p>In R, we create vectors with the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function, which stands for “concatenate” - basically, we stick a bunch of objects into a row.</p>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">digits_pi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">9</span>, <span class="fl">2</span>, <span class="fl">6</span>, <span class="fl">5</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Access individual entries</span></span>
+<span><span class="va">digits_pi</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">digits_pi</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">digits_pi</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># R is 1-indexed - a list of 11 things goes from 1 to 11</span></span>
+<span><span class="va">digits_pi</span><span class="op">[</span><span class="fl">0</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>numeric(0)</code></pre>
+</div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">digits_pi</span><span class="op">[</span><span class="fl">11</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Print out the vector</span></span>
+<span><span class="va">digits_pi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 3 1 4 1 5 9 2 6 5 3 5</code></pre>
+</div>
+</div>
+<p>We can pull out items in a vector by indexing, but we can also replace specific things as well:</p>
+<div class="cell">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">favorite_cats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Grumpy"</span>, <span class="st">"Garfield"</span>, <span class="st">"Jorts"</span>, <span class="st">"Jean"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">favorite_cats</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Grumpy"   "Garfield" "Jorts"    "Jean"    </code></pre>
+</div>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">favorite_cats</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Nyan Cat"</span></span>
+<span></span>
+<span><span class="va">favorite_cats</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Grumpy"   "Nyan Cat" "Jorts"    "Jean"    </code></pre>
+</div>
+</div>
+<p>If you’re curious about any of these cats, see the footnotes<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+</section><section id="indexing-with-logical-vectors" class="level5"><h5 class="anchored" data-anchor-id="indexing-with-logical-vectors">Indexing with Logical Vectors</h5>
+<p>As you might imagine, we can create vectors of all sorts of different data types. One particularly useful trick is to create a <strong>logical vector</strong> that goes along with a vector of another type to use as a <strong>logical index</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/lego-logical-full.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">lego vectors - a pink/purple hued set of 1x3 bricks representing the data and a corresponding set of 1x1 grey and black bricks representing the logical index vector of the same length</figcaption><p></p>
+</figure>
+</div>
+<p>If we let the black lego represent “True” and the grey lego represent “False”, we can use the logical vector to pull out all values in the main vector.</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead><tr class="header">
+<th>Black = True, Grey = False</th>
+<th>Grey = True, Black = False</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td><img src="images/lego-logical-black.png" class="img-fluid" alt="a pink/purple hued set of 1x3 bricks representing a vector and a corresponding set of 1x1 black bricks representing the logical index vector of the same length. The grey bricks (and corresponding values of the previous vector) have been removed (filtered out)."></td>
+<td><img src="images/lego-logical-grey.png" class="img-fluid" alt="a pink/purple hued set of 1x3 bricks representing a vector and a corresponding set of 1x1 grey bricks representing the logical index vector of the same length. The black bricks (and corresponding values of the previous vector) have been removed (filtered out)."></td>
+</tr></tbody>
+</table>
+<p>Note that for logical indexing to work properly, the logical index must be the same length as the vector we’re indexing. This constraint will return when we talk about data frames, but for now just keep in mind that logical indexing doesn’t make sense when this constraint isn’t true.</p>
+<div class="cell">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Define a character vector</span></span>
+<span><span class="va">weekdays</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sunday"</span>, <span class="st">"Monday"</span>, <span class="st">"Tuesday"</span>, <span class="st">"Wednesday"</span>, <span class="st">"Thursday"</span>, <span class="st">"Friday"</span>, <span class="st">"Saturday"</span><span class="op">)</span></span>
+<span><span class="va">weekend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sunday"</span>, <span class="st">"Saturday"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create logical vectors</span></span>
+<span><span class="va">relax_days</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span> <span class="co"># doing this the manual way</span></span>
+<span><span class="va">relax_days</span> <span class="op">&lt;-</span> <span class="va">weekdays</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">weekend</span> <span class="co"># This creates a logical vector </span></span>
+<span>                                    <span class="co"># with less manual construction</span></span>
+<span><span class="va">relax_days</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE</code></pre>
+</div>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">school_days</span> <span class="op">&lt;-</span> <span class="op">!</span><span class="va">relax_days</span> <span class="co"># FALSE if weekend, TRUE if not</span></span>
+<span><span class="va">school_days</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE</code></pre>
+</div>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Using logical vectors to index the character vector</span></span>
+<span><span class="va">weekdays</span><span class="op">[</span><span class="va">school_days</span><span class="op">]</span> <span class="co"># print out all school days</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Monday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"   </code></pre>
+</div>
+</div>
+</section></section><section id="reviewing-types" class="level4"><h4 class="anchored" data-anchor-id="reviewing-types">Reviewing Types</h4>
+<p>As vectors are a collection of things of a single type, what happens if we try to make a vector with differently-typed things?</p>
+<div class="cell">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2L</span>, <span class="cn">FALSE</span>, <span class="fl">3.1415</span>, <span class="st">"animal"</span><span class="op">)</span> <span class="co"># all converted to strings</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2"      "FALSE"  "3.1415" "animal"</code></pre>
+</div>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2L</span>, <span class="cn">FALSE</span>, <span class="fl">3.1415</span><span class="op">)</span> <span class="co"># converted to numerics</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.0000 0.0000 3.1415</code></pre>
+</div>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2L</span>, <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># converted to integers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 0</code></pre>
+</div>
+</div>
+<p>As a reminder, this is an example of <strong>implicit</strong> type conversion - R and python decide what type to use for you, going with the type that doesn’t lose data but takes up as little space as possible.</p>
+</section></section><section id="matrices" class="level3"><h3 class="anchored" data-anchor-id="matrices">Matrices</h3>
+<p>A <strong>matrix</strong> is the next step after a vector - it’s a set of values arranged in a two-dimensional, rectangular format.</p>
+<section id="matrix-lego" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="matrix-lego">Matrix (Lego)</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/lego-2x2-matrix.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">lego depiction of a 3-row, 4-column matrix of 2x2 red-colored blocks</figcaption><p></p>
+</figure>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Minimal matrix in R: take a vector, </span></span>
+<span><span class="co"># tell R how many rows you want</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3] [,4]
+[1,]    1    4    7   10
+[2,]    2    5    8   11
+[3,]    3    6    9   12</code></pre>
+</div>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="co"># or columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    5    9
+[2,]    2    6   10
+[3,]    3    7   11
+[4,]    4    8   12</code></pre>
+</div>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># by default, R will fill in column-by-column</span></span>
+<span><span class="co"># the byrow parameter tells R to go row-by-row</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, nrow <span class="op">=</span> <span class="fl">3</span>, byrow <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3] [,4]
+[1,]    1    2    3    4
+[2,]    5    6    7    8
+[3,]    9   10   11   12</code></pre>
+</div>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># We can also easily create square matrices </span></span>
+<span><span class="co"># with a specific diagonal (this is useful for modeling)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, times <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3] [,4]
+[1,]    1    0    0    0
+[2,]    0    1    0    0
+[3,]    0    0    1    0
+[4,]    0    0    0    1</code></pre>
+</div>
+</div>
+<p>This class comes before linear algebra in the required course sequence, so most of the problems we’re going to work on will not require much in the way of matrix or array operations. For now, you need the following:</p>
+<ul>
+<li>Know that matrices exist and what they are (2-dimensional arrays of numbers)</li>
+<li>Understand how they are indexed (because it is extremely similar to data frames that we’ll work with in the next chapter)</li>
+<li>Be aware that there are lots of functions that depend on matrix operations at their core (including linear regression)</li>
+</ul></section><section id="indexing-in-matrices" class="level4"><h4 class="anchored" data-anchor-id="indexing-in-matrices">Indexing in Matrices</h4>
+<p>Both R and python use [row, column] to index matrices. To extract the bottom-left element of a 3x4 matrix in R, we would use [3,1] to get to the third row and first column entry; in python, we would use [2,0] (remember that Python is 0-indexed).</p>
+<p>As with vectors, you can replace elements in a matrix using assignment.</p>
+<div class="cell">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, nrow <span class="op">=</span> <span class="fl">3</span>, byrow <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">my_mat</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">500</span></span>
+<span></span>
+<span><span class="va">my_mat</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3] [,4]
+[1,]    1    2    3    4
+[2,]    5    6    7    8
+[3,]  500   10   11   12</code></pre>
+</div>
+</div>
+</section><section id="matrix-operations" class="level4"><h4 class="anchored" data-anchor-id="matrix-operations">Matrix Operations</h4>
+<p>There are a number of matrix operations that we need to know for basic programming purposes:</p>
+<ul>
+<li>scalar multiplication <span class="math display">\[c*\textbf{X} = c * \left[\begin{array}{cc} x_{1,1} &amp; x_{1, 2}\\x_{2,1} &amp; x_{2,2}\end{array}\right] = \left[\begin{array}{cc} c*x_{1,1} &amp; c*x_{1, 2}\\c*x_{2,1} &amp; c*x_{2,2}\end{array}\right]\]</span>
+</li>
+<li>transpose - flip the matrix across the left top -&gt; right bottom diagonal. <span class="math display">\[t(\textbf{X}) = \left[\begin{array}{cc} x_{1,1} &amp; x_{1, 2}\\x_{2,1} &amp; x_{2,2}\end{array}\right]^T = \left[\begin{array}{cc} x_{1,1} &amp; x_{2,1}\\x_{1,2} &amp; x_{2,2}\end{array}\right]\]</span>
+</li>
+<li>matrix multiplication (dot product) - you will learn more about this in linear algebra, but here’s a preview. <a href="https://www.mathsisfun.com/algebra/matrix-multiplying.html">Here is a better explanation of the cross product</a> <span class="math display">\[\textbf{X}*\textbf{Y} = \left[\begin{array}{cc} x_{1,1} &amp; x_{1, 2}\\x_{2,1} &amp; x_{2,2}\end{array}\right] * \left[\begin{array}{cc} y_{1,1} \\y_{2,1} \end{array}\right] = \left[\begin{array}{c}x_{1,1}*y_{1,1} + x_{1,2}*y_{2,1} \\x_{2, 1}*y_{1,1} + x_{2,2}*y_{2,1}\end{array}\right]\]</span> Note that matrix multiplication depends on having matrices of compatible dimensions. If you have two matrices of dimension <span class="math inline">\((a \times b)\)</span> and <span class="math inline">\((c \times d)\)</span>, then <span class="math inline">\(b\)</span> must be equal to <span class="math inline">\(c\)</span> for the multiplication to work, and your result will be <span class="math inline">\((a \times d)\)</span>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Scalar multiplication</span></span>
+<span><span class="va">x</span> <span class="op">*</span> <span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    3    6
+[2,]    9   12</code></pre>
+</div>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">3</span> <span class="op">*</span> <span class="va">x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    3    6
+[2,]    9   12</code></pre>
+</div>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Transpose</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    1    3
+[2,]    2    4</code></pre>
+</div>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    5    6</code></pre>
+</div>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># matrix multiplication (dot product)</span></span>
+<span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1]
+[1,]   17
+[2,]   39</code></pre>
+</div>
+</div>
+</section></section><section id="arrays" class="level3"><h3 class="anchored" data-anchor-id="arrays">Arrays</h3>
+<p>Arrays are a generalized n-dimensional version of a vector: all elements have the same type, and they are indexed using square brackets in both R and python: <code>[dim1, dim2, dim3, ...]</code></p>
+<p>I don’t think you will need to create 3+ dimensional arrays in this class, but if you want to try it out, here is some code.</p>
+<div class="cell">
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , 1
+
+     [,1] [,2]
+[1,]    1    3
+[2,]    2    4
+
+, , 2
+
+     [,1] [,2]
+[1,]    5    7
+[2,]    6    8</code></pre>
+</div>
+</div>
+<p>Note that displaying this requires 2 slices, since it’s hard to display 3D information in a 2D terminal arrangement.</p>
+</section></section><section id="checkin1-prereading" class="level2 unnumbered check-in"><h2 class="unnumbered anchored" data-anchor-id="checkin1-prereading">Check-in 1: Pre-reading Quiz</h2>
+<ol type="1">
+<li>
+</li><li>
+</li><li>
+</li><li>
+</li></ol></section>
+
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>Throughout this section (and other sections), lego pictures are rendered using https://www.mecabricks.com/en/workshop. It’s a pretty nice tool for building stuff online!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://www.grumpycats.com/">Grumpy cat</a>, <a href="https://www.garfield.com/">Garfield</a>, <a href="https://en.wikipedia.org/wiki/Nyan_Cat">Nyan cat</a>. Jorts and Jean: <a href="https://www.reddit.com/r/AmItheAsshole/comments/rfwgmc/aita_for_perpetuating_ethnic_stereotypes_about/">The initial post</a> and the <a href="https://www.reddit.com/user/throwawayorangecat/comments/rgi000/update_aita_for_perpetuating_stereotypes_about/">update</a> (both are worth a read because the story is hilarious). The cats also have a <a href="https://twitter.com/JortsTheCat">Twitter account</a> where they promote workers rights.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./01-introduction.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

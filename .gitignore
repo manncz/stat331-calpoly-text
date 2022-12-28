@@ -1,0 +1,11 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+/.quarto/
+_freeze
+demo
+#docs
+*_cache/
+*_files/
+notes-about-book

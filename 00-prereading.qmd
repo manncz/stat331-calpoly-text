@@ -1,0 +1,413 @@
+---
+execute:
+  freeze: auto  # re-render only when source changes
+---
+
+```{r echo=FALSE}
+bytes <- file.size("00-prereading.qmd")
+words <- bytes/10
+minutes <- words/200
+```
+
+# Pre-reading {.unnumbered}
+
+```{r fa-setup, include=FALSE}
+library(quarto)
+library(fontawesome)
+fa_html_dependency()
+# htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+`r fa("book-open")` Reading: `r ceiling(minutes)` minute(s) at 200 WPM.
+
+`r fa("video")` Videos:
+
+::: check-in
+
+### Precourse Check-in {#prereading-checkins .unnumbered}
+
+This chapter contains assumed knowledge from your prior programming course.
+
+-   Check-in 1: Pre-reading Quiz
+
+:::
+
+## Computer Basics
+
+It is helpful when teaching a topic as technical as programming to ensure that everyone starts from the same basic foundational understanding and mental model of how things work. When teaching geology, for instance, the instructor should probably make sure that everyone understands that the earth is a round ball and not a flat plate -- it will save everyone some time later.
+
+We all use computers daily - we carry them around with us on our wrists, in our pockets, and in our backpacks. This is no guarantee, however, that we understand how they work or what makes them go.
+
+### Hardware
+
+Here is a short 3-minute video on the basic hardware that makes up your computer. It is focused on desktops, but the same components (with the exception of the optical drive) are commonly found in cell phones, smart watches, and laptops.
+
+
+::: column-margin
+::: youtube-video-container
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/Rdm8E59L8Og" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+
+</iframe>
+:::
+:::
+
+When programming, it is usually helpful to understand the distinction between RAM and disk storage (hard drives). We also need to know at least a little bit about processors (so that we know when we've asked our processor to do too much). Most of the other details aren't necessary (for now).
+
+<!-- ::: learn-more -->
+
+<!-- -   [Chapter 1 of Python for Everybody](https://www.py4e.com/html3/01-intro) - Computer hardware architecture -->
+
+<!-- ::: -->
+
+### Operating Systems
+
+Operating systems, such as Windows, MacOS, or Linux, are a sophisticated program that allows CPUs to keep track of multiple programs and tasks and execute them at the same time.
+
+::: column-margin
+::: youtube-video-container
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/RhHMgkUdhdk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+
+</iframe>
+:::
+:::
+
+### File Systems {#file-systems}
+
+Evidently, there has been a bit of generational shift as computers have evolved: the "file system" metaphor itself is outdated because no one uses physical files anymore. [This article](https://futurism.com/the-byte/gen-z-kids-file-systems) is an interesting discussion of the problem: it makes the argument that with modern search capabilities, most people use their computers as a laundry hamper instead of as a nice, organized filing cabinet.
+
+Regardless of how you tend to organize your personal files, it is probably helpful to understand the basics of what is meant by a computer **file system** -- a way to organize data stored on a hard drive. Since data is always stored as 0's and 1's, it's important to have some way to figure out what type of data is stored in a specific location, and how to interpret it.
+
+::: column-margin
+::: youtube-video-container
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BV0-EPUYuQc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+
+</iframe>
+:::
+:::
+
+That's not enough, though - we also need to know how computers remember the location of what is stored where. Specifically, we need to understand **file paths**.
+
+::: column-margin
+::: youtube-video-container
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BMT3JUWmqYY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+
+</iframe>
+:::
+:::
+
+When you write a program, you may have to reference external files - data stored in a .csv file, for instance, or a picture. Best practice is to create a file structure that contains everything you need to run your entire project in a single file folder (you can, and sometimes should, have sub-folders).
+
+For now, it is enough to know how to find files using file paths, and how to refer to a file using a relative file path from your base folder. In this situation, your "base folder" is known as your **working directory** - the place your program thinks of as home.
+
+::: check-in
+
+
+## Vectors, Matrices, and Arrays
+
+<!-- Vectors, Matrices, and Numpy arrays. Logical indexing. For loops. -->
+<!-- Lego pictures made with https://www.mecabricks.com/en/workshop -->
+
+This chapter introduces some of the most important tools for working with data: vectors, matrices, loops, and if statements. It would be nice to gradually introduce each one of these topics separately, but they tend to go together, especially when you're talking about programming in the context of data processing.
+
+### Mathematical Logic
+
+Before we start talking about data structures and control structures, though, we're going to take a minute to review some concepts from mathematical logic. This will be useful for both data structures and control structures, so stick with me for a few minutes.
+
+#### And, Or, and Not
+
+We can combine logical statements using and, or, and not.
+
+-   (X AND Y) requires that both X and Y are true.
+-   (X OR Y) requires that one of X or Y is true.
+-   (NOT X) is true if X is false, and false if X is true. Sometimes called **negation**.
+
+In R, we use `!` to symbolize NOT, in Python, we use `~` for vector-wise negation (NOT).
+
+Order of operations dictates that NOT is applied before other operations. So `NOT X AND Y` is read as `(NOT X) AND (Y)`. You must use parentheses to change the way this is interpreted.
+
+```{r}
+x <- c(TRUE, FALSE, TRUE, FALSE)
+y <- c(TRUE, TRUE, FALSE, FALSE)
+
+x & y # AND
+x | y # OR
+!x & y # NOT X AND Y
+x & !y # X AND NOT Y
+```
+
+#### De Morgan's Laws
+
+[De Morgan's Laws](https://en.wikipedia.org/wiki/De_Morgan%27s_laws) are a set of rules for how to combine logical statements. You can represent them in a number of ways:
+
+-   NOT(A or B) is equivalent to NOT(A) and NOT(B)
+-   NOT(A and B) is equivalent to NOT(A) or NOT(B)
+
+::: panel-tabset
+
+We can also represent them with Venn Diagrams.
+
+##### Definitions
+
+![Venn Diagram of Set A and Set B](images/SetA%20and%20SetB.png) Suppose that we set the convention that ![Shaded regions are TRUE, unshaded regions are FALSE](images/TrueFalse.png).
+
+
+##### DeMorgan's First Law
+
+![A venn diagram illustration of De Morgan's laws showing that the region that is outside of the union of A OR B (aka NOT (A OR B)) is the same as the region that is outside of (NOT A) and (NOT B)](images/DeMorgan1.png)
+
+##### DeMorgan's Second Law
+
+![A venn diagram illustration of De Morgan's laws showing that the region that is outside of the union of A AND B (aka NOT (A AND B)) is the same as the region that is outside of (NOT A) OR (NOT B)](images/DeMorgan2.png)
+
+:::
+
+### Data Structures
+
+In the previous chapter, we discussed 4 different data types: strings/characters, numeric/double/floats, integers, and logical/booleans. As you might imagine, things are about to get more complicated.
+
+Data **structures** are more complicated arrangements of information.
+
+| Homogeneous | Heterogeneous |            |
+|-------------|---------------|------------|
+| 1D          | vector        | list       |
+| 2D          | matrix        | data frame |
+| N-D         | array         |            |
+
+#### Lists
+
+A **list** is a one-dimensional column of heterogeneous data - the things stored in a list can be of different types.
+
+![A lego list: the bricks are all different types and colors, but they are still part of the same data structure.](images/lego-list.png)
+
+
+```{r list-r}
+x <- list("a", 3, FALSE)
+x
+```
+
+The most important thing to know about lists, for the moment, is how to pull things out of the list. We call that process **indexing**.
+
+
+##### Indexing
+
+Every element in a list has an **index** (a location, indicated by an integer position)[^vectors-1].
+
+[^vectors-1]: Throughout this section (and other sections), lego pictures are rendered using https://www.mecabricks.com/en/workshop. It's a pretty nice tool for building stuff online!
+
+In R, we count from 1. 
+
+![An R-indexed lego list, counting from 1 to 5](images/list-indexing-r.png)
+
+```{r, error = T}
+x <- list("a", 3, FALSE)
+
+x[1] # This returns a list
+x[1:2] # This returns multiple elements in the list
+
+x[[1]] # This returns the item
+x[[1:2]] # This doesn't work - you can only use [[]] with a single index
+```
+
+In R, list indexing with `[]` will return a list with the specified elements.
+
+To actually retrieve the item in the list, use `[[]]`. The only downside to `[[]]` is that you can only access one thing at a time.
+
+We'll talk more about indexing as it relates to vectors, but indexing is a general concept that applies to just about any multi-value object.
+
+
+#### Vectors
+
+A **vector** is a one-dimensional column of homogeneous data. Homogeneous means that every element in a vector has the same data type.
+
+We can have vectors of any data type and length we want: ![vectors of different data types](images/lego-set-of-vectors.png)
+
+<!-- ![vector of purple 1x3 legos](images/lego-1x3-vector.png) -->
+
+##### Indexing by Location
+
+Each element in a vector has an **index** - an integer telling you what the item's position within the vector is. I'm going to demonstrate indices with the string vector
+
+| R                                                                         | Python                                                                              |
+|----------------------------------|--------------------------------------|
+| 1-indexed language                                                        | 0-indexed language                                                                  |
+| Count elements as 1, 2, 3, 4, ..., N                                      | Count elements as 0, 1, 2, 3, , ..., N-1                                            |
+| ![R lego vector, labeled with numbers 1-12](images/lego-1x3-vector-R.png) | ![Python lego vector, labeled with numbers 0-11](images/lego-1x3-vector-python.png) |
+
+In R, we create vectors with the `c()` function, which stands for "concatenate" - basically, we stick a bunch of objects into a row.
+
+```{r vector-creation-r}
+digits_pi <- c(3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5)
+
+# Access individual entries
+digits_pi[1]
+digits_pi[2]
+digits_pi[3]
+
+# R is 1-indexed - a list of 11 things goes from 1 to 11
+digits_pi[0]
+digits_pi[11]
+
+# Print out the vector
+digits_pi
+```
+
+We can pull out items in a vector by indexing, but we can also replace specific things as well:
+
+
+```{r cat-vector-indexing}
+favorite_cats <- c("Grumpy", "Garfield", "Jorts", "Jean")
+
+favorite_cats
+
+favorite_cats[2] <- "Nyan Cat"
+
+favorite_cats
+```
+
+If you're curious about any of these cats, see the footnotes[^vectors-3].
+
+[^vectors-3]: [Grumpy cat](https://www.grumpycats.com/), [Garfield](https://www.garfield.com/), [Nyan cat](https://en.wikipedia.org/wiki/Nyan_Cat). Jorts and Jean: [The initial post](https://www.reddit.com/r/AmItheAsshole/comments/rfwgmc/aita_for_perpetuating_ethnic_stereotypes_about/) and the [update](https://www.reddit.com/user/throwawayorangecat/comments/rgi000/update_aita_for_perpetuating_stereotypes_about/) (both are worth a read because the story is hilarious). The cats also have a [Twitter account](https://twitter.com/JortsTheCat) where they promote workers rights.
+
+##### Indexing with Logical Vectors
+
+As you might imagine, we can create vectors of all sorts of different data types. One particularly useful trick is to create a **logical vector** that goes along with a vector of another type to use as a **logical index**.
+
+![lego vectors - a pink/purple hued set of 1x3 bricks representing the data and a corresponding set of 1x1 grey and black bricks representing the logical index vector of the same length](images/lego-logical-full.png)
+
+If we let the black lego represent "True" and the grey lego represent "False", we can use the logical vector to pull out all values in the main vector. 
+
+Black = True, Grey = False | Grey = True, Black = False
+--- | ---
+![a pink/purple hued set of 1x3 bricks representing a vector and a corresponding set of 1x1 black bricks representing the logical index vector of the same length. The grey bricks (and corresponding values of the previous vector) have been removed (filtered out).](images/lego-logical-black.png) | ![a pink/purple hued set of 1x3 bricks representing a vector and a corresponding set of 1x1 grey bricks representing the logical index vector of the same length. The black bricks (and corresponding values of the previous vector) have been removed (filtered out).](images/lego-logical-grey.png)
+
+Note that for logical indexing to work properly, the logical index must be the same length as the vector we're indexing. This constraint will return when we talk about data frames, but for now just keep in mind that logical indexing doesn't make sense when this constraint isn't true.
+
+```{r logical-vector-indexing-r}
+# Define a character vector
+weekdays <- c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+weekend <- c("Sunday", "Saturday")
+
+# Create logical vectors
+relax_days <- c(1, 0, 0, 0, 0, 0, 1) # doing this the manual way
+relax_days <- weekdays %in% weekend # This creates a logical vector 
+                                    # with less manual construction
+relax_days
+
+school_days <- !relax_days # FALSE if weekend, TRUE if not
+school_days
+
+# Using logical vectors to index the character vector
+weekdays[school_days] # print out all school days
+```
+
+#### Reviewing Types
+
+As vectors are a collection of things of a single type, what happens if we try to make a vector with differently-typed things?
+
+```{r vector-type-conversion-r}
+c(2L, FALSE, 3.1415, "animal") # all converted to strings
+
+c(2L, FALSE, 3.1415) # converted to numerics
+
+c(2L, FALSE) # converted to integers
+```
+
+
+As a reminder, this is an example of **implicit** type conversion - R and python decide what type to use for you, going with the type that doesn't lose data but takes up as little space as possible.
+
+
+### Matrices
+
+A **matrix** is the next step after a vector - it's a set of values arranged in a two-dimensional, rectangular format.
+
+#### Matrix (Lego) {-}
+
+![lego depiction of a 3-row, 4-column matrix of 2x2 red-colored blocks](images/lego-2x2-matrix.png)
+
+
+```{r matrix-r}
+# Minimal matrix in R: take a vector, 
+# tell R how many rows you want
+matrix(1:12, nrow = 3)
+
+matrix(1:12, ncol = 3) # or columns
+
+# by default, R will fill in column-by-column
+# the byrow parameter tells R to go row-by-row
+matrix(1:12, nrow = 3, byrow = T)
+
+# We can also easily create square matrices 
+# with a specific diagonal (this is useful for modeling)
+diag(rep(1, times = 4))
+```
+
+
+This class comes before linear algebra in the required course sequence, so most of the problems we're going to work on will not require much in the way of matrix or array operations. For now, you need the following:
+
+- Know that matrices exist and what they are (2-dimensional arrays of numbers)
+- Understand how they are indexed (because it is extremely similar to data frames that we'll work with in the next chapter)
+- Be aware that there are lots of functions that depend on matrix operations at their core (including linear regression)
+
+#### Indexing in Matrices
+
+Both R and python use \[row, column\] to index matrices. To extract the bottom-left element of a 3x4 matrix in R, we would use \[3,1\] to get to the third row and first column entry; in python, we would use \[2,0\] (remember that Python is 0-indexed).
+
+As with vectors, you can replace elements in a matrix using assignment.
+
+```{r}
+my_mat <- matrix(1:12, nrow = 3, byrow = T)
+
+my_mat[3,1] <- 500
+
+my_mat
+```
+
+#### Matrix Operations
+
+There are a number of matrix operations that we need to know for basic programming purposes:
+
+-   scalar multiplication $$c*\textbf{X} = c * \left[\begin{array}{cc} x_{1,1} & x_{1, 2}\\x_{2,1} & x_{2,2}\end{array}\right] = \left[\begin{array}{cc} c*x_{1,1} & c*x_{1, 2}\\c*x_{2,1} & c*x_{2,2}\end{array}\right]$$
+-   transpose - flip the matrix across the left top -\> right bottom diagonal. $$t(\textbf{X}) = \left[\begin{array}{cc} x_{1,1} & x_{1, 2}\\x_{2,1} & x_{2,2}\end{array}\right]^T = \left[\begin{array}{cc} x_{1,1} & x_{2,1}\\x_{1,2} & x_{2,2}\end{array}\right]$$
+-   matrix multiplication (dot product) - you will learn more about this in linear algebra, but here's a preview. [Here is a better explanation of the cross product](https://www.mathsisfun.com/algebra/matrix-multiplying.html) $$\textbf{X}*\textbf{Y} = \left[\begin{array}{cc} x_{1,1} & x_{1, 2}\\x_{2,1} & x_{2,2}\end{array}\right] * \left[\begin{array}{cc} y_{1,1} \\y_{2,1} \end{array}\right] = \left[\begin{array}{c}x_{1,1}*y_{1,1} + x_{1,2}*y_{2,1} \\x_{2, 1}*y_{1,1} + x_{2,2}*y_{2,1}\end{array}\right]$$ Note that matrix multiplication depends on having matrices of compatible dimensions. If you have two matrices of dimension $(a \times b)$ and $(c \times d)$, then $b$ must be equal to $c$ for the multiplication to work, and your result will be $(a \times d)$.
+
+```{r, results = 'show'}
+x <- matrix(c(1, 2, 3, 4), nrow = 2, byrow = T)
+y <- matrix(c(5, 6), nrow = 2)
+
+# Scalar multiplication
+x * 3
+3 * x
+
+# Transpose
+t(x)
+t(y)
+
+# matrix multiplication (dot product)
+x %*% y
+```
+
+### Arrays
+
+Arrays are a generalized n-dimensional version of a vector: all elements have the same type, and they are indexed using square brackets in both R and python: `[dim1, dim2, dim3, ...]`
+
+I don't think you will need to create 3+ dimensional arrays in this class, but if you want to try it out, here is some code.
+
+```{r}
+array(1:8, dim = c(2,2,2))
+```
+
+Note that displaying this requires 2 slices, since it's hard to display 3D information in a 2D terminal arrangement.
+
+::: check-in
+
+## Check-in 1: Pre-reading Quiz {#checkin1-prereading .unnumbered}
+
+1.
+
+2.
+
+3.
+
+4.
+
+:::

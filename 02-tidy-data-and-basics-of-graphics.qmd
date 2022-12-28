@@ -1,0 +1,31 @@
+---
+execute:
+  freeze: auto  # re-render only when source changes
+---
+
+```{r echo=FALSE}
+bytes <- file.size("02-tidy-data-and-basics-of-graphics.qmd")
+words <- bytes/10
+minutes <- words/200
+```
+
+# Tidy Data & Basics of Graphics
+
+```{r fa-setup, include=FALSE}
+# library(reticulate)
+library(quarto)
+library(fontawesome)
+fa_html_dependency()
+# htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+`r fa("book-open")` Reading: `r ceiling(minutes)` minute(s) at 200 WPM.
+
+`r fa("video")` Videos:
+
+## Objectives {#ch2-objectives .unnumbered}
+
+::: check-in
+### Check-ins {#ch2-checkins .unnumbered}
+
+:::
