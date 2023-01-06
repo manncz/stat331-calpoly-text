@@ -20,17 +20,18 @@ fa_html_dependency()
 
 `r fa("book-open")` Reading: `r ceiling(minutes)` minute(s) at 200 WPM.
 
-`r fa("video")` Videos:
+`r fa("video")` Videos: 21.85 minutes
 
-::: check-in
+## Objectives {#ch0-objectives .unnumbered}
 
-### Precourse Check-in {#prereading-checkins .unnumbered}
+A prerequisite for this course is an introductory programming course. Therefore, there is some assumed knowledge. Maybe you have not seen these concepts in `R`, but you have already developed a base for logically thinking through a computing problem in another language.
 
-This chapter contains assumed knowledge from your prior programming course.
+This chapter is meant to provide a resource for the basics of programming (in `R`) and gives me a place to refer back to (as need be) in future chapters.
 
--   Check-in 1: Pre-reading Quiz
+In this chapter you will:
 
-:::
++ 
++
 
 ## Computer Basics
 
@@ -41,7 +42,6 @@ We all use computers daily - we carry them around with us on our wrists, in our 
 ### Hardware
 
 Here is a short 3-minute video on the basic hardware that makes up your computer. It is focused on desktops, but the same components (with the exception of the optical drive) are commonly found in cell phones, smart watches, and laptops.
-
 
 ::: column-margin
 ::: youtube-video-container
@@ -83,6 +83,7 @@ Regardless of how you tend to organize your personal files, it is probably helpf
 
 </iframe>
 :::
+Stop watching at 4:16.
 :::
 
 That's not enough, though - we also need to know how computers remember the location of what is stored where. Specifically, we need to understand **file paths**.
@@ -93,18 +94,23 @@ That's not enough, though - we also need to know how computers remember the loca
 
 </iframe>
 :::
+<br>
+
+::: my-opinion
+Recommend watching - helpful for understanding file paths!
+:::
 :::
 
 When you write a program, you may have to reference external files - data stored in a .csv file, for instance, or a picture. Best practice is to create a file structure that contains everything you need to run your entire project in a single file folder (you can, and sometimes should, have sub-folders).
 
 For now, it is enough to know how to find files using file paths, and how to refer to a file using a relative file path from your base folder. In this situation, your "base folder" is known as your **working directory** - the place your program thinks of as home.
 
-::: check-in
-
+In Chapter 1, we will discuss [Directories, Paths, and Projects](#directories-and-projects) as they relate to `R` and getting setup to be successful in this course.
 
 ## Vectors, Matrices, and Arrays
 
 <!-- Vectors, Matrices, and Numpy arrays. Logical indexing. For loops. -->
+
 <!-- Lego pictures made with https://www.mecabricks.com/en/workshop -->
 
 This chapter introduces some of the most important tools for working with data: vectors, matrices, loops, and if statements. It would be nice to gradually introduce each one of these topics separately, but they tend to go together, especially when you're talking about programming in the context of data processing.
@@ -143,13 +149,11 @@ x & !y # X AND NOT Y
 -   NOT(A and B) is equivalent to NOT(A) or NOT(B)
 
 ::: panel-tabset
-
 We can also represent them with Venn Diagrams.
 
 ##### Definitions
 
 ![Venn Diagram of Set A and Set B](images/SetA%20and%20SetB.png) Suppose that we set the convention that ![Shaded regions are TRUE, unshaded regions are FALSE](images/TrueFalse.png).
-
 
 ##### DeMorgan's First Law
 
@@ -158,7 +162,6 @@ We can also represent them with Venn Diagrams.
 ##### DeMorgan's Second Law
 
 ![A venn diagram illustration of De Morgan's laws showing that the region that is outside of the union of A AND B (aka NOT (A AND B)) is the same as the region that is outside of (NOT A) OR (NOT B)](images/DeMorgan2.png)
-
 :::
 
 ### Data Structures
@@ -179,7 +182,6 @@ A **list** is a one-dimensional column of heterogeneous data - the things stored
 
 ![A lego list: the bricks are all different types and colors, but they are still part of the same data structure.](images/lego-list.png)
 
-
 ```{r list-r}
 x <- list("a", 3, FALSE)
 x
@@ -187,14 +189,13 @@ x
 
 The most important thing to know about lists, for the moment, is how to pull things out of the list. We call that process **indexing**.
 
-
 ##### Indexing
 
-Every element in a list has an **index** (a location, indicated by an integer position)[^vectors-1].
+Every element in a list has an **index** (a location, indicated by an integer position)[^00-prereading-1].
 
-[^vectors-1]: Throughout this section (and other sections), lego pictures are rendered using https://www.mecabricks.com/en/workshop. It's a pretty nice tool for building stuff online!
+[^00-prereading-1]: Throughout this section (and other sections), lego pictures are rendered using https://www.mecabricks.com/en/workshop. It's a pretty nice tool for building stuff online!
 
-In R, we count from 1. 
+In R, we count from 1.
 
 ![An R-indexed lego list, counting from 1 to 5](images/list-indexing-r.png)
 
@@ -213,7 +214,6 @@ In R, list indexing with `[]` will return a list with the specified elements.
 To actually retrieve the item in the list, use `[[]]`. The only downside to `[[]]` is that you can only access one thing at a time.
 
 We'll talk more about indexing as it relates to vectors, but indexing is a general concept that applies to just about any multi-value object.
-
 
 #### Vectors
 
@@ -253,7 +253,6 @@ digits_pi
 
 We can pull out items in a vector by indexing, but we can also replace specific things as well:
 
-
 ```{r cat-vector-indexing}
 favorite_cats <- c("Grumpy", "Garfield", "Jorts", "Jean")
 
@@ -264,9 +263,9 @@ favorite_cats[2] <- "Nyan Cat"
 favorite_cats
 ```
 
-If you're curious about any of these cats, see the footnotes[^vectors-3].
+If you're curious about any of these cats, see the footnotes[^00-prereading-2].
 
-[^vectors-3]: [Grumpy cat](https://www.grumpycats.com/), [Garfield](https://www.garfield.com/), [Nyan cat](https://en.wikipedia.org/wiki/Nyan_Cat). Jorts and Jean: [The initial post](https://www.reddit.com/r/AmItheAsshole/comments/rfwgmc/aita_for_perpetuating_ethnic_stereotypes_about/) and the [update](https://www.reddit.com/user/throwawayorangecat/comments/rgi000/update_aita_for_perpetuating_stereotypes_about/) (both are worth a read because the story is hilarious). The cats also have a [Twitter account](https://twitter.com/JortsTheCat) where they promote workers rights.
+[^00-prereading-2]: [Grumpy cat](https://www.grumpycats.com/), [Garfield](https://www.garfield.com/), [Nyan cat](https://en.wikipedia.org/wiki/Nyan_Cat). Jorts and Jean: [The initial post](https://www.reddit.com/r/AmItheAsshole/comments/rfwgmc/aita_for_perpetuating_ethnic_stereotypes_about/) and the [update](https://www.reddit.com/user/throwawayorangecat/comments/rgi000/update_aita_for_perpetuating_stereotypes_about/) (both are worth a read because the story is hilarious). The cats also have a [Twitter account](https://twitter.com/JortsTheCat) where they promote workers rights.
 
 ##### Indexing with Logical Vectors
 
@@ -274,11 +273,11 @@ As you might imagine, we can create vectors of all sorts of different data types
 
 ![lego vectors - a pink/purple hued set of 1x3 bricks representing the data and a corresponding set of 1x1 grey and black bricks representing the logical index vector of the same length](images/lego-logical-full.png)
 
-If we let the black lego represent "True" and the grey lego represent "False", we can use the logical vector to pull out all values in the main vector. 
+If we let the black lego represent "True" and the grey lego represent "False", we can use the logical vector to pull out all values in the main vector.
 
-Black = True, Grey = False | Grey = True, Black = False
---- | ---
-![a pink/purple hued set of 1x3 bricks representing a vector and a corresponding set of 1x1 black bricks representing the logical index vector of the same length. The grey bricks (and corresponding values of the previous vector) have been removed (filtered out).](images/lego-logical-black.png) | ![a pink/purple hued set of 1x3 bricks representing a vector and a corresponding set of 1x1 grey bricks representing the logical index vector of the same length. The black bricks (and corresponding values of the previous vector) have been removed (filtered out).](images/lego-logical-grey.png)
+| Black = True, Grey = False                                                                                                                                                                                                                                                                             | Grey = True, Black = False                                                                                                                                                                                                                                                                            |
+|------------------------------------|------------------------------------|
+| ![a pink/purple hued set of 1x3 bricks representing a vector and a corresponding set of 1x1 black bricks representing the logical index vector of the same length. The grey bricks (and corresponding values of the previous vector) have been removed (filtered out).](images/lego-logical-black.png) | ![a pink/purple hued set of 1x3 bricks representing a vector and a corresponding set of 1x1 grey bricks representing the logical index vector of the same length. The black bricks (and corresponding values of the previous vector) have been removed (filtered out).](images/lego-logical-grey.png) |
 
 Note that for logical indexing to work properly, the logical index must be the same length as the vector we're indexing. This constraint will return when we talk about data frames, but for now just keep in mind that logical indexing doesn't make sense when this constraint isn't true.
 
@@ -312,18 +311,15 @@ c(2L, FALSE, 3.1415) # converted to numerics
 c(2L, FALSE) # converted to integers
 ```
 
-
 As a reminder, this is an example of **implicit** type conversion - R and python decide what type to use for you, going with the type that doesn't lose data but takes up as little space as possible.
-
 
 ### Matrices
 
 A **matrix** is the next step after a vector - it's a set of values arranged in a two-dimensional, rectangular format.
 
-#### Matrix (Lego) {-}
+#### Matrix (Lego) {.unnumbered}
 
 ![lego depiction of a 3-row, 4-column matrix of 2x2 red-colored blocks](images/lego-2x2-matrix.png)
-
 
 ```{r matrix-r}
 # Minimal matrix in R: take a vector, 
@@ -341,12 +337,11 @@ matrix(1:12, nrow = 3, byrow = T)
 diag(rep(1, times = 4))
 ```
 
-
 This class comes before linear algebra in the required course sequence, so most of the problems we're going to work on will not require much in the way of matrix or array operations. For now, you need the following:
 
-- Know that matrices exist and what they are (2-dimensional arrays of numbers)
-- Understand how they are indexed (because it is extremely similar to data frames that we'll work with in the next chapter)
-- Be aware that there are lots of functions that depend on matrix operations at their core (including linear regression)
+-   Know that matrices exist and what they are (2-dimensional arrays of numbers)
+-   Understand how they are indexed (because it is extremely similar to data frames that we'll work with in the next chapter)
+-   Be aware that there are lots of functions that depend on matrix operations at their core (including linear regression)
 
 #### Indexing in Matrices
 
@@ -399,15 +394,13 @@ array(1:8, dim = c(2,2,2))
 Note that displaying this requires 2 slices, since it's hard to display 3D information in a 2D terminal arrangement.
 
 ::: check-in
-
 ## Check-in 1: Pre-reading Quiz {#checkin1-prereading .unnumbered}
 
-1.
+1.  
 
-2.
+2.  
 
-3.
+3.  
 
-4.
-
+4.  
 :::

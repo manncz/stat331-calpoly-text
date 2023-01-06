@@ -28,7 +28,7 @@ fa_html_dependency()
 
 There are four check-ins for this week:
 
-+ Check-in 1: Syllabus Quiz
+-   Check-in 1: Syllabus Quiz
 
 <details class="check-in">
 
@@ -38,78 +38,61 @@ The [course syllabus]() includes information about class dates, course structure
 
 </details>
 
-
-+ Check-in 2: Discord Server
+-   Check-in 2: Discord Server
 
 <details class="check-in">
 
-<summary>Introduce yourself in the “Introductions” channel of the Discord Server.</summary>
+<summary>Introduce yourself in the "Introductions" channel of the Discord Server.</summary>
 
 <br>
 
 **Using the Class Discord**
 
-We'll be using Discord to interact with our peers and group members. 
+We'll be using Discord to interact with our peers and group members.
 
 Discord is a platform for text chatting, voice chatting, and screen sharing.
 
-In particular, course **office hours** are held via Discord. I will be available
-for public questions, or one-on-one and small group chats by text, voice, or
-video.
+In particular, course **office hours** are held via Discord. I will be available for public questions, or one-on-one and small group chats by text, voice, or video.
 
 **Join the server**
 
-Join the Stat 331 Server *(link to join can be found on canvas)*
-to start experimenting with the interface.
+Join the Stat 331 Server *(link to join can be found on canvas)* to start experimenting with the interface.
 
-When you join the server, you will be given some suggestions to get started.  
+When you join the server, you will be given some suggestions to get started.
 
 ![](images/screencast_gifs/welcome_discord.png)
 
-
-I recommend you click through these - and in particular, it is probably a good
-idea to download the desktop version of Discord, and perhaps to install it on
-your phone if you wish.
+I recommend you click through these - and in particular, it is probably a good idea to download the desktop version of Discord, and perhaps to install it on your phone if you wish.
 
 **Set up your account**
 
 ***Verify your email***
 
-To use this Discord server, you **must** have a verified email.  
+To use this Discord server, you **must** have a verified email.
 
-Nobody (including your professors) will be able to see this email, and it does 
-not have to be your Cal Poly email.  This is simply to keep the server from
-being overrun by temporary accounts.
-
+Nobody (including your professors) will be able to see this email, and it does not have to be your Cal Poly email. This is simply to keep the server from being overrun by temporary accounts.
 
 ***Create your identity***
 
-The first thing you should do is decide what name and picture you would like to
-use.
-
+The first thing you should do is decide what name and picture you would like to use.
 
 ![](images/screencast_gifs/pic.gif)
 
-I would like to **strongly** encourage you to use your **real name and picture**, 
-so that everyone can get to know you.  However, if you prefer to remain
-anonymous, you are free to do so.
+I would like to **strongly** encourage you to use your **real name and picture**, so that everyone can get to know you. However, if you prefer to remain anonymous, you are free to do so.
 
 ![](images/screencast_gifs/pic_name.gif)
 
-
-(Please do not be like Regina and use the name of another student, however!  
+(Please do not be like Regina and use the name of another student, however!\
 This kind of impersonation will result in a permanent ban from the server.)
-
 
 **Decide about privacy and notifications**
 
-The default settings on the channel are probably just fine for you.  
+The default settings on the channel are probably just fine for you.\
 Feel free to make any changes that work for you, though.
 
 You can change your message notifications:
 
 ![](images/screencast_gifs/notifications.gif)
-
 
 You can edit your privacy settings, although most things are already private:
 
@@ -121,12 +104,9 @@ You can connect other apps to Discord, either for productivity or just for fun.
 
 ![](images/screencast_gifs/connect_spotify.gif)
 
-
 **Using the Channels**
 
-The server is made up of many channels.  Some are text chatrooms, while some are
-"Voice Channels" that connect you via audio to everyone else in the channel.
-
+The server is made up of many channels. Some are text chatrooms, while some are "Voice Channels" that connect you via audio to everyone else in the channel.
 
 **Text Channels**
 
@@ -134,11 +114,9 @@ Use the `#general` channel for anything and everything:
 
 ![](images/screencast_gifs/saying_hi.gif)
 
-If your question is about course logistics, rather than the material itself,
-consider using the `#class-logistics` channel:
+If your question is about course logistics, rather than the material itself, consider using the `#class-logistics` channel:
 
 ![](images/screencast_gifs/logistics.gif)
-
 
 You can use the specific weekly channels to ask questions about the material...
 
@@ -146,57 +124,39 @@ You can use the specific weekly channels to ask questions about the material...
 
 ... or the specific lab assignment.
 
-
 ![](images/screencast_gifs/code_in_chat.gif)
 
-Notice that you can use tick marks (` ``` `), like in R Markdown, to make your
-code appear in a formatted code box.
-
+Notice that you can use tick marks (```` ``` ````), like in R Markdown, to make your code appear in a formatted code box.
 
 **Voice Channels**
 
-To join a voice channel, simply click it!  Make sure you are careful about when
-you are muted or unmuted.
+To join a voice channel, simply click it! Make sure you are careful about when you are muted or unmuted.
 
 ![](images/screencast_gifs/voice_channel.gif)
 
-The extra "Side Chat" channels are limited to 4 or 8 people, if you would like
-to start an impromptu study conversation without being heard by me and / or the
-rest of the class.  (I'll only drop in if you invite us!)
+The extra "Side Chat" channels are limited to 4 or 8 people, if you would like to start an impromptu study conversation without being heard by me and / or the rest of the class. (I'll only drop in if you invite us!)
 
-Voice channels can also be used for people to "Go Live", and share their screen
-with everyone else.
+Voice channels can also be used for people to "Go Live", and share their screen with everyone else.
 
 ![](images/screencast_gifs/going_live.gif)
 
-While this will usually be something professors use to demonstrate code, you can
-go live, too!  But you may need to download the desktop version of Discord to do
-so.
-
+While this will usually be something professors use to demonstrate code, you can go live, too! But you may need to download the desktop version of Discord to do so.
 
 **Private messages**
 
-It is also easy to send private messages, to your professor or to each other. 
-These private messages can also easily be used to launch a private video chat
-and / or screen sharing.
+It is also easy to send private messages, to your professor or to each other. These private messages can also easily be used to launch a private video chat and / or screen sharing.
 
 ![](images/screencast_gifs/private_message.gif)
 
-
 **Creating your own server**
 
-Last but not least - for the teams you are a part of, you may want to use
-Discord to communicate with each other about the weekly assignments. You can do
-this by creating your own server! You can easily hop between servers during work
-parties, to ask each other questions or just to take a break and chat about
-life.
-
+Last but not least - for the teams you are a part of, you may want to use Discord to communicate with each other about the weekly assignments. You can do this by creating your own server! You can easily hop between servers during work parties, to ask each other questions or just to take a break and chat about life.
 
 ![](images/screencast_gifs/new_server.gif)
 
 </details>
 
-+ [Check-in 3: RStudio Projects](#setting-up-your-computer)
+-   [Check-in 3: RStudio Projects](#setting-up-your-computer)
 
 <details class="check-in">
 
@@ -208,9 +168,9 @@ Take a screenshot of your class directory, showing the `r fa('r-project')` **RPr
 
 </details>
 
-+ [Check-in 4: Introduction to `R` & RStudio](#checkin4-intro-to-r)
-
+-   [Check-in 4: Introduction to `R` & RStudio](#checkin4-intro-to-r)
 :::
+
 ## Getting Started
 
 ### Setting up your computer {#setting-up-your-computer}
@@ -218,7 +178,6 @@ Take a screenshot of your class directory, showing the `r fa('r-project')` **RPr
 In this section, I will provide you with links to set up various programs on your own machine. If you have trouble with these instructions or encounter an error, post on the class message board or contact me for help.
 
 ::: check-in
-
 #### Check-in 3: Installing `R`, RStudio, and Quarto {#checkin3-install}
 
 1.  Download and run the R installer for your operating system from CRAN:
@@ -236,31 +195,28 @@ In this section, I will provide you with links to set up various programs on you
 3.  Download and install the [latest version of Quarto](https://quarto.org/#getting-started) for your operating system. Quarto is a command-line tool released by RStudio that allows Rstudio to work with python and other R specific tools in a unified way.
 
 *Make sure you remember to create your [RProject](#checkin3-r-project) and upload a screenshot to canvas.*
-
 :::
 
 ::: column-margin
-If you would like a video tutorial on downloading RStudio, here is one:
-<br>
+If you would like a video tutorial on downloading RStudio, here is one: <br>
 
 ::: youtube-video-container
+<iframe src="https://player.vimeo.com/video/203516968?h=7fc91cd48f&amp;color=428bca" width="640" height="400" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
 
-<iframe src="https://player.vimeo.com/video/203516968?h=7fc91cd48f&color=428bca" width="640" height="400" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+</iframe>
 
 </iframe>
 :::
 :::
 
-#### Directories, Paths, and Projects
+#### Directories, Paths, and Projects {#directories-and-projects}
 
 In [File Systems](#file-systems) we learned about ...
 
 ::: check-in
-
 #### Check-in 3: RProject {#checkin3-r-project}
 
-4. Take a screenshot of your class directory, showing the R Project and the folder organization, including a Week 1 or Practice Activity folder. Upload this screenshot to canvas.
-
+4.  Take a screenshot of your class directory, showing the R Project and the folder organization, including a Week 1 or Practice Activity folder. Upload this screenshot to canvas.
 :::
 
 <br>
@@ -270,29 +226,39 @@ In [File Systems](#file-systems) we learned about ...
 
 `r fa('book')` [Workflow and Projects](https://r4ds.had.co.nz/workflow-projects.html)
 
-`r fa('book')` [Software Carpentry – Project Managment with RStudio](https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/index.html)
-
+`r fa('book')` [Software Carpentry -- Project Managment with RStudio](https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/index.html)
 :::
 
 <!-- ::: tryitout -->
+
 <!-- #### In class activity {.unnumbered} -->
 
 <!-- Open RStudio on your computer and explore a bit. -->
 
 <!-- -   Can you find the R console? Type in `2+2` to make sure the result is `4`. -->
+
 <!-- -   Run the following code in the R console: -->
 
 <!-- ``` r -->
+
 <!-- install.packages( -->
+
 <!--   c("tidyverse", "rmarkdown", "knitr", "quarto") -->
+
 <!-- ) -->
+
 <!-- ``` -->
 
 <!-- -   Can you find the text editor? -->
+
 <!--     -   Create a new quarto document (File -\> New File -\> Quarto Document). -->
+
 <!--     -   Paste in the contents of [this document](https://raw.githubusercontent.com/srvanderplas/Stat151/main/files/getting-started-quarto.qmd). -->
+
 <!--     -   Compile the document and use the Viewer pane to see the result. -->
+
 <!--     -   If this all worked, you have RStudio, Quarto, and `R` set up correctly on your machine. -->
+
 <!-- ::: -->
 
 ## Scripts and Notebooks
@@ -336,12 +302,15 @@ I have saved this script [here](files/markdown-spiral-script.R). You can downloa
 Scripts can be run in Rstudio by clicking the Run button ![RStudio run button](images/Run-button-Rstudio.png) at the top of the editor window when the script is open.
 
 <!-- ::: tryitout -->
+
 <!-- ### Try it out! -->
 
 <!-- -   Download the R script in the above example, open them in RStudio, and run the script using the Run button. What do you see? -->
 
 <!-- -   (Advanced) Open a terminal in RStudio (Tools -\> Terminal -\> New Terminal) and see if you can run the R script from the terminal using `R CMD BATCH path/to/file/markdown-spiral-script.R` (You will have to modify this command to point to the file on your machine)\ -->
+
 <!--     Notice that two new files appear in your working directory: `Rplots.pdf` and `markdown-spiral-script.Rout` -->
+
 <!-- ::: -->
 
 Most of the time, you will run scripts interactively - that is, you'll be sitting there watching the script run and seeing what the results are as you are modifying the script. However, one advantage to scripts over notebooks is that it is easy to write a script and schedule it to run without supervision to complete tasks which may be repetitive. I have a script that runs daily at midnight, 6am, noon, and 6pm to pull information off of the internet for a dataset I'm maintaining. I've set it up so that this all happens automatically and I only have to check the results when I am interested in working with that data.
@@ -355,10 +324,10 @@ In this class, we're going to use Quarto/R markdown. This matters because the go
 ::: go-read
 ##### Introduction to Quarto {#intro-to-quarto}
 
-- [R4DS: Quarto](https://r4ds.hadley.nz/quarto.html)
-- [Intro to Quarto](https://quarto.org/docs/get-started/hello/rstudio.html)
-- [Computations in Quarto](https://quarto.org/docs/get-started/computations/rstudio.html)
-- [Authoring & Formatting Quarto Documents](https://quarto.org/docs/get-started/authoring/rstudio.html)
+-   [R4DS: Quarto](https://r4ds.hadley.nz/quarto.html)
+-   [Intro to Quarto](https://quarto.org/docs/get-started/hello/rstudio.html)
+-   [Computations in Quarto](https://quarto.org/docs/get-started/computations/rstudio.html)
+-   [Authoring & Formatting Quarto Documents](https://quarto.org/docs/get-started/authoring/rstudio.html)
 :::
 
 ::: learn-more
@@ -369,17 +338,17 @@ There are some excellent opinions surrounding the use of notebooks in data analy
 -   [Why I Don't Like Notebooks"](https://docs.google.com/presentation/d/1n2RlMdmv1p25Xy5thJUhkKGvjtV-dkAIsUXP-AL4ffI/preview#slide=id.g362da58057_0_1) by Joel Grus at JupyterCon 2018
 -   [The First Notebook War](https://yihui.org/en/2018/09/notebook-war/) by Yihui Xie (response to Joel's talk).\
     Yihui Xie is the person responsible for `knitr` and `Rmarkdown`.
-    
+
 You can find the entire list of options you can use to format your HTML file with Quarto here. Poke around the gallery of cool HTML documents rendered with Quarto:
 
-- [Interactive document published to the web](https://quarto-dev.github.io/quarto-gallery/articles/html/html.html)
-- [Advanced Layout with HTML](https://quarto-dev.github.io/quarto-gallery/page-layout/tufte.html)
-    
+-   [Interactive document published to the web](https://quarto-dev.github.io/quarto-gallery/articles/html/html.html)
+-   [Advanced Layout with HTML](https://quarto-dev.github.io/quarto-gallery/page-layout/tufte.html)
 :::
 
 <!-- #### Try it out {.tryitout} -->
 
 <!-- ::: panel-tabset -->
+
 <!-- ##### R markdown -->
 
 <!-- Take a look at the [R markdown sample file](files/markdown-demo.Rmd) I've created to go with the R script above. You can see the HTML file it generates [here](files/markdown-demo.html). -->
@@ -403,6 +372,7 @@ You can find the entire list of options you can use to format your HTML file wit
 <!-- -   Try to compile the file by hitting the Render button ![Render button in RStudio](images/Render-button-Rstudio.png) -->
 
 <!-- -   (Advanced) In the terminal, type in `quarto render path/to/file/quarto-demo.qmd`. Does that render the HTML file? One advantage of this is that using quarto to render the file doesn't require R at the command line. As the document contains R chunks, R is still required to compile the document, but the biggest difference between qmd and rmd is that qmd files are workflow agnostic - you can generate them in e.g. MS Visual Studio Code, compile them in that workflow, and never have to use RStudio. -->
+
 <!-- ::: -->
 
 ## Finding your way in `R`
@@ -425,11 +395,11 @@ It will be hard at first - you have to learn the vocabulary in both languages in
 
 I particularly like the way that Python for Everybody [@py4e] explains coding vocabulary:
 
-> Unlike human languages, the [R] vocabulary is actually pretty small. We call this "vocabulary" the "reserved words". These are words that have very special meaning to [R]. When [R] sees these words in a [R] program, they have one and only one meaning to [R]. Later as you write programs you will make up your own words that have meaning to you called variables. You will have great latitude in choosing your names for your variables, but you cannot use any of [R]'s reserved words as a name for a variable.
+> Unlike human languages, the \[R\] vocabulary is actually pretty small. We call this "vocabulary" the "reserved words". These are words that have very special meaning to \[R\]. When \[R\] sees these words in a \[R\] program, they have one and only one meaning to \[R\]. Later as you write programs you will make up your own words that have meaning to you called variables. You will have great latitude in choosing your names for your variables, but you cannot use any of \[R\]'s reserved words as a name for a variable.
 
 > When we train a dog, we use special words like "sit", "stay", and "fetch". When you talk to a dog and don't use any of the reserved words, they just look at you with a quizzical look on their face until you say a reserved word. For example, if you say, "I wish more people would walk to improve their overall health", what most dogs likely hear is, "blah blah blah walk blah blah blah blah." That is because "walk" is a reserved word in dog language. Many might suggest that the language between humans and cats has no reserved words.
 
-> The reserved words in the language where humans talk to [R] include the following:
+> The reserved words in the language where humans talk to \[R\] include the following:
 
     if          else     repeat      while        
     for         in       next        break  
@@ -437,15 +407,15 @@ I particularly like the way that Python for Everybody [@py4e] explains coding vo
     NA_integer_ NA_real_ NA_complex_ NA_character_  
     NaN         NA       function    ...
 
-> That is it, and unlike a dog, [R] is already completely trained. When you say 'try', [R] will try every time you say it without fail.
+> That is it, and unlike a dog, \[R\] is already completely trained. When you say 'try', \[R\] will try every time you say it without fail.
 
-> We will learn these reserved words and how they are used in good time, but for now we will focus on the [R] equivalent of "speak" (in human-to-dog language). The nice thing about telling [R] to speak is that we can even tell it what to say by giving it a message in quotes:
+> We will learn these reserved words and how they are used in good time, but for now we will focus on the \[R\] equivalent of "speak" (in human-to-dog language). The nice thing about telling \[R\] to speak is that we can even tell it what to say by giving it a message in quotes:
 
 ```{r}
 print('Hello world!')
 ```
 
-> And we have even written our first syntactically correct [R] sentence. Our sentence starts with the function print followed by a string of text of our choosing enclosed in single quotes. The strings in the print statements are enclosed in quotes. Single quotes and double quotes do the same thing; most people use single quotes except in cases like this where a single quote (which is also an apostrophe) appears in the string.
+> And we have even written our first syntactically correct \[R\] sentence. Our sentence starts with the function print followed by a string of text of our choosing enclosed in single quotes. The strings in the print statements are enclosed in quotes. Single quotes and double quotes do the same thing; most people use single quotes except in cases like this where a single quote (which is also an apostrophe) appears in the string.
 
 ### Talking to `R` - Interactive mode
 
@@ -475,9 +445,9 @@ If we are working in interactive mode, why did I have you start out by creating 
 In your R chunk or script, type in `2+2` and hit `Ctrl+Enter` (or `Cmd+Enter` on a mac). Look down to the Console (which is usually below the editor window) and see if 4 appears. If you're like me, output shows up in two places at once:
 
 | Location | Picture                                                                                     |
-|----------------|--------------------------------------------------------|
+|------------------|------------------------------------------------------|
 | Chunk    | ![R output underneath the code chunk](images/R-chunk-2+2.png)                               |
-| Script   | ![R doesn\'t show script output in the script](images/R-script-2+2.png)                     |
+| Script   | ![R doesn't show script output in the script](images/R-script-2+2.png)                      |
 | Console  | ![R output in the console (from either a script or a code chunk)](images/R-console-2+2.png) |
 
 R will indicate that it is waiting for your command with a `>` character in the console. If you don't see that `>` character, chances are you've forgotten to finish a statement - check for parentheses and brackets.
@@ -493,7 +463,6 @@ The first two statements in the above example work - "Hello" is a string, and is
 Suppose we define `I` and `love` as variables by putting a value into each object using `<-`, which is the assignment operator. Then, typing "I love" into the console generates the same error, and R tells us "hey, there's an unexpected symbol here" - in this case, maybe we meant to add the two variables together.
 
 ![R console with commands "Hello", print("Hello"), and (unquoted) "I love R", which causes an error. Defining variables I and love provides us a context in which R's error message about unexpected symbols makes sense - R is reminding us that we need a numerical operator in between the two variable names.](images/R-console-error.png)
-
 :::
 
 ### Talking to `R` - Script Mode
@@ -638,7 +607,7 @@ Here, `Rscript` is the command that tells R to evaluate the file, `words.R` is t
 
 <br>
 
-:::learn-more
+::: learn-more
 #### Additional Resources: Basics of `R` and RStudio
 
 **Basics of R Programming**
@@ -661,17 +630,16 @@ Here, `Rscript` is the command that tells R to evaluate the file, `words.R` is t
 
 Answer the following questions on the Canvas Quiz.
 
-**Question 1:** What does it mean for R to be “open-source”?
+**Question 1:** What does it mean for R to be "open-source"?
 
-a. Users are required to share all the code they write.
-b. Private companies must pay the R Core Group to use R.
-c. Developers cannot charge for the use of their R software.
-d. Anyone can change the base functionality of R.
+a.  Users are required to share all the code they write.
+b.  Private companies must pay the R Core Group to use R.
+c.  Developers cannot charge for the use of their R software.
+d.  Anyone can change the base functionality of R.
 
 **Question 2:** How often do you need to install a package on your computer?
 
 **Question 3:** What is the tidyverse?
-
 :::
 
 ### Getting help
@@ -690,59 +658,44 @@ w3schools has an excellent `R` [help on basic functions](https://www.w3schools.c
 
 #### Google is your friend.
 
-The R community has an enormous aresenal of online learning resources.  I will linked a few throughout the "read more" sections in this text, but you can always find more!
+The R community has an enormous aresenal of online learning resources. I will linked a few throughout the "read more" sections in this text, but you can always find more!
 
 ![](https://media3.giphy.com/media/3oKIPmM4hkQIf4p5T2/source.gif)
 
-
 Learn to:
 
-- Google for tutorials and examples
-- Use [Stack Overflow](https://stackoverflow.com/)
-- Ask questions on Twitter
-- Make good use of the vast and welcoming R network on the internet
+-   Google for tutorials and examples
+-   Use [Stack Overflow](https://stackoverflow.com/)
+-   Ask questions on Twitter
+-   Make good use of the vast and welcoming R network on the internet
 
 ::: tryitout
 ### PA 1: Find the Mistakes
 
-You can access [PA1: Find the
-Mistakes](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA1-find-the-mistakes.html)
-one of two ways:
+You can access [PA1: Find the Mistakes](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA1-find-the-mistakes.html) one of two ways:
 
-1. [Click here](https://posit.cloud/content/5172799) to access an RStudio Cloud
-project which we work on in groups on Day 1 of the course *(Note: if you do not
-have an RStudio Cloud account, you will be asked to create one)*.
+1.  [Click here](https://posit.cloud/content/5172799) to access an RStudio Cloud project which we work on in groups on Day 1 of the course *(Note: if you do not have an RStudio Cloud account, you will be asked to create one)*.
 
-2. If you have already installed [R, RStudio, and Quarto](#checkin3-install),
-you can [create a new Quarto document](#intro-to-quarto), and copy the practice
-activity
-[template](https://raw.githubusercontent.com/earobinson95/stat331-calpoly/master/practice-activities/PA1-find-the-mistakes.qmd?token=GHSAT0AAAAAABYBOW2KOG463KOTCZAHO5ZMY5MV55Q)
-into the file *(Note: make sure your quarto file is on Source mode and not
-Visual mode when you copy the template)*.
+2.  If you have already installed [R, RStudio, and Quarto](#checkin3-install), you can [create a new Quarto document](#intro-to-quarto), and copy the practice activity [template](https://raw.githubusercontent.com/earobinson95/stat331-calpoly/master/practice-activities/PA1-find-the-mistakes.qmd?token=GHSAT0AAAAAABYBOW2KOG463KOTCZAHO5ZMY5MV55Q) into the file *(Note: make sure your quarto file is on Source mode and not Visual mode when you copy the template)*.
 
 The components of the Practice Activity are described below:
 
 **Part One:**
 
-This file has many mistakes in the code.  Some are errors that will prevent the
-file from knitting; some are mistakes that do NOT result in an error.
+This file has many mistakes in the code. Some are errors that will prevent the file from knitting; some are mistakes that do NOT result in an error.
 
 Fix all the problems in the code chunks.
 
 **Part Two:**
 
-Follow the instructions in the file to uncover a secret message.  
+Follow the instructions in the file to uncover a secret message.
 
 Submit the name of the poem as the answer to the Canvas Quiz question.
-
 :::
 
 ::: column-margin
-
 ::: note
-
 Monday classtime will be dedicated to working through practice activities in groups and will be due the following classday. In order to make classtime most effective, you may want to spend some time prior to class reviewing and preparing for the activity.
-
 :::
 
 <br>
@@ -750,8 +703,9 @@ Monday classtime will be dedicated to working through practice activities in gro
 A useful video by Dr. Theobold on "Troubleshooting in R".
 
 ::: youtube-video-container
+<iframe width="963" height="602" src="https://www.youtube.com/embed/pY64VvSMy5s" title="Troubleshooting in R" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 
-<iframe width="963" height="602" src="https://www.youtube.com/embed/pY64VvSMy5s" title="Troubleshooting in R" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</iframe>
 
 </iframe>
 :::
