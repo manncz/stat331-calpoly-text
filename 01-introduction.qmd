@@ -23,12 +23,17 @@ fa_html_dependency()
 
 `r fa("video")` Videos:
 
+## Objectives {#ch1-objectives .unnumbered}
+
++
++
+
 ::: check-in
 ### Check-ins {#getting-started-checkins .unnumbered}
 
 There are four check-ins for this week:
 
--   Check-in 1: Syllabus Quiz
+-   Check-in 1.1: Syllabus Quiz
 
 <details class="check-in">
 
@@ -38,7 +43,7 @@ The [course syllabus]() includes information about class dates, course structure
 
 </details>
 
--   Check-in 2: Discord Server
+-   Check-in 1.2: Discord Server
 
 <details class="check-in">
 
@@ -48,11 +53,11 @@ The [course syllabus]() includes information about class dates, course structure
 
 **Using the Class Discord**
 
-We'll be using Discord to interact with our peers and group members.
+We'll be using Discord to interact with our peers and instructor outside of class.
 
 Discord is a platform for text chatting, voice chatting, and screen sharing.
 
-In particular, course **office hours** are held via Discord. I will be available for public questions, or one-on-one and small group chats by text, voice, or video.
+I will often be on Discord when in my office.
 
 **Join the server**
 
@@ -126,7 +131,7 @@ You can use the specific weekly channels to ask questions about the material...
 
 ![](images/screencast_gifs/code_in_chat.gif)
 
-Notice that you can use tick marks (```` ``` ````), like in R Markdown, to make your code appear in a formatted code box.
+Notice that you can use tick marks (```` ``` ````), like in `R` Markdown, to make your code appear in a formatted code box.
 
 **Voice Channels**
 
@@ -156,7 +161,7 @@ Last but not least - for the teams you are a part of, you may want to use Discor
 
 </details>
 
--   [Check-in 3: RStudio Projects](#setting-up-your-computer)
+-   [Check-in 1.3: RStudio Projects](#setting-up-your-computer)
 
 <details class="check-in">
 
@@ -168,7 +173,7 @@ Take a screenshot of your class directory, showing the `r fa('r-project')` **RPr
 
 </details>
 
--   [Check-in 4: Introduction to `R` & RStudio](#checkin4-intro-to-r)
+-   [Check-in 1.4: Introduction to `R` & RStudio](#checkin4-intro-to-r)
 :::
 
 ## Getting Started
@@ -178,7 +183,7 @@ Take a screenshot of your class directory, showing the `r fa('r-project')` **RPr
 In this section, I will provide you with links to set up various programs on your own machine. If you have trouble with these instructions or encounter an error, post on the class message board or contact me for help.
 
 ::: check-in
-#### Check-in 3: Installing `R`, RStudio, and Quarto {#checkin3-install}
+#### Check-in 1.3: Installing `R`, RStudio, and Quarto {#checkin3-install}
 
 1.  Download and run the R installer for your operating system from CRAN:
 
@@ -214,7 +219,7 @@ If you would like a video tutorial on downloading RStudio, here is one: <br>
 In [File Systems](#file-systems) we learned about ...
 
 ::: check-in
-#### Check-in 3: RProject {#checkin3-r-project}
+#### Check-in 1.3: RProject {#checkin3-r-project}
 
 4.  Take a screenshot of your class directory, showing the R Project and the folder organization, including a Week 1 or Practice Activity folder. Upload this screenshot to canvas.
 :::
@@ -626,7 +631,7 @@ Here, `Rscript` is the command that tells R to evaluate the file, `words.R` is t
 <br>
 
 ::: check-in
-### Check-in 4: Introduction to `R` & RStudio {#checkin4-intro-to-r .unnumbered}
+### Check-in 1.4: Introduction to `R` & RStudio {#checkin4-intro-to-r .unnumbered}
 
 Answer the following questions on the Canvas Quiz.
 

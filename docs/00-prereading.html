@@ -205,12 +205,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a href="#vectors-matrices-and-arrays" id="toc-vectors-matrices-and-arrays" class="nav-link" data-scroll-target="#vectors-matrices-and-arrays">Vectors, Matrices, and Arrays</a>
   <ul class="collapse">
 <li><a href="#mathematical-logic" id="toc-mathematical-logic" class="nav-link" data-scroll-target="#mathematical-logic">Mathematical Logic</a></li>
+  <li><a href="#basic-data-types" id="toc-basic-data-types" class="nav-link" data-scroll-target="#basic-data-types">Basic Data Types</a></li>
   <li><a href="#data-structures" id="toc-data-structures" class="nav-link" data-scroll-target="#data-structures">Data Structures</a></li>
   <li><a href="#matrices" id="toc-matrices" class="nav-link" data-scroll-target="#matrices">Matrices</a></li>
   <li><a href="#arrays" id="toc-arrays" class="nav-link" data-scroll-target="#arrays">Arrays</a></li>
   </ul>
 </li>
-  <li><a href="#checkin1-prereading" id="toc-checkin1-prereading" class="nav-link" data-scroll-target="#checkin1-prereading">Check-in 1: Pre-reading Quiz</a></li>
+  <li>
+<a href="#control-structures" id="toc-control-structures" class="nav-link" data-scroll-target="#control-structures">Control Structures</a>
+  <ul class="collapse">
+<li><a href="#conditional-statements" id="toc-conditional-statements" class="nav-link" data-scroll-target="#conditional-statements">Conditional Statements</a></li>
+  <li><a href="#loops" id="toc-loops" class="nav-link" data-scroll-target="#loops">Loops</a></li>
+  </ul>
+</li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/earobinson95/stat331-calpoly/edit/main/00-prereading.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
@@ -230,16 +237,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header><div class="cell">
 
 </div>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C87.5 32 35.1 48.6 9 59.9c-5.6 2.4-9 8-9 14V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V73.9c0-6.1-3.4-11.6-9-14C540.9 48.6 488.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 11 minute(s) at 200 WPM.</p>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"></path></svg> Videos: 21.85 minutes</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C87.5 32 35.1 48.6 9 59.9c-5.6 2.4-9 8-9 14V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V73.9c0-6.1-3.4-11.6-9-14C540.9 48.6 488.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 25 minute(s) at 200 WPM.</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"></path></svg> Videos: 28 minutes</p>
 <section id="ch0-objectives" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="ch0-objectives">Objectives</h2>
 <p>A prerequisite for this course is an introductory programming course. Therefore, there is some assumed knowledge. Maybe you have not seen these concepts in <code>R</code>, but you have already developed a base for logically thinking through a computing problem in another language.</p>
 <p>This chapter is meant to provide a resource for the basics of programming (in <code>R</code>) and gives me a place to refer back to (as need be) in future chapters.</p>
 <p>In this chapter you will:</p>
 <ul>
-<li>
-</li><li>
-</li></ul></section><section id="computer-basics" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="computer-basics">Computer Basics</h2>
+<li>Learn the basics of a computer system.</li>
+<li>Refresh your mathematical logic and apply it to variables, vectors, and matrices.</li>
+<li>Know the different types of variables and how to assign them to objects in <code>R</code>.</li>
+<li>Understand how to create and index vectors and matrices in <code>R</code>.</li>
+<li>Extend your logic to control structures with if-then statements and loops.</li>
+</ul></section><section id="computer-basics" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="computer-basics">Computer Basics</h2>
 <p>It is helpful when teaching a topic as technical as programming to ensure that everyone starts from the same basic foundational understanding and mental model of how things work. When teaching geology, for instance, the instructor should probably make sure that everyone understands that the earth is a round ball and not a flat plate – it will save everyone some time later.</p>
 <p>We all use computers daily - we carry them around with us on our wrists, in our pockets, and in our backpacks. This is no guarantee, however, that we understand how they work or what makes them go.</p>
 <section id="hardware" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="hardware">Hardware</h3>
@@ -289,7 +299,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section></section><section id="vectors-matrices-and-arrays" class="level2"><h2 class="anchored" data-anchor-id="vectors-matrices-and-arrays">Vectors, Matrices, and Arrays</h2>
 <!-- Vectors, Matrices, and Numpy arrays. Logical indexing. For loops. -->
 <!-- Lego pictures made with https://www.mecabricks.com/en/workshop -->
-<p>This chapter introduces some of the most important tools for working with data: vectors, matrices, loops, and if statements. It would be nice to gradually introduce each one of these topics separately, but they tend to go together, especially when you’re talking about programming in the context of data processing.</p>
+<p>This section introduces some of the most important tools for working with data: vectors, matrices, loops, and if statements. It would be nice to gradually introduce each one of these topics separately, but they tend to go together, especially when you’re talking about programming in the context of data processing.</p>
 <section id="mathematical-logic" class="level3"><h3 class="anchored" data-anchor-id="mathematical-logic">Mathematical Logic</h3>
 <p>Before we start talking about data structures and control structures, though, we’re going to take a minute to review some concepts from mathematical logic. This will be useful for both data structures and control structures, so stick with me for a few minutes.</p>
 <section id="and-or-and-not" class="level4"><h4 class="anchored" data-anchor-id="and-or-and-not">And, Or, and Not</h4>
@@ -299,7 +309,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>(X OR Y) requires that one of X or Y is true.</li>
 <li>(NOT X) is true if X is false, and false if X is true. Sometimes called <strong>negation</strong>.</li>
 </ul>
-<p>In R, we use <code>!</code> to symbolize NOT, in Python, we use <code>~</code> for vector-wise negation (NOT).</p>
+<p>In R, we use <code>!</code> to symbolize NOT.</p>
 <p>Order of operations dictates that NOT is applied before other operations. So <code>NOT X AND Y</code> is read as <code>(NOT X) AND (Y)</code>. You must use parentheses to change the way this is interpreted.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
@@ -354,8 +364,288 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
+</section></section><section id="basic-data-types" class="level3"><h3 class="anchored" data-anchor-id="basic-data-types">Basic Data Types</h3>
+<p>While we will discuss data types more in depth during class, it is important to have a base grasp on the types of data you might see in a programming language.</p>
+<section id="values-and-types" class="level4"><h4 class="anchored" data-anchor-id="values-and-types">Values and Types</h4>
+<p>Let’s start this section with some basic vocabulary.</p>
+<ul>
+<li>a <strong>value</strong> is a basic unit of stuff that a program works with, like <code>1</code>, <code>2</code>, <code>"Hello, World"</code>, and so on.</li>
+<li>values have <strong>types</strong> - <code>2</code> is an integer, <code>"Hello, World"</code> is a string (it contains a “string” of letters). Strings are in quotation marks to let us know that they are not variable names.</li>
+</ul>
+<p>In <code>R</code>, there are some very basic data types:</p>
+<ul>
+<li><p><strong>logical</strong> or <strong>boolean</strong> - FALSE/TRUE or 0/1 values. Sometimes, boolean is shortened to <strong>bool</strong></p></li>
+<li><p><strong>integer</strong> - whole numbers (positive or negative)</p></li>
+<li>
+<p><strong>double</strong> or <strong>float</strong> or <strong>numeric</strong>- decimal numbers.</p>
+<ul>
+<li>
+<strong>float</strong> is short for floating-point value.</li>
+<li>
+<strong>double</strong> is a floating-point value with more precision (“double precision”).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+</li>
+<li>
+<code>R</code> uses the name <strong>numeric</strong> to indicate a decimal value, regardless of precision.</li>
+</ul>
+</li>
+<li><p><strong>character</strong> or <strong>string</strong> - holds text, usually enclosed in quotes.</p></li>
+</ul>
+<p>If you don’t know what type a value is, <code>R</code> has a function to help you with that.</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fl">2L</span><span class="op">)</span> <span class="co"># by default, R treats all numbers as numeric/decimal values. </span></span>
+<span>          <span class="co"># The L indicates that we're talking about an integer. </span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="st">"Hello, programmer!"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "logical"
+[1] "integer"
+[1] "numeric"
+[1] "character"</code></pre>
+</div>
+</div>
+<div class="note">
+<p>In R, boolean values are <code>TRUE</code> and <code>FALSE</code>. Capitalization matters a LOT.</p>
+<p>Other things matter too: if we try to write a million, we would write it <code>1000000</code> instead of <code>1,000,000</code>. Commas are used for separating numbers, not for proper spacing and punctuation of numbers. This is a hard thing to get used to but very important – especially when we start reading in data.</p>
+</div>
+</section><section id="variables" class="level4"><h4 class="anchored" data-anchor-id="variables">Variables</h4>
+<p>Programming languages use <strong>variables</strong> - names that refer to values. Think of a variable as a container that holds something - instead of referring to the value, you can refer to the container and you will get whatever is stored inside.</p>
+<p>In R, we <strong>assign</strong> variables values using the syntax <code>object_name &lt;- value</code> You can read this as “object name gets value” in your head.</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">message</span> <span class="op">&lt;-</span> <span class="st">"So long and thanks for all the fish"</span></span>
+<span><span class="va">year</span> <span class="op">&lt;-</span> <span class="fl">2025</span></span>
+<span><span class="va">the_answer</span> <span class="op">&lt;-</span> <span class="fl">42L</span></span>
+<span><span class="va">earth_demolished</span> <span class="op">&lt;-</span> <span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="note">
+<p>Note that in <code>R</code>, we assign variables values using the <code>&lt;-</code> operator. Technically, <code>=</code> will work for assignment, but <code>&lt;-</code> is more common than <code>=</code> in <code>R</code> by convention.</p>
+</div>
+<p>We can then use the variables - do numerical computations, evaluate whether a proposition is true or false, and even manipulate the content of strings, all by referencing the variable by name.</p>
+</section><section id="valid-names" class="level4"><h4 class="anchored" data-anchor-id="valid-names">Valid Names</h4>
+<blockquote class="blockquote">
+<p>There are only two hard things in Computer Science: cache invalidation and naming things.<br>
+– Phil Karlton</p>
+</blockquote>
+<p>Object names must start with a letter and can only contain letters, numbers, <code>_</code>, and <code>.</code> in R.</p>
+<p>What happens if we try to create a variable name that isn’t valid?</p>
+<p>Starting a variable name with a number will get you an error message that lets you know that something isn’t right - “unexpected symbol”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>1st_thing <span class="ot">&lt;-</span> <span class="st">"check your variable names!"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: &lt;text&gt;:1:2: unexpected symbol
+1: 1st_thing
+     ^</code></pre>
+</div>
+</div>
+<p>Naming things is difficult! When you name variables, try to make the names descriptive - what does the variable hold? What are you going to do with it? The more (concise) information you can pack into your variable names, the more readable your code will be.</p>
+<div class="learn-more">
+<p><a href="https://neilkakkar.com/why-is-naming-things-hard.html">Why is naming things hard?</a> - Blog post by Neil Kakkar</p>
+</div>
+<p>There are a few different conventions for naming things that may be useful:</p>
+<ul>
+<li>
+<code>some_people_use_snake_case</code>, where words are separated by underscores</li>
+<li>
+<code>somePeopleUseCamelCase</code>, where words are appended but anything after the first word is capitalized (leading to words with humps like a camel).</li>
+<li><code>some.people.use.periods</code></li>
+<li>A few people mix conventions with <code>variables_thatLookLike.this</code> and they are almost universally hated.</li>
+</ul>
+<p>As long as you pick ONE naming convention and don’t mix-and-match, you’ll be fine. It will be easier to remember what you named your variables (or at least guess) and you’ll have fewer moments where you have to go scrolling through your script file looking for a variable you named.</p>
+</section><section id="type-conversions" class="level4"><h4 class="anchored" data-anchor-id="type-conversions">Type Conversions</h4>
+<p>We talked about values and types above, but skipped over a few details because we didn’t know enough about variables. It’s now time to come back to those details.</p>
+<p>What happens when we have an integer and a numeric type and we add them together? Hopefully, you don’t have to think too hard about what the result of <code>2 + 3.5</code> is, but this is a bit more complicated for a computer for two reasons: storage, and arithmetic.</p>
+<p>In days of yore, programmers had to deal with memory allocation - when declaring a variable, the programmer had to explicitly define what type the variable was. This tended to look something like the code chunk below:</p>
+<pre><code>int a = 1
+double b = 3.14159</code></pre>
+<p>Typically, an integer would take up 32 bits of memory, and a double would take up 64 bits, so doubles used 2x the memory that integers did. R is <strong>dynamically typed</strong>, which means you don’t have to deal with any of the trouble of declaring what your variables will hold - the computer automatically figures out how much memory to use when you run the code. So we can avoid the discussion of memory allocation and types because we’re using higher-level languages that handle that stuff for us<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>But the discussion of types isn’t something we can completely avoid, because we still have to figure out what to do when we do operations on things of two different types - even if memory isn’t a concern, we still have to figure out the arithmetic question.</p>
+<p>So let’s see what happens with a couple of examples, just to get a feel for <strong>type conversion</strong> (aka <strong>type casting</strong> or <strong>type coercion</strong>), which is the process of changing an expression from one data type to another.</p>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mode.html">mode</a></span><span class="op">(</span><span class="fl">2L</span> <span class="op">+</span> <span class="fl">3.14159</span><span class="op">)</span> <span class="co"># add integer 2 and pi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mode.html">mode</a></span><span class="op">(</span><span class="fl">2L</span> <span class="op">+</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># add integer 2 and TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mode.html">mode</a></span><span class="op">(</span><span class="cn">TRUE</span> <span class="op">+</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># add TRUE and FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+</div>
+<p>All of the examples above are ‘numeric’ - basically, a catch-all class for things that are in some way, shape, or form numbers. Integers and decimal numbers are both numeric, but so are logicals (because they can be represented as 0 or 1).</p>
+<p>You may be asking yourself at this point why this matters, and that’s a decent question. We will eventually be reading in data from spreadsheets and other similar tabular data, and types become <em>very</em> important at that point, because we’ll have to know how <code>R</code> handles type conversions.</p>
+<section id="test-it-out" class="level5 unnumbered tryitout"><h5 class="unnumbered anchored" data-anchor-id="test-it-out">Test it out!</h5>
+<p>Do a bit of experimentation - what happens when you try to add a string and a number? Which types are automatically converted to other types? Fill in the following table in your notes:</p>
+<p>Adding a ___ and a ___ produces a ___:</p>
+<table class="table">
+<thead><tr class="header">
+<th>Logical</th>
+<th>Integer</th>
+<th>Decimal</th>
+<th>String</th>
+<th></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Logical</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Integer</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Decimal</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>String</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></section><p>Above, we looked at automatic type conversions, but in many cases, we also may want to convert variables manually, specifying exactly what type we’d like them to be. A common application for this in data analysis is when there are “*” or “.” or other indicators in an otherwise numeric column of a spreadsheet that indicate missing data: when this data is read in, the whole column is usually read in as character data. So we need to know how to tell <code>R</code> that we want our string to be treated as a number, or vice-versa.</p>
+<p>In R, we can explicitly convert a variable’s type using <code>as.XXX()</code> functions, where XXX is the type you want to convert to (<code>as.numeric</code>, <code>as.integer</code>, <code>as.logical</code>, <code>as.character</code>, etc.).</p>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="st">"3.14159"</span></span>
+<span></span>
+<span><span class="va">x</span> <span class="op">+</span> <span class="va">y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in x + y: non-numeric argument to binary operator</code></pre>
+</div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.14159</code></pre>
+</div>
+</div>
+</section><section id="operators-and-functions" class="level4"><h4 class="anchored" data-anchor-id="operators-and-functions">Operators and Functions</h4>
+<p>In addition to variables, <strong>functions</strong> are extremely important in programming.</p>
+<p>Let’s first start with a special class of functions called operators. You’re probably familiar with operators as in arithmetic expressions: +, -, /, *, and so on.</p>
+<p>Here are a few of the most important ones:</p>
+<table class="table">
+<thead><tr class="header">
+<th>Operation</th>
+<th>R symbol</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Addition</td>
+<td><code>+</code></td>
+</tr>
+<tr class="even">
+<td>Subtraction</td>
+<td><code>-</code></td>
+</tr>
+<tr class="odd">
+<td>Multiplication</td>
+<td><code>*</code></td>
+</tr>
+<tr class="even">
+<td>Division</td>
+<td><code>/</code></td>
+</tr>
+<tr class="odd">
+<td>Integer Division</td>
+<td><code>%/%</code></td>
+</tr>
+<tr class="even">
+<td>Modular Division</td>
+<td><code>%%</code></td>
+</tr>
+<tr class="odd">
+<td>Exponentiation</td>
+<td><code>^</code></td>
+</tr>
+</tbody>
+</table>
+<p>Note that integer division is the whole number answer to A/B, and modular division is the fractional remainder when A/B.</p>
+<p>So <code>14 %/% 3</code> would be 4, and <code>14 %% 3</code> would be 2.</p>
+<div class="cell">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">14</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%/%</a></span> <span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">14</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<p>Note that these operands are all intended for scalar operations (operations on a single number) - vectorized versions, such as matrix multiplication, are somewhat more complicated.</p>
+</section><section id="order-of-operations" class="level4"><h4 class="anchored" data-anchor-id="order-of-operations">Order of Operations</h4>
+<p><code>R</code> operates under the same mathematical rules of precedence that you learned in school. You may have learned the acronym PEMDAS, which stands for Parentheses, Exponents, Multiplication/Division, and Addition/Subtraction. That is, when examining a set of mathematical operations, we evaluate parentheses first, then exponents, and then we do multiplication/division, and finally, we add and subtract.</p>
+<div class="cell">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">^</span><span class="op">(</span><span class="fl">5</span><span class="op">-</span><span class="fl">2</span><span class="op">)</span> <span class="co"># 2 ^ 3 = 8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">+</span> <span class="fl">2</span><span class="op">^</span><span class="fl">3</span> <span class="op">*</span> <span class="fl">4</span> <span class="co"># 1 + (8 * 4)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 33</code></pre>
+</div>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">3</span><span class="op">*</span><span class="fl">1</span><span class="op">^</span><span class="fl">3</span> <span class="co"># 3 * 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+</section><section id="string-operations" class="level4"><h4 class="anchored" data-anchor-id="string-operations">String Operations</h4>
+<p>You will have to use functions to perform operations on strings, as <code>R</code> does not have string operators. In <code>R</code>, to concatenate things, we need to use functions: <code>paste</code> or <code>paste0</code>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"first"</span>, <span class="st">"second"</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "first second"</code></pre>
+</div>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"first"</span>, <span class="st">"second"</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "first second"</code></pre>
+</div>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"first"</span>, <span class="st">"second"</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span> <span class="co"># sep only works on separate parameters</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "first"  "second"</code></pre>
+</div>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"first"</span>, <span class="st">"second"</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span> <span class="co"># collapse works on vectors</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "first second"</code></pre>
+</div>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span><span class="op">)</span>, </span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"first"</span>, <span class="st">"second"</span>, <span class="st">"third"</span>, <span class="st">"fourth"</span><span class="op">)</span>, </span>
+<span>      sep <span class="op">=</span> <span class="st">"-"</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "a-first b-second c-third d-fourth"</code></pre>
+</div>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># sep is used to collapse parameters, then collapse is used to collapse vectors</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "a" "b" "c"</code></pre>
+</div>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span> <span class="co"># equivalent to paste(..., sep = "")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "abc"</code></pre>
+</div>
+</div>
+<p>You don’t need to understand the details of this at this point in the class, but it is useful to know how to combine strings.</p>
+</section><section id="functions" class="level4"><h4 class="anchored" data-anchor-id="functions">Functions</h4>
+<p><strong>Functions</strong> are sets of instructions that take <strong>arguments</strong> and <strong>return</strong> values. Strictly speaking, operators (like those above) are a special type of functions – but we aren’t going to get into that now.</p>
+<p>We’re also not going to talk about how to create our own functions just yet. Instead, I’m going to show you how to <em>use</em> functions.</p>
+<p>It may be helpful at this point to print out the <a href="files/Short-refcard.pdf">R reference card</a><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. This cheat sheet contains useful functions for a variety of tasks.</p>
+<p><strong>Methods</strong> are a special type of function that operate on a specific variable type. In R, you would get the length of a string variable using <code>length(my_string)</code>.</p>
+<p>Right now, it is not really necessary to know too much more about functions than this: you can invoke a function by passing in arguments, and the function will do a task and return the value.</p>
 </section></section><section id="data-structures" class="level3"><h3 class="anchored" data-anchor-id="data-structures">Data Structures</h3>
-<p>In the previous chapter, we discussed 4 different data types: strings/characters, numeric/double/floats, integers, and logical/booleans. As you might imagine, things are about to get more complicated.</p>
+<p>In the previous section, we discussed 4 different data types: strings/characters, numeric/double/floats, integers, and logical/booleans. As you might imagine, things are about to get more complicated.</p>
 <p>Data <strong>structures</strong> are more complicated arrangements of information.</p>
 <table class="table">
 <thead><tr class="header">
@@ -389,7 +679,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </figure>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="fl">3</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="fl">3</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
@@ -404,22 +694,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The most important thing to know about lists, for the moment, is how to pull things out of the list. We call that process <strong>indexing</strong>.</p>
 <section id="indexing" class="level5"><h5 class="anchored" data-anchor-id="indexing">Indexing</h5>
-<p>Every element in a list has an <strong>index</strong> (a location, indicated by an integer position)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
-<p>In R, we count from 1.</p>
+<p>Every element in a list has an <strong>index</strong> (a location, indicated by an integer position)<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
+<p>In <code>R</code>, we count from 1.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="images/list-indexing-r.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">An R-indexed lego list, counting from 1 to 5</figcaption><p></p>
 </figure>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="fl">3</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="fl">3</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="co"># This returns a list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 [1] "a"</code></pre>
 </div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> <span class="co"># This returns multiple elements in the list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> <span class="co"># This returns multiple elements in the list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 [1] "a"
@@ -427,16 +717,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [[2]]
 [1] 3</code></pre>
 </div>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co"># This returns the item</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co"># This returns the item</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "a"</code></pre>
 </div>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span><span class="op">[[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="co"># This doesn't work - you can only use [[]] with a single index</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span><span class="op">[[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="co"># This doesn't work - you can only use [[]] with a single index</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in x[[1:2]]: subscript out of bounds</code></pre>
 </div>
 </div>
-<p>In R, list indexing with <code>[]</code> will return a list with the specified elements.</p>
+<p>List indexing with <code>[]</code> will return a list with the specified elements.</p>
 <p>To actually retrieve the item in the list, use <code>[[]]</code>. The only downside to <code>[[]]</code> is that you can only access one thing at a time.</p>
 <p>We’ll talk more about indexing as it relates to vectors, but indexing is a general concept that applies to just about any multi-value object.</p>
 </section></section><section id="vectors" class="level4"><h4 class="anchored" data-anchor-id="vectors">Vectors</h4>
@@ -452,50 +742,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </colgroup>
 <thead><tr class="header">
 <th>R</th>
-<th>Python</th>
+<th></th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td>1-indexed language</td>
-<td>0-indexed language</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>Count elements as 1, 2, 3, 4, …, N</td>
-<td>Count elements as 0, 1, 2, 3, , …, N-1</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td><img src="images/lego-1x3-vector-R.png" class="img-fluid" alt="R lego vector, labeled with numbers 1-12"></td>
-<td><img src="images/lego-1x3-vector-python.png" class="img-fluid" alt="Python lego vector, labeled with numbers 0-11"></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <p>In R, we create vectors with the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function, which stands for “concatenate” - basically, we stick a bunch of objects into a row.</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">digits_pi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">9</span>, <span class="fl">2</span>, <span class="fl">6</span>, <span class="fl">5</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">digits_pi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">9</span>, <span class="fl">2</span>, <span class="fl">6</span>, <span class="fl">5</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Access individual entries</span></span>
 <span><span class="va">digits_pi</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">digits_pi</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">digits_pi</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
 </div>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">digits_pi</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">digits_pi</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># R is 1-indexed - a list of 11 things goes from 1 to 11</span></span>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># R is 1-indexed - a list of 11 things goes from 1 to 11</span></span>
 <span><span class="va">digits_pi</span><span class="op">[</span><span class="fl">0</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>numeric(0)</code></pre>
 </div>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">digits_pi</span><span class="op">[</span><span class="fl">11</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">digits_pi</span><span class="op">[</span><span class="fl">11</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
 </div>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Print out the vector</span></span>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Print out the vector</span></span>
 <span><span class="va">digits_pi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 3 1 4 1 5 9 2 6 5 3 5</code></pre>
@@ -503,20 +793,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>We can pull out items in a vector by indexing, but we can also replace specific things as well:</p>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">favorite_cats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Grumpy"</span>, <span class="st">"Garfield"</span>, <span class="st">"Jorts"</span>, <span class="st">"Jean"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">favorite_cats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Grumpy"</span>, <span class="st">"Garfield"</span>, <span class="st">"Jorts"</span>, <span class="st">"Jean"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">favorite_cats</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Grumpy"   "Garfield" "Jorts"    "Jean"    </code></pre>
 </div>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">favorite_cats</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Nyan Cat"</span></span>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">favorite_cats</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Nyan Cat"</span></span>
 <span></span>
 <span><span class="va">favorite_cats</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Grumpy"   "Nyan Cat" "Jorts"    "Jean"    </code></pre>
 </div>
 </div>
-<p>If you’re curious about any of these cats, see the footnotes<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>If you’re curious about any of these cats, see the footnotes<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
 </section><section id="indexing-with-logical-vectors" class="level5"><h5 class="anchored" data-anchor-id="indexing-with-logical-vectors">Indexing with Logical Vectors</h5>
 <p>As you might imagine, we can create vectors of all sorts of different data types. One particularly useful trick is to create a <strong>logical vector</strong> that goes along with a vector of another type to use as a <strong>logical index</strong>.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -541,7 +831,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p>Note that for logical indexing to work properly, the logical index must be the same length as the vector we’re indexing. This constraint will return when we talk about data frames, but for now just keep in mind that logical indexing doesn’t make sense when this constraint isn’t true.</p>
 <div class="cell">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Define a character vector</span></span>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Define a character vector</span></span>
 <span><span class="va">weekdays</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sunday"</span>, <span class="st">"Monday"</span>, <span class="st">"Tuesday"</span>, <span class="st">"Wednesday"</span>, <span class="st">"Thursday"</span>, <span class="st">"Friday"</span>, <span class="st">"Saturday"</span><span class="op">)</span></span>
 <span><span class="va">weekend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sunday"</span>, <span class="st">"Saturday"</span><span class="op">)</span></span>
 <span></span>
@@ -553,12 +843,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE</code></pre>
 </div>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">school_days</span> <span class="op">&lt;-</span> <span class="op">!</span><span class="va">relax_days</span> <span class="co"># FALSE if weekend, TRUE if not</span></span>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">school_days</span> <span class="op">&lt;-</span> <span class="op">!</span><span class="va">relax_days</span> <span class="co"># FALSE if weekend, TRUE if not</span></span>
 <span><span class="va">school_days</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE</code></pre>
 </div>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Using logical vectors to index the character vector</span></span>
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Using logical vectors to index the character vector</span></span>
 <span><span class="va">weekdays</span><span class="op">[</span><span class="va">school_days</span><span class="op">]</span> <span class="co"># print out all school days</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Monday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"   </code></pre>
@@ -567,20 +857,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section></section><section id="reviewing-types" class="level4"><h4 class="anchored" data-anchor-id="reviewing-types">Reviewing Types</h4>
 <p>As vectors are a collection of things of a single type, what happens if we try to make a vector with differently-typed things?</p>
 <div class="cell">
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2L</span>, <span class="cn">FALSE</span>, <span class="fl">3.1415</span>, <span class="st">"animal"</span><span class="op">)</span> <span class="co"># all converted to strings</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2L</span>, <span class="cn">FALSE</span>, <span class="fl">3.1415</span>, <span class="st">"animal"</span><span class="op">)</span> <span class="co"># all converted to strings</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2"      "FALSE"  "3.1415" "animal"</code></pre>
 </div>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2L</span>, <span class="cn">FALSE</span>, <span class="fl">3.1415</span><span class="op">)</span> <span class="co"># converted to numerics</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2L</span>, <span class="cn">FALSE</span>, <span class="fl">3.1415</span><span class="op">)</span> <span class="co"># converted to numerics</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.0000 0.0000 3.1415</code></pre>
 </div>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2L</span>, <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># converted to integers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2L</span>, <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># converted to integers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2 0</code></pre>
 </div>
 </div>
-<p>As a reminder, this is an example of <strong>implicit</strong> type conversion - R and python decide what type to use for you, going with the type that doesn’t lose data but takes up as little space as possible.</p>
+<p>As a reminder, this is an example of <strong>implicit</strong> type conversion - R decides what type to use for you, going with the type that doesn’t lose data but takes up as little space as possible.</p>
 </section></section><section id="matrices" class="level3"><h3 class="anchored" data-anchor-id="matrices">Matrices</h3>
 <p>A <strong>matrix</strong> is the next step after a vector - it’s a set of values arranged in a two-dimensional, rectangular format.</p>
 <section id="matrix-lego" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="matrix-lego">Matrix (Lego)</h4>
@@ -590,7 +880,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </figure>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Minimal matrix in R: take a vector, </span></span>
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Minimal matrix in R: take a vector, </span></span>
 <span><span class="co"># tell R how many rows you want</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -599,7 +889,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [2,]    2    5    8   11
 [3,]    3    6    9   12</code></pre>
 </div>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="co"># or columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="co"># or columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3]
 [1,]    1    5    9
@@ -607,7 +897,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [3,]    3    7   11
 [4,]    4    8   12</code></pre>
 </div>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># by default, R will fill in column-by-column</span></span>
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># by default, R will fill in column-by-column</span></span>
 <span><span class="co"># the byrow parameter tells R to go row-by-row</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, nrow <span class="op">=</span> <span class="fl">3</span>, byrow <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -616,7 +906,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [2,]    5    6    7    8
 [3,]    9   10   11   12</code></pre>
 </div>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># We can also easily create square matrices </span></span>
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># We can also easily create square matrices </span></span>
 <span><span class="co"># with a specific diagonal (this is useful for modeling)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, times <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -627,16 +917,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [4,]    0    0    0    1</code></pre>
 </div>
 </div>
-<p>This class comes before linear algebra in the required course sequence, so most of the problems we’re going to work on will not require much in the way of matrix or array operations. For now, you need the following:</p>
+<p>Most of the problems we’re going to work on will not require much in the way of matrix or array operations. For now, you need the following:</p>
 <ul>
 <li>Know that matrices exist and what they are (2-dimensional arrays of numbers)</li>
 <li>Understand how they are indexed (because it is extremely similar to data frames that we’ll work with in the next chapter)</li>
 <li>Be aware that there are lots of functions that depend on matrix operations at their core (including linear regression)</li>
 </ul></section><section id="indexing-in-matrices" class="level4"><h4 class="anchored" data-anchor-id="indexing-in-matrices">Indexing in Matrices</h4>
-<p>Both R and python use [row, column] to index matrices. To extract the bottom-left element of a 3x4 matrix in R, we would use [3,1] to get to the third row and first column entry; in python, we would use [2,0] (remember that Python is 0-indexed).</p>
+<p><code>R</code> uses [row, column] to index matrices. To extract the bottom-left element of a 3x4 matrix, we would use [3,1] to get to the third row and first column entry; in python, we would use [2,0] (remember that Python is 0-indexed).</p>
 <p>As with vectors, you can replace elements in a matrix using assignment.</p>
 <div class="cell">
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, nrow <span class="op">=</span> <span class="fl">3</span>, byrow <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, nrow <span class="op">=</span> <span class="fl">3</span>, byrow <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">my_mat</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">500</span></span>
 <span></span>
@@ -658,7 +948,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>matrix multiplication (dot product) - you will learn more about this in linear algebra, but here’s a preview. <a href="https://www.mathsisfun.com/algebra/matrix-multiplying.html">Here is a better explanation of the cross product</a> <span class="math display">\[\textbf{X}*\textbf{Y} = \left[\begin{array}{cc} x_{1,1} &amp; x_{1, 2}\\x_{2,1} &amp; x_{2,2}\end{array}\right] * \left[\begin{array}{cc} y_{1,1} \\y_{2,1} \end{array}\right] = \left[\begin{array}{c}x_{1,1}*y_{1,1} + x_{1,2}*y_{2,1} \\x_{2, 1}*y_{1,1} + x_{2,2}*y_{2,1}\end{array}\right]\]</span> Note that matrix multiplication depends on having matrices of compatible dimensions. If you have two matrices of dimension <span class="math inline">\((a \times b)\)</span> and <span class="math inline">\((c \times d)\)</span>, then <span class="math inline">\(b\)</span> must be equal to <span class="math inline">\(c\)</span> for the multiplication to work, and your result will be <span class="math inline">\((a \times d)\)</span>.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Scalar multiplication</span></span>
@@ -668,25 +958,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [1,]    3    6
 [2,]    9   12</code></pre>
 </div>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">3</span> <span class="op">*</span> <span class="va">x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">3</span> <span class="op">*</span> <span class="va">x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2]
 [1,]    3    6
 [2,]    9   12</code></pre>
 </div>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Transpose</span></span>
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Transpose</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2]
 [1,]    1    3
 [2,]    2    4</code></pre>
 </div>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2]
 [1,]    5    6</code></pre>
 </div>
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># matrix multiplication (dot product)</span></span>
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># matrix multiplication (dot product)</span></span>
 <span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1]
@@ -698,7 +988,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Arrays are a generalized n-dimensional version of a vector: all elements have the same type, and they are indexed using square brackets in both R and python: <code>[dim1, dim2, dim3, ...]</code></p>
 <p>I don’t think you will need to create 3+ dimensional arrays in this class, but if you want to try it out, here is some code.</p>
 <div class="cell">
-<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>, , 1
 
@@ -714,18 +1004,546 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Note that displaying this requires 2 slices, since it’s hard to display 3D information in a 2D terminal arrangement.</p>
-</section></section><section id="checkin1-prereading" class="level2 unnumbered check-in"><h2 class="unnumbered anchored" data-anchor-id="checkin1-prereading">Check-in 1: Pre-reading Quiz</h2>
-<ol type="1">
-<li>
-</li><li>
-</li><li>
-</li><li>
-</li></ol></section>
+</section></section><section id="control-structures" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="control-structures">Control Structures</h2>
+<p>The focus of this course is more on working with data - however in prior programming courses you have likely developed the logical thinking to work with Control structures. Control structures are statements in a program that determine when code is evaluated (and how many times it might be evaluated). There are two main types of control structures: if-statements and loops.</p>
+<p>Before we start on the types of control structures, let’s get in the right mindset. We’re all used to “if-then” logic, and use it in everyday conversation, but computers require another level of specificity when you’re trying to provide instructions.</p>
 
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Check out this video of the classic “make a peanut butter sandwich instructions challenge”:</p>
+<div class="youtube-video-container">
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/Ct-lOOUqmyY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
+</iframe>
+</div>
+<p><br></p>
+<p>Here’s another example:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="https://imgs.xkcd.com/comics/conditionals.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">‘If you’re done being pedantic, we should get dinner.’ ‘You did it again!’ ‘No, I didn’t.’</figcaption><p></p>
+</figure>
+</div>
+<p>The key takeaways from these bits of media are that you should read this section with a focus on exact precision - state <em>exactly</em> what you mean, and the computer will do what you say. If you instead expect the computer to get what you mean, you’re going to have a bad time.</p>
+</div></div><section id="conditional-statements" class="level3"><h3 class="anchored" data-anchor-id="conditional-statements">Conditional Statements</h3>
+<p>Conditional statements determine if code is evaluated.</p>
+<p>They look like this:</p>
+<pre><code>if (condition)
+  then
+    (thing to do)
+  else
+    (other thing to do)</code></pre>
+<p>The else (other thing to do) part may be omitted.</p>
+<p>When this statement is read by the computer, the computer checks to see if condition is true or false. If the condition is true, then (thing to do) is also run. If the condition is false, then (other thing to do) is run instead.</p>
+<details class="ex"><summary>
+Let’s try this out:
+</summary><div class="cell">
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">2</span><span class="op">)</span> <span class="op">{</span> </span>
+<span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">8</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">4</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"x ="</span>, <span class="va">x</span>, <span class="st">"; y ="</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "x = 3 ; y = 8"</code></pre>
+</div>
+</div>
+<p>The logical condition after <code>if</code> must be in parentheses. It is common to then enclose the statement to be run if the condition is true in <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> so that it is clear what code matches the if statement. You can technically put the condition on the line after the <code>if (x &gt; 2)</code> line, and everything will still work, but then it gets hard to figure out what to do with the else statement - it technically would also go on the same line, and that gets hard to read.</p>
+<div class="cell">
+<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">2</span><span class="op">)</span> <span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">8</span> <span class="kw">else</span> <span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">4</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"x ="</span>, <span class="va">x</span>, <span class="st">"; y ="</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "x = 3 ; y = 8"</code></pre>
+</div>
+</div>
+<p>So while the 2nd version of the code technically works, the first version with the brackets is much easier to read and understand. Please try to emulate the first version!</p>
+</details><section id="representing-conditional-statements-as-diagrams" class="level4"><h4 class="anchored" data-anchor-id="representing-conditional-statements-as-diagrams">Representing Conditional Statements as Diagrams</h4>
+<p>A common way to represent conditional logic is to draw a flow chart diagram.</p>
+<p>In a flow chart, conditional statements are represented as diamonds, and other code is represented as a rectangle. Yes/no or True/False branches are labeled. Typically, after a conditional statement, the program flow returns to a single point.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/flow-chart1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Program flow diagram outline of a simple if/else statement</figcaption><p></p>
+</figure>
+</div>
+<details class="ex"><summary>
+US Tax brackets
+</summary><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Problem</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Solution</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Program Flow Chart</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="unnumbered tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>The US Tax code has brackets, such that the first $10,275 of your income is taxed at 10%, anything between $10,275 and $41,775 is taxed at 12%, and so on.</p>
+<p>Here is the table of tax brackets for single filers in 2022:</p>
+<table class="table">
+<thead><tr class="header">
+<th>rate</th>
+<th>Income</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>10%</td>
+<td>$0 to $10,275</td>
+</tr>
+<tr class="even">
+<td>12%</td>
+<td>$10,275 to $41,775</td>
+</tr>
+<tr class="odd">
+<td>22%</td>
+<td>$41,775 to $89,075</td>
+</tr>
+<tr class="even">
+<td>24%</td>
+<td>$89,075 to $170,050</td>
+</tr>
+<tr class="odd">
+<td>32%</td>
+<td>$170,050 to $215,950</td>
+</tr>
+<tr class="even">
+<td>35%</td>
+<td>$215,950 to $539,900</td>
+</tr>
+<tr class="odd">
+<td>37%</td>
+<td>$539,900 or more</td>
+</tr>
+</tbody>
+</table>
+<p>Note: For the purposes of this problem, we’re ignoring the personal exemption and the standard deduction, so we’re already simplifying the tax code.</p>
+<p>Write a set of if statements that assess someone’s income and determine what their overall tax rate is.</p>
+<p>Hint: You may want to keep track of how much of the income has already been taxed in a variable and what the total tax accumulation is in another variable.</p>
+</div>
+<div id="tabset-2-2" class="unnumbered tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Start with total income</span></span>
+<span><span class="va">income</span> <span class="op">&lt;-</span> <span class="fl">200000</span></span>
+<span></span>
+<span><span class="co"># x will hold income that hasn't been taxed yet</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">income</span></span>
+<span><span class="co"># y will hold taxes paid</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">10275</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">*</span><span class="fl">.1</span> <span class="co"># tax paid</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">0</span> <span class="co"># All money has been taxed</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">+</span> <span class="fl">10275</span> <span class="op">*</span> <span class="fl">.1</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">-</span> <span class="fl">10275</span> <span class="co"># Money remaining that hasn't been taxed</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="op">(</span><span class="fl">41775</span> <span class="op">-</span> <span class="fl">10275</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">+</span> <span class="va">x</span> <span class="op">*</span> <span class="fl">.12</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">+</span> <span class="op">(</span><span class="fl">41775</span> <span class="op">-</span> <span class="fl">10275</span><span class="op">)</span> <span class="op">*</span> <span class="fl">.12</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">-</span> <span class="op">(</span><span class="fl">41775</span> <span class="op">-</span> <span class="fl">10275</span><span class="op">)</span> </span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="op">(</span><span class="fl">89075</span> <span class="op">-</span> <span class="fl">41775</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">+</span> <span class="va">x</span> <span class="op">*</span> <span class="fl">.22</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">+</span> <span class="op">(</span><span class="fl">89075</span> <span class="op">-</span> <span class="fl">41775</span><span class="op">)</span> <span class="op">*</span> <span class="fl">.22</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">-</span> <span class="op">(</span><span class="fl">89075</span> <span class="op">-</span> <span class="fl">41775</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="op">(</span><span class="fl">170050</span> <span class="op">-</span> <span class="fl">89075</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">+</span> <span class="va">x</span> <span class="op">*</span> <span class="fl">.24</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">+</span> <span class="op">(</span><span class="fl">170050</span> <span class="op">-</span> <span class="fl">89075</span><span class="op">)</span> <span class="op">*</span> <span class="fl">.24</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">-</span> <span class="op">(</span><span class="fl">170050</span> <span class="op">-</span> <span class="fl">89075</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="op">(</span><span class="fl">215950</span> <span class="op">-</span> <span class="fl">170050</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">+</span> <span class="va">x</span> <span class="op">*</span> <span class="fl">.32</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">+</span> <span class="op">(</span><span class="fl">215950</span> <span class="op">-</span> <span class="fl">170050</span><span class="op">)</span> <span class="op">*</span> <span class="fl">.32</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">-</span> <span class="op">(</span><span class="fl">215950</span> <span class="op">-</span> <span class="fl">170050</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="op">(</span><span class="fl">539900</span> <span class="op">-</span> <span class="fl">215950</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">+</span> <span class="va">x</span> <span class="op">*</span> <span class="fl">.35</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">+</span> <span class="op">(</span><span class="fl">539900</span> <span class="op">-</span> <span class="fl">215950</span><span class="op">)</span> <span class="op">*</span> <span class="fl">.35</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">-</span> <span class="op">(</span><span class="fl">539900</span> <span class="op">-</span> <span class="fl">215950</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">+</span> <span class="va">x</span> <span class="op">*</span> <span class="fl">.37</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Total Tax Rate on $"</span>, <span class="va">income</span>, <span class="st">" in income = "</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">y</span><span class="op">/</span><span class="va">income</span>, <span class="fl">4</span><span class="op">)</span><span class="op">*</span><span class="fl">100</span>, <span class="st">"%"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Total Tax Rate on $ 2e+05  in income =  22.12 %"</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<p>Let’s explore using program flow maps for a slightly more complicated problem: The tax bracket example that we used to demonstrate if statement syntax.</p>
+<div class="cell">
+
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/tax-brackets.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The control flow diagram for the code in the previous example</figcaption><p></p>
+</figure>
+</div>
+<p>Control flow diagrams can be extremely helpful when figuring out how programs work (and where gaps in your logic are when you’re debugging). It can be very helpful to map out your program flow as you’re untangling a problem.</p>
+</div>
+</div>
+</div>
+</details></section><section id="chaining-conditional-statements-else-if" class="level4"><h4 class="anchored" data-anchor-id="chaining-conditional-statements-else-if">Chaining Conditional Statements: Else-If</h4>
+<p>In many cases, it can be helpful to have a long chain of conditional statements describing a sequence of alternative statements.</p>
+<details class="ex"><summary>
+Age brackets
+</summary><p>For instance, suppose I want to determine what categorical age bracket someone falls into based on their numerical age. All of the bins are mutually exclusive - you can’t be in the 25-40 bracket and the 41-55 bracket.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Program Flow Map</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="unnumbered tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/age-category-prog-flow.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Program flow map for a series of mutually exclusive categories. If our goal is to take a numeric age variable and create a categorical set of age brackets, such as &lt;18, 18-25, 26-40, 41-55, 56-65, and &gt;65, we can do this with a series of if-else statements chained together. Only one of the bracket assignments is evaluated, so it is important to place the most restrictive condition first.</figcaption><p></p>
+</figure>
+</div>
+<p>The important thing to realize when examining this program flow map is that if <code>age &lt;= 18</code> is true, then <strong>none of the other conditional statements even get evaluated</strong>. That is, once a statement is true, none of the other statements matter. Because of this, it is important to place the most restrictive statement first.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/age-category-prog-flow2.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Program flow map for a series of mutually exclusive categories, emphasizing that only some statements are evaluated. When age = 40, only (age &lt;= 18), (age &lt;= 25), and (age &lt;= 40) are evaluated conditionally. Of the assignment statements, only bracket = ‘26-40’ is evaluated when age = 40.</figcaption><p></p>
+</figure>
+</div>
+<p>If for some reason you wrote your conditional statements in the wrong order, the wrong label would get assigned:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/age-category-prog-flow3.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Program flow map for a series of mutually exclusive categories, with category labels in the wrong order - &lt;40 is evaluated first, and so &lt;= 25 and &lt;= 18 will never be evaluated and the wrong label will be assigned for anything in those categories.</figcaption><p></p>
+</figure>
+</div>
+<p>In code, we would write this statement using <code>else-if</code> (or <code>elif</code>) statements.</p>
+<div class="cell">
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">age</span> <span class="op">&lt;-</span> <span class="fl">40</span> <span class="co"># change this as you will to see how the code works</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="va">age</span> <span class="op">&lt;</span> <span class="fl">18</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">bracket</span> <span class="op">&lt;-</span> <span class="st">"&lt;18"</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">age</span> <span class="op">&lt;=</span> <span class="fl">25</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">bracket</span> <span class="op">&lt;-</span> <span class="st">"18-25"</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">age</span> <span class="op">&lt;=</span> <span class="fl">40</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">bracket</span> <span class="op">&lt;-</span> <span class="st">"26-40"</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">age</span> <span class="op">&lt;=</span> <span class="fl">55</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">bracket</span> <span class="op">&lt;-</span> <span class="st">"41-55"</span> </span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">age</span> <span class="op">&lt;=</span> <span class="fl">65</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">bracket</span> <span class="op">&lt;-</span> <span class="st">"56-65"</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="va">bracket</span> <span class="op">&lt;-</span> <span class="st">"&gt;65"</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">bracket</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "26-40"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</details></section></section><section id="loops" class="level3"><h3 class="anchored" data-anchor-id="loops">Loops</h3>
+<!-- https://www.py4e.com/html3/05-iterations -->
+<p>Often, we write programs which update a variable in a way that the new value of the variable depends on the old value:</p>
+<pre><code>x = x + 1</code></pre>
+<p>This means that we add one to the current value of <code>x</code>.</p>
+<p>Before we write a statement like this, we have to <strong>initialize</strong> the value of <code>x</code> because otherwise, we don’t know what value to add one to.</p>
+<pre><code>x = 0
+x = x + 1</code></pre>
+<p>We sometimes use the word <strong>increment</strong> to talk about adding one to the value of <code>x</code>; <strong>decrement</strong> means subtracting one from the value of <code>x</code>.</p>
+<p>A particularly powerful tool for making these types of repetitive changes in programming is the <strong>loop</strong>, which executes statements a certain number of times. Loops can be written in several different ways, but all loops allow for executing a block of code a variable number of times.</p>
+<section id="while-loops" class="level4"><h4 class="anchored" data-anchor-id="while-loops">While Loops</h4>
+<p>We just discussed conditional statements, where a block of code is only executed <em>if</em> a logical statement is true.</p>
+<p>The simplest type of loop is the <strong>while</strong> loop, which executes a block of code until a statement is no longer true.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/while-loop-flow.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Flow map showing while-loop pseudocode (while x &lt;= N) { # code that changes x in some way} and the program flow map expansion where we check if x &gt; N (exiting the loop if true); otherwise, we continue into the loop, execute the main body of #code and then change x and start over.</figcaption><p></p>
+</figure>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span></span>
+<span><span class="kw">while</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">10</span><span class="op">)</span> <span class="op">{</span> </span>
+<span>  <span class="co"># Everything in here is executed </span></span>
+<span>  <span class="co"># during each iteration of the loop</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0
+[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5
+[1] 6
+[1] 7
+[1] 8
+[1] 9</code></pre>
+</div>
+</div>
+<details class="ex"><summary>
+While loops
+</summary><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Problem</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Math Notation</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">Solution</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="unnumbered tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<p>Write a while loop that verifies that <span class="math display">\[\lim_{N \rightarrow \infty} \prod_{k=1}^N \left(1 + \frac{1}{k^2}\right) = \frac{e^\pi - e^{-\pi}}{2\pi}.\]</span></p>
+<p>Terminate your loop when you get within 0.0001 of <span class="math inline">\(\frac{e^\pi - e^{-\pi}}{2\pi}\)</span>. At what value of <span class="math inline">\(k\)</span> is this point reached?</p>
+</div>
+<div id="tabset-4-2" class="unnumbered tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<p>Breaking down math notation for code:</p>
+<ul>
+<li><p>If you are unfamiliar with the notation <span class="math inline">\(\prod_{k=1}^N f(k)\)</span>, this is the product of <span class="math inline">\(f(k)\)</span> for <span class="math inline">\(k = 1, 2, ..., N\)</span>, <span class="math display">\[f(1)\cdot f(2)\cdot ... \cdot f(N)\]</span></p></li>
+<li><p>To evaluate a limit, we just keep increasing <span class="math inline">\(N\)</span> until we get arbitrarily close to the right hand side of the equation.</p></li>
+</ul>
+<p>In this problem, we can just keep increasing <span class="math inline">\(k\)</span> and keep track of the cumulative product. So we define <code>k=1</code>, <code>prod = 1</code>, and <code>ans</code> before the loop starts. Then, we loop over <code>k</code>, multiplying <code>prod</code> by <span class="math inline">\((1 + 1/k^2)\)</span> and then incrementing <span class="math inline">\(k\)</span> by one each time. At each iteration, we test whether <code>prod</code> is close enough to <code>ans</code> to stop the loop.</p>
+</div>
+<div id="tabset-4-3" class="unnumbered tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<p>You will use <code>pi</code> and <code><a href="https://rdrr.io/r/base/Log.html">exp()</a></code> - these are available by default without any additional libraries or packages.</p>
+<div class="cell">
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">k</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">prod</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">ans</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">pi</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">pi</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">pi</span><span class="op">)</span></span>
+<span><span class="va">delta</span> <span class="op">&lt;-</span> <span class="fl">0.0001</span></span>
+<span></span>
+<span><span class="kw">while</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">prod</span> <span class="op">-</span> <span class="va">ans</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="fl">0.0001</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">prod</span> <span class="op">&lt;-</span> <span class="va">prod</span> <span class="op">*</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fl">1</span><span class="op">/</span><span class="va">k</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
+<span>  <span class="va">k</span> <span class="op">&lt;-</span> <span class="va">k</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">k</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 36761</code></pre>
+</div>
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">prod</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.675978</code></pre>
+</div>
+<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ans</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.676078</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</details></section><section id="for-loops" class="level4"><h4 class="anchored" data-anchor-id="for-loops">For Loops</h4>
+<p>Another common type of loop is a <strong>for</strong> loop. In a for loop, we run the block of code, iterating through a series of values (commonly, one to N, but not always). Generally speaking, for loops are known as <strong>definite</strong> loops because the code inside a for loop is executed a specific number of times. While loops are known as <strong>indefinite</strong> loops because the code within a while loop is evaluated until the condition is falsified, which is not always a known number of times.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Flow Map</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">R</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="unnumbered tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/for-loop-flow.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Flow map showing for-loop pseudocode (for j in 1 to N) { # code} and the program flow map expansion where j starts at 1 and we check if j &gt; N (exiting the loop if true); otherwise, we continue into the loop, execute the main body of #code and then increment j and start over.</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-5-2" class="unnumbered tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="cell">
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span> <span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>For loops are often run from 1 to N but in essence, a for loop is run for every value of a vector (which is why loops are included in the same chapter as vectors).</p>
+<div class="ex">
+<p>For instance, in <code>R</code>, there is a built-in variable called <code>month.name</code>. Type <code>month.name</code> into your <code>R</code> console to see what it looks like. If we want to iterate along the values of month.name, we can:</p>
+<div class="cell">
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">month.name</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "January"
+[1] "February"
+[1] "March"
+[1] "April"
+[1] "May"
+[1] "June"
+[1] "July"
+[1] "August"
+[1] "September"
+[1] "October"
+[1] "November"
+[1] "December"</code></pre>
+</div>
+</div>
+</div>
+</section><section id="avoiding-infinite-loops" class="level4 watch-out"><h4 class="anchored" data-anchor-id="avoiding-infinite-loops">Avoiding Infinite Loops</h4>
+<p>It is very easy to create an <strong>infinite</strong> loop when you are working with while loops. Infinite loops never exit, because the condition is always true. If in the while loop example we decrement x instead of incrementing x, the loop will run forever.</p>
+<p>You want to try very hard to avoid ever creating an infinite loop - it can cause your session to crash.</p>
+<p>One common way to avoid infinite loops is to create a second variable that just counts how many times the loop has run. If that variable gets over a certain threshold, you exit the loop.</p>
+<p>This while loop runs until either x &lt; 10 or n &gt; 50 - so it will run an indeterminate number of times and depends on the random values added to x. Since this process (a ‘random walk’) could theoretically continue forever, we add the n&gt;50 check to the loop so that we don’t tie up the computer for eternity.</p>
+<div class="cell">
+<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">0</span> <span class="co"># count the number of times the loop runs</span></span>
+<span></span>
+<span><span class="kw">while</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">10</span><span class="op">)</span> <span class="op">{</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="co"># add a random normal (0, 1) draw each time</span></span>
+<span>  <span class="va">n</span> <span class="op">&lt;-</span> <span class="va">n</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">50</span><span class="op">)</span> </span>
+<span>    <span class="kw">break</span> <span class="co"># this stops the loop if n &gt; 50</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0
+[1] 1.163179
+[1] 0.9212093
+[1] 0.3020882
+[1] -1.351336
+[1] -2.673475
+[1] -3.698718
+[1] -3.395031
+[1] -4.309273
+[1] -5.177022
+[1] -3.904603
+[1] -6.230768
+[1] -5.366234
+[1] -3.946533
+[1] -4.162415
+[1] -4.315829
+[1] -4.226177
+[1] -4.229301
+[1] -5.116928
+[1] -5.520487
+[1] -5.292575
+[1] -4.747379
+[1] -5.121359
+[1] -5.203099
+[1] -5.052818
+[1] -4.976388
+[1] -3.954007
+[1] -4.374244
+[1] -3.78472
+[1] -4.285716
+[1] -4.331051
+[1] -3.167636
+[1] -3.793744
+[1] -3.912566
+[1] -3.663328
+[1] -4.907717
+[1] -3.867959
+[1] -3.775536
+[1] -2.409161
+[1] -2.264222
+[1] -3.509463
+[1] -2.368443
+[1] -2.272359
+[1] -1.862969
+[1] -2.304308
+[1] -1.690999
+[1] -2.132953
+[1] -4.287096
+[1] -5.251958
+[1] -5.403244
+[1] -5.564278</code></pre>
+</div>
+</div>
+<p>In the example above, there are more efficient ways to write a random walk, but we will get to that later. The important thing here is that we want to make sure that our loops don’t run for all eternity.</p>
+</section><section id="controlling-loops" class="level4"><h4 class="anchored" data-anchor-id="controlling-loops">Controlling Loops</h4>
+<!-- https://www.py4e.com/html3/05-iterations -->
+<!-- https://www.datamentor.io/r-programming/break-next/ -->
+<p>Sometimes it is useful to control the statements in a loop with a bit more precision. You may want to skip over code and proceed directly to the next iteration, or, as demonstrated in the previous section with the <code><a href="https://rdrr.io/r/base/Control.html">break</a></code> statement, it may be useful to exit the loop prematurely.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">Break Statement</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Next/Continue Statement</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="unnumbered tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/break-statement.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">A break statement is used to exit a loop prematurely</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-6-2" class="unnumbered tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/next-statement-flow.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">A next (or continue) statement is used to skip the body of the loop and continue to the next iteration</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="ex">
+<p>Let’s demonstrate the details of next/continue and break statements.</p>
+<p>We can do different things based on whether i is evenly divisible by 3, 5, or both 3 and 5 (thus divisible by 15)</p>
+<div class="cell">
+<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">i</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">15</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Exiting now"</span><span class="op">)</span></span>
+<span>    <span class="kw">break</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">i</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">3</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>    </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Divisible by 3"</span><span class="op">)</span></span>
+<span>    <span class="kw">next</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"After the next statement"</span><span class="op">)</span> <span class="co"># this should never execute</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">i</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">5</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Divisible by 5"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1
+[1] 2
+[1] "Divisible by 3"
+[1] 4
+[1] "Divisible by 5"
+[1] "Divisible by 3"
+[1] 7
+[1] 8
+[1] "Divisible by 3"
+[1] "Divisible by 5"
+[1] 11
+[1] "Divisible by 3"
+[1] 13
+[1] 14
+[1] "Exiting now"</code></pre>
+</div>
+</div>
+</div>
+<p>To be quite honest, I haven’t really ever needed to use next/continue statements when I’m programming, and I rarely use break statements. However, it’s useful to know they exist just in case you come across a problem where you could put either one to use.</p>
+
+
+</section></section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
-<li id="fn1"><p>Throughout this section (and other sections), lego pictures are rendered using https://www.mecabricks.com/en/workshop. It’s a pretty nice tool for building stuff online!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p><a href="https://www.grumpycats.com/">Grumpy cat</a>, <a href="https://www.garfield.com/">Garfield</a>, <a href="https://en.wikipedia.org/wiki/Nyan_Cat">Nyan cat</a>. Jorts and Jean: <a href="https://www.reddit.com/r/AmItheAsshole/comments/rfwgmc/aita_for_perpetuating_ethnic_stereotypes_about/">The initial post</a> and the <a href="https://www.reddit.com/user/throwawayorangecat/comments/rgi000/update_aita_for_perpetuating_stereotypes_about/">update</a> (both are worth a read because the story is hilarious). The cats also have a <a href="https://twitter.com/JortsTheCat">Twitter account</a> where they promote workers rights.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>This means that doubles take up more memory but can store more decimal places. You don’t need to worry about this much in R.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>In some ways, this is like the difference between an automatic and a manual transmission - you have fewer things to worry about, but you also don’t know what’s going on under the hood nearly as well<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>From https://cran.r-project.org/doc/contrib/Short-refcard.pdf<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Throughout this section (and other sections), lego pictures are rendered using https://www.mecabricks.com/en/workshop. It’s a pretty nice tool for building stuff online!<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><a href="https://www.grumpycats.com/">Grumpy cat</a>, <a href="https://www.garfield.com/">Garfield</a>, <a href="https://en.wikipedia.org/wiki/Nyan_Cat">Nyan cat</a>. Jorts and Jean: <a href="https://www.reddit.com/r/AmItheAsshole/comments/rfwgmc/aita_for_perpetuating_ethnic_stereotypes_about/">The initial post</a> and the <a href="https://www.reddit.com/user/throwawayorangecat/comments/rgi000/update_aita_for_perpetuating_stereotypes_about/">update</a> (both are worth a read because the story is hilarious). The cats also have a <a href="https://twitter.com/JortsTheCat">Twitter account</a> where they promote workers rights.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

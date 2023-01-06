@@ -20,7 +20,7 @@ fa_html_dependency()
 
 `r fa("book-open")` Reading: `r ceiling(minutes)` minute(s) at 200 WPM.
 
-`r fa("video")` Videos: 21.85 minutes
+`r fa("video")` Videos: 28 minutes
 
 ## Objectives {#ch0-objectives .unnumbered}
 
@@ -30,8 +30,11 @@ This chapter is meant to provide a resource for the basics of programming (in `R
 
 In this chapter you will:
 
-+ 
-+
++ Learn the basics of a computer system.
++ Refresh your mathematical logic and apply it to variables, vectors, and matrices.
++ Know the different types of variables and how to assign them to objects in `R`.
++ Understand how to create and index vectors and matrices in `R`.
++ Extend your logic to control structures with if-then statements and loops.
 
 ## Computer Basics
 
@@ -113,7 +116,7 @@ In Chapter 1, we will discuss [Directories, Paths, and Projects](#directories-an
 
 <!-- Lego pictures made with https://www.mecabricks.com/en/workshop -->
 
-This chapter introduces some of the most important tools for working with data: vectors, matrices, loops, and if statements. It would be nice to gradually introduce each one of these topics separately, but they tend to go together, especially when you're talking about programming in the context of data processing.
+This section introduces some of the most important tools for working with data: vectors, matrices, loops, and if statements. It would be nice to gradually introduce each one of these topics separately, but they tend to go together, especially when you're talking about programming in the context of data processing.
 
 ### Mathematical Logic
 
@@ -127,7 +130,7 @@ We can combine logical statements using and, or, and not.
 -   (X OR Y) requires that one of X or Y is true.
 -   (NOT X) is true if X is false, and false if X is true. Sometimes called **negation**.
 
-In R, we use `!` to symbolize NOT, in Python, we use `~` for vector-wise negation (NOT).
+In R, we use `!` to symbolize NOT.
 
 Order of operations dictates that NOT is applied before other operations. So `NOT X AND Y` is read as `(NOT X) AND (Y)`. You must use parentheses to change the way this is interpreted.
 
@@ -164,9 +167,241 @@ We can also represent them with Venn Diagrams.
 ![A venn diagram illustration of De Morgan's laws showing that the region that is outside of the union of A AND B (aka NOT (A AND B)) is the same as the region that is outside of (NOT A) OR (NOT B)](images/DeMorgan2.png)
 :::
 
+### Basic Data Types
+
+While we will discuss data types more in depth during class, it is important to have a base grasp on the types of data you might see in a programming language.
+
+#### Values and Types
+
+Let's start this section with some basic vocabulary.
+
+-   a **value** is a basic unit of stuff that a program works with, like `1`, `2`, `"Hello, World"`, and so on.
+-   values have **types** - `2` is an integer, `"Hello, World"` is a string (it contains a "string" of letters). Strings are in quotation marks to let us know that they are not variable names.
+
+In `R`, there are some very basic data types:
+
+-   **logical** or **boolean** - FALSE/TRUE or 0/1 values. Sometimes, boolean is shortened to **bool**
+
+-   **integer** - whole numbers (positive or negative)
+
+-   **double** or **float** or **numeric**- decimal numbers.
+
+    -   **float** is short for floating-point value.
+    -   **double** is a floating-point value with more precision ("double precision").[^data-types-1]
+    -   `R` uses the name **numeric** to indicate a decimal value, regardless of precision.
+
+-   **character** or **string** - holds text, usually enclosed in quotes.
+
+[^data-types-1]: This means that doubles take up more memory but can store more decimal places. You don't need to worry about this much in R.
+
+If you don't know what type a value is, `R` has a function to help you with that.
+
+```{r identify-var-type-r, results='hold'}
+class(FALSE)
+class(2L) # by default, R treats all numbers as numeric/decimal values. 
+          # The L indicates that we're talking about an integer. 
+class(2)
+class("Hello, programmer!")
+```
+
+::: note
+
+In R, boolean values are `TRUE` and `FALSE`. Capitalization matters a LOT.
+
+Other things matter too: if we try to write a million, we would write it `1000000` instead of `1,000,000`. Commas are used for separating numbers, not for proper spacing and punctuation of numbers. This is a hard thing to get used to but very important -- especially when we start reading in data.
+
+:::
+
+#### Variables
+
+Programming languages use **variables** - names that refer to values. Think of a variable as a container that holds something - instead of referring to the value, you can refer to the container and you will get whatever is stored inside.
+
+In R, we **assign** variables values using the syntax `object_name <- value` You can read this as "object name gets value" in your head.
+
+```{r assign-value-r, results='hold'}
+message <- "So long and thanks for all the fish"
+year <- 2025
+the_answer <- 42L
+earth_demolished <- FALSE
+```
+
+::: note
+
+Note that in `R`, we assign variables values using the `<-` operator. Technically, `=` will work for assignment, but `<-` is more common than `=` in `R` by convention.
+
+:::
+
+We can then use the variables - do numerical computations, evaluate whether a proposition is true or false, and even manipulate the content of strings, all by referencing the variable by name.
+
+#### Valid Names
+
+> There are only two hard things in Computer Science: cache invalidation and naming things.\
+> -- Phil Karlton
+
+Object names must start with a letter and can only contain letters, numbers, `_`, and `.` in R.
+
+What happens if we try to create a variable name that isn't valid?
+
+Starting a variable name with a number will get you an error message that lets you know that something isn't right - "unexpected symbol".
+
+```{r invalid-variable-name-r, error = T}
+1st_thing <- "check your variable names!"
+```
+
+
+Naming things is difficult! When you name variables, try to make the names descriptive - what does the variable hold? What are you going to do with it? The more (concise) information you can pack into your variable names, the more readable your code will be.
+
+::: learn-more
+
+[Why is naming things hard?](https://neilkakkar.com/why-is-naming-things-hard.html) - Blog post by Neil Kakkar
+
+:::
+
+There are a few different conventions for naming things that may be useful:
+
+-   `some_people_use_snake_case`, where words are separated by underscores
+-   `somePeopleUseCamelCase`, where words are appended but anything after the first word is capitalized (leading to words with humps like a camel).
+-   `some.people.use.periods`
+-   A few people mix conventions with `variables_thatLookLike.this` and they are almost universally hated.
+
+As long as you pick ONE naming convention and don't mix-and-match, you'll be fine. It will be easier to remember what you named your variables (or at least guess) and you'll have fewer moments where you have to go scrolling through your script file looking for a variable you named.
+
+#### Type Conversions
+
+We talked about values and types above, but skipped over a few details because we didn't know enough about variables. It's now time to come back to those details.
+
+What happens when we have an integer and a numeric type and we add them together? Hopefully, you don't have to think too hard about what the result of `2 + 3.5` is, but this is a bit more complicated for a computer for two reasons: storage, and arithmetic.
+
+In days of yore, programmers had to deal with memory allocation - when declaring a variable, the programmer had to explicitly define what type the variable was. This tended to look something like the code chunk below:
+
+    int a = 1
+    double b = 3.14159
+
+Typically, an integer would take up 32 bits of memory, and a double would take up 64 bits, so doubles used 2x the memory that integers did. R is **dynamically typed**, which means you don't have to deal with any of the trouble of declaring what your variables will hold - the computer automatically figures out how much memory to use when you run the code. So we can avoid the discussion of memory allocation and types because we're using higher-level languages that handle that stuff for us[^data-types-2].
+
+[^data-types-2]: In some ways, this is like the difference between an automatic and a manual transmission - you have fewer things to worry about, but you also don't know what's going on under the hood nearly as well
+
+But the discussion of types isn't something we can completely avoid, because we still have to figure out what to do when we do operations on things of two different types - even if memory isn't a concern, we still have to figure out the arithmetic question.
+
+So let's see what happens with a couple of examples, just to get a feel for **type conversion** (aka **type casting** or **type coercion**), which is the process of changing an expression from one data type to another.
+
+```{r}
+mode(2L + 3.14159) # add integer 2 and pi
+mode(2L + TRUE) # add integer 2 and TRUE
+mode(TRUE + FALSE) # add TRUE and FALSE
+```
+
+All of the examples above are 'numeric' - basically, a catch-all class for things that are in some way, shape, or form numbers. Integers and decimal numbers are both numeric, but so are logicals (because they can be represented as 0 or 1).
+
+You may be asking yourself at this point why this matters, and that's a decent question. We will eventually be reading in data from spreadsheets and other similar tabular data, and types become *very* important at that point, because we'll have to know how `R` handles type conversions.
+
+::: tryitout
+
+##### Test it out! {.unnumbered}
+
+Do a bit of experimentation - what happens when you try to add a string and a number? Which types are automatically converted to other types? Fill in the following table in your notes:
+
+Adding a \_\_\_ and a \_\_\_ produces a \_\_\_:
+
+| Logical | Integer | Decimal | String |     |
+|---------|---------|---------|--------|-----|
+| Logical |         |         |        |     |
+| Integer |         |         |        |     |
+| Decimal |         |         |        |     |
+| String  |         |         |        |     |
+:::
+
+Above, we looked at automatic type conversions, but in many cases, we also may want to convert variables manually, specifying exactly what type we'd like them to be. A common application for this in data analysis is when there are "\*" or "." or other indicators in an otherwise numeric column of a spreadsheet that indicate missing data: when this data is read in, the whole column is usually read in as character data. So we need to know how to tell `R` that we want our string to be treated as a number, or vice-versa.
+
+In R, we can explicitly convert a variable's type using `as.XXX()` functions, where XXX is the type you want to convert to (`as.numeric`, `as.integer`, `as.logical`, `as.character`, etc.).
+
+```{r, error = T}
+x <- 3
+y <- "3.14159"
+
+x + y
+
+x + as.numeric(y)
+```
+
+#### Operators and Functions
+
+In addition to variables, **functions** are extremely important in programming.
+
+Let's first start with a special class of functions called operators. You're probably familiar with operators as in arithmetic expressions: +, -, /, \*, and so on.
+
+Here are a few of the most important ones:
+
+| Operation        | R symbol |
+|------------------|----------|
+| Addition         | `+`      |
+| Subtraction      | `-`      |
+| Multiplication   | `*`      |
+| Division         | `/`      |
+| Integer Division | `%/%`    |
+| Modular Division | `%%`     |
+| Exponentiation   | `^`      |
+
+Note that integer division is the whole number answer to A/B, and modular division is the fractional remainder when A/B. 
+
+
+So `14 %/% 3` would be 4, and `14 %% 3` would be 2.
+
+```{r}
+14 %/% 3
+14 %% 3
+```
+
+Note that these operands are all intended for scalar operations (operations on a single number) - vectorized versions, such as matrix multiplication, are somewhat more complicated.
+
+#### Order of Operations
+
+`R` operates under the same mathematical rules of precedence that you learned in school. You may have learned the acronym PEMDAS, which stands for Parentheses, Exponents, Multiplication/Division, and Addition/Subtraction. That is, when examining a set of mathematical operations, we evaluate parentheses first, then exponents, and then we do multiplication/division, and finally, we add and subtract.
+
+```{r}
+(1+1)^(5-2) # 2 ^ 3 = 8
+1 + 2^3 * 4 # 1 + (8 * 4)
+3*1^3 # 3 * 1
+```
+
+#### String Operations
+
+You will have to use functions to perform operations on strings, as `R` does not have string operators. In `R`, to concatenate things, we need to use functions: `paste` or `paste0`:
+
+```{r}
+paste("first", "second", sep = " ")
+paste("first", "second", collapse = " ")
+paste(c("first", "second"), sep = " ") # sep only works on separate parameters
+paste(c("first", "second"), collapse = " ") # collapse works on vectors
+
+paste(c("a", "b", "c", "d"), 
+      c("first", "second", "third", "fourth"), 
+      sep = "-", collapse = " ")
+# sep is used to collapse parameters, then collapse is used to collapse vectors
+
+paste0(c("a", "b", "c"))
+paste0("a", "b", "c") # equivalent to paste(..., sep = "")
+```
+
+You don't need to understand the details of this at this point in the class, but it is useful to know how to combine strings.
+
+#### Functions
+
+**Functions** are sets of instructions that take **arguments** and **return** values. Strictly speaking, operators (like those above) are a special type of functions -- but we aren't going to get into that now.
+
+We're also not going to talk about how to create our own functions just yet. Instead, I'm going to show you how to *use* functions.
+
+It may be helpful at this point to print out the [R reference card](files/Short-refcard.pdf)[^data-types-3]. This cheat sheet contains useful functions for a variety of tasks.
+
+[^data-types-3]: From https://cran.r-project.org/doc/contrib/Short-refcard.pdf
+
+**Methods** are a special type of function that operate on a specific variable type. In R, you would get the length of a string variable using `length(my_string)`.
+
+Right now, it is not really necessary to know too much more about functions than this: you can invoke a function by passing in arguments, and the function will do a task and return the value.
+
 ### Data Structures
 
-In the previous chapter, we discussed 4 different data types: strings/characters, numeric/double/floats, integers, and logical/booleans. As you might imagine, things are about to get more complicated.
+In the previous section, we discussed 4 different data types: strings/characters, numeric/double/floats, integers, and logical/booleans. As you might imagine, things are about to get more complicated.
 
 Data **structures** are more complicated arrangements of information.
 
@@ -195,7 +430,7 @@ Every element in a list has an **index** (a location, indicated by an integer po
 
 [^00-prereading-1]: Throughout this section (and other sections), lego pictures are rendered using https://www.mecabricks.com/en/workshop. It's a pretty nice tool for building stuff online!
 
-In R, we count from 1.
+In `R`, we count from 1.
 
 ![An R-indexed lego list, counting from 1 to 5](images/list-indexing-r.png)
 
@@ -209,7 +444,7 @@ x[[1]] # This returns the item
 x[[1:2]] # This doesn't work - you can only use [[]] with a single index
 ```
 
-In R, list indexing with `[]` will return a list with the specified elements.
+List indexing with `[]` will return a list with the specified elements.
 
 To actually retrieve the item in the list, use `[[]]`. The only downside to `[[]]` is that you can only access one thing at a time.
 
@@ -227,11 +462,11 @@ We can have vectors of any data type and length we want: ![vectors of different 
 
 Each element in a vector has an **index** - an integer telling you what the item's position within the vector is. I'm going to demonstrate indices with the string vector
 
-| R                                                                         | Python                                                                              |
+| R                                                                         |
 |----------------------------------|--------------------------------------|
-| 1-indexed language                                                        | 0-indexed language                                                                  |
-| Count elements as 1, 2, 3, 4, ..., N                                      | Count elements as 0, 1, 2, 3, , ..., N-1                                            |
-| ![R lego vector, labeled with numbers 1-12](images/lego-1x3-vector-R.png) | ![Python lego vector, labeled with numbers 0-11](images/lego-1x3-vector-python.png) |
+| 1-indexed language                                                        |
+| Count elements as 1, 2, 3, 4, ..., N                                      |
+| ![R lego vector, labeled with numbers 1-12](images/lego-1x3-vector-R.png) |
 
 In R, we create vectors with the `c()` function, which stands for "concatenate" - basically, we stick a bunch of objects into a row.
 
@@ -311,7 +546,7 @@ c(2L, FALSE, 3.1415) # converted to numerics
 c(2L, FALSE) # converted to integers
 ```
 
-As a reminder, this is an example of **implicit** type conversion - R and python decide what type to use for you, going with the type that doesn't lose data but takes up as little space as possible.
+As a reminder, this is an example of **implicit** type conversion - R decides what type to use for you, going with the type that doesn't lose data but takes up as little space as possible.
 
 ### Matrices
 
@@ -337,7 +572,7 @@ matrix(1:12, nrow = 3, byrow = T)
 diag(rep(1, times = 4))
 ```
 
-This class comes before linear algebra in the required course sequence, so most of the problems we're going to work on will not require much in the way of matrix or array operations. For now, you need the following:
+Most of the problems we're going to work on will not require much in the way of matrix or array operations. For now, you need the following:
 
 -   Know that matrices exist and what they are (2-dimensional arrays of numbers)
 -   Understand how they are indexed (because it is extremely similar to data frames that we'll work with in the next chapter)
@@ -345,7 +580,7 @@ This class comes before linear algebra in the required course sequence, so most 
 
 #### Indexing in Matrices
 
-Both R and python use \[row, column\] to index matrices. To extract the bottom-left element of a 3x4 matrix in R, we would use \[3,1\] to get to the third row and first column entry; in python, we would use \[2,0\] (remember that Python is 0-indexed).
+`R` uses \[row, column\] to index matrices. To extract the bottom-left element of a 3x4 matrix, we would use \[3,1\] to get to the third row and first column entry; in python, we would use \[2,0\] (remember that Python is 0-indexed).
 
 As with vectors, you can replace elements in a matrix using assignment.
 
@@ -393,14 +628,479 @@ array(1:8, dim = c(2,2,2))
 
 Note that displaying this requires 2 slices, since it's hard to display 3D information in a 2D terminal arrangement.
 
-::: check-in
-## Check-in 1: Pre-reading Quiz {#checkin1-prereading .unnumbered}
+## Control Structures
 
-1.  
+The focus of this course is more on working with data - however in prior programming courses you have likely developed the logical thinking to work with Control structures. Control structures are statements in a program that determine when code is evaluated (and how many times it might be evaluated). There are two main types of control structures: if-statements and loops.
 
-2.  
+Before we start on the types of control structures, let's get in the right mindset. We're all used to "if-then" logic, and use it in everyday conversation, but computers require another level of specificity when you're trying to provide instructions.
 
-3.  
+::: column-margin
+Check out this video of the classic "make a peanut butter sandwich instructions challenge":
 
-4.  
+::: youtube-video-container
+
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/Ct-lOOUqmyY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
 :::
+
+<br>
+
+Here's another example:
+
+!['If you're done being pedantic, we should get dinner.' 'You did it again!' 'No, I didn't.'](https://imgs.xkcd.com/comics/conditionals.png)
+
+The key takeaways from these bits of media are that you should read this section with a focus on exact precision - state *exactly* what you mean, and the computer will do what you say. If you instead expect the computer to get what you mean, you're going to have a bad time.
+:::
+
+### Conditional Statements
+
+Conditional statements determine if code is evaluated.
+
+They look like this:
+
+    if (condition)
+      then
+        (thing to do)
+      else
+        (other thing to do)
+
+The else (other thing to do) part may be omitted.
+
+When this statement is read by the computer, the computer checks to see if condition is true or false. If the condition is true, then (thing to do) is also run. If the condition is false, then (other thing to do) is run instead.
+
+<details class="ex">
+
+<summary>Let's try this out:</summary>
+
+```{r}
+x <- 3
+y <- 1
+
+if (x > 2) { 
+  y <- 8
+} else {
+  y <- 4
+}
+
+print(paste("x =", x, "; y =", y))
+```
+
+The logical condition after `if` must be in parentheses. It is common to then enclose the statement to be run if the condition is true in `{}` so that it is clear what code matches the if statement. You can technically put the condition on the line after the `if (x > 2)` line, and everything will still work, but then it gets hard to figure out what to do with the else statement - it technically would also go on the same line, and that gets hard to read.
+
+```{r}
+x <- 3
+y <- 1
+
+if (x > 2) y <- 8 else y <- 4
+
+print(paste("x =", x, "; y =", y))
+```
+
+So while the 2nd version of the code technically works, the first version with the brackets is much easier to read and understand. Please try to emulate the first version!
+
+</details>
+
+#### Representing Conditional Statements as Diagrams
+
+A common way to represent conditional logic is to draw a flow chart diagram.
+
+In a flow chart, conditional statements are represented as diamonds, and other code is represented as a rectangle. Yes/no or True/False branches are labeled. Typically, after a conditional statement, the program flow returns to a single point.
+
+![Program flow diagram outline of a simple if/else statement](images/flow-chart1.png)
+
+<details class="ex">
+
+<summary>US Tax brackets</summary>
+
+::: panel-tabset
+
+##### Problem {-}
+
+The US Tax code has brackets, such that the first \$10,275 of your income is taxed at 10%, anything between \$10,275 and \$41,775 is taxed at 12%, and so on.
+
+Here is the table of tax brackets for single filers in 2022:
+
+| rate | Income                 |
+|------|------------------------|
+| 10%  | \$0 to \$10,275        |
+| 12%  | \$10,275 to \$41,775   |
+| 22%  | \$41,775 to \$89,075   |
+| 24%  | \$89,075 to \$170,050  |
+| 32%  | \$170,050 to \$215,950 |
+| 35%  | \$215,950 to \$539,900 |
+| 37%  | \$539,900 or more      |
+
+Note: For the purposes of this problem, we're ignoring the personal exemption and the standard deduction, so we're already simplifying the tax code.
+
+Write a set of if statements that assess someone's income and determine what their overall tax rate is.
+
+Hint: You may want to keep track of how much of the income has already been taxed in a variable and what the total tax accumulation is in another variable.
+
+##### Solution {-}
+
+```{r}
+# Start with total income
+income <- 200000
+
+# x will hold income that hasn't been taxed yet
+x <- income
+# y will hold taxes paid
+y <- 0
+
+if (x <= 10275) {
+  y <- x*.1 # tax paid
+  x <- 0 # All money has been taxed
+} else {
+  y <- y + 10275 * .1
+  x <- x - 10275 # Money remaining that hasn't been taxed
+}
+
+if (x <= (41775 - 10275)) {
+  y <- y + x * .12
+  x <- 0
+} else {
+  y <- y + (41775 - 10275) * .12
+  x <- x - (41775 - 10275) 
+}
+
+if (x <= (89075 - 41775)) {
+  y <- y + x * .22
+  x <- 0
+} else {
+  y <- y + (89075 - 41775) * .22
+  x <- x - (89075 - 41775)
+}
+
+if (x <= (170050 - 89075)) {
+  y <- y + x * .24
+  x <- 0
+} else {
+  y <- y + (170050 - 89075) * .24
+  x <- x - (170050 - 89075)
+}
+
+if (x <= (215950 - 170050)) {
+  y <- y + x * .32
+  x <- 0
+} else {
+  y <- y + (215950 - 170050) * .32
+  x <- x - (215950 - 170050)
+}
+
+if (x <= (539900 - 215950)) {
+  y <- y + x * .35
+  x <- 0
+} else {
+  y <- y + (539900 - 215950) * .35
+  x <- x - (539900 - 215950)
+}
+
+if (x > 0) {
+  y <- y + x * .37
+}
+
+
+print(paste("Total Tax Rate on $", income, " in income = ", round(y/income, 4)*100, "%"))
+```
+
+##### Program Flow Chart
+
+Let's explore using program flow maps for a slightly more complicated problem: The tax bracket example that we used to demonstrate if statement syntax.
+
+```{r tax-data, echo = F, eval = F, fig.width = 5, fig.height = 4, out.width = "60%", fig.cap = "Marginal tax brackets for an income of \\$200k"}
+library(tidyverse)
+
+df <- tribble(
+~rate, ~LB, ~UB,
+.1, 0, 10275	,
+.12, 10275, 41775,
+.22, 41775, 89075,
+.24, 89075, 170050,
+.32, 170050, 215950,
+.35, 215950, 539900,
+.37, 539900, Inf
+)  %>% 
+  mutate(bracket = 1:n()) %>%
+  mutate(bracket_lab = factor(bracket, labels = sprintf("~%0.0fK - ~%0.0fK", LB/1000, UB/1000) %>% str_remove(" - ~InfK") %>% str_replace("~0K", "0"))) %>%
+  mutate(
+  taxable_amount = pmax(pmin((x - LB),0), pmax(0,pmin(UB, x) - LB)),
+  taxes = taxable_amount * rate,
+  untaxed_amount = taxable_amount - taxes
+)
+
+x <- 200000
+
+df2 <- df %>%
+  pivot_longer(taxable_amount:taxes, names_to = "type", values_to = "amount") %>%
+  mutate(type = str_replace_all(type, c("taxes" = "Taxes", "taxable_amount" = "Taxable Amount")))
+
+df2 %>% 
+  ggplot(aes(ymin = bracket -.4, ymax = bracket + .4, xmin = 0, xmax = amount, fill = type)) + 
+  geom_rect(alpha = .5, color = "black") +
+  scale_fill_manual(values = c("Taxes" = "black", "Taxable Amount" = "white")) + 
+  scale_y_continuous("Tax Bracket", breaks = df$bracket, labels = df$bracket_lab) + 
+  scale_x_continuous("Marginal Amount", expand = expansion(mult = c(0.025, .1), add = c(0, .1))) + 
+  geom_text(data = filter(df2, df2$type == "Taxable Amount"), aes(x = amount, y = bracket, label = sprintf("%.0f%%", rate*100), color = "Marginal rate"), hjust = -.1) + 
+  scale_color_manual("", values = c("Marginal rate" = "red")) + 
+  theme_bw() + 
+  theme(legend.position = "bottom", legend.title = element_blank()) + 
+  ggtitle("Breaking down Taxation (Single Bracket, 2022, for 200K)")
+
+```
+
+![The control flow diagram for the code in the previous example](images/tax-brackets.png)
+
+Control flow diagrams can be extremely helpful when figuring out how programs work (and where gaps in your logic are when you're debugging). It can be very helpful to map out your program flow as you're untangling a problem.
+
+:::
+
+</details>
+
+#### Chaining Conditional Statements: Else-If
+
+In many cases, it can be helpful to have a long chain of conditional statements describing a sequence of alternative statements.
+
+<details class="ex">
+
+<summary>Age brackets</summary>
+
+For instance, suppose I want to determine what categorical age bracket someone falls into based on their numerical age. All of the bins are mutually exclusive - you can't be in the 25-40 bracket and the 41-55 bracket.
+
+::: panel-tabset
+
+##### Program Flow Map {-}
+
+![Program flow map for a series of mutually exclusive categories. If our goal is to take a numeric age variable and create a categorical set of age brackets, such as \<18, 18-25, 26-40, 41-55, 56-65, and \>65, we can do this with a series of if-else statements chained together. Only one of the bracket assignments is evaluated, so it is important to place the most restrictive condition first.](images/age-category-prog-flow.png)
+
+The important thing to realize when examining this program flow map is that if `age <= 18` is true, then **none of the other conditional statements even get evaluated**. That is, once a statement is true, none of the other statements matter. Because of this, it is important to place the most restrictive statement first.
+
+![Program flow map for a series of mutually exclusive categories, emphasizing that only some statements are evaluated. When age = 40, only (age \<= 18), (age \<= 25), and (age \<= 40) are evaluated conditionally. Of the assignment statements, only bracket = '26-40' is evaluated when age = 40.](images/age-category-prog-flow2.png)
+
+If for some reason you wrote your conditional statements in the wrong order, the wrong label would get assigned:
+
+![Program flow map for a series of mutually exclusive categories, with category labels in the wrong order - \<40 is evaluated first, and so \<= 25 and \<= 18 will never be evaluated and the wrong label will be assigned for anything in those categories.](images/age-category-prog-flow3.png)
+
+
+In code, we would write this statement using `else-if` (or `elif`) statements.
+
+```{r else-if-statements}
+age <- 40 # change this as you will to see how the code works
+
+if (age < 18) {
+  bracket <- "<18"
+} else if (age <= 25) {
+  bracket <- "18-25"
+} else if (age <= 40) {
+  bracket <- "26-40"
+} else if (age <= 55) {
+  bracket <- "41-55" 
+} else if (age <= 65) {
+  bracket <- "56-65"
+} else {
+  bracket <- ">65"
+}
+
+bracket
+```
+
+:::
+
+</details>
+
+### Loops
+
+<!-- https://www.py4e.com/html3/05-iterations -->
+
+Often, we write programs which update a variable in a way that the new value of the variable depends on the old value:
+
+    x = x + 1
+
+This means that we add one to the current value of `x`.
+
+Before we write a statement like this, we have to **initialize** the value of `x` because otherwise, we don't know what value to add one to.
+
+    x = 0
+    x = x + 1
+
+We sometimes use the word **increment** to talk about adding one to the value of `x`; **decrement** means subtracting one from the value of `x`.
+
+A particularly powerful tool for making these types of repetitive changes in programming is the **loop**, which executes statements a certain number of times. Loops can be written in several different ways, but all loops allow for executing a block of code a variable number of times.
+
+#### While Loops
+
+We just discussed conditional statements, where a block of code is only executed *if* a logical statement is true.
+
+The simplest type of loop is the **while** loop, which executes a block of code until a statement is no longer true.
+
+![Flow map showing while-loop pseudocode (while x \<= N) { \# code that changes x in some way} and the program flow map expansion where we check if x \> N (exiting the loop if true); otherwise, we continue into the loop, execute the main body of #code and then change x and start over.](images/while-loop-flow.png)
+
+```{r while-loop-r}
+x <- 0
+
+while (x < 10) { 
+  # Everything in here is executed 
+  # during each iteration of the loop
+  print(x)
+  x <- x + 1
+}
+```
+
+
+<details class="ex">
+
+<summary>While loops</summary>
+
+::: panel-tabset
+
+##### Problem {-}
+
+Write a while loop that verifies that $$\lim_{N \rightarrow \infty} \prod_{k=1}^N \left(1 + \frac{1}{k^2}\right) = \frac{e^\pi - e^{-\pi}}{2\pi}.$$
+
+Terminate your loop when you get within 0.0001 of $\frac{e^\pi - e^{-\pi}}{2\pi}$. At what value of $k$ is this point reached?
+
+##### Math Notation {-}
+
+Breaking down math notation for code:
+
+-   If you are unfamiliar with the notation $\prod_{k=1}^N f(k)$, this is the product of $f(k)$ for $k = 1, 2, ..., N$, $$f(1)\cdot f(2)\cdot ... \cdot f(N)$$
+
+-   To evaluate a limit, we just keep increasing $N$ until we get arbitrarily close to the right hand side of the equation.
+
+In this problem, we can just keep increasing $k$ and keep track of the cumulative product. So we define `k=1`, `prod = 1`, and `ans` before the loop starts. Then, we loop over `k`, multiplying `prod` by $(1 + 1/k^2)$ and then incrementing $k$ by one each time. At each iteration, we test whether `prod` is close enough to `ans` to stop the loop.
+
+##### Solution {-}
+
+You will use `pi` and `exp()` - these are available by default without any additional libraries or packages.
+
+
+```{r}
+k <- 1
+prod <- 1
+ans <- (exp(pi) - exp(-pi))/(2*pi)
+delta <- 0.0001
+
+while (abs(prod - ans) >= 0.0001) {
+  prod <- prod * (1 + 1/k^2)
+  k <- k + 1
+}
+
+k
+prod
+ans
+```
+
+:::
+
+</details>
+
+#### For Loops
+
+Another common type of loop is a **for** loop. In a for loop, we run the block of code, iterating through a series of values (commonly, one to N, but not always). Generally speaking, for loops are known as **definite** loops because the code inside a for loop is executed a specific number of times. While loops are known as **indefinite** loops because the code within a while loop is evaluated until the condition is falsified, which is not always a known number of times.
+
+
+::: panel-tabset
+
+##### Flow Map {-}
+
+![Flow map showing for-loop pseudocode (for j in 1 to N) { \# code} and the program flow map expansion where j starts at 1 and we check if j \> N (exiting the loop if true); otherwise, we continue into the loop, execute the main body of #code and then increment j and start over.](images/for-loop-flow.png)
+
+##### R {-}
+
+```{r}
+for (i in 1:5 ) {
+  print(i)
+}
+
+```
+
+:::
+
+For loops are often run from 1 to N but in essence, a for loop is run for every value of a vector (which is why loops are included in the same chapter as vectors).
+
+::: ex
+
+For instance, in `R`, there is a built-in variable called `month.name`. Type `month.name` into your `R` console to see what it looks like. If we want to iterate along the values of month.name, we can:
+
+```{r}
+for (i in month.name)
+  print(i)
+```
+
+:::
+
+::: watch-out
+
+#### Avoiding Infinite Loops
+
+It is very easy to create an **infinite** loop when you are working with while loops. Infinite loops never exit, because the condition is always true. If in the while loop example we decrement x instead of incrementing x, the loop will run forever.
+
+You want to try very hard to avoid ever creating an infinite loop - it can cause your session to crash.
+
+One common way to avoid infinite loops is to create a second variable that just counts how many times the loop has run. If that variable gets over a certain threshold, you exit the loop.
+
+This while loop runs until either x \< 10 or n \> 50 - so it will run an indeterminate number of times and depends on the random values added to x. Since this process (a 'random walk') could theoretically continue forever, we add the n\>50 check to the loop so that we don't tie up the computer for eternity.
+
+```{r infinite-loop-exit-r}
+x <- 0
+n <- 0 # count the number of times the loop runs
+
+while (x < 10) { 
+  print(x)
+  x <- x + rnorm(1) # add a random normal (0, 1) draw each time
+  n <- n + 1
+  if (n > 50) 
+    break # this stops the loop if n > 50
+}
+```
+
+In the example above, there are more efficient ways to write a random walk, but we will get to that later. The important thing here is that we want to make sure that our loops don't run for all eternity.
+
+:::
+
+#### Controlling Loops
+
+<!-- https://www.py4e.com/html3/05-iterations -->
+
+<!-- https://www.datamentor.io/r-programming/break-next/ -->
+
+Sometimes it is useful to control the statements in a loop with a bit more precision. You may want to skip over code and proceed directly to the next iteration, or, as demonstrated in the previous section with the `break` statement, it may be useful to exit the loop prematurely.
+
+::: panel-tabset
+
+##### Break Statement {-}
+
+![A break statement is used to exit a loop prematurely](images/break-statement.png)
+
+##### Next/Continue Statement {-}
+
+![A next (or continue) statement is used to skip the body of the loop and continue to the next iteration](images/next-statement-flow.png)
+
+:::
+
+::: ex
+
+Let's demonstrate the details of next/continue and break statements.
+
+We can do different things based on whether i is evenly divisible by 3, 5, or both 3 and 5 (thus divisible by 15)
+
+
+```{r}
+for (i in 1:20) {
+  if (i %% 15 == 0) {
+    print("Exiting now")
+    break
+  } else if (i %% 3 == 0) {    
+    print("Divisible by 3")
+    next
+    print("After the next statement") # this should never execute
+  } else if (i %% 5 == 0) {
+    print("Divisible by 5")
+  } else {
+    print(i)
+  }
+}
+```
+
+:::
+
+To be quite honest, I haven't really ever needed to use next/continue statements when I'm programming, and I rarely use break statements. However, it's useful to know they exist just in case you come across a problem where you could put either one to use.
