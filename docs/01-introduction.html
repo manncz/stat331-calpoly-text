@@ -108,7 +108,6 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./02-tidy-data-and-basics-of-graphics.html" rel="next">
 <link href="./00-prereading.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -202,48 +201,54 @@ div.csl-indent {
   <a href="./01-introduction.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./02-tidy-data-and-basics-of-graphics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tidy Data &amp; Basics of Graphics</span></a>
-  </div>
-</li>
     </ul>
 </div>
 </nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li>
-<a href="#ch1-objectives" id="toc-ch1-objectives" class="nav-link active" data-scroll-target="#ch1-objectives">Objectives</a>
-  <ul class="collapse">
-<li><a href="#getting-started-checkins" id="toc-getting-started-checkins" class="nav-link" data-scroll-target="#getting-started-checkins">Check-ins</a></li>
-  </ul>
-</li>
+<li><a href="#ch1-objectives" id="toc-ch1-objectives" class="nav-link active" data-scroll-target="#ch1-objectives">Objectives</a></li>
+  <li><a href="#getting-started-checkins" id="toc-getting-started-checkins" class="nav-link" data-scroll-target="#getting-started-checkins">Check-ins</a></li>
   <li>
 <a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="toc-section-number">1.1</span>  Getting Started</a>
   <ul class="collapse">
-<li><a href="#setting-up-your-computer" id="toc-setting-up-your-computer" class="nav-link" data-scroll-target="#setting-up-your-computer"><span class="toc-section-number">1.1.1</span>  Setting up your computer</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#scripts-and-notebooks" id="toc-scripts-and-notebooks" class="nav-link" data-scroll-target="#scripts-and-notebooks"><span class="toc-section-number">1.2</span>  Scripts and Notebooks</a>
-  <ul class="collapse">
-<li><a href="#scripts" id="toc-scripts" class="nav-link" data-scroll-target="#scripts"><span class="toc-section-number">1.2.1</span>  Scripts</a></li>
-  <li><a href="#notebooks" id="toc-notebooks" class="nav-link" data-scroll-target="#notebooks"><span class="toc-section-number">1.2.2</span>  Notebooks</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#finding-your-way-in-r" id="toc-finding-your-way-in-r" class="nav-link" data-scroll-target="#finding-your-way-in-r"><span class="toc-section-number">1.3</span>  Finding your way in <code>R</code></a>
-  <ul class="collapse">
-<li><a href="#programming" id="toc-programming" class="nav-link" data-scroll-target="#programming"><span class="toc-section-number">1.3.1</span>  Programming</a></li>
-  <li><a href="#hello-world" id="toc-hello-world" class="nav-link" data-scroll-target="#hello-world"><span class="toc-section-number">1.3.2</span>  Hello world</a></li>
-  <li><a href="#talking-to-r---interactive-mode" id="toc-talking-to-r---interactive-mode" class="nav-link" data-scroll-target="#talking-to-r---interactive-mode"><span class="toc-section-number">1.3.3</span>  Talking to <code>R</code> - Interactive mode</a></li>
-  <li><a href="#talking-to-r---script-mode" id="toc-talking-to-r---script-mode" class="nav-link" data-scroll-target="#talking-to-r---script-mode"><span class="toc-section-number">1.3.4</span>  Talking to <code>R</code> - Script Mode</a></li>
+<li><a href="#setting-up-your-computer" id="toc-setting-up-your-computer" class="nav-link" data-scroll-target="#setting-up-your-computer">Setting up your computer</a></li>
+  <li><a href="#introduction-to-r-and-rstudio" id="toc-introduction-to-r-and-rstudio" class="nav-link" data-scroll-target="#introduction-to-r-and-rstudio">Introduction to <code>R</code> and RStudio</a></li>
   <li><a href="#checkin4-intro-to-r" id="toc-checkin4-intro-to-r" class="nav-link" data-scroll-target="#checkin4-intro-to-r">Check-in 1.4: Introduction to <code>R</code> &amp; RStudio</a></li>
-  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help"><span class="toc-section-number">1.3.5</span>  Getting help</a></li>
-  <li><a href="#pa-1-find-the-mistakes" id="toc-pa-1-find-the-mistakes" class="nav-link" data-scroll-target="#pa-1-find-the-mistakes"><span class="toc-section-number">1.3.6</span>  PA 1: Find the Mistakes</a></li>
   </ul>
 </li>
+  <li>
+<a href="#directories-and-projects" id="toc-directories-and-projects" class="nav-link" data-scroll-target="#directories-and-projects"><span class="toc-section-number">1.2</span>  Directories, Paths, and Projects</a>
+  <ul class="collapse">
+<li><a href="#working-directories-in-r" id="toc-working-directories-in-r" class="nav-link" data-scroll-target="#working-directories-in-r">Working Directories in <code>R</code></a></li>
+  <li><a href="#rprojects" id="toc-rprojects" class="nav-link" data-scroll-target="#rprojects">Rprojects</a></li>
+  <li><a href="#file-paths-in-r" id="toc-file-paths-in-r" class="nav-link" data-scroll-target="#file-paths-in-r">File Paths in <code>R</code></a></li>
+  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#scripts-and-notebooks" id="toc-scripts-and-notebooks" class="nav-link" data-scroll-target="#scripts-and-notebooks"><span class="toc-section-number">1.3</span>  Scripts and Notebooks</a>
+  <ul class="collapse">
+<li><a href="#scripts" id="toc-scripts" class="nav-link" data-scroll-target="#scripts">Scripts</a></li>
+  <li><a href="#notebooks" id="toc-notebooks" class="nav-link" data-scroll-target="#notebooks">Notebooks</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#finding-your-way-in-r" id="toc-finding-your-way-in-r" class="nav-link" data-scroll-target="#finding-your-way-in-r"><span class="toc-section-number">1.4</span>  Finding your way in <code>R</code></a>
+  <ul class="collapse">
+<li><a href="#programming" id="toc-programming" class="nav-link" data-scroll-target="#programming">Programming</a></li>
+  <li><a href="#hello-world" id="toc-hello-world" class="nav-link" data-scroll-target="#hello-world">Hello world</a></li>
+  <li><a href="#talking-to-r---interactive-mode" id="toc-talking-to-r---interactive-mode" class="nav-link" data-scroll-target="#talking-to-r---interactive-mode">Talking to <code>R</code> - Interactive mode</a></li>
+  <li><a href="#talking-to-r---script-mode" id="toc-talking-to-r---script-mode" class="nav-link" data-scroll-target="#talking-to-r---script-mode">Talking to <code>R</code> - Script Mode</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help"><span class="toc-section-number">1.5</span>  Getting help</a>
+  <ul class="collapse">
+<li><a href="#google-is-your-friend." id="toc-google-is-your-friend." class="nav-link" data-scroll-target="#google-is-your-friend.">Google is your friend.</a></li>
+  </ul>
+</li>
+  <li><a href="#pa-1-find-the-mistakes" id="toc-pa-1-find-the-mistakes" class="nav-link" data-scroll-target="#pa-1-find-the-mistakes">PA 1: Find the Mistakes</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/earobinson95/stat331-calpoly/edit/main/01-introduction.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
@@ -265,33 +270,33 @@ div.csl-indent {
 </header><div class="cell">
 
 </div>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C87.5 32 35.1 48.6 9 59.9c-5.6 2.4-9 8-9 14V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V73.9c0-6.1-3.4-11.6-9-14C540.9 48.6 488.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 19 minute(s) at 200 WPM.</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C87.5 32 35.1 48.6 9 59.9c-5.6 2.4-9 8-9 14V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V73.9c0-6.1-3.4-11.6-9-14C540.9 48.6 488.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 20 minute(s) at 200 WPM.</p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"></path></svg> Videos:</p>
 <section id="ch1-objectives" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="ch1-objectives">Objectives</h2>
 <ul>
 <li>
 </li><li>
-</li></ul>
-<section id="getting-started-checkins" class="level3 unnumbered check-in"><h3 class="unnumbered anchored" data-anchor-id="getting-started-checkins">Check-ins</h3>
+</li></ul></section><section id="getting-started-checkins" class="level2 unnumbered check-in"><h2 class="unnumbered anchored" data-anchor-id="getting-started-checkins">Check-ins</h2>
 <p>There are four check-ins for this week:</p>
 <ul>
-<li>Check-in 1.1: Syllabus Quiz</li>
+<li>Check-in 1.1: Syllabus &amp; Learning Community Quiz</li>
 </ul>
 <details class="check-in"><summary>
-Complete the Syllabus Quiz on Canvas.
-</summary><p>The <a href="">course syllabus</a> includes information about class dates, course structure, and expectations.</p>
+Complete the Syllabus &amp; Learning Community Quiz on Canvas.
+</summary><p>The <a href="https://earobinson95.github.io/stat331-calpoly/00-course-info/syllabus-W2023.html">course syllabus</a> includes information about class dates, course structure, and expectations.</p>
+<p>I will also be asking you some questions about yourself so I can best support you in this course! If you plan to take this quiz more than once (you have up to three retakes on check-ins) you may want to copy your open ended answers into another document so you do not have to retype them each time.</p>
 </details><ul>
 <li>Check-in 1.2: Discord Server</li>
 </ul>
 <details class="check-in"><summary>
-Introduce yourself in the “Introductions” channel of the Discord Server.
+Introduce yourself in the “introductions” channel of the Discord Server (under WEEK 0: BASICS OF CODING).
 </summary><p><br></p>
 <p><strong>Using the Class Discord</strong></p>
 <p>We’ll be using Discord to interact with our peers and instructor outside of class.</p>
 <p>Discord is a platform for text chatting, voice chatting, and screen sharing.</p>
 <p>I will often be on Discord when in my office.</p>
 <p><strong>Join the server</strong></p>
-<p>Join the Stat 331 Server <em>(link to join can be found on canvas)</em> to start experimenting with the interface.</p>
+<p>Join the Stat 331/531 Server <em>(link to join can be found on canvas)</em> to start experimenting with the interface.</p>
 <p>When you join the server, you will be given some suggestions to get started.</p>
 <p><img src="images/screencast_gifs/welcome_discord.png" class="img-fluid"></p>
 <p>I recommend you click through these - and in particular, it is probably a good idea to download the desktop version of Discord, and perhaps to install it on your phone if you wish.</p>
@@ -304,8 +309,7 @@ Introduce yourself in the “Introductions” channel of the Discord Server.
 <p><img src="images/screencast_gifs/pic.gif" class="img-fluid"></p>
 <p>I would like to <strong>strongly</strong> encourage you to use your <strong>real name and picture</strong>, so that everyone can get to know you. However, if you prefer to remain anonymous, you are free to do so.</p>
 <p><img src="images/screencast_gifs/pic_name.gif" class="img-fluid"></p>
-<p>(Please do not be like Regina and use the name of another student, however!<br>
-This kind of impersonation will result in a permanent ban from the server.)</p>
+<p>(Please do not be like Regina and use the name of another student, however! This kind of impersonation will result in a permanent ban from the server.)</p>
 <p><strong>Decide about privacy and notifications</strong></p>
 <p>The default settings on the channel are probably just fine for you.<br>
 Feel free to make any changes that work for you, though.</p>
@@ -327,7 +331,7 @@ Feel free to make any changes that work for you, though.</p>
 <p><img src="images/screencast_gifs/github.gif" class="img-fluid"></p>
 <p>… or the specific lab assignment.</p>
 <p><img src="images/screencast_gifs/code_in_chat.gif" class="img-fluid"></p>
-<p>Notice that you can use tick marks (<code>```</code>), like in <code>R</code> Markdown, to make your code appear in a formatted code box.</p>
+<p>Notice that you can use tick marks (<code>```</code>), like in <code>R</code> Markdown / Quarto, to make your code appear in a formatted code box.</p>
 <p><strong>Voice Channels</strong></p>
 <p>To join a voice channel, simply click it! Make sure you are careful about when you are muted or unmuted.</p>
 <p><img src="images/screencast_gifs/voice_channel.gif" class="img-fluid"></p>
@@ -341,69 +345,171 @@ Feel free to make any changes that work for you, though.</p>
 <p><strong>Creating your own server</strong></p>
 <p>Last but not least - for the teams you are a part of, you may want to use Discord to communicate with each other about the weekly assignments. You can do this by creating your own server! You can easily hop between servers during work parties, to ask each other questions or just to take a break and chat about life.</p>
 <p><img src="images/screencast_gifs/new_server.gif" class="img-fluid"></p>
+<p><strong>Introduce yourself in the “introductions” channel of the Discord Server under WEEK 0: BASICS OF CODING. Share your name, major, year in school, and either (1) your favorite comfort food or (2) your go to study spot on campus or in SLO. Take a screenshot of your introduction on the discord channel and upload it to the Canvas assignment.</strong></p>
 </details><ul>
-<li><a href="#setting-up-your-computer">Check-in 1.3: RStudio Projects</a></li>
+<li><a href="#setting-up-your-computer">Check-in 1.3: RStudio Project</a></li>
 </ul>
 <details class="check-in"><summary>
 Get set-up!
 </summary><p>Follow the instructions for <a href="#checkin3-install">Installing <code>R</code>, RStudio, and Quarto</a>. Then create a class directory and <a href="#checkin3-r-project">RStudio project</a> for this course. You are set up and ready to go!</p>
-<p>Take a screenshot of your class directory, showing the <svg aria-hidden="true" role="img" viewbox="0 0 581 512" style="height:1em;width:1.13em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg><strong>RProject</strong> and the folder organization, including a <svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M447.1 96h-172.1L226.7 50.75C214.7 38.74 198.5 32 181.5 32H63.1c-35.35 0-64 28.66-64 64v320c0 35.34 28.65 64 64 64h384c35.35 0 64-28.66 64-64V160C511.1 124.7 483.3 96 447.1 96zM463.1 416c0 8.824-7.178 16-16 16h-384c-8.822 0-16-7.176-16-16V96c0-8.824 7.178-16 16-16h117.5c4.273 0 8.293 1.664 11.31 4.688L255.1 144h192c8.822 0 16 7.176 16 16V416z"></path></svg><strong>Week 1</strong> or <strong>Practice Activity</strong> folder. Upload this screenshot to the Canvas Assignment.</p>
+<p>Take a screenshot of your class directory, showing the <svg aria-hidden="true" role="img" viewbox="0 0 581 512" style="height:1em;width:1.13em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg><strong>RProject</strong> and the folder organization, including a <svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M447.1 96h-172.1L226.7 50.75C214.7 38.74 198.5 32 181.5 32H63.1c-35.35 0-64 28.66-64 64v320c0 35.34 28.65 64 64 64h384c35.35 0 64-28.66 64-64V160C511.1 124.7 483.3 96 447.1 96zM463.1 416c0 8.824-7.178 16-16 16h-384c-8.822 0-16-7.176-16-16V96c0-8.824 7.178-16 16-16h117.5c4.273 0 8.293 1.664 11.31 4.688L255.1 144h192c8.822 0 16 7.176 16 16V416z"></path></svg><strong>week-1</strong> or <strong>practice-activity</strong> folder. Upload this screenshot to the Canvas assignment.</p>
 </details><ul>
 <li><a href="#checkin4-intro-to-r">Check-in 1.4: Introduction to <code>R</code> &amp; RStudio</a></li>
-</ul></section></section><section id="getting-started" class="level2 page-columns page-full" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="getting-started">
+</ul></section><section id="getting-started" class="level2 page-columns page-full" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="getting-started">
 <span class="header-section-number">1.1</span> Getting Started</h2>
-<section id="setting-up-your-computer" class="level3 page-columns page-full" data-number="1.1.1"><h3 data-number="1.1.1" class="anchored" data-anchor-id="setting-up-your-computer">
-<span class="header-section-number">1.1.1</span> Setting up your computer</h3>
+<section id="setting-up-your-computer" class="level3 unnumbered page-columns page-full"><h3 class="unnumbered anchored" data-anchor-id="setting-up-your-computer">Setting up your computer</h3>
 <p>In this section, I will provide you with links to set up various programs on your own machine. If you have trouble with these instructions or encounter an error, post on the class message board or contact me for help.</p>
-<section id="checkin3-install" class="level4 check-in" data-number="1.1.1.1"><h4 data-number="1.1.1.1" class="anchored" data-anchor-id="checkin3-install">
-<span class="header-section-number">1.1.1.1</span> Check-in 1.3: Installing <code>R</code>, RStudio, and Quarto</h4>
+<p>If you already have <code>R</code> downloaded, please follow these steps anyways, to make sure you have the most recent version of <code>R</code>. Do not ignore these instructions. If you neglect to update your version of <code>R</code>, you may find that updating a package will make it so your code will not run.</p>
+<section id="checkin3-install" class="level4 unnumbered check-in"><h4 class="unnumbered anchored" data-anchor-id="checkin3-install">Check-in 1.3: Installing <code>R</code>, RStudio, and Quarto</h4>
 <ol type="1">
 <li>
 <p>Download and run the R installer for your operating system from CRAN:</p>
 <ul>
-<li>Windows: https://cran.rstudio.com/bin/windows/base/</li>
-<li>Mac: https://cran.rstudio.com/bin/macosx/</li>
-<li>Linux: https://cran.rstudio.com/bin/linux/ (pick your distribution)</li>
+<li>Windows: <a href="https://cran.rstudio.com/bin/windows/base/" class="uri">https://cran.rstudio.com/bin/windows/base/</a>
+</li>
+<li>Mac: <a href="https://cran.rstudio.com/bin/macosx/" class="uri">https://cran.rstudio.com/bin/macosx/</a> (double check your macOS version)</li>
+<li>Linux: <a href="https://cran.rstudio.com/bin/linux/" class="uri">https://cran.rstudio.com/bin/linux/</a> (pick your distribution)</li>
 </ul>
-<p>If you are on Windows, you should also install the <a href="https://cran.rstudio.com/bin/windows/Rtools/">Rtools4 package</a>; this will ensure you get fewer warnings later when installing packages.</p>
+<p>(Optional) If you are on Windows, you should also install the <a href="https://cran.rstudio.com/bin/windows/Rtools/">Rtools4 package</a>; this will ensure you get fewer warnings later when installing packages.</p>
 <p>More detailed instructions for Windows are available <a href="https://owi.usgs.gov/R/training-curriculum/installr/">here</a></p>
 </li>
-<li><p>Download and install the <a href="https://www.rstudio.com/products/rstudio/download/#download">latest version of RStudio</a> for your operating system. RStudio is a integrated development environment (IDE) for R - it contains a set of tools designed to make writing R code easier.</p></li>
-<li><p>Download and install the <a href="https://quarto.org/#getting-started">latest version of Quarto</a> for your operating system. Quarto is a command-line tool released by RStudio that allows Rstudio to work with python and other R specific tools in a unified way.</p></li>
+<li><p>Download and install the <a href="https://www.rstudio.com/products/rstudio/download/#download">latest version of RStudio</a> for your operating system (see Step 2 Installers). RStudio is a integrated development environment (IDE) for <code>R</code> - it contains a set of tools designed to make writing <code>R</code> code easier.</p></li>
+<li><p>Download and install the <a href="https://quarto.org/docs/get-started/">latest version of Quarto</a> for your operating system. Quarto is a command-line tool released by RStudio that allows Rstudio to work with python and other R specific tools in a unified way. We will talk more about Quarto in a later <a href="#intro-to-quarto">section</a>, but for now just know this is the “notebook” you will be completing and writing all your assignments in.</p></li>
 </ol>
 <p><em>Make sure you remember to create your <a href="#checkin3-r-project">RProject</a> and upload a screenshot to canvas.</em></p>
 </section>
 <div class="no-row-height column-margin column-container"><div class="">
-<p>If you would like a video tutorial on downloading RStudio, here is one: <br></p>
+<p>If you would like a video tutorial on downloading RStudio, here is one:</p>
+<p><br></p>
 <div class="youtube-video-container">
-<iframe src="https://player.vimeo.com/video/203516968?h=7fc91cd48f&amp;color=428bca" width="640" height="400" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen="">
+<iframe src="https://player.vimeo.com/video/203516968?h=7fc91cd48f&amp;color=428bca" width="100%" height="auto" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen="">
 </iframe>
-
 </div>
-</div></div><section id="directories-and-projects" class="level4" data-number="1.1.1.2"><h4 data-number="1.1.1.2" class="anchored" data-anchor-id="directories-and-projects">
-<span class="header-section-number">1.1.1.2</span> Directories, Paths, and Projects</h4>
-<p>In <a href="00-prereading.html#file-systems">File Systems</a> we learned about …</p>
-</section><section id="checkin3-r-project" class="level4 check-in" data-number="1.1.1.3"><h4 data-number="1.1.1.3" class="anchored" data-anchor-id="checkin3-r-project">
-<span class="header-section-number">1.1.1.3</span> Check-in 1.3: RProject</h4>
+<p><br></p>
+<div class="note">
+<p><strong>RStudio</strong> organization has recently re-branded to <strong>posit</strong>. Rstudio is still the name of the IDE, but these two names may be used interchangeably. See a video of Hadley Wickham talking about the re-branding.</p>
+<p><br></p>
+<div class="youtube-video-container">
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/0_UNtwEh7kY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
+</iframe>
+</div>
+</div>
+</div></div></section><section id="introduction-to-r-and-rstudio" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="introduction-to-r-and-rstudio">Introduction to <code>R</code> and RStudio</h3>
+<p>In this section, we will learn about some of the tools you just installed. You may have worked with <code>R</code> and RStudio in previous classes, but never had a course dedicated to learning about their functionality.</p>
+<section id="installing-packages" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="installing-packages">Installing Packages</h4>
+</section><section id="test-your-setup" class="level4 unnumbered tryitout"><h4 class="unnumbered anchored" data-anchor-id="test-your-setup">Test your setup</h4>
+<p>We will find our way in <code>R</code> and learn more about Quarto in the following sections, but for now open RStudio on your computer and explore a bit.</p>
+<ul>
+<li><p>Can you find the <code>R</code> console? Type in <code>2+2</code> to make sure the result is <code>4</code>.</p></li>
+<li><p>Run the following code in the R console:</p></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span></span>
+<span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"tidyverse"</span>, <span class="st">"rmarkdown"</span>, <span class="st">"knitr"</span>, <span class="st">"quarto"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>
+<p>Can you find the text editor?</p>
+<ul>
+<li><p>Create a new quarto document (<code>File &gt; New File &gt; Quarto Document</code>).</p></li>
+<li><p>Compile the document using the <code>Render</code> button and use the Viewer pane to see the result.</p></li>
+<li><p>If this all worked, you have RStudio, Quarto, and <code>R</code> set up correctly on your machine.</p></li>
+</ul>
+</li>
+</ul></section><p><br></p>
+</section><section id="checkin4-intro-to-r" class="level3 unnumbered check-in"><h3 class="unnumbered anchored" data-anchor-id="checkin4-intro-to-r">Check-in 1.4: Introduction to <code>R</code> &amp; RStudio</h3>
+<p>Answer the following questions on the Canvas Quiz.</p>
+<p><strong>Question 1:</strong> What does it mean for R to be “open-source”?</p>
+<p><strong>Question 2:</strong> How often do you need to install a package on your computer?</p>
+<p><strong>Question 3:</strong> What is the tidyverse?</p>
+</section><p><br></p>
+<section id="additional-resources-basics-of-r-and-rstudio" class="level4 learn-more" data-number="1.1.0.1"><h4 data-number="1.1.0.1" class="anchored" data-anchor-id="additional-resources-basics-of-r-and-rstudio">
+<span class="header-section-number">1.1.0.1</span> Additional Resources: Basics of <code>R</code> and RStudio</h4>
+<p><strong>Basics of R Programming</strong></p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"></path></svg><a href="https://r4ds.had.co.nz/workflow-basics.html">Basics of <code>R</code></a></p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"></path></svg><a href="https://posit.cloud/learn/primers/1.2">RStudio Primer, Basics of Programming in <code>R</code></a></p>
+<p><strong>Introduction to RStudio</strong></p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"></path></svg><a href="https://rladiessydney.org/courses/ryouwithme/01-basicbasics-1/">A tour of RStudio, BasicsBasics1</a></p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"></path></svg><a href="https://www.youtube.com/watch?v=cnQ-v1UUWyE&amp;ab_channel=AndrewHeiss">Quick tour of RStudio</a></p>
+</section></section><section id="directories-and-projects" class="level2 page-columns page-full" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="directories-and-projects">
+<span class="header-section-number">1.2</span> Directories, Paths, and Projects</h2>
+<p>In the pre-reading section, <a href="00-prereading.html#file-systems">File Systems</a>, we learned how to organize our personal files and locate them using absolute and relative file paths. The idea of a “base folder” or starting place was introduced as a <strong>working directory</strong>. In <code>R</code>, there are two ways to set up your file path and file system organization:</p>
+<ol type="1">
+<li>Set your working directory in <code>R</code> (do not reccommend)</li>
+<li>Use RProjects (preferred!)</li>
+</ol>
+<section id="working-directories-in-r" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="working-directories-in-r">Working Directories in <code>R</code>
+</h3>
+<p>To find where your working directory is in <code>R</code>, you can either look at the top of your console or type <code><a href="https://rdrr.io/r/base/getwd.html">getwd()</a></code> into your console.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="images/working-directory-console.jpg" class="img-fluid" style="width:70.0%"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C:/Users/erobin17/OneDrive - Cal Poly/stat331-calpoly-text"</code></pre>
+</div>
+</div>
+<p>Although it is not recommended, you can set your working directory in <code>R</code> with <code><a href="https://rdrr.io/r/base/getwd.html">setwd()</a></code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">"/path/to/my/assignment/folder"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="rprojects" class="level3 unnumbered page-columns page-full"><h3 class="unnumbered anchored" data-anchor-id="rprojects">Rprojects</h3>
+<p>Since there are often many files necessary for a project (e.g.&nbsp;data sources, images, etc.), <code>R</code> has a nice built in system for setting up your project organization with RProjects.</p>
+<p>To create an Rproject, first open RStudio on your computer and click <code>File &gt; New Project</code>, then:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/Rproject-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/Rproject-2.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/Rproject-3.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="note">
+<p>If you plan to use the Studio computers during class, I recommend having a way to access and save your material between the Studio computers and your personal computer (e.g.&nbsp;put your class directory and Rproject on OneDrive). The idea with Rprojects is then your relative file paths will work in either computer without any changes!</p>
+</div>
+</div></div><p>This new folder, <code>stat331-test-student</code> should now live in your OneDrive folder (or whatever sub-directory you save it to). This is your new “home” base for this class - whenever you refer to a file with a relative path it will look for it here.</p>
+<section id="checkin3-r-project" class="level4 unnumbered check-in"><h4 class="unnumbered anchored" data-anchor-id="checkin3-r-project">Check-in 1.3: RProject</h4>
 <ol start="4" type="1">
-<li>Take a screenshot of your class directory, showing the R Project and the folder organization, including a Week 1 or Practice Activity folder. Upload this screenshot to canvas.</li>
+<li>Take a screenshot of your class directory, showing the RProject and the folder organization, including a <em>week-1</em> or <em>practice-activity</em> folder. Upload this screenshot to the Canvas assignment.</li>
 </ol></section><p><br></p>
-<section id="workflow" class="level5 learn-more" data-number="1.1.1.3.1"><h5 data-number="1.1.1.3.1" class="anchored" data-anchor-id="workflow">
-<span class="header-section-number">1.1.1.3.1</span> Workflow</h5>
+</section><section id="file-paths-in-r" class="level3 unnumbered watchout"><h3 class="unnumbered anchored" data-anchor-id="file-paths-in-r">File Paths in <code>R</code>
+</h3>
+<p>A quick warning on file paths is that Mac/Linux and Windows differ in the direction of their backslash to separate folder locations. Mac/Linux use <code>/</code> (e.g.&nbsp;<code>practice-activities/PA1.pdf</code>) while Window’s uses <code>\</code> (e.g.&nbsp;<code>practice-activities\PA1.pdf</code>).</p>
+<p><code>R</code> can work with both, however, a backslash <code>\</code> means something different to <code>R</code> so if you copy a file path from your file filder in Windows, you will need to replace all backslashes with a double backslash <code>\\</code> (e.g.&nbsp;<code>practice-activities\\PA1.pdf</code>)</p>
+</section><p><br></p>
+<section id="workflow" class="level3 unnumbered learn-more"><h3 class="unnumbered anchored" data-anchor-id="workflow">Workflow</h3>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"></path></svg><a href="https://r4ds.had.co.nz/workflow-projects.html">Workflow and Projects</a></p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"></path></svg><a href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/index.html">Software Carpentry – Project Managment with RStudio</a></p>
-</section><!-- ::: tryitout --><!-- #### In class activity {.unnumbered} --><!-- Open RStudio on your computer and explore a bit. --><!-- -   Can you find the R console? Type in `2+2` to make sure the result is `4`. --><!-- -   Run the following code in the R console: --><!-- ``` r --><!-- install.packages( --><!--   c("tidyverse", "rmarkdown", "knitr", "quarto") --><!-- ) --><!-- ``` --><!-- -   Can you find the text editor? --><!--     -   Create a new quarto document (File -\> New File -\> Quarto Document). --><!--     -   Paste in the contents of [this document](https://raw.githubusercontent.com/srvanderplas/Stat151/main/files/getting-started-quarto.qmd). --><!--     -   Compile the document and use the Viewer pane to see the result. --><!--     -   If this all worked, you have RStudio, Quarto, and `R` set up correctly on your machine. --><!-- ::: --></section></section><section id="scripts-and-notebooks" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="scripts-and-notebooks">
-<span class="header-section-number">1.2</span> Scripts and Notebooks</h2>
-<p>In this class, we’ll be using markdown notebooks to keep our code and notes in the same place. One of the advantages of both R and Python is that they are both scripting languages, but they can be used within notebooks as well. This means that you can have an R script file or a python script file, and you can run that file, but you can also create a document (like the one you’re reading now) that has code AND text together in one place. This is called <a href="https://en.wikipedia.org/wiki/Literate_programming">literate programming</a> and it is a very useful workflow both when you are learning programming and when you are working as an analyst and presenting results.</p>
-<section id="scripts" class="level3" data-number="1.2.1"><h3 data-number="1.2.1" class="anchored" data-anchor-id="scripts">
-<span class="header-section-number">1.2.1</span> Scripts</h3>
+</section></section><section id="scripts-and-notebooks" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="scripts-and-notebooks">
+<span class="header-section-number">1.3</span> Scripts and Notebooks</h2>
+<p>In this class, we’ll be using markdown notebooks to keep our code and notes in the same place. One of the advantages of both <code>R</code> is that it is a scripting language, but it can be used within notebooks as well. This means that you can have an R script file, and you can run that file, but you can also create a document (like the one you’re reading now) that has code AND text together in one place. This is called <a href="https://en.wikipedia.org/wiki/Literate_programming">literate programming</a> and it is a very useful workflow both when you are learning programming and when you are working as an analyst and presenting results.</p>
+<section id="scripts" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="scripts">Scripts</h3>
 <p>Before I show you how to use literate programming, let’s look at what it replaces: scripts. <strong>Scripts</strong> are files of code that are meant to be run on their own. They may produce results, or format data and save it somewhere, or scrape data from the web – scripts can do just about anything.</p>
-<p>Scripts can even have documentation within the file, using <code>#</code> characters (at least, in R and python) at the beginning of a line. <code>#</code> indicates a comment – that is, that the line does not contain code and should be ignored by the computer when the program is run. Comments are incredibly useful to help humans understand what the code does and why it does it.</p>
+<p>Scripts can even have documentation within the file, using <code>#</code> characters (at least, in R) at the beginning of a line. <code>#</code> indicates a comment – that is, that the line does not contain code and should be ignored by the computer when the program is run. Comments are incredibly useful to help humans to understand what the code does and why it does it.</p>
 <details class="ex"><summary>
 Plotting a <a href="https://mathworld.wolfram.com/LogarithmicSpiral.html">logarithmic spiral</a>
 </summary><p>This code will use concepts we have not yet introduced - feel free to tinker with it if you want, but know that you’re not responsible for being able to <strong>write</strong> this code yet. You just need to read it and get a sense for what it does. I have heavily commented it to help with this process.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Define the angle of the spiral (polar coords)</span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Define the angle of the spiral (polar coords)</span></span>
 <span><span class="co"># go around two full times (2*pi = one revolution)</span></span>
 <span><span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4</span><span class="op">*</span><span class="va">pi</span>, <span class="fl">.01</span><span class="op">)</span> </span>
 <span><span class="co"># Define the distance from the origin of the spiral</span></span>
@@ -423,7 +529,7 @@ Plotting a <a href="https://mathworld.wolfram.com/LogarithmicSpiral.html">logari
 </div>
 </div>
 </div>
-<p>I have saved this script <a href="files/markdown-spiral-script.R">here</a>. You can download it and open it up in RStudio (File -&gt; Open -&gt; Navigate to file location).</p>
+<p>To create your first script, click <code>File &gt; New File &gt; R Script</code> and copy paste the code from above. You can save this script on your computer just as you would any other file such as a word document, pdf, or image.</p>
 </details><p>Scripts can be run in Rstudio by clicking the Run button <img src="images/Run-button-Rstudio.png" class="img-fluid" alt="RStudio run button"> at the top of the editor window when the script is open.</p>
 <!-- ::: tryitout -->
 <!-- ### Try it out! -->
@@ -431,20 +537,20 @@ Plotting a <a href="https://mathworld.wolfram.com/LogarithmicSpiral.html">logari
 <!-- -   (Advanced) Open a terminal in RStudio (Tools -\> Terminal -\> New Terminal) and see if you can run the R script from the terminal using `R CMD BATCH path/to/file/markdown-spiral-script.R` (You will have to modify this command to point to the file on your machine)\ -->
 <!--     Notice that two new files appear in your working directory: `Rplots.pdf` and `markdown-spiral-script.Rout` -->
 <!-- ::: -->
-<p>Most of the time, you will run scripts interactively - that is, you’ll be sitting there watching the script run and seeing what the results are as you are modifying the script. However, one advantage to scripts over notebooks is that it is easy to write a script and schedule it to run without supervision to complete tasks which may be repetitive. I have a script that runs daily at midnight, 6am, noon, and 6pm to pull information off of the internet for a dataset I’m maintaining. I’ve set it up so that this all happens automatically and I only have to check the results when I am interested in working with that data.</p>
-</section><section id="notebooks" class="level3" data-number="1.2.2"><h3 data-number="1.2.2" class="anchored" data-anchor-id="notebooks">
-<span class="header-section-number">1.2.2</span> Notebooks</h3>
+<p>Most of the time, you will run scripts interactively - that is, you’ll be sitting there watching the script run and seeing what the results are as you are modifying the script. However, one advantage to scripts over notebooks is that it is easy to write a script and schedule it to run without supervision to complete tasks which may be repetitive.</p>
+</section><section id="notebooks" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="notebooks">Notebooks</h3>
 <p>Notebooks are an implementation of literate programming. <code>R</code> has native notebooks that allow you to code in <code>R</code>. This book is written using <code>Quarto</code> markdown, which is an extension of <code>Rmarkdown</code>.</p>
 <p>In this class, we’re going to use Quarto/R markdown. This matters because the goal is that you learn something useful for your own coding and then you can easily apply it when you go to work as an analyst somewhere to produce impressive documents.</p>
-<section id="intro-to-quarto" class="level5 go-read" data-number="1.2.2.0.1"><h5 data-number="1.2.2.0.1" class="anchored" data-anchor-id="intro-to-quarto">
-<span class="header-section-number">1.2.2.0.1</span> Introduction to Quarto</h5>
+<p>To create a quarto document click <code>File &gt; New File &gt; Quarto Document</code>. This will open a notebook template using quarto. You can then <code>Render</code> the document to a pdf or html file.</p>
+<section id="intro-to-quarto" class="level5 unnumbered go-read"><h5 class="unnumbered anchored" data-anchor-id="intro-to-quarto">Introduction to Quarto</h5>
+<p>(Required) Read through the following resources to introduce Quarto:</p>
 <ul>
 <li><a href="https://r4ds.hadley.nz/quarto.html">R4DS: Quarto</a></li>
 <li><a href="https://quarto.org/docs/get-started/hello/rstudio.html">Intro to Quarto</a></li>
-<li><a href="https://quarto.org/docs/get-started/computations/rstudio.html">Computations in Quarto</a></li>
-<li><a href="https://quarto.org/docs/get-started/authoring/rstudio.html">Authoring &amp; Formatting Quarto Documents</a></li>
-</ul></section><section id="learn-more-about-notebooks-and-quarto" class="level5 learn-more" data-number="1.2.2.0.2"><h5 data-number="1.2.2.0.2" class="anchored" data-anchor-id="learn-more-about-notebooks-and-quarto">
-<span class="header-section-number">1.2.2.0.2</span> Learn more about Notebooks and Quarto</h5>
+</ul>
+<p>While in this class we will be using Quarto, before Quarto there was RMarkdown (and it is still widely used). If you wish, you can read about Rmarkdown <a href="https://r4ds.had.co.nz/r-markdown.html">here</a>.</p>
+</section><p>Download and save the <a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">Markdown syntax Cheat Sheet</a>.</p>
+<section id="learn-more-about-notebooks-and-quarto" class="level5 unnumbered learn-more"><h5 class="unnumbered anchored" data-anchor-id="learn-more-about-notebooks-and-quarto">Learn more about Notebooks and Quarto</h5>
 <p>There are some excellent opinions surrounding the use of notebooks in data analysis:</p>
 <ul>
 <li>
@@ -453,15 +559,21 @@ Plotting a <a href="https://mathworld.wolfram.com/LogarithmicSpiral.html">logari
 <a href="https://yihui.org/en/2018/09/notebook-war/">The First Notebook War</a> by Yihui Xie (response to Joel’s talk).<br>
 Yihui Xie is the person responsible for <code>knitr</code> and <code>Rmarkdown</code>.</li>
 </ul>
+<p>You can learn more about the functionality of Quarto at the following links:</p>
+<ul>
+<li><a href="https://quarto.org/docs/get-started/computations/rstudio.html">Computations in Quarto</a></li>
+<li><a href="https://quarto.org/docs/get-started/authoring/rstudio.html">Authoring &amp; Formatting Quarto Documents</a></li>
+</ul>
 <p>You can find the entire list of options you can use to format your HTML file with Quarto here. Poke around the gallery of cool HTML documents rendered with Quarto:</p>
 <ul>
 <li><a href="https://quarto-dev.github.io/quarto-gallery/articles/html/html.html">Interactive document published to the web</a></li>
 <li><a href="https://quarto-dev.github.io/quarto-gallery/page-layout/tufte.html">Advanced Layout with HTML</a></li>
-</ul></section><!-- #### Try it out {.tryitout} --><!-- ::: panel-tabset --><!-- ##### R markdown --><!-- Take a look at the [R markdown sample file](files/markdown-demo.Rmd) I've created to go with the R script above. You can see the HTML file it generates [here](files/markdown-demo.html). --><!-- -   Download the Rmd file and open it with RStudio. --><!-- -   Change the output to `output: word_document` and hit the Render button ![Render button in RStudio](images/Render-button-Rstudio.png). Can you find the markdown-demo.docx file that was generated? What does it look like? --><!-- -   Change the output to `output: pdf_document` and hit the Render button ![Render button in RStudio](images/Render-button-Rstudio.png). Can you find the markdown-demo.pdf file that was generated? What does it look like? --><!-- Rmarkdown tries very hard to preserve your formatted text appropriately regardless of the output document type. While things may not look exactly the same, the goal is to allow you to focus on the content and the formatting will "just work". --><!-- ##### Quarto markdown --><!-- The nice thing about quarto is that it will work with python and R seamlessly, and you can compile the document using python or R. R markdown will also allow you to use python chunks, but you must compile the document in R. --><!-- Take a look at the [Qmd notebook sample file](files/quarto-demo.qmd) I've created to go with the scripts above. You'll notice that it is basically the script portion of this textbook -- that's because I'm writing the textbook in Quarto. --><!-- -   Download the qmd file and open it with RStudio --><!-- -   Try to compile the file by hitting the Render button ![Render button in RStudio](images/Render-button-Rstudio.png) --><!-- -   (Advanced) In the terminal, type in `quarto render path/to/file/quarto-demo.qmd`. Does that render the HTML file? One advantage of this is that using quarto to render the file doesn't require R at the command line. As the document contains R chunks, R is still required to compile the document, but the biggest difference between qmd and rmd is that qmd files are workflow agnostic - you can generate them in e.g. MS Visual Studio Code, compile them in that workflow, and never have to use RStudio. --><!-- ::: --></section></section><section id="finding-your-way-in-r" class="level2 page-columns page-full" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="finding-your-way-in-r">
-<span class="header-section-number">1.3</span> Finding your way in <code>R</code>
+<li><a href="https://holtzy.github.io/Pimp-my-rmd/">Pimp my RMarkdown</a></li>
+<li><a href="https://mine-cetinkaya-rundel.github.io/quarto-tip-a-day/">Quarto Tip A Day</a></li>
+</ul></section></section></section><section id="finding-your-way-in-r" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="finding-your-way-in-r">
+<span class="header-section-number">1.4</span> Finding your way in <code>R</code>
 </h2>
-<section id="programming" class="level3" data-number="1.3.1"><h3 data-number="1.3.1" class="anchored" data-anchor-id="programming">
-<span class="header-section-number">1.3.1</span> Programming</h3>
+<section id="programming" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="programming">Programming</h3>
 <blockquote class="blockquote">
 <p>Programming today is a race between software engineers striving to build bigger and better idiot-proof programs, and the universe trying to produce bigger and better idiots. So far, the universe is winning. - Rick Cook</p>
 </blockquote>
@@ -473,8 +585,7 @@ Yihui Xie is the person responsible for <code>knitr</code> and <code>Rmarkdown</
 </ul>
 <p>In this class, we’ll be using both <code>R</code> and <code>Python</code>, and we’ll be using these languages to solve problems that are related to working with data. At first, we’ll start with smaller, simpler problems that don’t involve data, but by the end of the semester, you will hopefully be able to solve some statistical problems using one or both languages.</p>
 <p>It will be hard at first - you have to learn the vocabulary in both languages in order to be able to put commands into logical “sentences”. The problem solving skills are the same for all programming languages, though, and while those are harder to learn, they’ll last you a lifetime.</p>
-</section><section id="hello-world" class="level3" data-number="1.3.2"><h3 data-number="1.3.2" class="anchored" data-anchor-id="hello-world">
-<span class="header-section-number">1.3.2</span> Hello world</h3>
+</section><section id="hello-world" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="hello-world">Hello world</h3>
 <p>I particularly like the way that Python for Everybody <span class="citation" data-cites="py4e">(<a href="#ref-py4e" role="doc-biblioref">Severance 2016</a>)</span> explains coding vocabulary:</p>
 <blockquote class="blockquote">
 <p>Unlike human languages, the [R] vocabulary is actually pretty small. We call this “vocabulary” the “reserved words”. These are words that have very special meaning to [R]. When [R] sees these words in a [R] program, they have one and only one meaning to [R]. Later as you write programs you will make up your own words that have meaning to you called variables. You will have great latitude in choosing your names for your variables, but you cannot use any of [R]’s reserved words as a name for a variable.</p>
@@ -497,7 +608,7 @@ NaN         NA       function    ...</code></pre>
 <p>We will learn these reserved words and how they are used in good time, but for now we will focus on the [R] equivalent of “speak” (in human-to-dog language). The nice thing about telling [R] to speak is that we can even tell it what to say by giving it a message in quotes:</p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">'Hello world!'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">'Hello world!'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Hello world!"</code></pre>
 </div>
@@ -505,8 +616,7 @@ NaN         NA       function    ...</code></pre>
 <blockquote class="blockquote">
 <p>And we have even written our first syntactically correct [R] sentence. Our sentence starts with the function print followed by a string of text of our choosing enclosed in single quotes. The strings in the print statements are enclosed in quotes. Single quotes and double quotes do the same thing; most people use single quotes except in cases like this where a single quote (which is also an apostrophe) appears in the string.</p>
 </blockquote>
-</section><section id="talking-to-r---interactive-mode" class="level3" data-number="1.3.3"><h3 data-number="1.3.3" class="anchored" data-anchor-id="talking-to-r---interactive-mode">
-<span class="header-section-number">1.3.3</span> Talking to <code>R</code> - Interactive mode</h3>
+</section><section id="talking-to-r---interactive-mode" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="talking-to-r---interactive-mode">Talking to <code>R</code> - Interactive mode</h3>
 <p>R has an “interactive mode” that you will use most often. In the previous section, we talked about scripts and quarto/markdown documents, both of which are non-interactive methods for writing <code>R</code> code. But for the moment, let’s work with the interactive console in order to get familiar with how we talk to <code>R</code>.</p>
 <p>Let’s start by creating a Qmd file (File -&gt; New File -&gt; Quarto Document)..</p>
 <p>Add an R chunk to your file by typing <code>```{r}</code> into the first line of the file, and then hit return. RStudio should add a blank line followed by <code>```</code>.</p>
@@ -576,8 +686,7 @@ NaN         NA       function    ...</code></pre>
 </div>
 </div>
 </div>
-</section><section id="talking-to-r---script-mode" class="level3" data-number="1.3.4"><h3 data-number="1.3.4" class="anchored" data-anchor-id="talking-to-r---script-mode">
-<span class="header-section-number">1.3.4</span> Talking to <code>R</code> - Script Mode</h3>
+</section><section id="talking-to-r---script-mode" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="talking-to-r---script-mode">Talking to <code>R</code> - Script Mode</h3>
 <p>In the previous section, we played around with scripts and Quarto / markdown documents for R. In the last section, we played with interactive mode by typing <code>R</code> commands into a console or running code chunks interactively using the Run button or <code>Ctrl/Cmd + Enter</code> (which is the keyboard shortcut).</p>
 <p>You may be learning to program in R because it’s a required part of the curriculum, but hopefully, you also have some broader ideas of what you might do with either language - process data, make pretty pictures, write a program to trigger the computer uprising…</p>
 <p>Scripts are best used when you have a thing you want to do, and you will need to do that thing many times, perhaps with different input data. Suppose that I have a text file and I want to pull out the most common word in that file. In the next few examples, I will show you how to do this in R, and at the same time, demonstrate the difference between interactive mode and script mode. In each example, try to compare to the previous example to identify whether something is running as a full script or in interactive mode, and how it is launched (in R? at the command line?).</p>
@@ -590,10 +699,10 @@ Example: Counting Words
 <li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">R on the Command Line</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div id="tabset-2-1" class="unnumbered tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <p>Just for fun, let’s work with <a href="http://www.textfiles.com/etext/AUTHORS/DICKENS/dickens-oliver-627.txt">Oliver Twist, by Charles Dickens</a>, which I have saved <a href="data/dickens-oliver-627.txt">here</a>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Read in the file</span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Read in the file</span></span>
 <span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">"dickens-oliver-627.txt"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Split the lines of text into separate words</span></span>
@@ -626,10 +735,10 @@ Example: Counting Words
 </div>
 <p>Use the “Run” button to run the script and see what the output is. How many times does ‘the’ appear in the file?</p>
 </div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div id="tabset-2-2" class="unnumbered tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p>Using the file you created above, let’s examine what each line does in interactive mode.</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Read in the file</span></span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Read in the file</span></span>
 <span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">"dickens-oliver-627.txt"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Select the above line and click the “Run” button in RStudio. Once you’ve done that, type in <code>text[1:5]</code> in the R console to see the first 5 lines of the file.</p>
@@ -640,12 +749,12 @@ Example: Counting Words
 </div>
 <p>Run the next line of code using the run button (or click on the line of code and hit Ctrl/Cmd + Enter).</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Split the lines of text into separate words</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Split the lines of text into separate words</span></span>
 <span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">text</span>, <span class="st">" "</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Type in <code>text[[1]]</code> to see what the <code>text</code> object looks like now.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">text</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">text</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "The"       "Project"   "Gutenberg" "Etext"     "of"        "Oliver"   
  [7] "Twist"     "by"        "Charles"   "Dickens"  </code></pre>
@@ -657,13 +766,13 @@ Example: Counting Words
 </figure>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Simplify the list</span></span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Simplify the list</span></span>
 <span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span></span>
 <span><span class="va">text</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "The"</code></pre>
 </div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">text</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">text</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "The"       "Project"   "Gutenberg" "Etext"     "of"        "Oliver"   
  [7] "Twist"     "by"        "Charles"   "Dickens"   "#13"       "in"       
@@ -673,7 +782,7 @@ Example: Counting Words
 </div>
 <p>Running <code>unlist</code> on text simplifies the object so that it is now a single <strong>vector</strong> of every word in the file, without regard for which line it appears on.</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Count up the number of occurrences of each word</span></span>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Count up the number of occurrences of each word</span></span>
 <span><span class="va">word_freq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span></span>
 <span><span class="va">word_freq</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -684,7 +793,7 @@ Example: Counting Words
 </div>
 <p>The next line assembles a table of frequency counts in <code>text</code>. There are 4558 spaces, 4 occurrences of the string <code>_I_</code>, and so on.</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Sort the table by decreasing frequency</span></span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Sort the table by decreasing frequency</span></span>
 <span><span class="va">word_freq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">word_freq</span>, decreasing <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span><span class="va">word_freq</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -698,7 +807,7 @@ Example: Counting Words
 <div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <p>Download the following file to your working directory: <a href="code/words.R">words.R</a>, or paste the following code into a new R script and save it as <code>words.R</code></p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Take arguments from the command line</span></span>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Take arguments from the command line</span></span>
 <span><span class="va">args</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/commandArgs.html">commandArgs</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Read in the file</span></span>
@@ -725,31 +834,11 @@ Example: Counting Words
 </div>
 </div>
 </details><p><br></p>
-<section id="additional-resources-basics-of-r-and-rstudio" class="level4 learn-more" data-number="1.3.4.1"><h4 data-number="1.3.4.1" class="anchored" data-anchor-id="additional-resources-basics-of-r-and-rstudio">
-<span class="header-section-number">1.3.4.1</span> Additional Resources: Basics of <code>R</code> and RStudio</h4>
-<p><strong>Basics of R Programming</strong></p>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"></path></svg><a href="https://r4ds.had.co.nz/workflow-basics.html">Basics of <code>R</code></a></p>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"></path></svg><a href="https://posit.cloud/learn/primers/1.2">RStudio Primer, Basics of Programming in <code>R</code></a></p>
-<p><strong>Introduction to RStudio</strong></p>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"></path></svg><a href="https://rladiessydney.org/courses/ryouwithme/01-basicbasics-1/">A tour of RStudio, BasicsBasics1</a></p>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"></path></svg><a href="https://www.youtube.com/watch?v=cnQ-v1UUWyE&amp;ab_channel=AndrewHeiss">Quick tour of RStudio</a></p>
-</section><p><br></p>
-</section><section id="checkin4-intro-to-r" class="level3 unnumbered check-in"><h3 class="unnumbered anchored" data-anchor-id="checkin4-intro-to-r">Check-in 1.4: Introduction to <code>R</code> &amp; RStudio</h3>
-<p>Answer the following questions on the Canvas Quiz.</p>
-<p><strong>Question 1:</strong> What does it mean for R to be “open-source”?</p>
-<ol type="a">
-<li>Users are required to share all the code they write.</li>
-<li>Private companies must pay the R Core Group to use R.</li>
-<li>Developers cannot charge for the use of their R software.</li>
-<li>Anyone can change the base functionality of R.</li>
-</ol>
-<p><strong>Question 2:</strong> How often do you need to install a package on your computer?</p>
-<p><strong>Question 3:</strong> What is the tidyverse?</p>
-</section><section id="getting-help" class="level3" data-number="1.3.5"><h3 data-number="1.3.5" class="anchored" data-anchor-id="getting-help">
-<span class="header-section-number">1.3.5</span> Getting help</h3>
+</section></section><section id="getting-help" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="getting-help">
+<span class="header-section-number">1.5</span> Getting help</h2>
 <p>In <code>R</code>, you can access help with a <code>?</code>. Suppose we want to get help on a <code>for</code> loop. In the <code>R</code> console, we can run this line of code to get help on <code>for</code> loops.</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">`for`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">`for`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>starting httpd help server ... done</code></pre>
 </div>
@@ -757,8 +846,7 @@ Example: Counting Words
 <p>Because <code>for</code> is a reserved word in R, we have to use backticks (the key above the <code>TAB</code> key) to surround the word <code>for</code> so that R knows we’re talking about the function itself. Most other function help can be accessed using <code>?function_name</code>.</p>
 <p>(You will have to run this in interactive mode for it to work)</p>
 <p>w3schools has an excellent <code>R</code> <a href="https://www.w3schools.com/r/r_for_loop.asp">help on basic functions</a> that may be useful as well - usually, these pages will have examples.</p>
-<section id="google-is-your-friend." class="level4" data-number="1.3.5.1"><h4 data-number="1.3.5.1" class="anchored" data-anchor-id="google-is-your-friend.">
-<span class="header-section-number">1.3.5.1</span> Google is your friend.</h4>
+<section id="google-is-your-friend." class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="google-is-your-friend.">Google is your friend.</h3>
 <p>The R community has an enormous aresenal of online learning resources. I will linked a few throughout the “read more” sections in this text, but you can always find more!</p>
 <p><img src="https://media3.giphy.com/media/3oKIPmM4hkQIf4p5T2/source.gif" class="img-fluid"></p>
 <p>Learn to:</p>
@@ -768,8 +856,7 @@ Example: Counting Words
 </li>
 <li>Ask questions on Twitter</li>
 <li>Make good use of the vast and welcoming R network on the internet</li>
-</ul></section></section><section id="pa-1-find-the-mistakes" class="level3 tryitout" data-number="1.3.6"><h3 data-number="1.3.6" class="anchored" data-anchor-id="pa-1-find-the-mistakes">
-<span class="header-section-number">1.3.6</span> PA 1: Find the Mistakes</h3>
+</ul></section></section><section id="pa-1-find-the-mistakes" class="level2 unnumbered tryitout"><h2 class="unnumbered anchored" data-anchor-id="pa-1-find-the-mistakes">PA 1: Find the Mistakes</h2>
 <p>You can access <a href="https://earobinson95.github.io/stat331-calpoly/practice-activities/PA1-find-the-mistakes.html">PA1: Find the Mistakes</a> one of two ways:</p>
 <ol type="1">
 <li><p><a href="https://posit.cloud/content/5172799">Click here</a> to access an RStudio Cloud project which we work on in groups on Day 1 of the course <em>(Note: if you do not have an RStudio Cloud account, you will be asked to create one)</em>.</p></li>
@@ -801,7 +888,8 @@ Example: Counting Words
 Severance, Dr Charles Russell. 2016. <em>Python for <span>Everybody</span>: <span>Exploring</span> <span>Data</span> in <span>Python</span> 3</em>. Edited by Sue Blumenberg and Elliott Hauser. Ann Arbor, MI: CreateSpace Independent Publishing Platform. <a href="https://www.py4e.com/html3/">https://www.py4e.com/html3/</a>.
 </div>
 </div>
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+
+</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -904,9 +992,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./02-tidy-data-and-basics-of-graphics.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tidy Data &amp; Basics of Graphics</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

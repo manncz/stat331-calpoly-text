@@ -29,17 +29,19 @@ fa_html_dependency()
 +
 
 ::: check-in
-### Check-ins {#getting-started-checkins .unnumbered}
+## Check-ins {#getting-started-checkins .unnumbered}
 
 There are four check-ins for this week:
 
--   Check-in 1.1: Syllabus Quiz
+-   Check-in 1.1: Syllabus & Learning Community Quiz
 
 <details class="check-in">
 
-<summary>Complete the Syllabus Quiz on Canvas.</summary>
+<summary>Complete the Syllabus & Learning Community Quiz on Canvas.</summary>
 
-The [course syllabus]() includes information about class dates, course structure, and expectations.
+The [course syllabus](https://earobinson95.github.io/stat331-calpoly/00-course-info/syllabus-W2023.html) includes information about class dates, course structure, and expectations.
+
+I will also be asking you some questions about yourself so I can best support you in this course! If you plan to take this quiz more than once (you have up to three retakes on check-ins) you may want to copy your open ended answers into another document so you do not have to retype them each time.
 
 </details>
 
@@ -47,7 +49,7 @@ The [course syllabus]() includes information about class dates, course structure
 
 <details class="check-in">
 
-<summary>Introduce yourself in the "Introductions" channel of the Discord Server.</summary>
+<summary>Introduce yourself in the "introductions" channel of the Discord Server (under WEEK 0: BASICS OF CODING).</summary>
 
 <br>
 
@@ -61,7 +63,7 @@ I will often be on Discord when in my office.
 
 **Join the server**
 
-Join the Stat 331 Server *(link to join can be found on canvas)* to start experimenting with the interface.
+Join the Stat 331/531 Server *(link to join can be found on canvas)* to start experimenting with the interface.
 
 When you join the server, you will be given some suggestions to get started.
 
@@ -87,7 +89,7 @@ I would like to **strongly** encourage you to use your **real name and picture**
 
 ![](images/screencast_gifs/pic_name.gif)
 
-(Please do not be like Regina and use the name of another student, however!\
+(Please do not be like Regina and use the name of another student, however!
 This kind of impersonation will result in a permanent ban from the server.)
 
 **Decide about privacy and notifications**
@@ -131,7 +133,7 @@ You can use the specific weekly channels to ask questions about the material...
 
 ![](images/screencast_gifs/code_in_chat.gif)
 
-Notice that you can use tick marks (```` ``` ````), like in `R` Markdown, to make your code appear in a formatted code box.
+Notice that you can use tick marks (```` ``` ````), like in `R` Markdown / Quarto, to make your code appear in a formatted code box.
 
 **Voice Channels**
 
@@ -159,9 +161,11 @@ Last but not least - for the teams you are a part of, you may want to use Discor
 
 ![](images/screencast_gifs/new_server.gif)
 
+**Introduce yourself in the “introductions” channel of the Discord Server under WEEK 0: BASICS OF CODING. Share your name, major, year in school, and either (1) your favorite comfort food or (2) your go to study spot on campus or in SLO. Take a screenshot of your introduction on the discord channel and upload it to the Canvas assignment.**
+
 </details>
 
--   [Check-in 1.3: RStudio Projects](#setting-up-your-computer)
+-   [Check-in 1.3: RStudio Project](#setting-up-your-computer)
 
 <details class="check-in">
 
@@ -169,7 +173,7 @@ Last but not least - for the teams you are a part of, you may want to use Discor
 
 Follow the instructions for [Installing `R`, RStudio, and Quarto](#checkin3-install). Then create a class directory and [RStudio project](#checkin3-r-project) for this course. You are set up and ready to go!
 
-Take a screenshot of your class directory, showing the `r fa('r-project')` **RProject** and the folder organization, including a `r fa('folder')` **Week 1** or **Practice Activity** folder. Upload this screenshot to the Canvas Assignment.
+Take a screenshot of your class directory, showing the `r fa('r-project')` **RProject** and the folder organization, including a `r fa('folder')` **week-1** or **practice-activity** folder. Upload this screenshot to the Canvas assignment.
 
 </details>
 
@@ -178,103 +182,220 @@ Take a screenshot of your class directory, showing the `r fa('r-project')` **RPr
 
 ## Getting Started
 
-### Setting up your computer {#setting-up-your-computer}
+### Setting up your computer {#setting-up-your-computer .unnumbered}
 
 In this section, I will provide you with links to set up various programs on your own machine. If you have trouble with these instructions or encounter an error, post on the class message board or contact me for help.
 
+If you already have `R` downloaded, please follow these steps anyways, to make sure you have the most recent version of `R`. Do not ignore these instructions. If you neglect to update your version of `R`, you may find that updating a package will make it so your code will not run.
+
 ::: check-in
-#### Check-in 1.3: Installing `R`, RStudio, and Quarto {#checkin3-install}
+#### Check-in 1.3: Installing `R`, RStudio, and Quarto {.unnumbered #checkin3-install}
 
 1.  Download and run the R installer for your operating system from CRAN:
 
-    -   Windows: https://cran.rstudio.com/bin/windows/base/
-    -   Mac: https://cran.rstudio.com/bin/macosx/
-    -   Linux: https://cran.rstudio.com/bin/linux/ (pick your distribution)
+    -   Windows: <https://cran.rstudio.com/bin/windows/base/>
+    -   Mac: <https://cran.rstudio.com/bin/macosx/> (double check your macOS version)
+    -   Linux: <https://cran.rstudio.com/bin/linux/> (pick your distribution)
 
-    If you are on Windows, you should also install the [Rtools4 package](https://cran.rstudio.com/bin/windows/Rtools/); this will ensure you get fewer warnings later when installing packages.
+    (Optional) If you are on Windows, you should also install the [Rtools4 package](https://cran.rstudio.com/bin/windows/Rtools/); this will ensure you get fewer warnings later when installing packages.
 
     More detailed instructions for Windows are available [here](https://owi.usgs.gov/R/training-curriculum/installr/)
 
-2.  Download and install the [latest version of RStudio](https://www.rstudio.com/products/rstudio/download/#download) for your operating system. RStudio is a integrated development environment (IDE) for R - it contains a set of tools designed to make writing R code easier.
+2.  Download and install the [latest version of RStudio](https://www.rstudio.com/products/rstudio/download/#download) for your operating system (see Step 2 Installers). RStudio is a integrated development environment (IDE) for `R` - it contains a set of tools designed to make writing `R` code easier.
 
-3.  Download and install the [latest version of Quarto](https://quarto.org/#getting-started) for your operating system. Quarto is a command-line tool released by RStudio that allows Rstudio to work with python and other R specific tools in a unified way.
+3.  Download and install the [latest version of Quarto](https://quarto.org/docs/get-started/) for your operating system. Quarto is a command-line tool released by RStudio that allows Rstudio to work with python and other R specific tools in a unified way. We will talk more about Quarto in a later [section](#intro-to-quarto), but for now just know this is the "notebook" you will be completing and writing all your assignments in.
 
 *Make sure you remember to create your [RProject](#checkin3-r-project) and upload a screenshot to canvas.*
 :::
 
 ::: column-margin
-If you would like a video tutorial on downloading RStudio, here is one: <br>
+
+If you would like a video tutorial on downloading RStudio, here is one: 
+
+<br>
 
 ::: youtube-video-container
-<iframe src="https://player.vimeo.com/video/203516968?h=7fc91cd48f&amp;color=428bca" width="640" height="400" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
 
+<iframe src="https://player.vimeo.com/video/203516968?h=7fc91cd48f&amp;color=428bca" width="100%" height="auto" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
 </iframe>
 
+:::
+
+<br>
+
+::: note
+
+**RStudio** organization has recently re-branded to **posit**. Rstudio is still the name of the IDE, but these two names may be used interchangeably. See a video of Hadley Wickham talking about the re-branding.
+
+<br>
+
+::: youtube-video-container
+
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/0_UNtwEh7kY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
 </iframe>
+
+:::
 :::
 :::
 
-#### Directories, Paths, and Projects {#directories-and-projects}
+### Introduction to `R` and RStudio {.unnumbered}
 
-In [File Systems](#file-systems) we learned about ...
+In this section, we will learn about some of the tools you just installed. You may have worked with `R` and RStudio in previous classes, but never had a course dedicated to learning about their functionality.
+
+#### Installing Packages {.unnumbered}
+
+
+::: tryitout
+
+#### Test your setup {.unnumbered}
+
+We will find our way in `R` and learn more about Quarto in the following sections, but for now open RStudio on your computer and explore a bit.
+
+-   Can you find the `R` console? Type in `2+2` to make sure the result is `4`.
+
+-   Run the following code in the R console:
+
+``` r
+
+install.packages(
+
+  c("tidyverse", "rmarkdown", "knitr", "quarto")
+
+)
+
+```
+
+-   Can you find the text editor?
+
+    -   Create a new quarto document (`File > New File > Quarto Document`).
+
+    -   Compile the document using the `Render` button and use the Viewer pane to see the result.
+
+    -   If this all worked, you have RStudio, Quarto, and `R` set up correctly on your machine.
+
+:::
+
+<br>
 
 ::: check-in
-#### Check-in 1.3: RProject {#checkin3-r-project}
+### Check-in 1.4: Introduction to `R` & RStudio {#checkin4-intro-to-r .unnumbered}
 
-4.  Take a screenshot of your class directory, showing the R Project and the folder organization, including a Week 1 or Practice Activity folder. Upload this screenshot to canvas.
+Answer the following questions on the Canvas Quiz.
+
+**Question 1:** What does it mean for R to be "open-source"?
+
+**Question 2:** How often do you need to install a package on your computer?
+
+**Question 3:** What is the tidyverse?
 :::
 
 <br>
 
 ::: learn-more
-##### Workflow
+#### Additional Resources: Basics of `R` and RStudio
+
+**Basics of R Programming**
+
+`r fa('book')` [Basics of `R`](https://r4ds.had.co.nz/workflow-basics.html)
+
+`r fa('book')` [RStudio Primer, Basics of Programming in `R`](https://posit.cloud/learn/primers/1.2)
+
+**Introduction to RStudio**
+
+`r fa('play')` [A tour of RStudio, BasicsBasics1](https://rladiessydney.org/courses/ryouwithme/01-basicbasics-1/)
+
+`r fa('play')` [Quick tour of RStudio](https://www.youtube.com/watch?v=cnQ-v1UUWyE&ab_channel=AndrewHeiss)
+:::
+
+## Directories, Paths, and Projects {#directories-and-projects}
+
+In the pre-reading section, [File Systems](#file-systems), we learned how to organize our personal files and locate them using absolute and relative file paths. The idea of a "base folder" or starting place was introduced as a **working directory**. In `R`, there are two ways to set up your file path and file system organization:
+
+1. Set your working directory in `R` (do not reccommend)
+2. Use RProjects (preferred!)
+
+### Working Directories in `R` {.unnumbered}
+
+To find where your working directory is in `R`, you can either look at the top of your console or type `getwd()` into your console.
+
+```{r}
+#| out-width: "70%"
+#| echo: false
+knitr::include_graphics("images/working-directory-console.jpg")
+```
+
+```{r}
+getwd()
+```
+Although it is not recommended, you can set your working directory in `R` with `setwd()`.
+
+```{r}
+#| eval: false
+setwd("/path/to/my/assignment/folder")
+```
+
+### Rprojects {.unnumbered}
+
+Since there are often many files necessary for a project (e.g. data sources, images, etc.), `R` has a nice built in system for setting up your project organization with RProjects.
+
+To create an Rproject, first open RStudio on your computer and click `File > New Project`, then:
+
+```{r}
+#| out-width: "70%"
+#| echo: false
+#| fig-align: center
+knitr::include_graphics("images/Rproject-1.png")
+knitr::include_graphics("images/Rproject-2.png")
+knitr::include_graphics("images/Rproject-3.png")
+```
+
+::: column-margin
+::: note
+
+If you plan to use the Studio computers during class, I recommend having a way to access and save your material between the Studio computers and your personal computer (e.g. put your class directory and Rproject on OneDrive). The idea with Rprojects is then your relative file paths will work in either computer without any changes!
+
+:::
+:::
+
+This new folder, `stat331-test-student` should now live in your OneDrive folder (or whatever sub-directory you save it to). This is your new "home" base for this class - whenever you refer to a file with a relative path it will look for it here.
+
+
+::: check-in
+#### Check-in 1.3: RProject {.unnumbered #checkin3-r-project}
+
+4.  Take a screenshot of your class directory, showing the RProject and the folder organization, including a *week-1* or *practice-activity* folder. Upload this screenshot to the Canvas assignment.
+:::
+
+<br>
+
+::: watchout
+### File Paths in `R` {.unnumbered}
+
+A quick warning on file paths is that Mac/Linux and Windows differ in the direction of their backslash to separate folder locations. Mac/Linux use `/` (e.g. `practice-activities/PA1.pdf`) while Window's uses `\` (e.g. `practice-activities\PA1.pdf`). 
+
+`R` can work with both, however, a backslash `\` means something different to `R` so if you copy a file path from your file filder in Windows, you will need to replace all backslashes with a double backslash `\\` (e.g. `practice-activities\\PA1.pdf`)
+
+:::
+
+<br>
+
+::: learn-more
+### Workflow {.unnumbered}
 
 `r fa('book')` [Workflow and Projects](https://r4ds.had.co.nz/workflow-projects.html)
 
 `r fa('book')` [Software Carpentry -- Project Managment with RStudio](https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/index.html)
 :::
 
-<!-- ::: tryitout -->
-
-<!-- #### In class activity {.unnumbered} -->
-
-<!-- Open RStudio on your computer and explore a bit. -->
-
-<!-- -   Can you find the R console? Type in `2+2` to make sure the result is `4`. -->
-
-<!-- -   Run the following code in the R console: -->
-
-<!-- ``` r -->
-
-<!-- install.packages( -->
-
-<!--   c("tidyverse", "rmarkdown", "knitr", "quarto") -->
-
-<!-- ) -->
-
-<!-- ``` -->
-
-<!-- -   Can you find the text editor? -->
-
-<!--     -   Create a new quarto document (File -\> New File -\> Quarto Document). -->
-
-<!--     -   Paste in the contents of [this document](https://raw.githubusercontent.com/srvanderplas/Stat151/main/files/getting-started-quarto.qmd). -->
-
-<!--     -   Compile the document and use the Viewer pane to see the result. -->
-
-<!--     -   If this all worked, you have RStudio, Quarto, and `R` set up correctly on your machine. -->
-
-<!-- ::: -->
-
 ## Scripts and Notebooks
 
-In this class, we'll be using markdown notebooks to keep our code and notes in the same place. One of the advantages of both R and Python is that they are both scripting languages, but they can be used within notebooks as well. This means that you can have an R script file or a python script file, and you can run that file, but you can also create a document (like the one you're reading now) that has code AND text together in one place. This is called [literate programming](https://en.wikipedia.org/wiki/Literate_programming) and it is a very useful workflow both when you are learning programming and when you are working as an analyst and presenting results.
+In this class, we'll be using markdown notebooks to keep our code and notes in the same place. One of the advantages of both `R` is that it is a scripting language, but it can be used within notebooks as well. This means that you can have an R script file, and you can run that file, but you can also create a document (like the one you're reading now) that has code AND text together in one place. This is called [literate programming](https://en.wikipedia.org/wiki/Literate_programming) and it is a very useful workflow both when you are learning programming and when you are working as an analyst and presenting results.
 
-### Scripts
+### Scripts {.unnumbered}
 
 Before I show you how to use literate programming, let's look at what it replaces: scripts. **Scripts** are files of code that are meant to be run on their own. They may produce results, or format data and save it somewhere, or scrape data from the web -- scripts can do just about anything.
 
-Scripts can even have documentation within the file, using `#` characters (at least, in R and python) at the beginning of a line. `#` indicates a comment -- that is, that the line does not contain code and should be ignored by the computer when the program is run. Comments are incredibly useful to help humans understand what the code does and why it does it.
+Scripts can even have documentation within the file, using `#` characters (at least, in R) at the beginning of a line. `#` indicates a comment -- that is, that the line does not contain code and should be ignored by the computer when the program is run. Comments are incredibly useful to help humans to understand what the code does and why it does it.
 
 <details class="ex">
 
@@ -300,7 +421,7 @@ plot(x, y, type = "l")
 
 ```
 
-I have saved this script [here](files/markdown-spiral-script.R). You can download it and open it up in RStudio (File -\> Open -\> Navigate to file location).
+To create your first script, click `File > New File > R Script` and copy paste the code from above. You can save this script on your computer just as you would any other file such as a word document, pdf, or image.
 
 </details>
 
@@ -318,71 +439,56 @@ Scripts can be run in Rstudio by clicking the Run button ![RStudio run button](i
 
 <!-- ::: -->
 
-Most of the time, you will run scripts interactively - that is, you'll be sitting there watching the script run and seeing what the results are as you are modifying the script. However, one advantage to scripts over notebooks is that it is easy to write a script and schedule it to run without supervision to complete tasks which may be repetitive. I have a script that runs daily at midnight, 6am, noon, and 6pm to pull information off of the internet for a dataset I'm maintaining. I've set it up so that this all happens automatically and I only have to check the results when I am interested in working with that data.
+Most of the time, you will run scripts interactively - that is, you'll be sitting there watching the script run and seeing what the results are as you are modifying the script. However, one advantage to scripts over notebooks is that it is easy to write a script and schedule it to run without supervision to complete tasks which may be repetitive.
 
-### Notebooks
+### Notebooks {.unnumbered}
 
 Notebooks are an implementation of literate programming. `R` has native notebooks that allow you to code in `R`. This book is written using `Quarto` markdown, which is an extension of `Rmarkdown`.
 
 In this class, we're going to use Quarto/R markdown. This matters because the goal is that you learn something useful for your own coding and then you can easily apply it when you go to work as an analyst somewhere to produce impressive documents.
 
+To create a quarto document click `File > New File > Quarto Document`. This will open a notebook template using quarto. You can then `Render` the document to a pdf or html file. 
+
 ::: go-read
-##### Introduction to Quarto {#intro-to-quarto}
+##### Introduction to Quarto {.unnumbered #intro-to-quarto}
+
+(Required) Read through the following resources to introduce Quarto:
 
 -   [R4DS: Quarto](https://r4ds.hadley.nz/quarto.html)
 -   [Intro to Quarto](https://quarto.org/docs/get-started/hello/rstudio.html)
--   [Computations in Quarto](https://quarto.org/docs/get-started/computations/rstudio.html)
--   [Authoring & Formatting Quarto Documents](https://quarto.org/docs/get-started/authoring/rstudio.html)
+
+While in this class we will be using Quarto, before Quarto there was RMarkdown (and it is still widely used). If you wish, you can read about Rmarkdown [here](https://r4ds.had.co.nz/r-markdown.html).
 :::
 
+
+Download and save the [Markdown syntax Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf).
+
 ::: learn-more
-##### Learn more about Notebooks and Quarto
+##### Learn more about Notebooks and Quarto {.unnumbered}
 
 There are some excellent opinions surrounding the use of notebooks in data analysis:
 
 -   [Why I Don't Like Notebooks"](https://docs.google.com/presentation/d/1n2RlMdmv1p25Xy5thJUhkKGvjtV-dkAIsUXP-AL4ffI/preview#slide=id.g362da58057_0_1) by Joel Grus at JupyterCon 2018
 -   [The First Notebook War](https://yihui.org/en/2018/09/notebook-war/) by Yihui Xie (response to Joel's talk).\
     Yihui Xie is the person responsible for `knitr` and `Rmarkdown`.
+    
+You can learn more about the functionality of Quarto at the following links:
+
+-   [Computations in Quarto](https://quarto.org/docs/get-started/computations/rstudio.html)
+-   [Authoring & Formatting Quarto Documents](https://quarto.org/docs/get-started/authoring/rstudio.html)
 
 You can find the entire list of options you can use to format your HTML file with Quarto here. Poke around the gallery of cool HTML documents rendered with Quarto:
 
 -   [Interactive document published to the web](https://quarto-dev.github.io/quarto-gallery/articles/html/html.html)
 -   [Advanced Layout with HTML](https://quarto-dev.github.io/quarto-gallery/page-layout/tufte.html)
+- [Pimp my RMarkdown](https://holtzy.github.io/Pimp-my-rmd/)
+- [Quarto Tip A Day](https://mine-cetinkaya-rundel.github.io/quarto-tip-a-day/)
 :::
 
-<!-- #### Try it out {.tryitout} -->
-
-<!-- ::: panel-tabset -->
-
-<!-- ##### R markdown -->
-
-<!-- Take a look at the [R markdown sample file](files/markdown-demo.Rmd) I've created to go with the R script above. You can see the HTML file it generates [here](files/markdown-demo.html). -->
-
-<!-- -   Download the Rmd file and open it with RStudio. -->
-
-<!-- -   Change the output to `output: word_document` and hit the Render button ![Render button in RStudio](images/Render-button-Rstudio.png). Can you find the markdown-demo.docx file that was generated? What does it look like? -->
-
-<!-- -   Change the output to `output: pdf_document` and hit the Render button ![Render button in RStudio](images/Render-button-Rstudio.png). Can you find the markdown-demo.pdf file that was generated? What does it look like? -->
-
-<!-- Rmarkdown tries very hard to preserve your formatted text appropriately regardless of the output document type. While things may not look exactly the same, the goal is to allow you to focus on the content and the formatting will "just work". -->
-
-<!-- ##### Quarto markdown -->
-
-<!-- The nice thing about quarto is that it will work with python and R seamlessly, and you can compile the document using python or R. R markdown will also allow you to use python chunks, but you must compile the document in R. -->
-
-<!-- Take a look at the [Qmd notebook sample file](files/quarto-demo.qmd) I've created to go with the scripts above. You'll notice that it is basically the script portion of this textbook -- that's because I'm writing the textbook in Quarto. -->
-
-<!-- -   Download the qmd file and open it with RStudio -->
-
-<!-- -   Try to compile the file by hitting the Render button ![Render button in RStudio](images/Render-button-Rstudio.png) -->
-
-<!-- -   (Advanced) In the terminal, type in `quarto render path/to/file/quarto-demo.qmd`. Does that render the HTML file? One advantage of this is that using quarto to render the file doesn't require R at the command line. As the document contains R chunks, R is still required to compile the document, but the biggest difference between qmd and rmd is that qmd files are workflow agnostic - you can generate them in e.g. MS Visual Studio Code, compile them in that workflow, and never have to use RStudio. -->
-
-<!-- ::: -->
 
 ## Finding your way in `R`
 
-### Programming
+### Programming {.unnumbered}
 
 > Programming today is a race between software engineers striving to build bigger and better idiot-proof programs, and the universe trying to produce bigger and better idiots. So far, the universe is winning. - Rick Cook
 
@@ -396,7 +502,7 @@ In this class, we'll be using both `R` and `Python`, and we'll be using these la
 
 It will be hard at first - you have to learn the vocabulary in both languages in order to be able to put commands into logical "sentences". The problem solving skills are the same for all programming languages, though, and while those are harder to learn, they'll last you a lifetime.
 
-### Hello world
+### Hello world {.unnumbered}
 
 I particularly like the way that Python for Everybody [@py4e] explains coding vocabulary:
 
@@ -422,7 +528,7 @@ print('Hello world!')
 
 > And we have even written our first syntactically correct \[R\] sentence. Our sentence starts with the function print followed by a string of text of our choosing enclosed in single quotes. The strings in the print statements are enclosed in quotes. Single quotes and double quotes do the same thing; most people use single quotes except in cases like this where a single quote (which is also an apostrophe) appears in the string.
 
-### Talking to `R` - Interactive mode
+### Talking to `R` - Interactive mode {.unnumbered}
 
 R has an "interactive mode" that you will use most often. In the previous section, we talked about scripts and quarto/markdown documents, both of which are non-interactive methods for writing `R` code. But for the moment, let's work with the interactive console in order to get familiar with how we talk to `R`.
 
@@ -470,7 +576,7 @@ Suppose we define `I` and `love` as variables by putting a value into each objec
 ![R console with commands "Hello", print("Hello"), and (unquoted) "I love R", which causes an error. Defining variables I and love provides us a context in which R's error message about unexpected symbols makes sense - R is reminding us that we need a numerical operator in between the two variable names.](images/R-console-error.png)
 :::
 
-### Talking to `R` - Script Mode
+### Talking to `R` - Script Mode {.unnumbered}
 
 In the previous section, we played around with scripts and Quarto / markdown documents for R. In the last section, we played with interactive mode by typing `R` commands into a console or running code chunks interactively using the Run button or `Ctrl/Cmd + Enter` (which is the keyboard shortcut).
 
@@ -483,7 +589,7 @@ Scripts are best used when you have a thing you want to do, and you will need to
 <summary>Example: Counting Words</summary>
 
 ::: panel-tabset
-#### R within RStudio
+#### R within RStudio {.unnumbered}
 
 Just for fun, let's work with [Oliver Twist, by Charles Dickens](http://www.textfiles.com/etext/AUTHORS/DICKENS/dickens-oliver-627.txt), which I have saved [here](data/dickens-oliver-627.txt).
 
@@ -519,7 +625,7 @@ Save the copy of Oliver Twist to the file `dickens-oliver-627.txt` in the folder
 
 Use the "Run" button to run the script and see what the output is. How many times does 'the' appear in the file?
 
-#### R in Interactive Mode
+#### R in Interactive Mode {.unnumbered}
 
 Using the file you created above, let's examine what each line does in interactive mode.
 
@@ -612,42 +718,7 @@ Here, `Rscript` is the command that tells R to evaluate the file, `words.R` is t
 
 <br>
 
-::: learn-more
-#### Additional Resources: Basics of `R` and RStudio
-
-**Basics of R Programming**
-
-`r fa('book')` [Basics of `R`](https://r4ds.had.co.nz/workflow-basics.html)
-
-`r fa('book')` [RStudio Primer, Basics of Programming in `R`](https://posit.cloud/learn/primers/1.2)
-
-**Introduction to RStudio**
-
-`r fa('play')` [A tour of RStudio, BasicsBasics1](https://rladiessydney.org/courses/ryouwithme/01-basicbasics-1/)
-
-`r fa('play')` [Quick tour of RStudio](https://www.youtube.com/watch?v=cnQ-v1UUWyE&ab_channel=AndrewHeiss)
-:::
-
-<br>
-
-::: check-in
-### Check-in 1.4: Introduction to `R` & RStudio {#checkin4-intro-to-r .unnumbered}
-
-Answer the following questions on the Canvas Quiz.
-
-**Question 1:** What does it mean for R to be "open-source"?
-
-a.  Users are required to share all the code they write.
-b.  Private companies must pay the R Core Group to use R.
-c.  Developers cannot charge for the use of their R software.
-d.  Anyone can change the base functionality of R.
-
-**Question 2:** How often do you need to install a package on your computer?
-
-**Question 3:** What is the tidyverse?
-:::
-
-### Getting help
+## Getting help
 
 In `R`, you can access help with a `?`. Suppose we want to get help on a `for` loop. In the `R` console, we can run this line of code to get help on `for` loops.
 
@@ -661,7 +732,7 @@ Because `for` is a reserved word in R, we have to use backticks (the key above t
 
 w3schools has an excellent `R` [help on basic functions](https://www.w3schools.com/r/r_for_loop.asp) that may be useful as well - usually, these pages will have examples.
 
-#### Google is your friend.
+### Google is your friend. {.unnumbered}
 
 The R community has an enormous aresenal of online learning resources. I will linked a few throughout the "read more" sections in this text, but you can always find more!
 
@@ -675,7 +746,7 @@ Learn to:
 -   Make good use of the vast and welcoming R network on the internet
 
 ::: tryitout
-### PA 1: Find the Mistakes
+## PA 1: Find the Mistakes {.unnumbered}
 
 You can access [PA1: Find the Mistakes](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA1-find-the-mistakes.html) one of two ways:
 
