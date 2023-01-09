@@ -546,7 +546,7 @@ Scripts can be run in Rstudio by clicking the Run button ![RStudio run button](i
 
 Most of the time, you will run scripts interactively - that is, you'll be sitting there watching the script run and seeing what the results are as you are modifying the script. However, one advantage to scripts over notebooks is that it is easy to write a script and schedule it to run without supervision to complete tasks which may be repetitive.
 
-### Notebooks {.unnumbered}
+### Notebooks {.unnumbered #notebooks}
 
 Notebooks are an implementation of literate programming. `R` has native notebooks that allow you to code in `R`. This book is written using `Quarto` markdown, which is an extension of `Rmarkdown`.
 
@@ -855,9 +855,9 @@ Learn to:
 
 You can access [PA1: Find the Mistakes](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA1-find-the-mistakes.html) one of two ways:
 
-1.  [Click here](https://posit.cloud/content/5172799) to access an RStudio Cloud project which we work on in groups on Day 1 of the course *(Note: if you do not have an RStudio Cloud account, you will be asked to create one)*.
+1.  [Click here](https://posit.cloud/content/5172799) to access an RStudio Cloud project which we work on in groups on Day 1 of the course *(Note: if you do not have an RStudio (Posit) Cloud account, you will be asked to create one)*. **Make sure to save a permanent copy!**
 
-2.  If you have already installed [R, RStudio, and Quarto](#checkin3-install), you can [create a new Quarto document](#intro-to-quarto), and copy the practice activity [template](https://raw.githubusercontent.com/earobinson95/stat331-calpoly/master/practice-activities/PA1-find-the-mistakes.qmd?token=GHSAT0AAAAAABYBOW2KOG463KOTCZAHO5ZMY5MV55Q) into the file *(Note: make sure your quarto file is on Source mode and not Visual mode when you copy the template)*.
+2.  If you have already installed [R, RStudio, and Quarto](#checkin3-install), you can [create a new Quarto document](#notebooks), and copy the practice activity [template](https://raw.githubusercontent.com/earobinson95/stat331-calpoly/master/practice-activities/PA1-find-the-mistakes.qmd?token=GHSAT0AAAAAABYBOW2KDYAEG2R7JS4OT2HMY54NK7A) into the file *(Note: make sure your quarto file is on Source mode and not Visual mode when you copy the template)*.
 
 The components of the Practice Activity are described below:
 
