@@ -181,6 +181,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./01-introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-tidy-data-and-basics-of-graphics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tidy Data &amp; Basics of Graphics</span></a>
+  </div>
+</li>
     </ul>
 </div>
 </nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -917,7 +922,7 @@ double b = 3.14159</code></pre>
 <li>Know that matrices exist and what they are (2-dimensional arrays of numbers)</li>
 <li>Understand how they are indexed (because it is extremely similar to data frames that we’ll work with in the next chapter)</li>
 <li>Be aware that there are lots of functions that depend on matrix operations at their core (including linear regression)</li>
-</ul></section><section id="indexing-in-matrices" class="level4"><h4 class="anchored" data-anchor-id="indexing-in-matrices">Indexing in Matrices</h4>
+</ul></section><section id="indexing-matrices" class="level4"><h4 class="anchored" data-anchor-id="indexing-matrices">Indexing in Matrices</h4>
 <p><code>R</code> uses [row, column] to index matrices. To extract the bottom-left element of a 3x4 matrix, we would use [3,1] to get to the third row and first column entry; in python, we would use [2,0] (remember that Python is 0-indexed).</p>
 <p>As with vectors, you can replace elements in a matrix using assignment.</p>
 <div class="cell">
@@ -1413,56 +1418,56 @@ While loops
 <span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0
-[1] 1.163179
-[1] 0.9212093
-[1] 0.3020882
-[1] -1.351336
-[1] -2.673475
-[1] -3.698718
-[1] -3.395031
-[1] -4.309273
-[1] -5.177022
-[1] -3.904603
-[1] -6.230768
-[1] -5.366234
-[1] -3.946533
-[1] -4.162415
-[1] -4.315829
-[1] -4.226177
-[1] -4.229301
-[1] -5.116928
-[1] -5.520487
-[1] -5.292575
-[1] -4.747379
-[1] -5.121359
-[1] -5.203099
-[1] -5.052818
-[1] -4.976388
-[1] -3.954007
-[1] -4.374244
-[1] -3.78472
-[1] -4.285716
-[1] -4.331051
-[1] -3.167636
-[1] -3.793744
-[1] -3.912566
-[1] -3.663328
-[1] -4.907717
-[1] -3.867959
-[1] -3.775536
-[1] -2.409161
-[1] -2.264222
-[1] -3.509463
-[1] -2.368443
-[1] -2.272359
-[1] -1.862969
-[1] -2.304308
-[1] -1.690999
-[1] -2.132953
-[1] -4.287096
-[1] -5.251958
-[1] -5.403244
-[1] -5.564278</code></pre>
+[1] 0.1479529
+[1] -1.947325
+[1] -1.348041
+[1] -1.554939
+[1] -0.8646453
+[1] -2.082811
+[1] -1.99362
+[1] -4.309514
+[1] -3.820273
+[1] -2.179402
+[1] -2.380389
+[1] -1.753653
+[1] -1.44895
+[1] -0.9958538
+[1] -1.22208
+[1] -1.789248
+[1] -2.353069
+[1] -2.598707
+[1] -3.36889
+[1] -4.302412
+[1] -3.291467
+[1] -2.628894
+[1] -3.165375
+[1] -2.479776
+[1] -1.440797
+[1] -2.431254
+[1] -2.757129
+[1] -4.215943
+[1] -3.591375
+[1] -4.8286
+[1] -5.748499
+[1] -6.181626
+[1] -7.402801
+[1] -6.68909
+[1] -5.279039
+[1] -6.592385
+[1] -5.271917
+[1] -5.76232
+[1] -6.210564
+[1] -6.2417
+[1] -6.357341
+[1] -6.209847
+[1] -5.651452
+[1] -7.506645
+[1] -8.487558
+[1] -8.501132
+[1] -7.853067
+[1] -6.756524
+[1] -6.148052
+[1] -5.772892</code></pre>
 </div>
 </div>
 <p>In the example above, there are more efficient ways to write a random walk, but we will get to that later. The important thing here is that we want to make sure that our loops don’t run for all eternity.</p>

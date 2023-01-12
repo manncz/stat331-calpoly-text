@@ -167,7 +167,7 @@ We can also represent them with Venn Diagrams.
 ![A venn diagram illustration of De Morgan's laws showing that the region that is outside of the union of A AND B (aka NOT (A AND B)) is the same as the region that is outside of (NOT A) OR (NOT B)](images/DeMorgan2.png)
 :::
 
-### Basic Data Types
+### Basic Data Types {#basic-data-types}
 
 While we will discuss data types more in depth during class, it is important to have a base grasp on the types of data you might see in a programming language.
 
@@ -399,7 +399,7 @@ It may be helpful at this point to print out the [R reference card](files/Short-
 
 Right now, it is not really necessary to know too much more about functions than this: you can invoke a function by passing in arguments, and the function will do a task and return the value.
 
-### Data Structures
+### Data Structures {#data-structures}
 
 In the previous section, we discussed 4 different data types: strings/characters, numeric/double/floats, integers, and logical/booleans. As you might imagine, things are about to get more complicated.
 
@@ -578,7 +578,7 @@ Most of the problems we're going to work on will not require much in the way of 
 -   Understand how they are indexed (because it is extremely similar to data frames that we'll work with in the next chapter)
 -   Be aware that there are lots of functions that depend on matrix operations at their core (including linear regression)
 
-#### Indexing in Matrices
+#### Indexing in Matrices {#indexing-matrices}
 
 `R` uses \[row, column\] to index matrices. To extract the bottom-left element of a 3x4 matrix, we would use \[3,1\] to get to the third row and first column entry; in python, we would use \[2,0\] (remember that Python is 0-indexed).
 
