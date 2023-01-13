@@ -1,6 +1,6 @@
 ---
 execute:
-  freeze: auto  # re-render only when source changes
+  freeze: false  # re-render only when source changes
   warning: false
   message: false
 ---
@@ -397,11 +397,7 @@ The tidyverse has some cleaned-up versions in the **readr** and **readxl** packa
 
 For this check-in you are asked to work through reading in different data sets. The folder Age_Data contains several data sets with the names and ages of five individuals. The data sets are stored as different file types. [Download Ages_data.zip here](https://github.com/earobinson95/stat331-calpoly/raw/master/check-ins/2.1-loading-data/Ages_Data.zip), make sure to unzip the folder, save these in a reasonable place (e.g., `stat331 > check-ins > checkin2.1` or `stat331 > week2`), then use the `readr` and `readxl` packages to complete the following and fill in the "gap" code on the Canvas:
 
-```{r}
-#| fig-cap: "My file folder structure looks like this:"
-#| echo: false
-knitr::include_graphics("images/checkin2.1-file-structure.jpg")
-```
+![My file folder structure looks like this:](images/checkin2.1-file-structure.jpg)
 
 1. Load the appropriate packages for reading in data.
 2. Read in the data set *ages.csv*
