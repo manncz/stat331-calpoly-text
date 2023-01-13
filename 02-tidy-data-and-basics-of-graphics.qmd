@@ -23,7 +23,7 @@ fa_html_dependency()
 
 `r fa("book-open")` Reading: `r ceiling(minutes)` minute(s) at 200 WPM.
 
-`r fa("video")` Videos: 15 minutes
+`r fa("video")` Videos: 14 minutes
 
 ## Objectives {#ch2-objectives .unnumbered}
 
