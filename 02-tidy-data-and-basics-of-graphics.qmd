@@ -1063,8 +1063,11 @@ Complete the Canvas quiz to make sure you understand the basics of using ggplot2
 <br>
 
 ::: tryitout
-## PA 2: COMING SOON {-}
+## PA 2: Using Data Visualization to Find the Penguins {-}
 
+You will be exploring different types of visualizations to uncover which species of penguins reside on different islands.
+
+Visit [PA2: Using Data Visualization to Find the Penguins](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA2-ggplot-palmer-penguins.html) to see instructions for completing this activity.
 :::
 
 ### References {.unnumbered}
