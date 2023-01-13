@@ -292,7 +292,10 @@ here::dr_here()
 
 If my stat331 file structure looks like this:
 
-![](images/stat331-filepath-here.jpg)
+```{r}
+#| echo: false
+knitr::include_graphics("images/stat331-filepath-here.jpg")
+```
 
 then my RProject sets the working directory to this stat331 folder. However, if my *lab1.qmd* file lives in `C:/Users/erobin17/OneDrive - Cal Poly/stat331/labs/lab1` then when I try to load data in within the .qmd file, it will be looking for that relative file path from the *lab1* folder and not from the *stat331* folder.
 
