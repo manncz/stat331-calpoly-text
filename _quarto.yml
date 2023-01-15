@@ -11,6 +11,7 @@ book:
     - 00-prereading.qmd
     - 01-introduction.qmd
     - 02-tidy-data-and-basics-of-graphics.qmd
+    #- 03-data-cleaning-and-manipulation.qmd
   site-url: https://earobinson95.github.io/stat331-calpoly/
   repo-url: https://github.com/earobinson95/stat331-calpoly
   repo-branch: main
