@@ -784,16 +784,16 @@ If you want to set a specific color, you could put this outside the `aes()` mapp
 #| message: false
 #| warning: false
 ggplot(data = housingsub) +
-  geom_point(mapping = aes(x = date, y = median, color = city), color = "blue")
+  geom_point(mapping = aes(x = date, y = median), color = "blue")
 ```
 
-You should *NOT* put your variable or color inside the `aes()` parentheses.
+You should *NOT* put your color inside the `aes()` parentheses.
 
 ```{r}
 #| message: false
 #| warning: false
 ggplot(data = txhousing) +
-  geom_point(mapping = aes(x = date, y = median, color = "city"))
+  geom_point(mapping = aes(x = date, y = median, color = "blue"))
 ```
 
 </details>
