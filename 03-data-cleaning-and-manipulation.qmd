@@ -915,7 +915,14 @@ penguins |>
 <br>
 
 ::: tryitout
-## PA 3: COMING SOON {.unnumbered}
+## PA 3: Identify the Mystery College {.unnumbered}
+
+Today you will be using the `dplyr` package to clean a data set and then using that cleaned data set to figure out what college Ephelia has been accepted to.
+
+Visit [PA 3: Identify the Mystery College](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA3-find-the-mystery-college) for instructions. 
+
+Submit the full name of the college Ephelia will attend to the Canvas Quiz.
+
 :::
 
 ### References {.unnumbered}

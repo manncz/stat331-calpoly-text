@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.132">
+<meta name="generator" content="quarto-1.2.269">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Stat 331/531 Statistical Computing with R - 3&nbsp; Data Cleaning and Manipulation</title>
 <style>
@@ -155,7 +155,7 @@ div.csl-indent {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Stat 331/531 Statistical Computing with R</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/earobinson95/stat331-calpoly" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/earobinson95/stat331-calpoly-text" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
     <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
     <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
 <li>
@@ -246,9 +246,9 @@ div.csl-indent {
   <li><a href="#pipe" id="toc-pipe" class="nav-link" data-scroll-target="#pipe"><span class="toc-section-number">3.8</span>  Pipe Operator</a></li>
   <li><a href="#checkin3-1" id="toc-checkin3-1" class="nav-link" data-scroll-target="#checkin3-1">Check-in 3.1: Data Wrangling</a></li>
   <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
-  <li><a href="#pa-3-coming-soon" id="toc-pa-3-coming-soon" class="nav-link" data-scroll-target="#pa-3-coming-soon">PA 3: COMING SOON</a></li>
+  <li><a href="#pa-3-identify-the-mystery-college" id="toc-pa-3-identify-the-mystery-college" class="nav-link" data-scroll-target="#pa-3-identify-the-mystery-college">PA 3: Identify the Mystery College</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/earobinson95/stat331-calpoly/edit/main/03-data-cleaning-and-manipulation.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/03-data-cleaning-and-manipulation.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -262,6 +262,7 @@ div.csl-indent {
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -2569,7 +2570,10 @@ Mutate and new challenges
 <li><p>Additional practice exercises: <a href="https://stat579-at-isu.github.io/materials/03_tidyverse/01_dplyr.html#19">Intro to the tidyverse</a>, <a href="https://stat579-at-isu.github.io/materials//03_tidyverse/02_dplyr-examples.html">group_by + summarize examples</a>, <a href="https://stat579-at-isu.github.io/materials//03_tidyverse/03_dplyr-examples.html#1">group_by + mutate examples</a> (from a similar class at Iowa State)</p></li>
 <li><p><a href="https://www.youtube.com/playlist?list=PL19ev-r1GBwkuyiwnxoHTRC8TTqP8OEi8">Videos of analysis of new data from Tidy Tuesday</a> - may include use of other packages, but almost definitely includes use of <code>dplyr</code> as well.</p></li>
 </ul></section><p><br></p>
-<section id="pa-3-coming-soon" class="level2 unnumbered tryitout"><h2 class="unnumbered anchored" data-anchor-id="pa-3-coming-soon">PA 3: COMING SOON</h2>
+<section id="pa-3-identify-the-mystery-college" class="level2 unnumbered tryitout"><h2 class="unnumbered anchored" data-anchor-id="pa-3-identify-the-mystery-college">PA 3: Identify the Mystery College</h2>
+<p>Today you will be using the <code>dplyr</code> package to clean a data set and then using that cleaned data set to figure out what college Ephelia has been accepted to.</p>
+<p>Visit <a href="https://earobinson95.github.io/stat331-calpoly/practice-activities/PA3-find-the-mystery-college">PA 3: Identify the Mystery College</a> for instructions.</p>
+<p>Submit the full name of the college Ephelia will attend to the Canvas Quiz.</p>
 </section><section id="references" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
 
 
@@ -2630,7 +2634,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -2666,24 +2687,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">

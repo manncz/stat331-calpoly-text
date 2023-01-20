@@ -245,10 +245,10 @@
     "text": "Additional Resources\n\nIntroduction to dplyr and Single Table dplyr functions\nR for Data Science: Data Transformations\nModern Dive: Data Wrangling\nAdditional practice exercises: Intro to the tidyverse, group_by + summarize examples, group_by + mutate examples (from a similar class at Iowa State)\nVideos of analysis of new data from Tidy Tuesday - may include use of other packages, but almost definitely includes use of dplyr as well."
   },
   {
-    "objectID": "03-data-cleaning-and-manipulation.html#pa-3-coming-soon",
-    "href": "03-data-cleaning-and-manipulation.html#pa-3-coming-soon",
+    "objectID": "03-data-cleaning-and-manipulation.html#pa-3-identify-the-mystery-college",
+    "href": "03-data-cleaning-and-manipulation.html#pa-3-identify-the-mystery-college",
     "title": "\n3  Data Cleaning and Manipulation\n",
-    "section": "PA 3: COMING SOON",
-    "text": "PA 3: COMING SOON"
+    "section": "PA 3: Identify the Mystery College",
+    "text": "PA 3: Identify the Mystery College\nToday you will be using the dplyr package to clean a data set and then using that cleaned data set to figure out what college Ephelia has been accepted to.\nVisit PA 3: Identify the Mystery College for instructions.\nSubmit the full name of the college Ephelia will attend to the Canvas Quiz."
   }
 ]
