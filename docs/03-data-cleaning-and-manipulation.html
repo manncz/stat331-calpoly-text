@@ -108,6 +108,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./04-data-joins-and-transformations.html" rel="next">
 <link href="./02-tidy-data-and-basics-of-graphics.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -212,6 +213,11 @@ div.csl-indent {
   <a href="./03-data-cleaning-and-manipulation.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Cleaning and Manipulation</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-data-joins-and-transformations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Joins and Transformations</span></a>
+  </div>
+</li>
     </ul>
 </div>
 </nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -242,7 +248,7 @@ div.csl-indent {
   <li><a href="#select-pick-columns" id="toc-select-pick-columns" class="nav-link" data-scroll-target="#select-pick-columns"><span class="toc-section-number">3.4</span>  <code>select()</code>: Pick columns</a></li>
   <li><a href="#mutate-add-and-transform-variables" id="toc-mutate-add-and-transform-variables" class="nav-link" data-scroll-target="#mutate-add-and-transform-variables"><span class="toc-section-number">3.5</span>  <code>mutate()</code>: Add and transform variables</a></li>
   <li><a href="#summarize" id="toc-summarize" class="nav-link" data-scroll-target="#summarize"><span class="toc-section-number">3.6</span>  <code>summarize()</code></a></li>
-  <li><a href="#groupby-group-by-power" id="toc-groupby-group-by-power" class="nav-link" data-scroll-target="#groupby-group-by-power"><span class="toc-section-number">3.7</span>  <code>groupby()</code> Group By + (?) = Power!</a></li>
+  <li><a href="#group_by-group-by-power" id="toc-group_by-group-by-power" class="nav-link" data-scroll-target="#group_by-group-by-power"><span class="toc-section-number">3.7</span>  <code>group_by()</code> Group By + (?) = Power!</a></li>
   <li><a href="#pipe" id="toc-pipe" class="nav-link" data-scroll-target="#pipe"><span class="toc-section-number">3.8</span>  Pipe Operator</a></li>
   <li><a href="#checkin3-1" id="toc-checkin3-1" class="nav-link" data-scroll-target="#checkin3-1">Check-in 3.1: Data Wrangling</a></li>
   <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
@@ -1188,7 +1194,7 @@ div.csl-indent {
 </section><section id="keep-the-top-n-values-of-a-variable" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="keep-the-top-n-values-of-a-variable">Keep the top <span class="math inline">\(n\)</span> values of a variable</h4>
 <p><code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max()</a></code> will keep the top values of a specified variable. This is like a filter statement, but it’s a shortcut built to handle a common task. You could write a filter statement that would do this, but it would take a few more lines of code.</p>
 <div class="ex">
-<p>The code below outputs the 5 <strong>shortest</strong> characters in star wars.</p>
+<p>The code below outputs the 5 <strong>tallest</strong> characters in star wars.</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span><span class="va">starwars</span>, order_by <span class="op">=</span> <span class="va">height</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -2362,8 +2368,8 @@ Mutate and new challenges
 <p>The <code>na.rm = T</code> argument says to ignore/remove the missing (NA) values in calculating the average.</p>
 </div>
 <p>The real power of summarize, though, is in combination with Group By. We’ll see more summarize examples, but it’s easier to make good examples when you have all the tools - it’s hard to demonstrate how to use a hammer if you don’t also have a nail.</p>
-</section><section id="groupby-group-by-power" class="level2 page-columns page-full" data-number="3.7"><h2 data-number="3.7" class="anchored" data-anchor-id="groupby-group-by-power">
-<span class="header-section-number">3.7</span> <code>groupby()</code> Group By + (?) = Power!</h2>
+</section><section id="group_by-group-by-power" class="level2 page-columns page-full" data-number="3.7"><h2 data-number="3.7" class="anchored" data-anchor-id="group_by-group-by-power">
+<span class="header-section-number">3.7</span> <code>group_by()</code> Group By + (?) = Power!</h2>
 <p>Frequently, we have data that is more specific than the data we need - for instance, I may have observations of the temperature at 15-minute intervals, but I might want to record the daily high and low value. To do this, I need to</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
@@ -2695,6 +2701,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./04-data-joins-and-transformations.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Joins and Transformations</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

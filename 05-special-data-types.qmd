@@ -7,12 +7,12 @@ editor: source
 ---
 
 ```{r echo=FALSE}
-bytes <- file.size("04-data-transformations.qmd")
+bytes <- file.size("05-special-data-types.qmd")
 words <- bytes/10
 minutes <- words/200
 ```
 
-# Data Cleaning and Manipulation
+# Special Data Types
 
 ```{r fa-setup, include=FALSE}
 library(quarto)
@@ -27,21 +27,38 @@ library(tidyverse)
 
 `r fa("book-open")` Reading: `r ceiling(minutes)` minute(s) at 200 WPM.
 
-`r fa("video")` Videos:
+`r fa("video")` Videos: 
 
-## Objectives {#ch3-objectives .unnumbered}
+## Objectives {#ch5-objectives .unnumbered}
 
+
+<br>
 
 ::: check-in
-## Check-ins {#ch4-checkins .unnumbered}
+## Check-ins {#ch5-checkins .unnumbered}
 
 There are two check-ins for this week:
 
--   [Check-in 4.1: xxx](#checkin4-1)
++ [Check-in 5.1: xxx](#checkin5-1)
++ [Check-in 5.2: xxx](#checkin5-2)
 :::
 
+## Factors
+
+## Strings
+
+## Dates
+
+<br>
+
 ::: tryitout
-## PA 4: COMING SOON {.unnumbered}
+## PA 5.1: Zodiac Killer {.unnumbered}
+:::
+
+<br>
+
+::: tryitout
+## PA 5.2: Scrambled Message {.unnumbered}
 :::
 
 ### References {.unnumbered}

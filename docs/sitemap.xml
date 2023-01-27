@@ -2,22 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/index.html</loc>
-    <lastmod>2023-01-20T23:33:28.878Z</lastmod>
+    <lastmod>2023-01-27T00:04:44.472Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/00-prereading.html</loc>
-    <lastmod>2023-01-20T23:33:28.884Z</lastmod>
+    <lastmod>2023-01-27T00:04:44.477Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/01-introduction.html</loc>
-    <lastmod>2023-01-20T23:33:28.887Z</lastmod>
+    <lastmod>2023-01-27T00:04:44.479Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/02-tidy-data-and-basics-of-graphics.html</loc>
-    <lastmod>2023-01-20T23:33:28.891Z</lastmod>
+    <lastmod>2023-01-27T00:04:44.483Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/03-data-cleaning-and-manipulation.html</loc>
-    <lastmod>2023-01-20T23:33:28.896Z</lastmod>
+    <lastmod>2023-01-27T00:04:44.488Z</lastmod>
+  </url>
+  <url>
+    <loc>https://earobinson95.github.io/stat331-calpoly-text/04-data-joins-and-transformations.html</loc>
+    <lastmod>2023-01-27T00:04:44.491Z</lastmod>
   </url>
 </urlset>

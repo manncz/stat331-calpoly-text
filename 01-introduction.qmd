@@ -1,4 +1,5 @@
 ---
+editor: source
 execute:
   freeze: auto  # re-render only when source changes
 ---
@@ -25,9 +26,9 @@ fa_html_dependency()
 
 ## Objectives {#ch1-objectives .unnumbered}
 
-+ Set up necessary software for this class on personal machines.
-+ Detect and resolve problems related to file systems, working directories, and system paths when troubleshooting software installation.
-+ Create R Markdown or Quarto documents with good reproducible principles.
+-   Set up necessary software for this class on personal machines.
+-   Detect and resolve problems related to file systems, working directories, and system paths when troubleshooting software installation.
+-   Create R Markdown or Quarto documents with good reproducible principles.
 
 ::: check-in
 ## Check-ins {#getting-started-checkins .unnumbered}
@@ -90,8 +91,7 @@ I would like to **strongly** encourage you to use your **real name and picture**
 
 ![](images/screencast_gifs/pic_name.gif)
 
-(Please do not be like Regina and use the name of another student, however!
-This kind of impersonation will result in a permanent ban from the server.)
+(Please do not be like Regina and use the name of another student, however! This kind of impersonation will result in a permanent ban from the server.)
 
 **Decide about privacy and notifications**
 
@@ -162,7 +162,7 @@ Last but not least - for the teams you are a part of, you may want to use Discor
 
 ![](images/screencast_gifs/new_server.gif)
 
-**Introduce yourself in the “introductions” channel of the Discord Server under WEEK 0: BASICS OF CODING. Share your name, major, year in school, and either (1) your favorite comfort food or (2) your go to study spot on campus or in SLO. Take a screenshot of your introduction on the discord channel and upload it to the Canvas assignment.**
+**Introduce yourself in the "introductions" channel of the Discord Server under WEEK 0: BASICS OF CODING. Share your name, major, year in school, and either (1) your favorite comfort food or (2) your go to study spot on campus or in SLO. Take a screenshot of your introduction on the discord channel and upload it to the Canvas assignment.**
 
 </details>
 
@@ -190,7 +190,7 @@ In this section, I will provide you with links to set up various programs on you
 If you already have `R` downloaded, please follow these steps anyways, to make sure you have the most recent version of `R`. Do not ignore these instructions. If you neglect to update your version of `R`, you may find that updating a package will make it so your code will not run.
 
 ::: check-in
-#### Check-in 1.3: Installing `R`, RStudio, and Quarto {.unnumbered #checkin3-install}
+#### Check-in 1.3: Installing `R`, RStudio, and Quarto {#checkin3-install .unnumbered}
 
 1.  Download and run the R installer for your operating system from CRAN:
 
@@ -210,31 +210,27 @@ If you already have `R` downloaded, please follow these steps anyways, to make s
 :::
 
 ::: column-margin
-
-If you would like a video tutorial on downloading RStudio, here is one: 
+If you would like a video tutorial on downloading RStudio, here is one:
 
 <br>
 
 ::: youtube-video-container
-
 <iframe src="https://player.vimeo.com/video/203516968?h=7fc91cd48f&amp;color=428bca" width="100%" height="auto" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
-</iframe>
 
+</iframe>
 :::
 
 <br>
 
 ::: note
-
 **RStudio** organization has recently re-branded to **posit**. Rstudio is still the name of the IDE, but these two names may be used interchangeably. See a video of Hadley Wickham talking about the re-branding.
 
 <br>
 
 ::: youtube-video-container
-
 <iframe width="100%" height="auto" src="https://www.youtube.com/embed/0_UNtwEh7kY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-</iframe>
 
+</iframe>
 :::
 :::
 :::
@@ -249,17 +245,17 @@ R is a statistical programming language. Unlike more general-purpose languages, 
 
 ::: column-margin
 ::: youtube-video-container
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/svRvp8QSvXI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
 
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/svRvp8QSvXI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+</iframe>
 :::
 :::
 
 R is
 
-+ vector-based
-+ 1 indexed (start counting 1, 2, 3, …)
-+ a scripting language (R code does not have to be compiled before it is run)
+-   vector-based
+-   1 indexed (start counting 1, 2, 3, ...)
+-   a scripting language (R code does not have to be compiled before it is run)
 
 One thing to know about `R` is that it is **open-source**. This means that no company owns `R` (like there is for *SAS* or *Matlab*) and that developers cannot charge for the use of their R software. This does not mean that all of your code needs to be public (you can keep your code private), but it is important to be a good open-source citizen by sharing your code publicly when possible (later we will learn about *GitHub*), contributing to public projects and packages, creating your own packages, and using `R` for ethical and respectful projects.
 
@@ -271,6 +267,7 @@ Note that RStudio is NOT `R`, but a platform to help you use `R` through and tha
 
 ::: learn-more
 ##### The History of `R` {.unnumbered}
+
 `r fontawesome::fa("book")`[The History of R](https://bookdown.org/rdpeng/rprogdatascience/history-and-overview-of-r.html)
 :::
 
@@ -280,14 +277,16 @@ An IDE is an **integrated development environment** - a fancy, souped up text ed
 
 ::: column-margin
 ::: youtube-video-container
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/kBT2ykhz6p4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/kBT2ykhz6p4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+
+</iframe>
 :::
 :::
 
 [RStudio provides a cheat-sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rstudio-ide.pdf) for the IDE if you are so inclined.
 
 ::: note
-RStudio is not `R` - it’s just a layer on top of `R`. So if you have a question about the user interface, you have an RStudio question. If you have a question about the code, you have an `R` question.
+RStudio is not `R` - it's just a layer on top of `R`. So if you have a question about the user interface, you have an RStudio question. If you have a question about the code, you have an `R` question.
 :::
 
 #### Navigating RStudio {.unnumbered}
@@ -298,22 +297,23 @@ RStudio is not `R` - it’s just a layer on top of `R`. So if you have a questio
 knitr::include_graphics("images/navigating-rstudio.png")
 ```
 
-+ In the top-left pane is the text editor. This is where you’ll do most of your work.
+-   In the top-left pane is the text editor. This is where you'll do most of your work.
 
-+ In the top right, you’ll find the environment, history, and connections tabs. The environment tab shows you the objects available in R (variables, data files, etc.), the history tab shows you what code you’ve run recently, and the connections tab is useful for setting up database connections.
+-   In the top right, you'll find the environment, history, and connections tabs. The environment tab shows you the objects available in R (variables, data files, etc.), the history tab shows you what code you've run recently, and the connections tab is useful for setting up database connections.
 
-+ On the bottom left is the console. There are also other tabs to give you a terminal (command line) prompt, and a jobs tab to monitor progress of long-running jobs. In this class we’ll primarily use the console tab.
+-   On the bottom left is the console. There are also other tabs to give you a terminal (command line) prompt, and a jobs tab to monitor progress of long-running jobs. In this class we'll primarily use the console tab.
 
-+ On the bottom right, there are a set of tabs:
-  + files (to give you an idea of where you are working, and what files are present),
-  + plots (which will be self-explanatory),
-  + packages (which extensions to R are installed and loaded),
-  + the help window (where documentation will show up), and
-  + the viewer window, which is used for interactive graphics or previewing HTML documents.
+-   On the bottom right, there are a set of tabs:
 
-#### Installing Packages {.unnumbered #installing-packages}
+    -   files (to give you an idea of where you are working, and what files are present),
+    -   plots (which will be self-explanatory),
+    -   packages (which extensions to R are installed and loaded),
+    -   the help window (where documentation will show up), and
+    -   the viewer window, which is used for interactive graphics or previewing HTML documents.
 
-One of R’s strengths is the package repository, CRAN (Comprehensive R Archive Network), that allows anyone (yes, even you!) to write an R package. Packages contain "extra" functionality (outside the base functionality of R). This means that R generally has the latest statistical methods available, and one of the best ways to ensure someone uses your work is to write an `R` package to make that work accessible to the general population of statisticians/biologists/geneticists.
+#### Installing Packages {#installing-packages .unnumbered}
+
+One of R's strengths is the package repository, CRAN (Comprehensive R Archive Network), that allows anyone (yes, even you!) to write an R package. Packages contain "extra" functionality (outside the base functionality of R). This means that R generally has the latest statistical methods available, and one of the best ways to ensure someone uses your work is to write an `R` package to make that work accessible to the general population of statisticians/biologists/geneticists.
 
 To install the `tibble` package in R, we would use the following code:
 
@@ -329,7 +329,7 @@ Then, to use the functions within that package, we need to load the package:
 library("tibble")
 ```
 
-When you load a package, all of the functions in that package are added to your R Namespace (this is a technical term) - basically the list of all of the things R knows about. This may be problematic if you have two packages with the same function name. 
+When you load a package, all of the functions in that package are added to your R Namespace (this is a technical term) - basically the list of all of the things R knows about. This may be problematic if you have two packages with the same function name.
 
 ::: note
 You only need to *install* a package once and your computer will be able to find the package on your computer when it needs to. However, you need to *load* the package every time R is restarted or you switch to a new project.
@@ -344,7 +344,6 @@ tibble::tribble(~col1, ~col2, 1, 'a', 2, 'b', 3, 'c')
 ```
 
 ::: tryitout
-
 #### Test your setup {.unnumbered}
 
 We will find our way in `R` and learn more about Quarto in the following sections, but for now open RStudio on your computer and explore a bit.
@@ -360,7 +359,6 @@ install.packages(
   c("tidyverse", "rmarkdown", "knitr", "quarto")
 
 )
-
 ```
 
 -   Can you find the text editor?
@@ -370,7 +368,6 @@ install.packages(
     -   Compile the document using the `Render` button and use the Viewer pane to see the result.
 
     -   If this all worked, you have RStudio, Quarto, and `R` set up correctly on your machine.
-
 :::
 
 <br>
@@ -411,13 +408,14 @@ In the pre-reading section, [File Systems](#file-systems), we learned how to org
 
 ::: column-margin
 ::: youtube-video-container
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/SCgzPTOER_w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
 
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/SCgzPTOER_w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</iframe>
 :::
 :::
 
-1. Set your working directory in `R` (do not reccommend)
-2. Use RProjects (preferred!)
+1.  Set your working directory in `R` (do not reccommend)
+2.  Use RProjects (preferred!)
 
 ### Working Directories in `R` {.unnumbered}
 
@@ -426,12 +424,13 @@ To find where your working directory is in `R`, you can either look at the top o
 ```{r}
 #| out-width: "70%"
 #| echo: false
-knitr::include_graphics("images/working-directory-console.jpg")
+knitr::include_graphics("images/working-directory-console.JPG")
 ```
 
 ```{r}
 getwd()
 ```
+
 Although it is not recommended, you can set your working directory in `R` with `setwd()`.
 
 ```{r}
@@ -456,17 +455,14 @@ knitr::include_graphics("images/Rproject-3.png")
 
 ::: column-margin
 ::: note
-
 If you plan to use the Studio computers during class, I recommend having a way to access and save your material between the Studio computers and your personal computer (e.g. put your class directory and Rproject on OneDrive). The idea with Rprojects is then your relative file paths will work in either computer without any changes!
-
 :::
 :::
 
 This new folder, `stat331-test-student` should now live in your OneDrive folder (or whatever sub-directory you save it to). This is your new "home" base for this class - whenever you refer to a file with a relative path it will look for it here.
 
-
 ::: check-in
-#### Check-in 1.3: RProject {.unnumbered #checkin3-r-project}
+#### Check-in 1.3: RProject {#checkin3-r-project .unnumbered}
 
 4.  Take a screenshot of your class directory, showing the RProject and the folder organization, including a *week-1* or *practice-activity* folder. Upload this screenshot to the Canvas assignment.
 :::
@@ -476,10 +472,9 @@ This new folder, `stat331-test-student` should now live in your OneDrive folder 
 ::: watchout
 ### File Paths in `R` {.unnumbered}
 
-A quick warning on file paths is that Mac/Linux and Windows differ in the direction of their backslash to separate folder locations. Mac/Linux use `/` (e.g. `practice-activities/PA1.pdf`) while Window's uses `\` (e.g. `practice-activities\PA1.pdf`). 
+A quick warning on file paths is that Mac/Linux and Windows differ in the direction of their backslash to separate folder locations. Mac/Linux use `/` (e.g. `practice-activities/PA1.pdf`) while Window's uses `\` (e.g. `practice-activities\PA1.pdf`).
 
 `R` can work with both, however, a backslash `\` means something different to `R` so if you copy a file path from your file filder in Windows, you will need to replace all backslashes with a double backslash `\\` (e.g. `practice-activities\\PA1.pdf`)
-
 :::
 
 <br>
@@ -546,16 +541,16 @@ Scripts can be run in Rstudio by clicking the Run button ![RStudio run button](i
 
 Most of the time, you will run scripts interactively - that is, you'll be sitting there watching the script run and seeing what the results are as you are modifying the script. However, one advantage to scripts over notebooks is that it is easy to write a script and schedule it to run without supervision to complete tasks which may be repetitive.
 
-### Notebooks {.unnumbered #notebooks}
+### Notebooks {#notebooks .unnumbered}
 
 Notebooks are an implementation of literate programming. `R` has native notebooks that allow you to code in `R`. This book is written using `Quarto` markdown, which is an extension of `Rmarkdown`.
 
 In this class, we're going to use Quarto/R markdown. This matters because the goal is that you learn something useful for your own coding and then you can easily apply it when you go to work as an analyst somewhere to produce impressive documents.
 
-To create a quarto document click `File > New File > Quarto Document`. This will open a notebook template using quarto. You can then `Render` the document to a pdf or html file. 
+To create a quarto document click `File > New File > Quarto Document`. This will open a notebook template using quarto. You can then `Render` the document to a pdf or html file.
 
 ::: go-read
-##### Introduction to Quarto {.unnumbered #intro-to-quarto}
+##### Introduction to Quarto {#intro-to-quarto .unnumbered}
 
 (Required) Read through the following resources to introduce Quarto:
 
@@ -564,7 +559,6 @@ To create a quarto document click `File > New File > Quarto Document`. This will
 
 While in this class we will be using Quarto, before Quarto there was RMarkdown (and it is still widely used). If you wish, you can read about Rmarkdown [here](https://r4ds.had.co.nz/r-markdown.html).
 :::
-
 
 Download and save the [Markdown syntax Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf).
 
@@ -576,7 +570,7 @@ There are some excellent opinions surrounding the use of notebooks in data analy
 -   [Why I Don't Like Notebooks"](https://docs.google.com/presentation/d/1n2RlMdmv1p25Xy5thJUhkKGvjtV-dkAIsUXP-AL4ffI/preview#slide=id.g362da58057_0_1) by Joel Grus at JupyterCon 2018
 -   [The First Notebook War](https://yihui.org/en/2018/09/notebook-war/) by Yihui Xie (response to Joel's talk).\
     Yihui Xie is the person responsible for `knitr` and `Rmarkdown`.
-    
+
 You can learn more about the functionality of Quarto at the following links:
 
 -   [Computations in Quarto](https://quarto.org/docs/get-started/computations/rstudio.html)
@@ -586,10 +580,9 @@ You can find the entire list of options you can use to format your HTML file wit
 
 -   [Interactive document published to the web](https://quarto-dev.github.io/quarto-gallery/articles/html/html.html)
 -   [Advanced Layout with HTML](https://quarto-dev.github.io/quarto-gallery/page-layout/tufte.html)
-- [Pimp my RMarkdown](https://holtzy.github.io/Pimp-my-rmd/)
-- [Quarto Tip A Day](https://mine-cetinkaya-rundel.github.io/quarto-tip-a-day/)
+-   [Pimp my RMarkdown](https://holtzy.github.io/Pimp-my-rmd/)
+-   [Quarto Tip A Day](https://mine-cetinkaya-rundel.github.io/quarto-tip-a-day/)
 :::
-
 
 <!-- ## Finding your way in `R` -->
 
@@ -600,7 +593,9 @@ You can find the entire list of options you can use to format your HTML file wit
 <!-- Programming is the art of solving a problem by developing a sequence of steps that make up a solution, and then very carefully communicating those steps to the computer. To program, you need to know how to -->
 
 <!-- -   break a problem down into smaller, easily solvable problems -->
+
 <!-- -   solve small problems -->
+
 <!-- -   communicate the solution to a computer using a programming language -->
 
 <!-- In this class, we'll be using both `R` and `Python`, and we'll be using these languages to solve problems that are related to working with data. At first, we'll start with smaller, simpler problems that don't involve data, but by the end of the semester, you will hopefully be able to solve some statistical problems using one or both languages. -->
@@ -618,9 +613,13 @@ You can find the entire list of options you can use to format your HTML file wit
 <!-- > The reserved words in the language where humans talk to \[R\] include the following: -->
 
 <!--     if          else     repeat      while         -->
+
 <!--     for         in       next        break   -->
+
 <!--     TRUE        FALSE    NULL        Inf          -->
+
 <!--     NA_integer_ NA_real_ NA_complex_ NA_character_   -->
+
 <!--     NaN         NA       function    ... -->
 
 <!-- > That is it, and unlike a dog, \[R\] is already completely trained. When you say 'try', \[R\] will try every time you say it without fail. -->
@@ -628,7 +627,9 @@ You can find the entire list of options you can use to format your HTML file wit
 <!-- > We will learn these reserved words and how they are used in good time, but for now we will focus on the \[R\] equivalent of "speak" (in human-to-dog language). The nice thing about telling \[R\] to speak is that we can even tell it what to say by giving it a message in quotes: -->
 
 <!-- ```{r} -->
+
 <!-- print('Hello world!') -->
+
 <!-- ``` -->
 
 <!-- > And we have even written our first syntactically correct \[R\] sentence. Our sentence starts with the function print followed by a string of text of our choosing enclosed in single quotes. The strings in the print statements are enclosed in quotes. Single quotes and double quotes do the same thing; most people use single quotes except in cases like this where a single quote (which is also an apostrophe) appears in the string. -->
@@ -656,14 +657,19 @@ You can find the entire list of options you can use to format your HTML file wit
 <!-- If we are working in interactive mode, why did I have you start out by creating a markdown document? Good Question! RStudio allows you to switch back and forth between R and python seamlessly, which is good and bad - it's hard to get a python terminal without telling R which language you're working in! You can create a python script if you'd prefer to work in a script instead of a markdown document, but that would involve working in 2 separate files, which I personally find rather tedious. -->
 
 <!-- ::: panel-tabset -->
+
 <!-- ### The R Console {.unnumbered} -->
 
 <!-- In your R chunk or script, type in `2+2` and hit `Ctrl+Enter` (or `Cmd+Enter` on a mac). Look down to the Console (which is usually below the editor window) and see if 4 appears. If you're like me, output shows up in two places at once: -->
 
 <!-- | Location | Picture                                                                                     | -->
+
 <!-- |------------------|------------------------------------------------------| -->
+
 <!-- | Chunk    | ![R output underneath the code chunk](images/R-chunk-2+2.png)                               | -->
+
 <!-- | Script   | ![R doesn't show script output in the script](images/R-script-2+2.png)                      | -->
+
 <!-- | Console  | ![R output in the console (from either a script or a code chunk)](images/R-console-2+2.png) | -->
 
 <!-- R will indicate that it is waiting for your command with a `>` character in the console. If you don't see that `>` character, chances are you've forgotten to finish a statement - check for parentheses and brackets. -->
@@ -679,6 +685,7 @@ You can find the entire list of options you can use to format your HTML file wit
 <!-- Suppose we define `I` and `love` as variables by putting a value into each object using `<-`, which is the assignment operator. Then, typing "I love" into the console generates the same error, and R tells us "hey, there's an unexpected symbol here" - in this case, maybe we meant to add the two variables together. -->
 
 <!-- ![R console with commands "Hello", print("Hello"), and (unquoted) "I love R", which causes an error. Defining variables I and love provides us a context in which R's error message about unexpected symbols makes sense - R is reminding us that we need a numerical operator in between the two variable names.](images/R-console-error.png) -->
+
 <!-- ::: -->
 
 <!-- ### Talking to `R` - Script Mode {.unnumbered} -->
@@ -694,28 +701,37 @@ You can find the entire list of options you can use to format your HTML file wit
 <!-- <summary>Example: Counting Words</summary> -->
 
 <!-- ::: panel-tabset -->
+
 <!-- #### R within RStudio {.unnumbered} -->
 
 <!-- Just for fun, let's work with [Oliver Twist, by Charles Dickens](http://www.textfiles.com/etext/AUTHORS/DICKENS/dickens-oliver-627.txt), which I have saved [here](data/dickens-oliver-627.txt). -->
 
 <!-- ```{r, eval = F} -->
+
 <!-- # Read in the file -->
+
 <!-- text <- readLines("dickens-oliver-627.txt") -->
 
 <!-- # Split the lines of text into separate words -->
+
 <!-- text <- strsplit(text, " ") -->
 
 <!-- # Simplify the list -->
+
 <!-- text <- unlist(text) -->
 
 <!-- # Count up the number of occurrences of each word -->
+
 <!-- word_freq <- table(text) -->
 
 <!-- # Sort the table by decreasing frequency -->
+
 <!-- word_freq <- sort(word_freq, decreasing = T) -->
 
 <!-- # Show the counts for the most common 10 words -->
+
 <!-- word_freq[1:10] -->
+
 <!-- ``` -->
 
 <!-- Make a new R script (File -\> New File -\> R script) and copy the above code into R, or [download the file to your computer directly](code/words-noinput.R) and open the downloaded file in RStudio. -->
@@ -735,12 +751,17 @@ You can find the entire list of options you can use to format your HTML file wit
 <!-- Using the file you created above, let's examine what each line does in interactive mode. -->
 
 <!-- ```{r, include = F} -->
+
 <!-- text <- readLines("data/dickens-oliver-627.txt") -->
+
 <!-- ``` -->
 
 <!-- ```{r, eval = F} -->
+
 <!-- # Read in the file -->
+
 <!-- text <- readLines("dickens-oliver-627.txt") -->
+
 <!-- ``` -->
 
 <!-- Select the above line and click the "Run" button in RStudio. Once you've done that, type in `text[1:5]` in the R console to see the first 5 lines of the file. -->
@@ -750,39 +771,57 @@ You can find the entire list of options you can use to format your HTML file wit
 <!-- Run the next line of code using the run button (or click on the line of code and hit Ctrl/Cmd + Enter). -->
 
 <!-- ```{r} -->
+
 <!-- # Split the lines of text into separate words -->
+
 <!-- text <- strsplit(text, " ") -->
+
 <!-- ``` -->
 
 <!-- Type in `text[[1]]` to see what the `text` object looks like now. -->
 
 <!-- ```{r} -->
+
 <!-- text[[1]] -->
+
 <!-- ``` -->
 
 <!-- ![Screenshot of RStudio editor window with lines of code highlighted, plus RStudio console with the code as run and `text[[1]]` showing the first entry in the text object - a list of the separate words in the first line of the text file.](images/R-wordcount-rstudio-noinput-interactive4.png) -->
 
 <!-- ```{r} -->
+
 <!-- # Simplify the list -->
+
 <!-- text <- unlist(text) -->
+
 <!-- text[[1]] -->
+
 <!-- text[1:20] -->
+
 <!-- ``` -->
 
 <!-- Running `unlist` on text simplifies the object so that it is now a single **vector** of every word in the file, without regard for which line it appears on. -->
 
 <!-- ```{r} -->
+
 <!-- # Count up the number of occurrences of each word -->
+
 <!-- word_freq <- table(text) -->
+
 <!-- word_freq[1:5] -->
+
 <!-- ``` -->
 
 <!-- The next line assembles a table of frequency counts in `text`. There are 4558 spaces, 4 occurrences of the string `_I_`, and so on. -->
 
 <!-- ```{r} -->
+
 <!-- # Sort the table by decreasing frequency -->
+
 <!-- word_freq <- sort(word_freq, decreasing = T) -->
+
 <!-- word_freq[1:5] -->
+
 <!-- ``` -->
 
 <!-- We can then sort `word_freq` so that the most frequent words are listed first. The final line just prints out the first 10 words instead of the first 5. -->
@@ -792,31 +831,41 @@ You can find the entire list of options you can use to format your HTML file wit
 <!-- Download the following file to your working directory: [words.R](code/words.R), or paste the following code into a new R script and save it as `words.R` -->
 
 <!-- ```{r, eval = F} -->
+
 <!-- # Take arguments from the command line -->
+
 <!-- args <- commandArgs(TRUE) -->
 
 <!-- # Read in the file -->
+
 <!-- text <- readLines(args[1]) -->
 
 <!-- # Split the lines of text into separate words -->
+
 <!-- text <- strsplit(text, " ") -->
 
 <!-- # Simplify the list -->
+
 <!-- text <- unlist(text) -->
 
 <!-- # Count up the number of occurrences of each word -->
+
 <!-- word_freq <- table(text) -->
 
 <!-- # Sort the table by decreasing frequency -->
+
 <!-- word_freq <- sort(word_freq, decreasing = T) -->
 
 <!-- # Show the counts for the most common 10 words -->
+
 <!-- word_freq[1:10] -->
+
 <!-- ``` -->
 
 <!-- In a terminal window opened at the location you saved the file (and the corresponding text file), enter the following: `Rscript words.R dickens-oliver-627.txt`. -->
 
 <!-- Here, `Rscript` is the command that tells R to evaluate the file, `words.R` is the R code to run, and `dickens-oliver-627.txt` is an argument to your R script that tells R where to find the text file. This is similar to the python code, but instead, the user passes the file name in at the same time as the script instead of having to wait around a little bit. -->
+
 <!-- ::: -->
 
 <!-- </details> -->

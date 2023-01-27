@@ -1,0 +1,684 @@
+---
+execute:
+  freeze: auto  # re-render only when source changes
+  warning: false
+  message: false
+editor: source
+---
+
+```{r echo=FALSE}
+bytes <- file.size("04-data-joins-and-transformations.qmd")
+words <- bytes/10
+minutes <- words/200
+```
+
+# Data Joins and Transformations
+
+```{r fa-setup, include=FALSE}
+library(quarto)
+library(fontawesome)
+library(ggplot2)
+fa_html_dependency()
+library(knitr)
+library(kableExtra)
+library(tidyverse)
+# htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+`r fa("book-open")` Reading: `r ceiling(minutes)` minute(s) at 200 WPM.
+
+`r fa("video")` Videos: 26 minutes.
+
+## Objectives {#ch4-objectives .unnumbered}
+
+Broadly, your objective while reading this chapter is to be able to identify data sets which have "messy" formats and determine a sequence of operations to transition the data into "tidy" format. To do this, you should be master the following concepts:
+
+-   Determine what data format is necessary to generate a desired plot or statistical model
+-   Understand the differences between "wide" and "long" format data and how to transition between the two structures
+-   Understand relational data formats and how to use data joins to assemble data from multiple tables into a single table.
+
+::: note
+Functions covered this week:
+
+`library(tidyr)`
+
++ `pivot_longer()`, `pivot_wider()`
++ `separate()`, `unite()`
+
+`library(dplyr)`
+
++ `left_join()`, `right_join()`, `full_join()`
++ `semi_join()`, `anti_join()`
+
+:::
+
+<br>
+
+::: check-in
+## Check-ins {#ch4-checkins .unnumbered}
+
+There are two check-ins for this week:
+
++ [Check-in 4.1: Pivoting Cereal](#checkin4-1)
++ [Check-in 4.2: Practice with Joins](#checkin4-2)
+:::
+
+## Identifying the problem: Messy data
+
+The illustrations below are lifted from an [excellent blog post](https://www.openscapes.org/blog/2020/10/12/tidy-data/) [@lowndesTidyDataEfficiency2020] about tidy data; they're reproduced here because
+
+::: column-margin
+::: youtube-container
+
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/Afc3MqWXfls" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+:::
+:::
+
+1.  they're beautiful and licensed as CCA-4.0-by, and
+2.  they might be more memorable than the equivalent paragraphs of text without illustration.
+
+Most of the time, data does not come in a format suitable for analysis. Spreadsheets are generally optimized for data entry or viewing, rather than for statistical analysis:
+
+-   Tables may be laid out for easy data entry, so that there are multiple observations in a single row
+-   It may be visually preferable to arrange columns of data to show multiple times or categories on the same row for easy comparison
+
+When we analyze data, however, we care much more about the fundamental structure of observations: discrete units of data collection. Each observation may have several corresponding variables that may be measured simultaneously, but fundamentally each discrete data point is what we are interested in analyzing.
+
+The structure of **tidy data** reflects this preference for keeping the data in a fundamental form: each observation is in its own row, any observed variables are in single columns. This format is inherently rectangular, which is also important for statistical analysis - our methods are typically designed to work with matrices of data.
+
+![Tidy data format, illustrated.](https://www.openscapes.org/img/blog/tidydata/tidydata_1.jpg){#fig-tidy-data-definition fig-alt="Stylized text providing an overview of Tidy Data. The top reads “Tidy data is a standard way of mapping the meaning of a dataset to its structure. - Hadley Wickham.” On the left reads “In tidy data: each variable forms a column; each observation forms a row; each cell is a single measurement.” There is an example table on the lower right with columns ‘id’, ‘name’ and ‘color’ with observations for different cats, illustrating tidy data structure."}
+
+![An illustration of the principle that every messy dataset is messy in its own way.](https://www.openscapes.org/img/blog/tidydata/tidydata_2.jpg){fig-alt="There are two sets of anthropomorphized data tables. The top group of three tables are all rectangular and smiling, with a shared speech bubble reading “our columns are variables and our rows are observations!”. Text to the left of that group reads “The standard structure of tidy data means that “tidy datasets are all alike…” The lower group of four tables are all different shapes, look ragged and concerned, and have different speech bubbles reading (from left to right) “my column are values and my rows are variables”, “I have variables in columns AND in rows”, “I have multiple variables in a single column”, and “I don’t even KNOW what my deal is.” Next to the frazzled data tables is text “...but every messy dataset is messy in its own way. -Hadley Wickham.”"}
+
+The preference for tidy data has several practical implications: it is easier to reuse code on tidy data, allowing for analysis using a standardized set of tools (rather than having to build a custom tool for each data analysis job).
+
+![Tidy data is easier to manage because the same tools and approaches apply to multiple datasets.](https://www.openscapes.org/img/blog/tidydata/tidydata_3.jpg){fig-alt="On the left is a happy cute fuzzy monster holding a rectangular data frame with a tool that fits the data frame shape. On the workbench behind the monster are other data frames of similar rectangular shape, and neatly arranged tools that also look like they would fit those data frames. The workbench looks uncluttered and tidy. The text above the tidy workbench reads “When working with tidy data, we can use the same tools in similar ways for different datasets…” On the right is a cute monster looking very frustrated, using duct tape and other tools to haphazardly tie data tables together, each in a different way. The monster is in front of a messy, cluttered workbench. The text above the frustrated monster reads “...but working with untidy data often means reinventing the wheel with one-time approaches that are hard to iterate or reuse.”"}
+
+In addition, standardized tools for data analysis means that it is easier to collaborate with others: if everyone starts with the same set of assumptions about the dataset, you can borrow methods and tools from a collaborator's analysis and easily apply them to your own dataset.
+
+::: {#fig-tidy-data-advantages layout-ncol="2"}
+![Collaboration with tidy data.](https://www.openscapes.org/img/blog/tidydata/tidydata_4.jpg){fig-alt="Two happy looking round fuzzy monsters, each holding a similarly shaped wrench with the word “wrangle” on it. Between their tools is held up a rectangular data table labeled “TIDY.”"}
+
+![Tidy data enables standardized workflows.](https://www.openscapes.org/img/blog/tidydata/tidydata_5.jpg){fig-alt="Cute fuzzy monsters putting rectangular data tables onto a conveyor belt. Along the conveyor belt line are different automated “stations” that update the data, reading “WRANGLE”, “VISUALIZE”, and “MODEL”. A monster at the end of the conveyor belt is carrying away a table that reads “Complete analysis.”"}
+
+Tidy data makes it easier to collaborate with others and analyze new data using standardized workflows.
+:::
+
+<details class="ex">
+
+<summary>Examples: Messy Data</summary>
+
+```{r tidypkgs, message = F, include = F}
+library(dplyr) # Data wrangling
+library(tidyr) # Data rearranging
+library(tibble) # data table
+```
+
+These datasets all display the same data: TB cases documented by the WHO in Afghanistan, Brazil, and China, between 1999 and 2000. There are 4 variables: country, year, cases, and population, but each table has a different layout.
+
++ For each of the data set, determine whether each table is tidy. If it is not, identify which rule or rules it violates.
+
++ What would you have to do in order to compute a standardized TB infection rate per 100,000 people?
+
+*All of these data sets are "built-in" to the `tidyverse` package*
+
+::: panel-tabset
+#### Table 1 {.unnumbered}
+
+```{r tidy1, echo = F}
+knitr::kable(table1, caption = "Table 1")
+```
+
+Here, each observation is a single row, each variable is a column, and everything is nicely arranged for e.g. regression or statistical analysis. We can easily compute another measure, such as cases per 100,000 population, by taking cases/population \* 100000 (this would define a new column).
+
+#### 2 {#table2 .unnumbered}
+
+```{r tidy2, echo = F}
+knitr::kable(table2, caption = "Table 2")
+```
+
+Here, we have 4 columns again, but we now have 12 rows: one of the columns is an indicator of which of two numerical observations is recorded in that row; a second column stores the value. This form of the data is more easily plotted in e.g. ggplot2, if we want to show lines for both cases and population, but computing per capita cases would be much more difficult in this form than in the arrangement in table 1.
+
+#### 3 {.unnumbered}
+
+```{r tidy3, echo = F}
+knitr::kable(table3, caption = "Table 3")
+```
+
+This form has only 3 columns, because the rate variable (which is a character) stores both the case count and the population. We can't do *anything* with this format as it stands, because we can't do math on data stored as characters. However, this form might be easier to read and record for a human being.
+
+#### 4 {#tables4ab .unnumbered}
+
+```{r tidy4, echo = F}
+knitr::kable(table4a, caption = "Table 4a")
+knitr::kable(table4b, caption = "Table 4b")
+```
+
+In this form, we have two tables - one for population, and one for cases. Each year's observations are in a separate column. This format is often found in separate sheets of an excel workbook. To work with this data, we'll need to transform each table so that there is a column indicating which year an observation is from, and then merge the two tables together by country and year.
+
+#### 5 {.unnumbered}
+
+```{r tidy5, echo = F}
+knitr::kable(table5, caption = "Table 5")
+```
+
+Table 5 is very similar to table 3, but the year has been separated into two columns - century, and year. This is more common with year, month, and day in separate columns (or date and time in separate columns), often to deal with the fact that spreadsheets don't always handle dates the way you'd hope they would.
+:::
+:::
+</details>
+
+<br>
+
+By the end of this chapter, you will have the skills needed to wrangle the most common "messy" data sets into "tidy" form.
+
+## Pivot Operations
+
+It's fairly common for data to come in forms which are convenient for either human viewing or data entry. Unfortunately, these forms aren't necessarily the most friendly for analysis.
+
+![](https://github.com/gadenbuie/tidyexplain/raw/main/images/static/png/original-dfs-tidy.png)
+
+The two operations we'll learn here are wide -\> long and long -\> wide.
+
+![](https://github.com/gadenbuie/tidyexplain/raw/main/images/tidyr-pivoting.gif)
+
+This animation uses the functions `pivot_wider()` and `pivot_longer()` from the `tidyr` package in R -- [Animation source](https://github.com/kelseygonzalez/tidyexplain/tree/wider_longer).
+
+### Longer
+
+In many cases, the data come in what we might call "wide" form - some of the column names are not names of variables, but instead, are themselves values of another variable.
+
+::: column-margin
+::: youtube-container
+
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/2rQZNlH2734" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+:::
+:::
+
+::: panel-tabset
+#### Picture the Operation
+
+Tables 4a and 4b (from above) are good examples of data which is in "wide" form and should be in long(er) form: the years, which are variables, are column names, and the values are cases and population respectively.
+
+```{r longer-pivot-demo}
+table4a
+table4b
+```
+
+The solution to this is to rearrange the data into "long form": to take the columns which contain values and "stack" them, adding a variable to indicate which column each value came from. To do this, we have to duplicate the values in any column which isn't being stacked (e.g. country, in both the example above and the image below).
+
+![A visual representation of what the pivot_longer operation looks like in practice.](images/04-data-joins-and-data-transformations/tidyr_pivot_longer.png){fig-alt="A wide-to-long transformation operation, where the values of the id variables are repeated for each column which is used as a key; the values in each column are moved into a value column. There is a row of data in the transformed data frame for each combination of id variables and key variables."}
+
+Once our data are in long form, we can (if necessary) separate values that once served as column labels into actual variables, and we'll have tidy(er) data.
+
+#### `pivot_longer()`
+
+```{r tidyr-pivot-longer-demo2}
+table4a |> 
+  pivot_longer(cols = `1999`:`2000`, 
+               names_to = "year", 
+               values_to = "cases")
+table4b |> 
+  pivot_longer(cols = -country, 
+               names_to = "year", 
+               values_to = "population")
+```
+
+The columns are moved to a variable with the name passed to the argument "names_to" (hopefully, that is easy to remember), and the values are moved to a variable with the name passed to the argument "values_to" (again, hopefully easy to remember).
+
+We identify ID variables (variables which we don't want to pivot) by not including them in the pivot statement. We can do this in one of two ways:
+
+-   select only variables (columns) we want to pivot *(see table4a pivot)*
+-   select variables (columns) we don't want to pivot, using `-` to remove them *(see table4b pivot)*
+
+Which option is easier depends how many things you're pivoting (and how the columns are structured).
+:::
+
+### Wider
+
+While it's very common to need to transform data into a longer format, it's not that uncommon to need to do the reverse operation. When an observation is scattered across multiple rows, your data is too long and needs to be made wider again.
+
+::: column-margin
+::: youtube-container
+
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/NKnl2WoNpK0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+:::
+:::
+
+::: panel-tabset
+#### Picture the Operation
+
+Table 2 (from above) is an example of a table that is in long format but needs to be converted to a wider layout to be "tidy" - there are separate rows for cases and population, which means that a single observation (one year, one country) has two rows.
+
+```{r}
+table2
+```
+
+![A visual representation of what the pivot_wider operation looks like in practice.](images/04-data-joins-and-data-transformations/tidyr_pivot_wider.png){fig-alt="An illustration of the transition from long data to wide data. In the long data frame, there are alternating rows of cases and populations, with corresponding counts. In the wide data frame, for each combination of id variables country and year, there are two columns: cases, and pop, each with corresponding values. That is, the key variables (cases, pop) in the long data frame become columns in the wide data frame."}
+
+#### `pivot_wider()`
+
+```{r pivot-wider-demo}
+table2 |>
+  pivot_wider(names_from  = type, 
+              values_from = count)
+```
+
+:::
+
+
+<br>
+
+::: learn-more
+### Learn More in R4DS {-}
+
+Read more about pivoting in [r4ds](https://r4ds.hadley.nz/data-tidy.html#sec-pivoting).
+
+:::
+
+<br>
+
+::: check-in
+### Check-in 4.1: Pivoting Cereal {#checkin4-1 .unnumbered}
+
+Load in the `cereal` data set:
+
+```{r}
+library(liver)
+data(cereal)
+head(cereal)
+```
+
+Create a new data set called `cereals_long`, that has three columns:
+
++ The `name` of the cereal
++ A column called `Nutrient` with values "protein", "fat", or "fiber".
++ A column called `Amount` with the corresponding amount of the nutrient.
+
+Complete the code template to complete the task in the Canvas Quiz.
+
+```{r checkin4-1-answer}
+#| include: false
+cereal |> 
+  pivot_longer(cols = c(protein, fat, fiber),
+               names_to = "Nutrient",
+               values_to = "Amount") |> 
+  select(name, Nutrient, Amount)
+```
+
+:::
+
+## Separating and Uniting Variables
+
+We will talk about strings and regular expressions next week, but there's a task that is fairly commonly encountered with functions that belong to the `tidyr` package: separating variables into two different columns `separate()` and it's complement, `unite()`, which is useful for combining two variables into one column.
+
+::: panel-tabset
+
+### `separate()`
+
+```{r tidy-separate-pic, echo = F, out.width = "50%", fig.cap = "A visual representation of what separating variables means for data set operations."}
+knitr::include_graphics("images/04-data-joins-and-data-transformations/tidyr_separate.png")
+```
+
+```{r separate-demo}
+table3 |>
+  separate(col    = rate, 
+           into   = c("cases", "population"), 
+           sep    = "/", 
+           remove = F
+           )
+```
+
+I've left the rate column in the original data frame (`remove = F`) just to make it easy to compare and verify that yes, it worked. 
+
+### `unite()`
+
+And, of course, there is a complementary operation, which is when it's necessary to join two columns to get a useable data value. 
+
+```{r tidyr-unite-pic, echo = F, out.width = "50%", fig.cap = "A visual representation of what uniting variables means for data set operations."}
+knitr::include_graphics("images/04-data-joins-and-data-transformations/tidyr_unite.png")
+```
+
+```{r tidyr-unite-demo}
+table5 |>
+  unite(col = "year", 
+        c(century, year), 
+        sep = ''
+        )
+```
+:::
+
+<br>
+
+::: learn-more
+### Learn More in R4DS {-}
+
+Read more about `separate()` and `unite()` in [r4ds](https://r4ds.had.co.nz/tidy-data.html#separating-and-uniting).
+
+:::
+
+## Merging Tables
+
+The final essential data tidying and transformation skill you need to acquire is joining tables. It is common for data to be organized **relationally** - that is, certain aspects of the data apply to a group of data points, and certain aspects apply to individual data points, and there are relationships between the individual data points and the groups of data points that have to be documented.
+
+<details class="ex">
+
+<summary>Examples: Relational Data Example: Primary School Records</summary>
+
+Each individual has certain characteristics:
+
+-   full_name
+-   gender
+-   birth date
+-   ID number
+
+Each student has specific characteristics:
+
+-   ID number
+-   parent name
+-   parent phone number
+-   medical information
+-   Class ID
+
+Teachers may also have additional information:
+
+-   ID number
+-   Class ID
+-   employment start date
+-   education level
+-   compensation level
+
+There are also fields like grades, which occur for each student in each class, but multiple times a year.
+
+-   ID number
+-   Student ID
+-   Class ID
+-   year
+-   term number
+-   subject
+-   grade
+-   comment
+
+And for teachers, there are employment records on a yearly basis
+
+-   ID number
+-   Employee ID
+-   year
+-   rating
+-   comment
+
+But each class also has characteristics that describe the whole class as a unit:
+
+-   location ID
+-   class ID
+-   meeting time
+-   grade level
+
+Each location might also have some logistical information attached:
+
+-   location ID
+-   room number
+-   building
+-   number of seats
+-   AV equipment
+
+![Primary School Database Schema](images/04-data-joins-and-data-transformations/PrimarySchoolExample.png) <!-- <a href="https://dbdiagram.io/embed/5ef387179ea313663b3b048e">Link to diagram of the database</a> -->
+
+We could go on, but you can see that this data is hierarchical, but also relational: - each class has both a teacher and a set of students - each class is held in a specific location that has certain equipment
+
+It would be silly to store this information in a single table (though it probably can be done) because all of the teacher information would be duplicated for each student in each class; all of the student's individual info would be duplicated for each grade. There would be a lot of wasted storage space and the tables would be much more confusing as well.
+
+But, relational data also means we have to put in some work when we have a question that requires information from multiple tables. Suppose we want a list of all of the birthdays in a certain class. We would need to take the following steps:
+
+-   get the Class ID
+-   get any teachers that are assigned that Class ID - specifically, get their ID number
+-   get any students that are assigned that Class ID - specifically, get their ID number
+-   append the results from teachers and students so that there is a list of all individuals in the class
+-   look through the "individual data" table to find any individuals with matching ID numbers, and keep those individuals' birth days.
+
+It is helpful to develop the ability to lay out a set of tables in a schema (because often, database schemas aren't well documented) and mentally map out the steps that you need to combine tables to get the information you want from the information you have.
+
+</details>
+
+Table joins allow us to combine information stored in different tables, keeping certain information (the stuff we need) while discarding extraneous information.
+
+**keys** are values that are found in multiple tables that can be used to connect the tables. A key (or set of keys) uniquely identify an observation. A **primary key** identifies an observation in its own table. A **foreign key** identifies an observation in another table.
+
+There are 3 main types of table joins:
+
+-   **Mutating joins**, which add columns from one table to matching rows in another table\
+    Ex: adding birthday to the table of all individuals in a class
+
+-   **Filtering joins**, which remove rows from a table based on whether or not there is a matching row in another table (but the columns in the original table don't change)\
+    Ex: finding all teachers or students who have class ClassID
+
+-   **Set operations**, which treat observations as set elements (e.g. union, intersection, etc.)\
+    Ex: taking the union of all student and teacher IDs to get a list of individual IDs
+
+### Animating Joins
+
+Note: all of these animations are stolen from <https://github.com/gadenbuie/tidyexplain>.
+
+If we start with two tables, x and y,
+
+![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/master/images/static/png/original-dfs.png)
+
+#### Mutating Joins {-}
+
+We're primarily going to focus on mutating joins, as filtering joins can be accomplished by ... filtering ... rather than by table joins.
+
+::: panel-tabset
+##### Inner Join
+
+We can do a filtering `inner_join` to keep only rows which are in both tables (but we keep all columns)
+
+![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/master/images/inner-join.gif)
+
+##### Left Join
+
+But what if we want to keep all of the rows in x? We would do a `left_join`
+
+![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/master/images/left-join.gif)
+
+If there are multiple matches in the y table, though, we might have to duplicate rows in x. This is still a left join, just a more complicated one.
+
+![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/master/images/left-join-extra.gif)
+
+##### Right Join
+
+If we wanted to keep all of the rows in y, we would do a `right_join`:
+
+![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/master/images/right-join.gif)
+
+(or, we could do a left join with y and x, but... either way is fine).
+
+##### Full Join
+
+And finally, if we want to keep all of the rows, we'd do a `full_join`:
+
+![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/master/images/full-join.gif)
+
+You can find other animations corresponding to filtering joins and set operations [here](https://raw.githubusercontent.com/gadenbuie/tidyexplain/master/images/full-join.gif)
+:::
+
+Every join has a "left side" and a "right side" - so in `some_join(A, B)`, A is the left side, B is the right side.
+
+Joins are differentiated based on how they treat the rows and columns of each side. In mutating joins, the columns from both sides are always kept.
+
++-------+-----------+------------+----------+
+|       | Left Side | Right Side |          |
++-------+-----------+------------+----------+
+|       | Join Type | Rows       | Cols     |
++-------+-----------+------------+----------+
+| inner | matching  | all        | matching |
++-------+-----------+------------+----------+
+| left  | all       | all        | matching |
++-------+-----------+------------+----------+
+| right | matching  | all        | all      |
++-------+-----------+------------+----------+
+| outer | all       | all        | all      |
++-------+-----------+------------+----------+
+
+<details class="ex">
+
+<summary>Demonstration: Mutating Joins</summary>
+
+```{r mutating-joins1-r}
+t1 <- tibble(x = c("A", "B", "D"), y = c(1, 2, 3))
+t2 <- tibble(x = c("B", "C", "D"), z = c(2, 4, 5))
+```
+
+An inner join keeps only rows that exist on both sides, but keeps all columns.
+
+```{r mutating-joins2-r}
+inner_join(t1, t2)
+```
+
+A left join keeps all of the rows in the left side, and adds any columns from the right side that match rows on the left. Rows on the left that don't match get filled in with NAs.
+
+```{r mutating-joins3-r}
+left_join(t1, t2)
+left_join(t2, t1)
+```
+
+There is a similar construct called a right join that is equivalent to flipping the arguments in a left join. The row and column ordering may be different, but all of the same values will be there
+
+```{r mutating-joins4-r}
+right_join(t1, t2)
+right_join(t2, t1)
+```
+
+An outer join keeps everything - all rows, all columns. In dplyr, it's known as a `full_join`.
+
+```{r mutating-joins5-r}
+full_join(t1, t2)
+```
+
+</details>
+
+<br>
+
+I've included the other types of joins as animations because the animations are so useful for understanding the concept, but feel free to read through more information on these types of joins [here](https://r4ds.hadley.nz/joins.html#filtering-joins).
+
+#### Filtering Joins {-}
+
+::: panel-tabset
+##### Semi Join {-}
+
+A semi join keeps matching rows from x and y, discarding all other rows and keeping only the columns from x.
+
+![](https://github.com/gadenbuie/tidyexplain/raw/main/images/semi-join.gif)
+
+##### Anti Join {-}
+
+An anti-join keeps rows in x that do not have a match in y, and only keeps columns in x.
+
+![](https://github.com/gadenbuie/tidyexplain/raw/main/images/anti-join.gif)
+:::
+
+<br>
+
+::: learn-more
+### Learn More in R4DS {-}
+
+Read more about joins in [r4ds](https://r4ds.hadley.nz/joins.html)
+
+:::
+
+<br>
+
+::: check-in
+### Check-in 4.2: Practice with Joins {#checkin4-2 .unnumbered}
+
+The following code creates three data sets:
+
+```{r}
+prof_info <- data.frame(
+  professor = 
+    c("Bodwin", "Glanz", "Carlton", "Sun", "Robinson"),
+  undergrad_school = 
+    c("Harvard", "Cal Poly", "Berkeley", "Harvard", "Winona State University"),
+  grad_school = 
+    c("UNC", "Boston University", "UCLA", "Stanford", "University of Nebraska-Lincoln")
+)
+
+prof_course <- data.frame(
+  professor = c("Bodwin", "Glanz", "Carlton", "Theobold", "Robinson"),
+  Stat_331 = c(TRUE, TRUE, TRUE, TRUE, TRUE),
+  Stat_330 = c(FALSE, TRUE, TRUE, FALSE, TRUE),
+  Stat_431 = c(TRUE, TRUE, FALSE, TRUE, FALSE)
+)
+
+course_info <- data.frame(
+  course = c("Stat_331", "Stat_330", "Stat_431"),
+  num_sections = c(8, 3, 1)
+)
+```
+
+Here is what they look like once created:
+
+```{r}
+prof_info
+```
+
+```{r}
+prof_course 
+```
+
+```{r}
+course_info
+```
+
+These data sets contain information about five Cal Poly professors, their educational history, the classes they are able to teach, and the number of sections of each class that need to be assigned.
+
++ **Question 1** Combine data sets `prof_info` and `prof_course` to make this data set:
+
+```{r}
+#| echo: false
+inner_join(prof_info, prof_course) |> 
+  kable()
+```
+
++ **Question 2** Combine data sets `prof_info` and `prof_course` to make this data set:
+
+```{r}
+#| echo: false
+left_join(prof_info, prof_course) |> 
+  knitr::kable()
+```
+
++ **Question 3** Transform and combine data sets `prof_course` and `course_info` to make this data set:
+
+```{r}
+#| echo: false
+
+prof_course |> 
+  pivot_longer(cols = c(Stat_331, Stat_330, Stat_431),
+               names_to = "course",
+               values_to = "can_teach") |> 
+full_join(course_info) |> 
+  kable()
+```
+
+Complete the code templates to complete these tasks in the Canvas Quiz.
+
+:::
+
+<br>
+
+::: tryitout
+## PA 4: Government Spending {.unnumbered}
+
+This week you will be tidying untidy data to explore the relationship between countries of the world and military spending.
+
+Visit [PA 4: Government Spending] (https://earobinson95.github.io/stat331-calpoly/practice-activities/PA4-government-spending.html) for instructions.
+
+Submit your answers to associated questions to the Canvas quiz.
+
+1. What four regions were NOT removed from the military_clean data set?
+2. What year was the second largest military expenditure? What country had this expenditure?
+:::
+
+### References {.unnumbered}
