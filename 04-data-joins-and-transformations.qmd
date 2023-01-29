@@ -673,7 +673,7 @@ Complete the code templates to complete these tasks in the Canvas Quiz.
 
 This week you will be tidying untidy data to explore the relationship between countries of the world and military spending.
 
-Visit [PA 4: Government Spending] (https://earobinson95.github.io/stat331-calpoly/practice-activities/PA4-government-spending.html) for instructions.
+Visit [PA 4: Government Spending](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA4-government-spending.html) for instructions.
 
 Submit your answers to associated questions to the Canvas quiz.
 

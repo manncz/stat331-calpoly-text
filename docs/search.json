@@ -305,6 +305,6 @@
     "href": "04-data-joins-and-transformations.html#pa-4-government-spending",
     "title": "\n4  Data Joins and Transformations\n",
     "section": "PA 4: Government Spending",
-    "text": "PA 4: Government Spending\nThis week you will be tidying untidy data to explore the relationship between countries of the world and military spending.\nVisit PA 4: Government Spending (https://earobinson95.github.io/stat331-calpoly/practice-activities/PA4-government-spending.html) for instructions.\nSubmit your answers to associated questions to the Canvas quiz.\n\nWhat four regions were NOT removed from the military_clean data set?\nWhat year was the second largest military expenditure? What country had this expenditure?"
+    "text": "PA 4: Government Spending\nThis week you will be tidying untidy data to explore the relationship between countries of the world and military spending.\nVisit PA 4: Government Spending for instructions.\nSubmit your answers to associated questions to the Canvas quiz.\n\nWhat four regions were NOT removed from the military_clean data set?\nWhat year was the second largest military expenditure? What country had this expenditure?"
   }
 ]

@@ -37,28 +37,635 @@ library(tidyverse)
 ::: check-in
 ## Check-ins {#ch5-checkins .unnumbered}
 
-There are two check-ins for this week:
+There are three check-ins for this week:
 
 + [Check-in 5.1: xxx](#checkin5-1)
 + [Check-in 5.2: xxx](#checkin5-2)
++ [Check-in 5.3: xxx](#checkin5-2)
 :::
 
-## Factors
+## Factors with `forcats`
 
-## Strings
+We have been floating around the idea of *factor* data types. In this chapter, we will formally define factors and why they are needed for data visualization and analysis. We will then learn useful functions for workinig with factors in our data cleaning steps.
 
-## Dates
+::: column-margin
+::: youtube-video-container
+
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/dAiSYli7tVg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+:::
+:::
+
+In short, factors are categorical variables with a fixed number of values (think a set number of groups). One of the main features that set factors apart from groups is that you can reorder the groups to be non-alphabetical. In this section we will be using the `forcats` package (part of the `tidyverse`!) to create and manipulate factor variables.
+
+::: go-read
+(Required) Go read about factors in [r4ds](https://r4ds.hadley.nz/factors.html).
+:::
+
+<br>
+
+::: note
+### `forcats` {-}
+
+Useful functions from the `forcats` package *(not an exhaustive list)*:
+
++ `factor()`, `levels()`
++ `fact_relevel()`
++ `fct_reorder()`
++ `fct_collapse()`
+
+Download the [`forcats` cheatsheet](https://posit.co/wp-content/uploads/2022/10/factors-1.pdf).
+
+:::
+
+::: column-margin
+```{r}
+#| echo: false
+#| out-width: "70%"
+#| fig-align: center
+knitr::include_graphics("https://github.com/rstudio/hex-stickers/blob/main/thumbs/forcats.png?raw=true")
+```
+:::
+
+<!-- ### What is a factor? -->
+
+<!-- Let's take a look at a vector, `days` which contains days of the week. -->
+
+<!-- ```{r} -->
+<!-- days <- c("Wed", "Thurs", "Sun", "Sun", "Mon") -->
+<!-- days -->
+<!-- ``` -->
+<!-- The values in our vectors are categorical variables and therefore, `R` is automatically going to read the vector in as a character data type.  -->
+
+<!-- ```{r} -->
+<!-- class(days) -->
+<!-- ``` -->
+
+<!-- But let's think about what is contained in this vector. There are only seven days of the week and there is a natural ordering to those values.  -->
+
+<!-- ::: warning -->
+
+<!-- Working with `days` as a character vector introduces a couple of problems: -->
+
+<!-- 1. There is nothing saving you from typos -- e.g., *Web* -->
+
+<!-- ```{r} -->
+<!-- days_misspelled <- c("Web", "Thurs", "Sun", "Sun", "Mon") -->
+<!-- ``` -->
+
+<!-- 2. and it sorts alphabetically. -->
+
+<!-- ```{r} -->
+<!-- sort(days) -->
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- We can convert `days` to a vector of `factor()` data types by defining a valid ordering and passing it into the levels function argument. -->
+
+<!-- ```{r} -->
+<!-- day_levels <- c("Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun") -->
+<!-- days_fct <- factor(days, levels = day_levels) -->
+<!-- ``` -->
+<!-- We can then see the `levels()` of our factor variable. -->
+
+<!-- ```{r} -->
+<!-- levels(days_fct) -->
+<!-- ``` -->
+<!-- Any values not defined as a factor level will be converted to <NA> just like `as.numeric()` did to values which were not numbers. -->
+
+<!-- ```{r} -->
+<!-- #| error: true -->
+<!-- factor(days_misspelled, levels = day_levels) -->
+<!-- ``` -->
+<!-- Alternatively, you might accidentally miss the misspelling so using `fct()` from the `forcats` package will provide an error to alert you of the misspelling. -->
+
+<!-- ```{r} -->
+<!-- #| error: true -->
+<!-- fct(days_misspelled, levels = day_levels) -->
+<!-- ``` -->
+
+<!-- You do not have to specify the levels when converting a variable into a vector, but they will automatically be defined in alphabetical order and the levels will only contain those values which appear in the original vector. -->
+
+<!-- ```{r} -->
+<!-- factor(days) -->
+<!-- ``` -->
+
+<!-- ## Factor Order -->
+
+<!-- It may be useful, particularly in data visualizations, to order a factor variable based on the value of another variable. -->
+
+<!-- ::: ex -->
+
+<!-- Let's work with the `cereal` data set in the `liver` package. This data set contains nutrituional, manufacture, and marketing information for various cereals. -->
+
+<!-- ```{r} -->
+<!-- library(liver) -->
+<!-- data(cereal) -->
+<!-- str(cereal, hide.attr = TRUE) -->
+<!-- ``` -->
+<!-- Notice that manufacture `manuf` is a factor variable. Let's investigate! -->
+
+<!-- The levels of the manufacture factor variable follows alphabetical order.  -->
+
+<!-- ```{r} -->
+<!-- levels(cereal$manuf) -->
+<!-- ``` -->
+
+<!-- We can use `count()` to find how many cereals are produced by each manufacturer. -->
+
+<!-- ```{r} -->
+<!-- cereal |>  -->
+<!--   count(manuf) -->
+<!-- ``` -->
+
+<!-- We can use `dplyr` verbs to obtain summary statistics on nutritional content of the cereals for each manufacturer. -->
+
+<!-- ```{r} -->
+<!-- cereal_summary <- cereal |> -->
+<!--   group_by(manuf) |>  -->
+<!--   summarise(avg_sugars = mean(sugars), -->
+<!--             n = n() -->
+<!--             ) -->
+<!-- cereal_summary -->
+<!-- ``` -->
+
+<!-- ::: panel-tabset -->
+
+<!-- ### Original Plot -->
+
+<!-- We can create a plot displaying the average sugar for each manufacture. -->
+
+<!-- ```{r} -->
+<!-- cereal_summary |>  -->
+<!-- ggplot(aes(x = avg_sugars, y = manuf)) + -->
+<!--   geom_segment(aes(xend = 0, yend = manuf)) + -->
+<!--   geom_point() + -->
+<!--   labs(x = "Average Sugar (grams)", -->
+<!--        subtitle = "Manufacture Company", -->
+<!--        y = "") + -->
+<!--   theme_bw() -->
+<!-- ``` -->
+
+<!-- This is nice, but the points/segments are a little "out of order" or sporadic. Wouldn't it be nice if we could `reorder()` the levels of manufacture so that our plot shows the manufactures with the highest average sugar at the top?  -->
+
+<!-- ### `fct_reorder()` -->
+
+<!-- To accomplish this, we can use `fct_reorder()`: -->
+
+<!-- + `f`, the factor variable whose levels you want to modify -->
+<!-- + `x`, the numeric variable you want to use to reorder the levels -->
+<!-- + (optional) `fun`, a function that is used if there are multiple values of the numeric variable for each factor group. The default function is the median. -->
+
+<!-- Use `fct_reorder(manuf, avg_sugars)`! This looks a lot nicer. -->
+
+<!-- ```{r} -->
+<!-- cereal_summary |>  -->
+<!-- ggplot(aes(x = avg_sugars, y = fct_reorder(manuf, avg_sugars))) + -->
+<!--   geom_segment(aes(xend = 0, yend = manuf)) + -->
+<!--   geom_point() + -->
+<!--   labs(x = "Average Sugar (grams)", -->
+<!--        subtitle = "Manufacture Company", -->
+<!--        y = "") + -->
+<!--   theme_bw() -->
+<!-- ``` -->
+
+<!-- Notice how we reordered within our `ggplot` code? You may want to do this before passing the data set in with the `mutate()` `dplyr` verb. -->
+
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- cereal_summary |>  -->
+<!--   mutate(manuf = fct_reorder(manuf, avg_sugars)) |>  -->
+<!-- ggplot(aes(x = avg_sugars, y = manuf)) + -->
+<!--   geom_segment(aes(xend = 0, yend = manuf)) + -->
+<!--   geom_point() + -->
+<!--   labs(x = "Average Sugar (grams)", -->
+<!--        subtitle = "Manufacture Company", -->
+<!--        y = "") + -->
+<!--   theme_bw() -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- What if we want to  -->
+
+<!-- ### `fct_relevel()` -->
+
+<!-- ### `fct_reorder2()` -->
+
+<!-- ### `fct_infreq()` -->
+
+
+## String Operations with `stringr`
+
+Nearly always, when multiple variables are stored in a single column, they are stored as character variables. There are many different "levels" of working with strings in programming, from simple find-and-replaced of fixed (constant) strings to regular expressions, which are extremely powerful (and extremely complicated).
+
+::: column-margin
+::: youtube-video-container
+
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/Oo_MtXwpi2Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+:::
+:::
+
+> Some people, when confronted with a problem, think "I know, I'll use regular expressions." Now they have two problems. - Jamie Zawinski
+
+![Alternately, the xkcd version of the above quote](https://imgs.xkcd.com/comics/perl_problems.png)
+
+The [stringr cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/strings.pdf) by RStudio may be helpful as you complete tasks related to this section - it may even be useful in Python as the 2nd page has a nice summary of regular expressions.
+
++------------------------------------------------------------+------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+
+| Task                                                       | R                                                                                              | Python                                                                                     |
++============================================================+================================================================================================+============================================================================================+
+| Replace `pattern` with `replacement`                       | base: `gsub(pattern, replacement, x)`                                                          | pandas: `x.str.replace(pattern, replacement)` (not vectorized over pattern or replacement) |
+|                                                            |                                                                                                |                                                                                            |
+|                                                            | stringr: `str_replace(x, pattern, replacement)` and `str_replace_all(x, pattern, replacement)` |                                                                                            |
++------------------------------------------------------------+------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+
+| Convert case                                               | base: `tolower(x)`, `toupper(x)`                                                               | pandas: `x.str.lower()`, `x.str.upper()`                                                   |
+|                                                            |                                                                                                |                                                                                            |
+|                                                            | stringr: `str_to_lower(x)`, `str_to_upper(x)` , `str_to_title(x)`                              |                                                                                            |
++------------------------------------------------------------+------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+
+| Strip whitespace from start/end                            | base: `trimws(x)`                                                                              | pandas: `x.str.strip()`                                                                    |
+|                                                            |                                                                                                |                                                                                            |
+|                                                            | stringr: `str_trim(x)` , `str_squish(x)`                                                       |                                                                                            |
++------------------------------------------------------------+------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+
+| Pad strings to a specific length                           | base: `sprintf(format, x)`                                                                     | pandas: `x.str.pad()`                                                                      |
+|                                                            |                                                                                                |                                                                                            |
+|                                                            | stringr: `str_pad(x, …)`                                                                       |                                                                                            |
++------------------------------------------------------------+------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+
+| Test if the string contains a pattern                      | base: `grep(pattern, x)` or `grepl(pattern, x)`                                                | pandas: `x.str.contains(pattern)`                                                          |
+|                                                            |                                                                                                |                                                                                            |
+|                                                            | stringr: `str_detect(x, pattern)`                                                              |                                                                                            |
++------------------------------------------------------------+------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+
+| Count how many times a pattern appears in the string       | base: `gregexpr(pattern, x)` + `sapply` to count length of the returned list                   | pandas: `x.str.count(pattern)`                                                             |
+|                                                            |                                                                                                |                                                                                            |
+|                                                            | stringi: `stri_count(x, pattern)`                                                              |                                                                                            |
+|                                                            |                                                                                                |                                                                                            |
+|                                                            | stringr: `str_count(x, pattern)`                                                               |                                                                                            |
++------------------------------------------------------------+------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+
+| Find the first appearance of the pattern within the string | base: `regexpr(pattern, x)`                                                                    | pandas: `x.str.find(pattern)`                                                              |
+|                                                            |                                                                                                |                                                                                            |
+|                                                            | stringr: `str_locate(x, pattern)`                                                              |                                                                                            |
++------------------------------------------------------------+------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+
+| Find all appearances of the pattern within the string      | base: `gregexpr`                                                                               | pandas: `x.str.findall(pattern)`                                                           |
+|                                                            |                                                                                                |                                                                                            |
+|                                                            | stringr: `str_locate_all(x, pattern)`                                                          |                                                                                            |
++------------------------------------------------------------+------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+
+| Detect a match at the start/end of the string              | base: use regular expr.                                                                        | pandas: `x.str.startswith(pattern)` , `x.str.endswith(pattern)`                            |
+|                                                            |                                                                                                |                                                                                            |
+|                                                            | stringr: `str_starts(x, pattern)` ,`str_ends(x, pattern)`                                      |                                                                                            |
++------------------------------------------------------------+------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+
+| Subset a string from index a to b                          | base: `substr(x, a, b)`                                                                        | pandas: `x.str.slice(a, b, step)`                                                          |
+|                                                            |                                                                                                |                                                                                            |
+|                                                            | stringr: `str_sub(x, a, b)`                                                                    |                                                                                            |
++------------------------------------------------------------+------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+
+| Convert string encoding                                    | base: `iconv(x, encoding)`                                                                     | pandas: `x.str.encode(encoding)`                                                           |
+|                                                            |                                                                                                |                                                                                            |
+|                                                            | stringr: `str_conv(x, encoding)`                                                               |                                                                                            |
++------------------------------------------------------------+------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+
+
+: Table of string functions in R and python. `x` is the string or vector of strings, `pattern` is a pattern to be found within the string, `a` and `b` are indexes, and `encoding` is a string encoding, such as UTF8 or ASCII. {#tbl-string-function}
+
+In @tbl-string-function, multiple functions are provided for e.g. common packages and situations. Pandas methods are specifically those which work in some sort of vectorized manner. Base methods (in R) do not require additional packages, where stringr methods require the `stringr` package, which is included in the tidyverse[^data-transformations-1].
+
+[^data-transformations-1]: Many functions from `stringr` have somewhat faster functional equivalents in the `stringi` package, but the `stringi` package has a less "tidy" API, so it may be worth the slight slowdown to use `stringr` if your data isn't huge because your code will be more readable.
+
+### Converting strings to numbers {.unnumbered}
+
+One of the most common tasks when reading in and tidying messy data is that numeric-ish data can come in many forms that are read (by default) as strings. The data frame below provides an example of a few types of data which may be read in in unexpected ways. How do we tell R or Python that we want all of these columns to be treated as numbers?
+
+Note that [numbers](https://docs.oracle.com/cd/E19455-01/806-0169/overview-8/index.html), currencies, dates, and times are written differently based on what country you're in [@ashourConciseGuideNumber2022]. In computer terms, this is the "locale", and it affects everything from how your computer formats the date/time to what character set it will try to use to display things [@LocaleComputerSoftware2022].
+
+[If you've never had to deal with the complexities of working on a laptop designed for one country using another country's conventions, know that it isn't necessarily the easiest thing to do.]{.aside}
+
+::: {.callout-note collapse="true"}
+##### Optional: Locales {.unnumbered}
+
+###### Find your locale {.unnumbered}
+
+-   <i class="fa-brands fa-windows"></i> Type [`Get-WinSystemLocale`](https://docs.microsoft.com/en-us/powershell/module/international/get-winsystemlocale?view=windowsserver2022-ps#syntax) into your CMD or powershell terminal.
+-   <i class="fa-brands fa-apple"></i> (10.4 and later) and <i class="fa-brands fa-linux"></i> Type `locale` into your terminal
+
+###### Get set up to work with locales {.unnumbered}
+
+While this isn't required, it may be useful and is definitely good practice if you're planning to work with data generated internationally.
+
+[This article](https://herrmann.tech/en/blog/2021/02/05/how-to-deal-with-international-data-formats-in-python.html) tells you how to set things up in linux <i class="fa-brands fa-linux"></i>. The biggest difference in other OS is going to be how to install new locales, so here are some instructions on that for other OS.
+
+-   <i class="fa-brands fa-windows"></i> [Installing languages](https://support.microsoft.com/en-us/windows/install-a-language-for-windows-ccd853d3-9ecd-7da7-9ef0-72b4a055410a)
+-   <i class="fa-brands fa-apple"></i> [Change locales](https://9to5mac.com/2018/08/09/mac-how-to-change-language-and-region/). Installing or creating new locales seems to be [more complicated](https://stackoverflow.com/questions/9991603/add-a-locale-in-mac-osx), and since I do not have a mac, I can't test this out easily myself.
+:::
+
+We'll use @tbl-parse-numbers to explore different string operations focused specifically on converting strings to numbers.
+
+```{r}
+df <- read.csv("https://raw.githubusercontent.com/srvanderplas/unl-stat850/main/data/number-formats.csv", colClasses = "character")
+```
+
+By default, R tries to outsmart us and read the data in as numbers. I've disabled this behavior by setting `colClasses='character'` so that you can see how these functions work... but in general, R seems to be a bit more willing to try to guess what you want. This can be useful, but can also be frustrating when you don't know how to disable it.
+
+::: callout-caution
+##### Converting Columns Using Your Best Guess {.unnumbered}
+
+R has ways to "guess" what type a column is and read the data in as that type. When we initially read in the data above, I had to explicitly disable this behavior in R. If you're working with data that is already read in, how do you get R and Python to guess what type something is?
+
+Here, R gets everything "right" except the eu_numbers, money_col, and custom cols, which makes sense - these contain information that isn't clearly numeric or doesn't match the default numeric formatting on my machine (which is using en_US.UTF-8 for almost everything). If we additionally want R to handle `mix_col`, we would have to explicitly convert to numeric, causing the a to be converted to `NA`
+
+```{r guess-type-conversion-r}
+library(dplyr)
+library(readr)
+df_guess <- type_convert(df)
+str(df_guess)
+```
+
+The `type_convert` function has a `locale` argument; `readr` includes a `locale()` function that you can pass to `type_convert` that allows you to define your own locale. Because we have numeric types structured from at least two locales in this data frame, we would have to specifically read the data in specifying which columns we wanted read with each locale.
+
+```{r guess-type-conversion-r-locale}
+library(dplyr)
+library(readr)
+fixed_df <- type_convert(df) 
+fixed_df2 <- type_convert(df, locale = locale(decimal_mark = ',', grouping_mark = '.'))
+# Replace EU numbers col with the type_convert results specifying that locale
+fixed_df$eu_numbers = fixed_df$eu_numbers
+str(fixed_df)
+```
+:::
+
+::: callout-caution
+##### Converting Columns Directly {.unnumbered}
+
+Obviously, we can also convert some strings to numbers using type conversion functions that we discussed in @sec-type-conversions. This is fairly easy in R, but a bit more complex in Python, because Python has several different types of 'missing' or NA variables that are not necessarily compatible.
+
+Here, we use the `across` helper function from dplyr to convert all of the columns to numeric. Note that the last 3 columns don't work here, because they contain characters R doesn't recognize as numeric characters.
+
+```{r direct-type-conversion-r}
+library(dplyr)
+
+df_numeric <- mutate(df, across(everything(), as.numeric))
+str(df_numeric)
+```
+:::
+
+::: callout-caution
+##### Example: Converting Y/N data
+
+The next thing we might want to do is convert our `custom` column so that it has 1 instead of Y and 0 instead of N. There are several ways we can handle this process:
+
+-   We could use factors/categorical variables, which have numeric values "under the hood", but show up as labeled.
+-   We could (in this particular case) test for equality with "Y", but this approach would not generalize well if we had more than 2 categories.
+-   We could take a less nuanced approach and just find-replace and then convert to a number.
+
+Some of these solutions are more kludgy than others, but I've used all 3 approaches when dealing with categorical data in the past, depending on what I wanted to do with it afterwards.
+
+```{r conversion-find-replace-r}
+library(stringr) # work with strings easily
+fixed_df = fixed_df %>%
+  mutate(
+    # factor approach
+    custom1 = factor(custom, levels = c("N", "Y"), labels = c("Y", "N")),
+    # test for equality
+    custom2 = (custom == "Y"),
+    # string replacement
+    custom3 = str_replace_all(custom, c("Y" = "1", "N" = "0")) %>%
+      as.numeric()
+  )
+
+str(fixed_df)
+```
+
+:::
+
+### Using find and replace
+
+Another way to fix some issues is to just find-and-replace the problematic characters. This is not always the best solution[^data-transformations-2], and may introduce bugs if you use the same code to analyze new data with characters you haven't anticipated, but in so many cases it's also the absolute easiest, fastest, simplest way forward and easily solves many different problems.
+
+[^data-transformations-2]: It's particularly hackish when you're working with locale-specific settings [@herrmannHowDealInternational2021], and in many cases you can handle locale issues much more elegantly.
+
+[I'll show you how to correct all of the issues reading in the data using solutions shown above, but please do consider reading @herrmannHowDealInternational2021 so that you know why find-and-replace isn't (necessarily) the best option for locale-specific formatting.]{.aside}
+
+::: callout-caution
+##### Example: find and replace
+
+Let's start with the money column.
+
+In R, parse_number() handles the money column just fine - the pound sign goes away and we get a numeric value. This didn't work by default with type_convert, but as long as we `mutate` and tell R we expect a number, things work well. Then, as we did above, we can specify the locale settings so that decimal and grouping marks are handled correctly even for countries which use ',' for decimal and '.' for thousands separators.
+
+```{r guess-type-conversion-r-money}
+fixed_df = df %>%
+  type_convert() %>% # guess everything
+  mutate(money_col = parse_number(money_col),
+         eu_numbers = parse_number(eu_numbers, 
+                                   locale = locale(decimal_mark = ',', 
+                                                   grouping_mark = '.')))
+```
+:::
+
+::: callout-caution
+#### Example: Locale find-and-replace
+
+We could also handle the locale issues using find-and-replace, if we wanted to...
+
+Note that `str_remove` is shorthand for `str_replace(x, pattern, "")`. There is a little bit of additional complexity in switching "," for "." and vice versa - we have to change "," to something else first, so that we can replace "." with ",". This is *not* elegant but it does work. It also doesn't generalize - it will mess up numbers formatted using the US/UK convention, and it won't handle numbers formatted using other conventions from other locales.
+
+```{r find-replace-locale-r}
+fixed_df = df %>%
+  type_convert() %>% # guess everything
+  mutate(money_col = str_remove(money_col, "£") %>% parse_number(),
+         eu_numbers = str_replace_all(eu_numbers, 
+                                      c("," = "_", 
+                                        "\\." = ",", 
+                                        "_" = ".")) %>%
+           parse_number())
+```
+:::
+
+### Separating multi-variable columns and Joining Columns
+
+
+### Regular Expressions
+
+Matching exact strings is easy - it's just like using find and replace.
+
+```{r regular-expressions}
+human_talk <- "blah, blah, blah. Do you want to go for a walk?"
+dog_hears <- str_extract(human_talk, "walk")
+dog_hears
+```
+
+But, if you can master even a small amount of regular expression notation, you'll have exponentially more power to do good (or evil) when working with strings. You can get by without regular expressions if you're creative, but often they're much simpler.
+
+::: {.callout-note collapse="true"}
+#### Optional: Short Regular Expressions Primer
+
+You may find it helpful to follow along with this section using this [web app](https://spannbaueradam.shinyapps.io/r_regex_tester/) built to test R regular expressions for R. A similar application for Perl compatible regular expressions (used by SAS and Python) can be found [here](https://regex101.com/). The subset of regular expression syntax we're going to cover here is fairly limited (and common to SAS, Python, and R, with a few adjustments), but [you can find regular expressions to do just about anything string-related](https://stackoverflow.com/questions/tagged/regex?tab=Votes). As with any tool, there are situations where it's useful, and situations where you should not use a regular expression, no matter how much you want to.
+
+Here are the basics of regular expressions:
+
+-   `[]` enclose sets of characters\
+    Ex: `[abc]` will match any single character `a`, `b`, `c`
+    -   `-` specifies a range of characters (`A-z` matches all upper and lower case letters)
+    -   to match `-` exactly, precede with a backslash (outside of `[]`) or put the `-` last (inside `[]`)
+-   `.` matches any character (except a newline)
+-   To match special characters, escape them using `\` (in most languages) or `\\` (in R). So `\.` or `\\.` will match a literal `.`, `\$` or `\\$` will match a literal `$`.
+
+```{r phone-strings}
+num_string <- "phone: 123-456-7890, nuid: 12345678, ssn: 123-45-6789"
+
+ssn <- str_extract(num_string, "[0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]")
+ssn
+```
+
+Listing out all of those numbers can get repetitive, though. How do we specify repetition?
+
+-   `*` means repeat between 0 and inf times
+-   `+` means 1 or more times
+-   `?` means 0 or 1 times -- most useful when you're looking for something optional
+-   `{a, b}` means repeat between `a` and `b` times, where `a` and `b` are integers. `b` can be blank. So `[abc]{3,}` will match `abc`, `aaaa`, `cbbaa`, but not `ab`, `bb`, or `a`. For a single number of repeated characters, you can use `{a}`. So `{3, }` means "3 or more times" and `{3}` means "exactly 3 times"
+
+```{r regular-expression-banana}
+library(stringr)
+str_extract("banana", "[a-z]{1,}") # match any sequence of lowercase characters
+str_extract("banana", "[ab]{1,}") # Match any sequence of a and b characters
+str_extract_all("banana", "(..)") # Match any two characters
+str_extract("banana", "(..)\\1") # Match a repeated thing
+```
+
+```{r regular-expression-phone-ssn}
+num_string <- "phone: 123-456-7890, nuid: 12345678, ssn: 123-45-6789, bank account balance: $50,000,000.23"
+
+ssn <- str_extract(num_string, "[0-9]{3}-[0-9]{2}-[0-9]{4}")
+ssn
+phone <- str_extract(num_string, "[0-9]{3}.[0-9]{3}.[0-9]{4}")
+phone
+nuid <- str_extract(num_string, "[0-9]{8}")
+nuid
+bank_balance <- str_extract(num_string, "\\$[0-9,]+\\.[0-9]{2}")
+bank_balance
+```
+
+There are also ways to "anchor" a pattern to a part of the string (e.g. the beginning or the end)
+
+-   `^` has multiple meanings:
+    -   if it's the first character in a pattern, `^` matches the beginning of a string
+    -   if it follows `[`, e.g. `[^abc]`, `^` means "not" - for instance, "the collection of all characters that aren't a, b, or c".
+-   `$` means the end of a string
+
+Combined with pre and post-processing, these let you make sense out of semi-structured string data, such as addresses.
+
+```{r regular-expression-addresses}
+address <- "1600 Pennsylvania Ave NW, Washington D.C., 20500"
+
+house_num <- str_extract(address, "^[0-9]{1,}")
+
+ # Match everything alphanumeric up to the comma
+street <- str_extract(address, "[A-z0-9 ]{1,}")
+street <- str_remove(street, house_num) %>% str_trim() # remove house number
+
+city <- str_extract(address, ",.*,") %>% str_remove_all(",") %>% str_trim()
+
+zip <- str_extract(address, "[0-9-]{5,10}$") # match 5 and 9 digit zip codes
+```
+
+-   `()` are used to capture information. So `([0-9]{4})` captures any 4-digit number
+-   `a|b` will select a or b.
+
+If you've captured information using (), you can reference that information using backreferences. In most languages, those look like this: `\1` for the first reference, `\9` for the ninth. In R, backreferences are `\\1` through `\\9`.
+
+In R, the `\` character is special, so you have to escape it. So in R, `\\1` is the first reference, and `\\2` is the second, and so on.
+
+```{r regular-expression-fancier-r}
+phone_num_variants <- c("(123) 456-7980", "123.456.7890", "+1 123-456-7890")
+phone_regex <- "\\+?[0-9]{0,3}? ?\\(?([0-9]{3})?\\)?.?([0-9]{3}).?([0-9]{4})"
+# \\+?[0-9]{0,3} matches the country code, if specified, 
+#    but won't take the first 3 digits from the area code 
+#    unless a country code is also specified
+# \\( and \\) match literal parentheses if they exist
+# ([0-9]{3})? captures the area code, if it exists
+# .? matches any character
+# ([0-9]{3}) captures the exchange code
+# ([0-9]{4}) captures the 4-digit individual code
+
+str_extract(phone_num_variants, phone_regex)
+str_replace(phone_num_variants, phone_regex, "\\1\\2\\3")
+# We didn't capture the country code, so it remained in the string
+
+human_talk <- "blah, blah, blah. Do you want to go for a walk? I think I'm going to treat myself to some ice cream for working so hard. "
+dog_hears <- str_extract_all(human_talk, "walk|treat")
+dog_hears
+```
+
+Putting it all together, we can test our regular expressions to ensure that they are specific enough to pull out what we want, while not pulling out other similar information:
+
+```{r regex-r-version-of-sas}
+strings <- c("abcdefghijklmnopqrstuvwxyzABAB",
+"banana orange strawberry apple",
+"ana went to montana to eat a banana",
+"call me at 432-394-2873. Do you want to go for a walk? I'm going to treat myself to some ice cream for working so hard.",
+"phone: (123) 456-7890, nuid: 12345678, bank account balance: $50,000,000.23",
+"1600 Pennsylvania Ave NW, Washington D.C., 20500")
+
+phone_regex <- "\\+?[0-9]{0,3}? ?\\(?([0-9]{3})?\\)?.?([0-9]{3}).([0-9]{4})"
+dog_regex <- "(walk|treat)"
+addr_regex <- "([0-9]*) ([A-z0-9 ]{3,}), ([A-z\\. ]{3,}), ([0-9]{5})"
+abab_regex <- "(..)\\1"
+
+tibble(
+  text = strings,
+  phone = str_detect(strings, phone_regex),
+  dog = str_detect(strings, dog_regex),
+  addr = str_detect(strings, addr_regex),
+  abab = str_detect(strings, abab_regex))
+```
+
+:::
+
+<br>
+
+::: learn-more
+### Learn more about strings {-}
+
+Learn more about strings in [r4ds](https://r4ds.hadley.nz/strings.html).
+
+Learn more about regular expressions in [r4ds](https://r4ds.hadley.nz/regexps.html).
+
+Download the [`stringr` cheatsheet](https://posit.co/wp-content/uploads/2022/10/strings-1.pdf).
+:::
+
+
+## Dates & Times with `lubridate`
+
+::: column-margin
+::: youtube-video-container
+
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/SEPjN2AJqbo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+:::
+:::
+
+::: learn-more
+### Learn more about dates and times {-}
+
++ Learn more about dates and times in [r4ds](https://r4ds.hadley.nz/datetimes.html).
+
++ [A more in-depth discussion of the POSIXlt and POSIXct data classes.](https://www.cyclismo.org/tutorial/R/time.html)
+
++ [A tutorial on `lubridate`](https://data.library.virginia.edu/working-with-dates-and-time-in-r-using-the-lubridate-package/)  - scroll down for details on intervals if you have trouble with %within% and %--%
+
+**Resources**
+
++ [`lubridate` website](https://lubridate.tidyverse.org/reference/index.html)
++ [Download the `lubridate` cheatsheet](https://posit.co/wp-content/uploads/2022/10/lubridate-1.pdf)
+:::
+
+## Practice Activities {-}
+
+::: tryitout
+### PA 5.1: Zodiac Killer {-}
+:::
 
 <br>
 
 ::: tryitout
-## PA 5.1: Zodiac Killer {.unnumbered}
+### PA 5.2: Scrambled Message {-}
 :::
 
-<br>
-
-::: tryitout
-## PA 5.2: Scrambled Message {.unnumbered}
-:::
-
-### References {.unnumbered}
+### References {-}
