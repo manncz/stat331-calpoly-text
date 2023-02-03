@@ -669,11 +669,12 @@ tibble(
 
 <br>
 
-::: learn-more
-### Learn more about regular expressions {-}
+::: go-read
+(semi-required) Go read more about regular expressions in [r4ds](https://r4ds.hadley.nz/regexps.html).
 
-Learn more about regular expressions in [r4ds](https://r4ds.hadley.nz/regexps.html).
+Read at least through **section 17.4.1**.
 
+<br>
 :::
 
 <br>
@@ -788,16 +789,34 @@ In order to fill in an important part of our toolbox, we need to learn how to wo
 ::: tryitout
 ### PA 5.1: Zodiac Killer {-}
 
-COMING SOON
+One of the most famous mysteries in California history is the identity of the so-called “Zodiac Killer”, who murdered 7 people in Northern California between 1968 and 1969. A new murder was committed last year in California, suspected to be the work of a new Zodiac Killer on the loose.
 
+Unfortunately, the date and time of the murder is not known. You have been hired to crack the case. Use the clues below to discover the murderer’s identity.
+
+Visit [PA 5.1: Zodiac Killer](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA5_1-zodiac-killer.html) for instructions.
+
+> Submit the name of the killer to the Canvas Quiz.
+
+:::
+
+::: column-margin
+::: note
+
+We will have two practice activities this week as opposed to our usual one. The first practice activity, PA 5.1 Zodiac Killer will be completed in class on Monday and due Wednesday morning. The second practice activity, PA 5.2 Scrambled Message will be completed in class on Wednesday and due Friday morning.
+
+:::
 :::
 
 <br>
 
 ::: tryitout
 ### PA 5.2: Scrambled Message {-}
-
 COMING SOON
+<!-- In this activity, you will be using regular expressions to decode a message. -->
+
+<!-- Visit [PA 5.2: Scrambled Message](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA5_2-scrambled-message-regex.html) for instructions. -->
+
+<!-- > Submit the movie name the quote contained in the secret message is from to the Canvas Quiz -->
 
 :::
 
