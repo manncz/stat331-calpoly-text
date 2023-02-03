@@ -811,12 +811,11 @@ We will have two practice activities this week as opposed to our usual one. The 
 
 ::: tryitout
 ### PA 5.2: Scrambled Message {-}
-COMING SOON
-<!-- In this activity, you will be using regular expressions to decode a message. -->
+In this activity, you will be using regular expressions to decode a message.
 
-<!-- Visit [PA 5.2: Scrambled Message](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA5_2-scrambled-message-regex.html) for instructions. -->
+Visit [PA 5.2: Scrambled Message](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA5_2-scrambled-message-regex.html) for instructions.
 
-<!-- > Submit the movie name the quote contained in the secret message is from to the Canvas Quiz -->
+> Submit the movie name the quote contained in the secret message is from to the Canvas Quiz
 
 :::
 
