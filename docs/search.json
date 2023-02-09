@@ -376,5 +376,61 @@
     "title": "\n5  Special Data Types\n",
     "section": "Practice Activities",
     "text": "Practice Activities\nPA 5.1: Zodiac Killer\nOne of the most famous mysteries in California history is the identity of the so-called “Zodiac Killer”, who murdered 7 people in Northern California between 1968 and 1969. A new murder was committed last year in California, suspected to be the work of a new Zodiac Killer on the loose.\nUnfortunately, the date and time of the murder is not known. You have been hired to crack the case. Use the clues below to discover the murderer’s identity.\nVisit PA 5.1: Zodiac Killer for instructions.\n\nSubmit the name of the killer to the Canvas Quiz.\n\n\n\n\nWe will have two practice activities this week as opposed to our usual one. The first practice activity, PA 5.1 Zodiac Killer will be completed in class on Monday and due Wednesday morning. The second practice activity, PA 5.2 Scrambled Message will be completed in class on Wednesday and due Friday morning.\n\n\nPA 5.2: Scrambled Message\nIn this activity, you will be using regular expressions to decode a message.\nVisit PA 5.2: Scrambled Message for instructions.\n\nSubmit the movie name the quote contained in the secret message is from to the Canvas Quiz\n\nReferences"
+  },
+  {
+    "objectID": "06-version-control.html",
+    "href": "06-version-control.html",
+    "title": "\n6  Version Control\n",
+    "section": "",
+    "text": "Reading: 15 minute(s) at 200 WPM\nVideos: 0 minute(s)"
+  },
+  {
+    "objectID": "06-version-control.html#ch6-objectives",
+    "href": "06-version-control.html#ch6-objectives",
+    "title": "\n6  Version Control\n",
+    "section": "Objectives",
+    "text": "Objectives\nMost of this section is either heavily inspired by Happy Git and Github for the UseR (Bryan, Hester, and The Stat 545 TAs 2021) or directly links to that book.\n\nRecognize the benefits of using version control to improve your coding practices and workflow.\nIdentify git/GitHub as a version control platform (and helper).\nRegister for a GitHub account so you can begin applying version control practices to your workflow."
+  },
+  {
+    "objectID": "06-version-control.html#ch6-checkins",
+    "href": "06-version-control.html#ch6-checkins",
+    "title": "\n6  Version Control\n",
+    "section": "Check-ins",
+    "text": "Check-ins\nThere are two check-ins for this week:\n\nCheck-in 6.1: Install Git\nCheck-in 6.2: Create a GitHub Account"
+  },
+  {
+    "objectID": "06-version-control.html#what-is-version-control",
+    "href": "06-version-control.html#what-is-version-control",
+    "title": "\n6  Version Control\n",
+    "section": "\n6.1 What is Version Control?",
+    "text": "6.1 What is Version Control?\nVersion control is a system that (1) allows you to store your files in the cloud, (2) track change in those files over time, and (3) share your files with others.\nLearn more about version control\nIf you are unfamiliar with the idea of version control, this article describes what the principles of version control are."
+  },
+  {
+    "objectID": "06-version-control.html#git",
+    "href": "06-version-control.html#git",
+    "title": "\n6  Version Control\n",
+    "section": "\n6.2 Git",
+    "text": "6.2 Git\n\n\n\nGit is a version control system - a structured way for tracking changes to files over the course of a project that may also make it easy to have multiple people working on the same files at the same time.\n\n\nVersion control is the answer to this file naming problem.\n\n\nGit manages a collection of files in a structured way - rather like “track changes” in Microsoft Word or version history in Dropbox, but much more powerful.\nIf you are working alone, you will benefit from adopting version control because it will remove the need to add _final.R or _final_finalforreal.qmd to the end of your file names. However, most of us work in collaboration with other people (or will have to work with others eventually), so one of the goals of this program is to teach you how to use git because it is a useful tool that will make you a better collaborator.\nIn data science programming, we use git for a similar, but slightly different purpose. We use it to keep track of changes not only to code files, but to data files, figures, reports, and other essential bits of information.\nGit itself is nice enough, but where git really becomes amazing is when you combine it with GitHub - an online service that makes it easy to use git across many computers, share information with collaborators, publish to the web, and more. Git is great, but GitHub is … essential.\n\n6.2.1 Git Basics\n\n\nIf that doesn’t fix it, git.txt contains the phone number of a friend of mine who understands git. Just wait through a few minutes of ‘It’s really pretty simple, just think of branches as…’ and eventually you’ll learn the commands that will fix everything.\n\n\nGit tracks changes to each file that it is told to monitor, and as the files change, you provide short labels describing what the changes were and why they exist (called “commits”). The log of these changes (along with the file history) is called your git commit history.\nWhen writing papers, this means you can cut material out freely, so long as the paper is being tracked by git - you can always go back and get that paragraph you cut out if you need to. You also don’t have to rename files - you can confidently save over your old files, so long as you remember to commit frequently.\nEssential Reading: Git\nThe git material in this chapter is just going to link directly to the book “Happy Git with R” by Jenny Bryan. It’s amazing, amusing, and generally well written. I’m not going to try to do better.\nGo read Chapter 1, until it starts to become greek (aka over your head).\n\nCheck-in 6.1: Install Git\nWe will be working with Git/GitHub in groups during class this week. In order to be prepared, please install Git onto your computer – we will be connecting this to RStudio together, but having this installed ahead of time avoids installation time during class.\n\nInstall Git for Windows\nInstall Git for Macs\n\nIf you run into issues, read more about installing Git.\nOnce you have installed Git, tell me “yes” in the Canvas Quiz.\n Now that you have a general idea of how git works and why we might use it, let’s talk a bit about GitHub."
+  },
+  {
+    "objectID": "06-version-control.html#setting-up-github",
+    "href": "06-version-control.html#setting-up-github",
+    "title": "\n6  Version Control\n",
+    "section": "\n6.3 GitHub: Git on the Web",
+    "text": "6.3 GitHub: Git on the Web\nGit is a program that runs on your machine and keeps track of changes to files that you tell it to monitor. GitHub is a website that hosts people’s git repositories. You can use git without GitHub, but you can’t use GitHub without git.\n\n\n\n\nIf you want, you can hook Git up to GitHub, and make a copy of your local git repository that lives in the cloud. Then, if you configure things correctly, your local repository will talk to GitHub without too much trouble. Using Github with Git allows you to easily make a cloud backup of your important code, so that even if your computer suddenly catches on fire, all of your important code files exist somewhere else.\nRemember: any data you don’t have in 3 different places is data you don’t care about.1\nCheck-in 6.2: Register a GitHub Account\nFollow the instructions in Registering a GitHub Account to create a free GitHub account.\nCopy and paste the link to your GitHub profile into the Canvas assignment.\n\nYour GitHub profile link should look like – https://github.com/USERNAME\nHere is mine! https://github.com/earobinson95\n\n\n(Optional) You may want to check out GitHub Education and sign up for the GitHub Student Developer Pack.\n\nSave your login information!\nMake sure you remember your username and password so you don’t have to try to hack into your own account during class this week.\nWrite your information down somewhere safe.\nOptional: Install a git client\nInstructions\n\nI personally like to use GitHub Desktop which allows me to interact with Git using a point-and-click interface."
+  },
+  {
+    "objectID": "06-version-control.html#using-version-control-with-rstudio",
+    "href": "06-version-control.html#using-version-control-with-rstudio",
+    "title": "\n6  Version Control\n",
+    "section": "\n6.4 Using Version Control (with RStudio)",
+    "text": "6.4 Using Version Control (with RStudio)\nThis course will briefly introduced working with GitHub, but will not provide you with extensive practice using version control. By using version control, you will learn better habits for programming, and you’ll get access to a platform for collaboration, hosting your work online, keeping track of features and necessary changes, and more.\nIn class this week, we will connect git/GitHub to RStudio so you can use version control for your code. We will then see what a typical git/GitHub workflow looks like."
+  },
+  {
+    "objectID": "06-version-control.html#learn-more",
+    "href": "06-version-control.html#learn-more",
+    "title": "\n6  Version Control\n",
+    "section": "Learn More",
+    "text": "Learn More\nExtra Resources\n\nHappy Git and GitHub for the useR - Guide to using git, R, and RStudio together. (Bryan, Hester, and The Stat 545 TAs 2021)\nGit “Hello World” Tutorial on GitHub\nCrash course on git (30 minute YouTube video) (Traversy Media 2017)\nGit and GitHub for poets YouTube playlist (this is supposed to be the best introduction to Git out there…) (The Coding Train 2016)\nMore advanced git concepts, in comic form, by Erika Heidi (Erica Heidi 2020)\nA quick guide to the command line (Terminal) (Wei 2019)"
   }
 ]
