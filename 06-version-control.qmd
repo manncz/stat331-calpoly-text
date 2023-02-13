@@ -431,8 +431,6 @@ In class this week, we will connect git/GitHub to RStudio so you can use version
 
 ::: tryitout
 ### PA 6: Merge Conflicts {-}
-INSTRUCTIONS COMING SOON
-
 In class, we will work together, step-by-step in groups, to resolve merge conflicts when collaborating with GitHub.
 
 In order to receive credit for this practice activity, you **must** attend class. Please email your instructor if extenuating circumstances arise.
