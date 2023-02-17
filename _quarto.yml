@@ -15,6 +15,7 @@ book:
     - 04-data-joins-and-transformations.qmd
     - 05-special-data-types.qmd
     - 06-version-control.qmd
+    - 07-functions.qmd
   site-url: https://earobinson95.github.io/stat331-calpoly-text/
   repo-url: https://github.com/earobinson95/stat331-calpoly-text
   repo-branch: main
