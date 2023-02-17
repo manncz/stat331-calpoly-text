@@ -59,7 +59,7 @@ If you've written the same code (with a few minor changes, like variable names) 
 
 3. You can re-use code in other files by keeping functions you need regularly in a file (or if you're really awesome, in your own package!)
 
-4. If you name your functions well, your code becomes easier to understand thanks to grouping a set of actions under a descriptive function name.
+4. If you name your functions well, your code becomes easier to understand thanks to grouping a set of actions under a descriptive function name. 
 
 
 ::: column-margin

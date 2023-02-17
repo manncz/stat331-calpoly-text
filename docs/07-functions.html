@@ -364,8 +364,8 @@ div.csl-indent {
 <span><span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> </span>
 <span>  <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.01695576 0.43732818 0.17344882 0.21403376 0.40960966 0.34461563
- [7] 0.26552747 0.45205612 1.00000000 0.00000000</code></pre>
+<pre><code> [1] 0.2301534 0.5705642 0.8479456 0.1914594 0.5269221 0.3256595 1.0000000
+ [8] 0.5276148 0.8485464 0.0000000</code></pre>
 </div>
 </div>
 <p>Then, we make it a bit easier to read, removing duplicate computations if possible (for instance, computing <code>min</code> two times).</p>
@@ -375,8 +375,8 @@ div.csl-indent {
 <span></span>
 <span><span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="va">rng</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">rng</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">-</span> <span class="va">rng</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.01695576 0.43732818 0.17344882 0.21403376 0.40960966 0.34461563
- [7] 0.26552747 0.45205612 1.00000000 0.00000000</code></pre>
+<pre><code> [1] 0.2301534 0.5705642 0.8479456 0.1914594 0.5269221 0.3256595 1.0000000
+ [8] 0.5276148 0.8485464 0.0000000</code></pre>
 </div>
 </div>
 <p>Finally, we turn this code into a function</p>
@@ -388,8 +388,8 @@ div.csl-indent {
 <span></span>
 <span><span class="fu">rescale01</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.01695576 0.43732818 0.17344882 0.21403376 0.40960966 0.34461563
- [7] 0.26552747 0.45205612 1.00000000 0.00000000</code></pre>
+<pre><code> [1] 0.2301534 0.5705642 0.8479456 0.1914594 0.5269221 0.3256595 1.0000000
+ [8] 0.5276148 0.8485464 0.0000000</code></pre>
 </div>
 </div>
 <ul>
