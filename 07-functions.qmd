@@ -854,7 +854,13 @@ d. result_2
 <br>
 
 ::: tryitout
-### PA 7: COMING SOON {-}
+### PA 7: Functions {-}
+
+You will write several small functions, then use them to unscramble a message. Many of the functions have been started for you below, but **none** of them are complete as-is.
+
+Visit [PA 7: Functions](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA7-functions.html) for instructions.
+
+If you have done everything correctly, your final vector will be six numbers long. Google these six numbers to find a TV show as your final answer and submit to Canvas.
 
 :::
 

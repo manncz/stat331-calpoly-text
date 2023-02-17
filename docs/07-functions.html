@@ -272,7 +272,7 @@ div.csl-indent {
 </li>
   <li><a href="#styling-functions" id="toc-styling-functions" class="nav-link" data-scroll-target="#styling-functions"><span class="toc-section-number">7.7</span>  Styling Functions</a></li>
   <li><a href="#checkin7-1" id="toc-checkin7-1" class="nav-link" data-scroll-target="#checkin7-1">Check-in 7.1: Writing Functions</a></li>
-  <li><a href="#pa-7-coming-soon" id="toc-pa-7-coming-soon" class="nav-link" data-scroll-target="#pa-7-coming-soon">PA 7: COMING SOON</a></li>
+  <li><a href="#pa-7-functions" id="toc-pa-7-functions" class="nav-link" data-scroll-target="#pa-7-functions">PA 7: Functions</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/07-functions.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
@@ -364,8 +364,8 @@ div.csl-indent {
 <span><span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> </span>
 <span>  <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.6318628 0.3073991 1.0000000 0.5927724 0.0000000 0.5089284 0.7752431
- [8] 0.9714157 0.7791390 0.4653336</code></pre>
+<pre><code> [1] 0.01695576 0.43732818 0.17344882 0.21403376 0.40960966 0.34461563
+ [7] 0.26552747 0.45205612 1.00000000 0.00000000</code></pre>
 </div>
 </div>
 <p>Then, we make it a bit easier to read, removing duplicate computations if possible (for instance, computing <code>min</code> two times).</p>
@@ -375,8 +375,8 @@ div.csl-indent {
 <span></span>
 <span><span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="va">rng</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">rng</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">-</span> <span class="va">rng</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.6318628 0.3073991 1.0000000 0.5927724 0.0000000 0.5089284 0.7752431
- [8] 0.9714157 0.7791390 0.4653336</code></pre>
+<pre><code> [1] 0.01695576 0.43732818 0.17344882 0.21403376 0.40960966 0.34461563
+ [7] 0.26552747 0.45205612 1.00000000 0.00000000</code></pre>
 </div>
 </div>
 <p>Finally, we turn this code into a function</p>
@@ -388,8 +388,8 @@ div.csl-indent {
 <span></span>
 <span><span class="fu">rescale01</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.6318628 0.3073991 1.0000000 0.5927724 0.0000000 0.5089284 0.7752431
- [8] 0.9714157 0.7791390 0.4653336</code></pre>
+<pre><code> [1] 0.01695576 0.43732818 0.17344882 0.21403376 0.40960966 0.34461563
+ [7] 0.26552747 0.45205612 1.00000000 0.00000000</code></pre>
 </div>
 </div>
 <ul>
@@ -1134,7 +1134,10 @@ When the sub-problem has a viable solution, move on to the next sub-problem. Don
 <li>result</li>
 <li>result_2</li>
 </ol></section><p><br></p>
-<section id="pa-7-coming-soon" class="level3 unnumbered tryitout"><h3 class="unnumbered anchored" data-anchor-id="pa-7-coming-soon">PA 7: COMING SOON</h3>
+<section id="pa-7-functions" class="level3 unnumbered tryitout"><h3 class="unnumbered anchored" data-anchor-id="pa-7-functions">PA 7: Functions</h3>
+<p>You will write several small functions, then use them to unscramble a message. Many of the functions have been started for you below, but <strong>none</strong> of them are complete as-is.</p>
+<p>Visit <a href="https://earobinson95.github.io/stat331-calpoly/practice-activities/PA7-functions.html">PA 7: Functions</a> for instructions.</p>
+<p>If you have done everything correctly, your final vector will be six numbers long. Google these six numbers to find a TV show as your final answer and submit to Canvas.</p>
 </section><section id="references" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
 
 
