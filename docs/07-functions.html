@@ -364,8 +364,8 @@ div.csl-indent {
 <span><span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> </span>
 <span>  <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.00000000 0.45324639 0.79741245 0.28877946 1.00000000 0.37485807
- [7] 0.19742587 0.90019239 0.05292713 0.21285459</code></pre>
+<pre><code> [1] 0.6318628 0.3073991 1.0000000 0.5927724 0.0000000 0.5089284 0.7752431
+ [8] 0.9714157 0.7791390 0.4653336</code></pre>
 </div>
 </div>
 <p>Then, we make it a bit easier to read, removing duplicate computations if possible (for instance, computing <code>min</code> two times).</p>
@@ -375,8 +375,8 @@ div.csl-indent {
 <span></span>
 <span><span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="va">rng</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">rng</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">-</span> <span class="va">rng</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.00000000 0.45324639 0.79741245 0.28877946 1.00000000 0.37485807
- [7] 0.19742587 0.90019239 0.05292713 0.21285459</code></pre>
+<pre><code> [1] 0.6318628 0.3073991 1.0000000 0.5927724 0.0000000 0.5089284 0.7752431
+ [8] 0.9714157 0.7791390 0.4653336</code></pre>
 </div>
 </div>
 <p>Finally, we turn this code into a function</p>
@@ -388,8 +388,8 @@ div.csl-indent {
 <span></span>
 <span><span class="fu">rescale01</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.00000000 0.45324639 0.79741245 0.28877946 1.00000000 0.37485807
- [7] 0.19742587 0.90019239 0.05292713 0.21285459</code></pre>
+<pre><code> [1] 0.6318628 0.3073991 1.0000000 0.5927724 0.0000000 0.5089284 0.7752431
+ [8] 0.9714157 0.7791390 0.4653336</code></pre>
 </div>
 </div>
 <ul>
@@ -922,7 +922,7 @@ This works well if it’s a short function or a couple of lines of code, but it�
 <p></p><figcaption class="figure-caption">You may find it helpful to procure a rubber duck expert for each language you work in. I use color-your-own rubber ducks to endow my ducks with certain language expertise. Other people use plain rubber ducks and give them capes.</figcaption><p></p>
 </figure>
 </div>
-<p>Do not be surprised if, in the process of debugging, you encounter new bugs. This is a problem that’s well-known enough that it has its <a href="image/99bugs_shirt.png">own t-shirt</a>, in addition to an <a href="https://xkcd.com/1739/">xkcd comic</a>. At some point, getting up and going for a walk may help. Redesigning your code to be more modular and more organized is also a good idea.</p>
+<p>Do not be surprised if, in the process of debugging, you encounter new bugs. This is a problem that’s well-known it has an <a href="https://xkcd.com/1739/">xkcd comic</a>. At some point, getting up and going for a walk may help. Redesigning your code to be more modular and more organized is also a good idea.</p>
 <details class="note"><summary>
 These next two sections are included as FYI, but you don’t have to read them just now. They’re important, but not urgent, if that makes sense.
 </summary><p><br></p>
