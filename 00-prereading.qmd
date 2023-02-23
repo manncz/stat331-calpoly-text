@@ -1,6 +1,7 @@
 ---
 execute:
   freeze: auto  # re-render only when source changes
+editor: source
 ---
 
 ```{r echo=FALSE}
@@ -30,11 +31,11 @@ This chapter is meant to provide a resource for the basics of programming (in `R
 
 In this chapter you will:
 
-+ Learn the basics of a computer system.
-+ Refresh your mathematical logic and apply it to variables, vectors, and matrices.
-+ Know the different types of variables and how to assign them to objects in `R`.
-+ Understand how to create and index vectors and matrices in `R`.
-+ Extend your logic to control structures with if-then statements and loops.
+-   Learn the basics of a computer system.
+-   Refresh your mathematical logic and apply it to variables, vectors, and matrices.
+-   Know the different types of variables and how to assign them to objects in `R`.
+-   Understand how to create and index vectors and matrices in `R`.
+-   Extend your logic to control structures with if-then statements and loops.
 
 ## Computer Basics
 
@@ -86,6 +87,7 @@ Regardless of how you tend to organize your personal files, it is probably helpf
 
 </iframe>
 :::
+
 Stop watching at 4:16.
 :::
 
@@ -97,6 +99,7 @@ That's not enough, though - we also need to know how computers remember the loca
 
 </iframe>
 :::
+
 <br>
 
 ::: my-opinion
@@ -187,12 +190,12 @@ In `R`, there are some very basic data types:
 -   **double** or **float** or **numeric**- decimal numbers.
 
     -   **float** is short for floating-point value.
-    -   **double** is a floating-point value with more precision ("double precision").[^data-types-1]
+    -   **double** is a floating-point value with more precision ("double precision").[^00-prereading-1]
     -   `R` uses the name **numeric** to indicate a decimal value, regardless of precision.
 
 -   **character** or **string** - holds text, usually enclosed in quotes.
 
-[^data-types-1]: This means that doubles take up more memory but can store more decimal places. You don't need to worry about this much in R.
+[^00-prereading-1]: This means that doubles take up more memory but can store more decimal places. You don't need to worry about this much in R.
 
 If you don't know what type a value is, `R` has a function to help you with that.
 
@@ -205,11 +208,9 @@ class("Hello, programmer!")
 ```
 
 ::: note
-
 In R, boolean values are `TRUE` and `FALSE`. Capitalization matters a LOT.
 
 Other things matter too: if we try to write a million, we would write it `1000000` instead of `1,000,000`. Commas are used for separating numbers, not for proper spacing and punctuation of numbers. This is a hard thing to get used to but very important -- especially when we start reading in data.
-
 :::
 
 #### Variables
@@ -226,9 +227,7 @@ earth_demolished <- FALSE
 ```
 
 ::: note
-
 Note that in `R`, we assign variables values using the `<-` operator. Technically, `=` will work for assignment, but `<-` is more common than `=` in `R` by convention.
-
 :::
 
 We can then use the variables - do numerical computations, evaluate whether a proposition is true or false, and even manipulate the content of strings, all by referencing the variable by name.
@@ -248,13 +247,10 @@ Starting a variable name with a number will get you an error message that lets y
 1st_thing <- "check your variable names!"
 ```
 
-
 Naming things is difficult! When you name variables, try to make the names descriptive - what does the variable hold? What are you going to do with it? The more (concise) information you can pack into your variable names, the more readable your code will be.
 
 ::: learn-more
-
 [Why is naming things hard?](https://neilkakkar.com/why-is-naming-things-hard.html) - Blog post by Neil Kakkar
-
 :::
 
 There are a few different conventions for naming things that may be useful:
@@ -277,9 +273,9 @@ In days of yore, programmers had to deal with memory allocation - when declaring
     int a = 1
     double b = 3.14159
 
-Typically, an integer would take up 32 bits of memory, and a double would take up 64 bits, so doubles used 2x the memory that integers did. R is **dynamically typed**, which means you don't have to deal with any of the trouble of declaring what your variables will hold - the computer automatically figures out how much memory to use when you run the code. So we can avoid the discussion of memory allocation and types because we're using higher-level languages that handle that stuff for us[^data-types-2].
+Typically, an integer would take up 32 bits of memory, and a double would take up 64 bits, so doubles used 2x the memory that integers did. R is **dynamically typed**, which means you don't have to deal with any of the trouble of declaring what your variables will hold - the computer automatically figures out how much memory to use when you run the code. So we can avoid the discussion of memory allocation and types because we're using higher-level languages that handle that stuff for us[^00-prereading-2].
 
-[^data-types-2]: In some ways, this is like the difference between an automatic and a manual transmission - you have fewer things to worry about, but you also don't know what's going on under the hood nearly as well
+[^00-prereading-2]: In some ways, this is like the difference between an automatic and a manual transmission - you have fewer things to worry about, but you also don't know what's going on under the hood nearly as well
 
 But the discussion of types isn't something we can completely avoid, because we still have to figure out what to do when we do operations on things of two different types - even if memory isn't a concern, we still have to figure out the arithmetic question.
 
@@ -296,7 +292,6 @@ All of the examples above are 'numeric' - basically, a catch-all class for thing
 You may be asking yourself at this point why this matters, and that's a decent question. We will eventually be reading in data from spreadsheets and other similar tabular data, and types become *very* important at that point, because we'll have to know how `R` handles type conversions.
 
 ::: tryitout
-
 ##### Test it out! {.unnumbered}
 
 Do a bit of experimentation - what happens when you try to add a string and a number? Which types are automatically converted to other types? Fill in the following table in your notes:
@@ -342,8 +337,7 @@ Here are a few of the most important ones:
 | Modular Division | `%%`     |
 | Exponentiation   | `^`      |
 
-Note that integer division is the whole number answer to A/B, and modular division is the fractional remainder when A/B. 
-
+Note that integer division is the whole number answer to A/B, and modular division is the fractional remainder when A/B.
 
 So `14 %/% 3` would be 4, and `14 %% 3` would be 2.
 
@@ -391,9 +385,9 @@ You don't need to understand the details of this at this point in the class, but
 
 We're also not going to talk about how to create our own functions just yet. Instead, I'm going to show you how to *use* functions.
 
-It may be helpful at this point to print out the [R reference card](files/Short-refcard.pdf)[^data-types-3]. This cheat sheet contains useful functions for a variety of tasks.
+It may be helpful at this point to print out the [R reference card](files/Short-refcard.pdf)[^00-prereading-3]. This cheat sheet contains useful functions for a variety of tasks.
 
-[^data-types-3]: From https://cran.r-project.org/doc/contrib/Short-refcard.pdf
+[^00-prereading-3]: From https://cran.r-project.org/doc/contrib/Short-refcard.pdf
 
 **Methods** are a special type of function that operate on a specific variable type. In R, you would get the length of a string variable using `length(my_string)`.
 
@@ -426,9 +420,9 @@ The most important thing to know about lists, for the moment, is how to pull thi
 
 ##### Indexing
 
-Every element in a list has an **index** (a location, indicated by an integer position)[^00-prereading-1].
+Every element in a list has an **index** (a location, indicated by an integer position)[^00-prereading-4].
 
-[^00-prereading-1]: Throughout this section (and other sections), lego pictures are rendered using https://www.mecabricks.com/en/workshop. It's a pretty nice tool for building stuff online!
+[^00-prereading-4]: Throughout this section (and other sections), lego pictures are rendered using https://www.mecabricks.com/en/workshop. It's a pretty nice tool for building stuff online!
 
 In `R`, we count from 1.
 
@@ -462,11 +456,11 @@ We can have vectors of any data type and length we want: ![vectors of different 
 
 Each element in a vector has an **index** - an integer telling you what the item's position within the vector is. I'm going to demonstrate indices with the string vector
 
-| R                                                                         |
-|----------------------------------|--------------------------------------|
-| 1-indexed language                                                        |
-| Count elements as 1, 2, 3, 4, ..., N                                      |
-| ![R lego vector, labeled with numbers 1-12](images/lego-1x3-vector-R.png) |
+| R                                                                         |     |
+|---------------------------------------------------------------------------|-----|
+| 1-indexed language                                                        |     |
+| Count elements as 1, 2, 3, 4, ..., N                                      |     |
+| ![R lego vector, labeled with numbers 1-12](images/lego-1x3-vector-R.png) |     |
 
 In R, we create vectors with the `c()` function, which stands for "concatenate" - basically, we stick a bunch of objects into a row.
 
@@ -498,9 +492,9 @@ favorite_cats[2] <- "Nyan Cat"
 favorite_cats
 ```
 
-If you're curious about any of these cats, see the footnotes[^00-prereading-2].
+If you're curious about any of these cats, see the footnotes[^00-prereading-5].
 
-[^00-prereading-2]: [Grumpy cat](https://www.grumpycats.com/), [Garfield](https://www.garfield.com/), [Nyan cat](https://en.wikipedia.org/wiki/Nyan_Cat). Jorts and Jean: [The initial post](https://www.reddit.com/r/AmItheAsshole/comments/rfwgmc/aita_for_perpetuating_ethnic_stereotypes_about/) and the [update](https://www.reddit.com/user/throwawayorangecat/comments/rgi000/update_aita_for_perpetuating_stereotypes_about/) (both are worth a read because the story is hilarious). The cats also have a [Twitter account](https://twitter.com/JortsTheCat) where they promote workers rights.
+[^00-prereading-5]: [Grumpy cat](https://www.grumpycats.com/), [Garfield](https://www.garfield.com/), [Nyan cat](https://en.wikipedia.org/wiki/Nyan_Cat). Jorts and Jean: [The initial post](https://www.reddit.com/r/AmItheAsshole/comments/rfwgmc/aita_for_perpetuating_ethnic_stereotypes_about/) and the [update](https://www.reddit.com/user/throwawayorangecat/comments/rgi000/update_aita_for_perpetuating_stereotypes_about/) (both are worth a read because the story is hilarious). The cats also have a [Twitter account](https://twitter.com/JortsTheCat) where they promote workers rights.
 
 ##### Indexing with Logical Vectors
 
@@ -511,7 +505,7 @@ As you might imagine, we can create vectors of all sorts of different data types
 If we let the black lego represent "True" and the grey lego represent "False", we can use the logical vector to pull out all values in the main vector.
 
 | Black = True, Grey = False                                                                                                                                                                                                                                                                             | Grey = True, Black = False                                                                                                                                                                                                                                                                            |
-|------------------------------------|------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ![a pink/purple hued set of 1x3 bricks representing a vector and a corresponding set of 1x1 black bricks representing the logical index vector of the same length. The grey bricks (and corresponding values of the previous vector) have been removed (filtered out).](images/lego-logical-black.png) | ![a pink/purple hued set of 1x3 bricks representing a vector and a corresponding set of 1x1 grey bricks representing the logical index vector of the same length. The black bricks (and corresponding values of the previous vector) have been removed (filtered out).](images/lego-logical-grey.png) |
 
 Note that for logical indexing to work properly, the logical index must be the same length as the vector we're indexing. This constraint will return when we talk about data frames, but for now just keep in mind that logical indexing doesn't make sense when this constraint isn't true.
@@ -638,8 +632,8 @@ Before we start on the types of control structures, let's get in the right minds
 Check out this video of the classic "make a peanut butter sandwich instructions challenge":
 
 ::: youtube-video-container
-
 <iframe width="100%" height="auto" src="https://www.youtube.com/embed/Ct-lOOUqmyY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+
 </iframe>
 :::
 
@@ -713,8 +707,7 @@ In a flow chart, conditional statements are represented as diamonds, and other c
 <summary>US Tax brackets</summary>
 
 ::: panel-tabset
-
-##### Problem {-}
+##### Problem {.unnumbered}
 
 The US Tax code has brackets, such that the first \$10,275 of your income is taxed at 10%, anything between \$10,275 and \$41,775 is taxed at 12%, and so on.
 
@@ -736,7 +729,7 @@ Write a set of if statements that assess someone's income and determine what the
 
 Hint: You may want to keep track of how much of the income has already been taxed in a variable and what the total tax accumulation is in another variable.
 
-##### Solution {-}
+##### Solution {.unnumbered}
 
 ```{r}
 # Start with total income
@@ -851,7 +844,6 @@ df2 %>%
 ![The control flow diagram for the code in the previous example](images/tax-brackets.png)
 
 Control flow diagrams can be extremely helpful when figuring out how programs work (and where gaps in your logic are when you're debugging). It can be very helpful to map out your program flow as you're untangling a problem.
-
 :::
 
 </details>
@@ -867,8 +859,7 @@ In many cases, it can be helpful to have a long chain of conditional statements 
 For instance, suppose I want to determine what categorical age bracket someone falls into based on their numerical age. All of the bins are mutually exclusive - you can't be in the 25-40 bracket and the 41-55 bracket.
 
 ::: panel-tabset
-
-##### Program Flow Map {-}
+##### Program Flow Map {.unnumbered}
 
 ![Program flow map for a series of mutually exclusive categories. If our goal is to take a numeric age variable and create a categorical set of age brackets, such as \<18, 18-25, 26-40, 41-55, 56-65, and \>65, we can do this with a series of if-else statements chained together. Only one of the bracket assignments is evaluated, so it is important to place the most restrictive condition first.](images/age-category-prog-flow.png)
 
@@ -879,7 +870,6 @@ The important thing to realize when examining this program flow map is that if `
 If for some reason you wrote your conditional statements in the wrong order, the wrong label would get assigned:
 
 ![Program flow map for a series of mutually exclusive categories, with category labels in the wrong order - \<40 is evaluated first, and so \<= 25 and \<= 18 will never be evaluated and the wrong label will be assigned for anything in those categories.](images/age-category-prog-flow3.png)
-
 
 In code, we would write this statement using `else-if` (or `elif`) statements.
 
@@ -902,12 +892,11 @@ if (age < 18) {
 
 bracket
 ```
-
 :::
 
 </details>
 
-### Loops
+### Loops {#prereading-loops}
 
 <!-- https://www.py4e.com/html3/05-iterations -->
 
@@ -945,20 +934,18 @@ while (x < 10) {
 }
 ```
 
-
 <details class="ex">
 
 <summary>While loops</summary>
 
 ::: panel-tabset
-
-##### Problem {-}
+##### Problem {.unnumbered}
 
 Write a while loop that verifies that $$\lim_{N \rightarrow \infty} \prod_{k=1}^N \left(1 + \frac{1}{k^2}\right) = \frac{e^\pi - e^{-\pi}}{2\pi}.$$
 
 Terminate your loop when you get within 0.0001 of $\frac{e^\pi - e^{-\pi}}{2\pi}$. At what value of $k$ is this point reached?
 
-##### Math Notation {-}
+##### Math Notation {.unnumbered}
 
 Breaking down math notation for code:
 
@@ -968,10 +955,9 @@ Breaking down math notation for code:
 
 In this problem, we can just keep increasing $k$ and keep track of the cumulative product. So we define `k=1`, `prod = 1`, and `ans` before the loop starts. Then, we loop over `k`, multiplying `prod` by $(1 + 1/k^2)$ and then incrementing $k$ by one each time. At each iteration, we test whether `prod` is close enough to `ans` to stop the loop.
 
-##### Solution {-}
+##### Solution {.unnumbered}
 
 You will use `pi` and `exp()` - these are available by default without any additional libraries or packages.
-
 
 ```{r}
 k <- 1
@@ -988,7 +974,6 @@ k
 prod
 ans
 ```
-
 :::
 
 </details>
@@ -997,14 +982,12 @@ ans
 
 Another common type of loop is a **for** loop. In a for loop, we run the block of code, iterating through a series of values (commonly, one to N, but not always). Generally speaking, for loops are known as **definite** loops because the code inside a for loop is executed a specific number of times. While loops are known as **indefinite** loops because the code within a while loop is evaluated until the condition is falsified, which is not always a known number of times.
 
-
 ::: panel-tabset
-
-##### Flow Map {-}
+##### Flow Map {.unnumbered}
 
 ![Flow map showing for-loop pseudocode (for j in 1 to N) { \# code} and the program flow map expansion where j starts at 1 and we check if j \> N (exiting the loop if true); otherwise, we continue into the loop, execute the main body of #code and then increment j and start over.](images/for-loop-flow.png)
 
-##### R {-}
+##### R {.unnumbered}
 
 ```{r}
 for (i in 1:5 ) {
@@ -1012,24 +995,20 @@ for (i in 1:5 ) {
 }
 
 ```
-
 :::
 
 For loops are often run from 1 to N but in essence, a for loop is run for every value of a vector (which is why loops are included in the same chapter as vectors).
 
 ::: ex
-
 For instance, in `R`, there is a built-in variable called `month.name`. Type `month.name` into your `R` console to see what it looks like. If we want to iterate along the values of month.name, we can:
 
 ```{r}
 for (i in month.name)
   print(i)
 ```
-
 :::
 
 ::: watch-out
-
 #### Avoiding Infinite Loops
 
 It is very easy to create an **infinite** loop when you are working with while loops. Infinite loops never exit, because the condition is always true. If in the while loop example we decrement x instead of incrementing x, the loop will run forever.
@@ -1054,7 +1033,6 @@ while (x < 10) {
 ```
 
 In the example above, there are more efficient ways to write a random walk, but we will get to that later. The important thing here is that we want to make sure that our loops don't run for all eternity.
-
 :::
 
 #### Controlling Loops
@@ -1066,23 +1044,19 @@ In the example above, there are more efficient ways to write a random walk, but 
 Sometimes it is useful to control the statements in a loop with a bit more precision. You may want to skip over code and proceed directly to the next iteration, or, as demonstrated in the previous section with the `break` statement, it may be useful to exit the loop prematurely.
 
 ::: panel-tabset
-
-##### Break Statement {-}
+##### Break Statement {.unnumbered}
 
 ![A break statement is used to exit a loop prematurely](images/break-statement.png)
 
-##### Next/Continue Statement {-}
+##### Next/Continue Statement {.unnumbered}
 
 ![A next (or continue) statement is used to skip the body of the loop and continue to the next iteration](images/next-statement-flow.png)
-
 :::
 
 ::: ex
-
 Let's demonstrate the details of next/continue and break statements.
 
 We can do different things based on whether i is evenly divisible by 3, 5, or both 3 and 5 (thus divisible by 15)
-
 
 ```{r}
 for (i in 1:20) {
@@ -1100,7 +1074,6 @@ for (i in 1:20) {
   }
 }
 ```
-
 :::
 
 To be quite honest, I haven't really ever needed to use next/continue statements when I'm programming, and I rarely use break statements. However, it's useful to know they exist just in case you come across a problem where you could put either one to use.
