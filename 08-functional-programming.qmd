@@ -894,9 +894,9 @@ penguins |>
 <br>
 
 ::: tryitout
-### PA 8: The 12 Days of Christmas Starter Functions {-}
+## PA 8: The 12 Days of Christmas Starter Functions {-}
 
-The song "12 Days of Christmas", written around 1780, tells the tale of many gifts a person receives in the days leading up to Christmas ([link to lyrics](https://en.wikipedia.org/wiki/The_Twelve_Days_of_Christmas_(song)). This week, you will be using your new R developer skills to write functions that automatically sing this very repetitive song.
+The song "12 Days of Christmas", written around 1780, tells the tale of many gifts a person receives in the days leading up to Christmas ([link to lyrics](https://en.wikipedia.org/wiki/The_Twelve_Days_of_Christmas_(song))). This week, you will be using your new R developer skills to write functions that automatically sing this very repetitive song.
 
 In the practice activity, we will start by writing two helper functions which we will use in the lab to write a function to sing this entire song.
 

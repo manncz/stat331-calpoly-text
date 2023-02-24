@@ -276,10 +276,10 @@ div.csl-indent {
   <li><a href="#tutorial" id="toc-tutorial" class="nav-link" data-scroll-target="#tutorial">Tutorial</a></li>
   <li><a href="#learn-more-about-purrr" id="toc-learn-more-about-purrr" class="nav-link" data-scroll-target="#learn-more-about-purrr">Learn More About Purrr</a></li>
   <li><a href="#checkin8-1" id="toc-checkin8-1" class="nav-link" data-scroll-target="#checkin8-1">Check-in 8.1: Functional Programming with the <code>map()</code> family</a></li>
-  <li><a href="#pa-8-the-12-days-of-christmas-starter-functions" id="toc-pa-8-the-12-days-of-christmas-starter-functions" class="nav-link" data-scroll-target="#pa-8-the-12-days-of-christmas-starter-functions">PA 8: The 12 Days of Christmas Starter Functions</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </li>
+  <li><a href="#pa-8-the-12-days-of-christmas-starter-functions" id="toc-pa-8-the-12-days-of-christmas-starter-functions" class="nav-link" data-scroll-target="#pa-8-the-12-days-of-christmas-starter-functions">PA 8: The 12 Days of Christmas Starter Functions</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/08-functional-programming.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
@@ -506,8 +506,8 @@ Note
 </div></div><div class="cell">
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 5.2386988 4.5056222 0.4659073 4.9261815 4.0397265 3.6464393 2.4057963
- [8] 3.0245217 1.7596475 1.7576380</code></pre>
+<pre><code> [1] 2.5148897 3.5470835 2.2540411 2.2700591 2.0819251 3.4267637 0.4890702
+ [8] 2.8626622 5.2006616 3.1578650</code></pre>
 </div>
 </div>
 <p>With vectorized functions, we don’t have to use a for loop to add these two vectors with 10 entries each together. In languages which don’t have implicit support for vectorized computations, this might instead look like:</p>
@@ -522,8 +522,8 @@ Note
 <span></span>
 <span><span class="va">result</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 5.582663 1.992350 5.624490 2.133101 2.154350 2.594979 3.414075 2.257126
- [9] 5.722411 4.073884</code></pre>
+<pre><code> [1]  5.4630173  2.1243349  5.1283864  2.3183721  5.7978345 -0.2027371
+ [7]  1.2356550  2.7103389  3.3019178  3.1934195</code></pre>
 </div>
 </div>
 <p>That is, we would <strong>apply</strong> or <strong>map</strong> the <code>+</code> function to each entry of a and b. For atomic vectors, it’s easy to do this by default; with a list, however, we need to be a bit more explicit (because everything that’s passed into the function may not be the same type).</p>
@@ -1257,7 +1257,7 @@ Example: Benefits of List columns
   .. ..- attr(*, "order")= int 1
   .. ..- attr(*, "intercept")= int 1
   .. ..- attr(*, "response")= int 1
-  .. ..- attr(*, ".Environment")=&lt;environment: 0x000002bac5b68bd0&gt; 
+  .. ..- attr(*, ".Environment")=&lt;environment: 0x0000021d6368a1b0&gt; 
   .. ..- attr(*, "predvars")= language list(y, x)
   .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
   .. .. ..- attr(*, "names")= chr [1:2] "y" "x"
@@ -1274,7 +1274,7 @@ Example: Benefits of List columns
   .. .. ..- attr(*, "order")= int 1
   .. .. ..- attr(*, "intercept")= int 1
   .. .. ..- attr(*, "response")= int 1
-  .. .. ..- attr(*, ".Environment")=&lt;environment: 0x000002bac5b68bd0&gt; 
+  .. .. ..- attr(*, ".Environment")=&lt;environment: 0x0000021d6368a1b0&gt; 
   .. .. ..- attr(*, "predvars")= language list(y, x)
   .. .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
   .. .. .. ..- attr(*, "names")= chr [1:2] "y" "x"
@@ -1712,8 +1712,8 @@ Example: Benefits of List columns
 <span>    <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><p><br></p>
-<section id="pa-8-the-12-days-of-christmas-starter-functions" class="level3 unnumbered tryitout"><h3 class="unnumbered anchored" data-anchor-id="pa-8-the-12-days-of-christmas-starter-functions">PA 8: The 12 Days of Christmas Starter Functions</h3>
-<p>The song “12 Days of Christmas”, written around 1780, tells the tale of many gifts a person receives in the days leading up to Christmas (<a href="https://en.wikipedia.org/wiki/The_Twelve_Days_of_Christmas_(song)">link to lyrics</a>. This week, you will be using your new R developer skills to write functions that automatically sing this very repetitive song.</p>
+</section><section id="pa-8-the-12-days-of-christmas-starter-functions" class="level2 unnumbered tryitout"><h2 class="unnumbered anchored" data-anchor-id="pa-8-the-12-days-of-christmas-starter-functions">PA 8: The 12 Days of Christmas Starter Functions</h2>
+<p>The song “12 Days of Christmas”, written around 1780, tells the tale of many gifts a person receives in the days leading up to Christmas (<a href="https://en.wikipedia.org/wiki/The_Twelve_Days_of_Christmas_(song)">link to lyrics</a>). This week, you will be using your new R developer skills to write functions that automatically sing this very repetitive song.</p>
 <p>In the practice activity, we will start by writing two helper functions which we will use in the lab to write a function to sing this entire song.</p>
 <p>Visit <a href="https://earobinson95.github.io/stat331-calpoly/practice-activities/PA8-twelve-days-of-christmas.html">PA 8: The 12 Days of Christmas Starter Functions</a> for instructions.</p>
 <blockquote class="blockquote">
@@ -1737,7 +1737,7 @@ Rudis, Bob. 2017. <span>“Pirating <span>Web</span> <span>Content</span> <span>
 Wickham, Hadley. 2019. <span>“Functional Programming.”</span> In <em>Advanced <span>R</span></em>, 2nd ed. The <span>R</span> Series. Chapman; Hall/CRC. <a href="http://adv-r.had.co.nz/Functional-programming.html">http://adv-r.had.co.nz/Functional-programming.html</a>.
 </div>
 </div>
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
