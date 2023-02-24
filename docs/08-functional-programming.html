@@ -276,7 +276,7 @@ div.csl-indent {
   <li><a href="#tutorial" id="toc-tutorial" class="nav-link" data-scroll-target="#tutorial">Tutorial</a></li>
   <li><a href="#learn-more-about-purrr" id="toc-learn-more-about-purrr" class="nav-link" data-scroll-target="#learn-more-about-purrr">Learn More About Purrr</a></li>
   <li><a href="#checkin8-1" id="toc-checkin8-1" class="nav-link" data-scroll-target="#checkin8-1">Check-in 8.1: Functional Programming with the <code>map()</code> family</a></li>
-  <li><a href="#pa-8-coming-soon" id="toc-pa-8-coming-soon" class="nav-link" data-scroll-target="#pa-8-coming-soon">PA 8: COMING SOON</a></li>
+  <li><a href="#pa-8-the-12-days-of-christmas-starter-functions" id="toc-pa-8-the-12-days-of-christmas-starter-functions" class="nav-link" data-scroll-target="#pa-8-the-12-days-of-christmas-starter-functions">PA 8: The 12 Days of Christmas Starter Functions</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </li>
@@ -301,7 +301,7 @@ div.csl-indent {
 </header><div class="cell">
 
 </div>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C87.5 32 35.1 48.6 9 59.9c-5.6 2.4-9 8-9 14V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V73.9c0-6.1-3.4-11.6-9-14C540.9 48.6 488.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 17 minute(s) at 200 WPM</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C87.5 32 35.1 48.6 9 59.9c-5.6 2.4-9 8-9 14V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V73.9c0-6.1-3.4-11.6-9-14C540.9 48.6 488.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 18 minute(s) at 200 WPM</p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"></path></svg> Videos: 29 minute(s)</p>
 <section id="ch8-objectives" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="ch8-objectives">Objectives</h2>
 <ul>
@@ -506,8 +506,8 @@ Note
 </div></div><div class="cell">
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  1.9478205  0.8640078  1.4961888  1.2514704  1.3669659 -0.1008224
- [7]  5.9905787  3.2833152  5.9524443  1.3769635</code></pre>
+<pre><code> [1] 5.2386988 4.5056222 0.4659073 4.9261815 4.0397265 3.6464393 2.4057963
+ [8] 3.0245217 1.7596475 1.7576380</code></pre>
 </div>
 </div>
 <p>With vectorized functions, we don’t have to use a for loop to add these two vectors with 10 entries each together. In languages which don’t have implicit support for vectorized computations, this might instead look like:</p>
@@ -522,8 +522,8 @@ Note
 <span></span>
 <span><span class="va">result</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  3.254549 -1.510861  1.625307  4.932730  2.134751  4.665539  3.969647
- [8]  3.294152  5.281256  2.908915</code></pre>
+<pre><code> [1] 5.582663 1.992350 5.624490 2.133101 2.154350 2.594979 3.414075 2.257126
+ [9] 5.722411 4.073884</code></pre>
 </div>
 </div>
 <p>That is, we would <strong>apply</strong> or <strong>map</strong> the <code>+</code> function to each entry of a and b. For atomic vectors, it’s easy to do this by default; with a list, however, we need to be a bit more explicit (because everything that’s passed into the function may not be the same type).</p>
@@ -1257,7 +1257,7 @@ Example: Benefits of List columns
   .. ..- attr(*, "order")= int 1
   .. ..- attr(*, "intercept")= int 1
   .. ..- attr(*, "response")= int 1
-  .. ..- attr(*, ".Environment")=&lt;environment: 0x000001da8b846c38&gt; 
+  .. ..- attr(*, ".Environment")=&lt;environment: 0x000002bac5b68bd0&gt; 
   .. ..- attr(*, "predvars")= language list(y, x)
   .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
   .. .. ..- attr(*, "names")= chr [1:2] "y" "x"
@@ -1274,7 +1274,7 @@ Example: Benefits of List columns
   .. .. ..- attr(*, "order")= int 1
   .. .. ..- attr(*, "intercept")= int 1
   .. .. ..- attr(*, "response")= int 1
-  .. .. ..- attr(*, ".Environment")=&lt;environment: 0x000001da8b846c38&gt; 
+  .. .. ..- attr(*, ".Environment")=&lt;environment: 0x000002bac5b68bd0&gt; 
   .. .. ..- attr(*, "predvars")= language list(y, x)
   .. .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
   .. .. .. ..- attr(*, "names")= chr [1:2] "y" "x"
@@ -1712,7 +1712,14 @@ Example: Benefits of List columns
 <span>    <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><p><br></p>
-<section id="pa-8-coming-soon" class="level3 unnumbered tryitout"><h3 class="unnumbered anchored" data-anchor-id="pa-8-coming-soon">PA 8: COMING SOON</h3>
+<section id="pa-8-the-12-days-of-christmas-starter-functions" class="level3 unnumbered tryitout"><h3 class="unnumbered anchored" data-anchor-id="pa-8-the-12-days-of-christmas-starter-functions">PA 8: The 12 Days of Christmas Starter Functions</h3>
+<p>The song “12 Days of Christmas”, written around 1780, tells the tale of many gifts a person receives in the days leading up to Christmas (<a href="https://en.wikipedia.org/wiki/The_Twelve_Days_of_Christmas_(song)">link to lyrics</a>. This week, you will be using your new R developer skills to write functions that automatically sing this very repetitive song.</p>
+<p>In the practice activity, we will start by writing two helper functions which we will use in the lab to write a function to sing this entire song.</p>
+<p>Visit <a href="https://earobinson95.github.io/stat331-calpoly/practice-activities/PA8-twelve-days-of-christmas.html">PA 8: The 12 Days of Christmas Starter Functions</a> for instructions.</p>
+<blockquote class="blockquote">
+<p>Your Full.Phrase column is the answer to this week’s Practice Activity.</p>
+<p>Copy and paste your Full.Phrase column to show me the phrases you made!</p>
+</blockquote>
 </section><section id="references" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
 
 
