@@ -15,8 +15,7 @@ words <- bytes/10
 minutes <- words/200
 ```
 
-```{r setup}
-#| include: false
+```{r setup, include = FALSE}
 library(quarto)
 library(fontawesome)
 library(ggplot2)
