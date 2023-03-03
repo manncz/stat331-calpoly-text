@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.132">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Stat 331/531 Statistical Computing with R - 4&nbsp; Data Joins and Transformations</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./05-special-data-types.html" rel="next">
+<link href="./03-data-cleaning-and-manipulation.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script><link rel="stylesheet" href="style.css">
+</head>
+<body class="nav-sidebar floating slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">
+<span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Joins and Transformations</span>
+</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Stat 331/531 Statistical Computing with R</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/earobinson95/stat331-calpoly-text" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+<li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
+            <i class="bi bi-bi-linkedin pe-1"></i>
+          LinkedIn
+          </a>
+        </li>
+    </ul>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-prereading.html" class="sidebar-item-text sidebar-link">Pre-reading</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-tidy-data-and-basics-of-graphics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tidy Data &amp; Basics of Graphics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-data-cleaning-and-manipulation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Cleaning and Manipulation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-data-joins-and-transformations.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Joins and Transformations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-special-data-types.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Special Data Types</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-version-control.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Version Control</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Writing Functions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-functional-programming.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Functional Programming</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-statistical-modeling-and-simulation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regression &amp; Simulating Distributions</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#ch4-objectives" id="toc-ch4-objectives" class="nav-link active" data-scroll-target="#ch4-objectives">Objectives</a></li>
+  <li><a href="#ch4-checkins" id="toc-ch4-checkins" class="nav-link" data-scroll-target="#ch4-checkins">Check-ins</a></li>
+  <li><a href="#identifying-the-problem-messy-data" id="toc-identifying-the-problem-messy-data" class="nav-link" data-scroll-target="#identifying-the-problem-messy-data"><span class="toc-section-number">4.1</span>  Identifying the problem: Messy data</a></li>
+  <li>
+<a href="#pivot-operations" id="toc-pivot-operations" class="nav-link" data-scroll-target="#pivot-operations"><span class="toc-section-number">4.2</span>  Pivot Operations</a>
+  <ul class="collapse">
+<li><a href="#longer" id="toc-longer" class="nav-link" data-scroll-target="#longer"><span class="toc-section-number">4.2.1</span>  Longer</a></li>
+  <li><a href="#wider" id="toc-wider" class="nav-link" data-scroll-target="#wider"><span class="toc-section-number">4.2.2</span>  Wider</a></li>
+  <li><a href="#learn-more-in-r4ds" id="toc-learn-more-in-r4ds" class="nav-link" data-scroll-target="#learn-more-in-r4ds">Learn More in R4DS</a></li>
+  <li><a href="#checkin4-1" id="toc-checkin4-1" class="nav-link" data-scroll-target="#checkin4-1">Check-in 4.1: Pivoting Cereal</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#separating-and-uniting-variables" id="toc-separating-and-uniting-variables" class="nav-link" data-scroll-target="#separating-and-uniting-variables"><span class="toc-section-number">4.3</span>  Separating and Uniting Variables</a>
+  <ul class="collapse">
+<li><a href="#learn-more-in-r4ds-1" id="toc-learn-more-in-r4ds-1" class="nav-link" data-scroll-target="#learn-more-in-r4ds-1">Learn More in R4DS</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#merging-tables" id="toc-merging-tables" class="nav-link" data-scroll-target="#merging-tables"><span class="toc-section-number">4.4</span>  Merging Tables</a>
+  <ul class="collapse">
+<li><a href="#animating-joins" id="toc-animating-joins" class="nav-link" data-scroll-target="#animating-joins"><span class="toc-section-number">4.4.1</span>  Animating Joins</a></li>
+  <li><a href="#learn-more-in-r4ds-2" id="toc-learn-more-in-r4ds-2" class="nav-link" data-scroll-target="#learn-more-in-r4ds-2">Learn More in R4DS</a></li>
+  <li><a href="#checkin4-2" id="toc-checkin4-2" class="nav-link" data-scroll-target="#checkin4-2">Check-in 4.2: Practice with Joins</a></li>
+  </ul>
+</li>
+  <li><a href="#pa-4-government-spending" id="toc-pa-4-government-spending" class="nav-link" data-scroll-target="#pa-4-government-spending">PA 4: Government Spending</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/04-data-joins-and-transformations.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title d-none d-lg-block">
+<span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Joins and Transformations</span>
+</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header><div class="cell">
+
+</div>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C87.5 32 35.1 48.6 9 59.9c-5.6 2.4-9 8-9 14V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V73.9c0-6.1-3.4-11.6-9-14C540.9 48.6 488.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 15 minute(s) at 200 WPM.</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"></path></svg> Videos: 26 minutes.</p>
+<section id="ch4-objectives" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="ch4-objectives">Objectives</h2>
+<p>Broadly, your objective while reading this chapter is to be able to identify data sets which have “messy” formats and determine a sequence of operations to transition the data into “tidy” format. To do this, you should be master the following concepts:</p>
+<ul>
+<li>Determine what data format is necessary to generate a desired plot or statistical model</li>
+<li>Understand the differences between “wide” and “long” format data and how to transition between the two structures</li>
+<li>Understand relational data formats and how to use data joins to assemble data from multiple tables into a single table.</li>
+</ul>
+<div class="note">
+<p>Functions covered this week:</p>
+<p><code><a href="https://tidyr.tidyverse.org">library(tidyr)</a></code></p>
+<ul>
+<li>
+<code>pivot_longer()</code>, <code>pivot_wider()</code>
+</li>
+<li>
+<code>separate()</code>, <code>unite()</code>
+</li>
+</ul>
+<p><code><a href="https://dplyr.tidyverse.org">library(dplyr)</a></code></p>
+<ul>
+<li>
+<code>left_join()</code>, <code>right_join()</code>, <code>full_join()</code>
+</li>
+<li>
+<code>semi_join()</code>, <code>anti_join()</code>
+</li>
+</ul>
+</div>
+<p><br></p>
+</section><section id="ch4-checkins" class="level2 unnumbered check-in"><h2 class="unnumbered anchored" data-anchor-id="ch4-checkins">Check-ins</h2>
+<p>There are two check-ins for this week:</p>
+<ul>
+<li><a href="#checkin4-1">Check-in 4.1: Pivoting Cereal</a></li>
+<li><a href="#checkin4-2">Check-in 4.2: Practice with Joins</a></li>
+</ul></section><section id="identifying-the-problem-messy-data" class="level2 page-columns page-full" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="identifying-the-problem-messy-data">
+<span class="header-section-number">4.1</span> Identifying the problem: Messy data</h2>
+<p>The illustrations below are lifted from an <a href="https://www.openscapes.org/blog/2020/10/12/tidy-data/">excellent blog post</a> <span class="citation" data-cites="lowndesTidyDataEfficiency2020">(<a href="#ref-lowndesTidyDataEfficiency2020" role="doc-biblioref">Lowndes and Horst 2020</a>)</span> about tidy data; they’re reproduced here because</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="youtube-container">
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/Afc3MqWXfls" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
+</iframe>
+</div>
+</div></div><ol type="1">
+<li>they’re beautiful and licensed as CCA-4.0-by, and</li>
+<li>they might be more memorable than the equivalent paragraphs of text without illustration.</li>
+</ol>
+<p>Most of the time, data does not come in a format suitable for analysis. Spreadsheets are generally optimized for data entry or viewing, rather than for statistical analysis:</p>
+<ul>
+<li>Tables may be laid out for easy data entry, so that there are multiple observations in a single row</li>
+<li>It may be visually preferable to arrange columns of data to show multiple times or categories on the same row for easy comparison</li>
+</ul>
+<p>When we analyze data, however, we care much more about the fundamental structure of observations: discrete units of data collection. Each observation may have several corresponding variables that may be measured simultaneously, but fundamentally each discrete data point is what we are interested in analyzing.</p>
+<p>The structure of <strong>tidy data</strong> reflects this preference for keeping the data in a fundamental form: each observation is in its own row, any observed variables are in single columns. This format is inherently rectangular, which is also important for statistical analysis - our methods are typically designed to work with matrices of data.</p>
+<div id="fig-tidy-data-definition" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_1.jpg" class="img-fluid figure-img" alt="Stylized text providing an overview of Tidy Data. The top reads “Tidy data is a standard way of mapping the meaning of a dataset to its structure. - Hadley Wickham.” On the left reads “In tidy data: each variable forms a column; each observation forms a row; each cell is a single measurement.” There is an example table on the lower right with columns ‘id’, ‘name’ and ‘color’ with observations for different cats, illustrating tidy data structure."></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4.1: Tidy data format, illustrated.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_2.jpg" class="img-fluid figure-img" alt="There are two sets of anthropomorphized data tables. The top group of three tables are all rectangular and smiling, with a shared speech bubble reading “our columns are variables and our rows are observations!”. Text to the left of that group reads “The standard structure of tidy data means that “tidy datasets are all alike…” The lower group of four tables are all different shapes, look ragged and concerned, and have different speech bubbles reading (from left to right) “my column are values and my rows are variables”, “I have variables in columns AND in rows”, “I have multiple variables in a single column”, and “I don’t even KNOW what my deal is.” Next to the frazzled data tables is text “...but every messy dataset is messy in its own way. -Hadley Wickham.”"></p>
+<p></p><figcaption class="figure-caption">An illustration of the principle that every messy dataset is messy in its own way.</figcaption><p></p>
+</figure>
+</div>
+<p>The preference for tidy data has several practical implications: it is easier to reuse code on tidy data, allowing for analysis using a standardized set of tools (rather than having to build a custom tool for each data analysis job).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_3.jpg" class="img-fluid figure-img" alt="On the left is a happy cute fuzzy monster holding a rectangular data frame with a tool that fits the data frame shape. On the workbench behind the monster are other data frames of similar rectangular shape, and neatly arranged tools that also look like they would fit those data frames. The workbench looks uncluttered and tidy. The text above the tidy workbench reads “When working with tidy data, we can use the same tools in similar ways for different datasets…” On the right is a cute monster looking very frustrated, using duct tape and other tools to haphazardly tie data tables together, each in a different way. The monster is in front of a messy, cluttered workbench. The text above the frustrated monster reads “...but working with untidy data often means reinventing the wheel with one-time approaches that are hard to iterate or reuse.”"></p>
+<p></p><figcaption class="figure-caption">Tidy data is easier to manage because the same tools and approaches apply to multiple datasets.</figcaption><p></p>
+</figure>
+</div>
+<p>In addition, standardized tools for data analysis means that it is easier to collaborate with others: if everyone starts with the same set of assumptions about the dataset, you can borrow methods and tools from a collaborator’s analysis and easily apply them to your own dataset.</p>
+<div id="fig-tidy-data-advantages" class="quarto-layout-panel">
+<figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_4.jpg" class="img-fluid figure-img" alt="Two happy looking round fuzzy monsters, each holding a similarly shaped wrench with the word “wrangle” on it. Between their tools is held up a rectangular data table labeled “TIDY.”"></p>
+<p></p><figcaption class="figure-caption">Collaboration with tidy data.</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_5.jpg" class="img-fluid figure-img" alt="Cute fuzzy monsters putting rectangular data tables onto a conveyor belt. Along the conveyor belt line are different automated “stations” that update the data, reading “WRANGLE”, “VISUALIZE”, and “MODEL”. A monster at the end of the conveyor belt is carrying away a table that reads “Complete analysis.”"></p>
+<p></p><figcaption class="figure-caption">Tidy data enables standardized workflows.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4.2: Tidy data makes it easier to collaborate with others and analyze new data using standardized workflows.</figcaption><p></p>
+</figure>
+</div>
+<details class="ex"><summary>
+Examples: Messy Data
+</summary><p>These datasets all display the same data: TB cases documented by the WHO in Afghanistan, Brazil, and China, between 1999 and 2000. There are 4 variables: country, year, cases, and population, but each table has a different layout.</p>
+<ul>
+<li><p>For each of the data set, determine whether each table is tidy. If it is not, identify which rule or rules it violates.</p></li>
+<li><p>What would you have to do in order to compute a standardized TB infection rate per 100,000 people?</p></li>
+</ul>
+<p><em>All of these data sets are “built-in” to the <code>tidyverse</code> package</em></p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Table 1</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">2</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">3</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">4</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">5</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="unnumbered tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<table>
+<caption>Table 1</caption>
+ <thead><tr>
+<th style="text-align:left;"> country </th>
+   <th style="text-align:right;"> year </th>
+   <th style="text-align:right;"> cases </th>
+   <th style="text-align:right;"> population </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 1999 </td>
+   <td style="text-align:right;"> 745 </td>
+   <td style="text-align:right;"> 19987071 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 2000 </td>
+   <td style="text-align:right;"> 2666 </td>
+   <td style="text-align:right;"> 20595360 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Brazil </td>
+   <td style="text-align:right;"> 1999 </td>
+   <td style="text-align:right;"> 37737 </td>
+   <td style="text-align:right;"> 172006362 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Brazil </td>
+   <td style="text-align:right;"> 2000 </td>
+   <td style="text-align:right;"> 80488 </td>
+   <td style="text-align:right;"> 174504898 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> China </td>
+   <td style="text-align:right;"> 1999 </td>
+   <td style="text-align:right;"> 212258 </td>
+   <td style="text-align:right;"> 1272915272 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> China </td>
+   <td style="text-align:right;"> 2000 </td>
+   <td style="text-align:right;"> 213766 </td>
+   <td style="text-align:right;"> 1280428583 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Here, each observation is a single row, each variable is a column, and everything is nicely arranged for e.g.&nbsp;regression or statistical analysis. We can easily compute another measure, such as cases per 100,000 population, by taking cases/population * 100000 (this would define a new column).</p>
+</div>
+<div id="tabset-1-2" class="unnumbered tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<table>
+<caption>Table 2</caption>
+ <thead><tr>
+<th style="text-align:left;"> country </th>
+   <th style="text-align:right;"> year </th>
+   <th style="text-align:left;"> type </th>
+   <th style="text-align:right;"> count </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 1999 </td>
+   <td style="text-align:left;"> cases </td>
+   <td style="text-align:right;"> 745 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 1999 </td>
+   <td style="text-align:left;"> population </td>
+   <td style="text-align:right;"> 19987071 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 2000 </td>
+   <td style="text-align:left;"> cases </td>
+   <td style="text-align:right;"> 2666 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 2000 </td>
+   <td style="text-align:left;"> population </td>
+   <td style="text-align:right;"> 20595360 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Brazil </td>
+   <td style="text-align:right;"> 1999 </td>
+   <td style="text-align:left;"> cases </td>
+   <td style="text-align:right;"> 37737 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Brazil </td>
+   <td style="text-align:right;"> 1999 </td>
+   <td style="text-align:left;"> population </td>
+   <td style="text-align:right;"> 172006362 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Brazil </td>
+   <td style="text-align:right;"> 2000 </td>
+   <td style="text-align:left;"> cases </td>
+   <td style="text-align:right;"> 80488 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Brazil </td>
+   <td style="text-align:right;"> 2000 </td>
+   <td style="text-align:left;"> population </td>
+   <td style="text-align:right;"> 174504898 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> China </td>
+   <td style="text-align:right;"> 1999 </td>
+   <td style="text-align:left;"> cases </td>
+   <td style="text-align:right;"> 212258 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> China </td>
+   <td style="text-align:right;"> 1999 </td>
+   <td style="text-align:left;"> population </td>
+   <td style="text-align:right;"> 1272915272 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> China </td>
+   <td style="text-align:right;"> 2000 </td>
+   <td style="text-align:left;"> cases </td>
+   <td style="text-align:right;"> 213766 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> China </td>
+   <td style="text-align:right;"> 2000 </td>
+   <td style="text-align:left;"> population </td>
+   <td style="text-align:right;"> 1280428583 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Here, we have 4 columns again, but we now have 12 rows: one of the columns is an indicator of which of two numerical observations is recorded in that row; a second column stores the value. This form of the data is more easily plotted in e.g.&nbsp;ggplot2, if we want to show lines for both cases and population, but computing per capita cases would be much more difficult in this form than in the arrangement in table 1.</p>
+</div>
+<div id="tabset-1-3" class="unnumbered tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<table>
+<caption>Table 3</caption>
+ <thead><tr>
+<th style="text-align:left;"> country </th>
+   <th style="text-align:right;"> year </th>
+   <th style="text-align:left;"> rate </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 1999 </td>
+   <td style="text-align:left;"> 745/19987071 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 2000 </td>
+   <td style="text-align:left;"> 2666/20595360 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Brazil </td>
+   <td style="text-align:right;"> 1999 </td>
+   <td style="text-align:left;"> 37737/172006362 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Brazil </td>
+   <td style="text-align:right;"> 2000 </td>
+   <td style="text-align:left;"> 80488/174504898 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> China </td>
+   <td style="text-align:right;"> 1999 </td>
+   <td style="text-align:left;"> 212258/1272915272 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> China </td>
+   <td style="text-align:right;"> 2000 </td>
+   <td style="text-align:left;"> 213766/1280428583 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>This form has only 3 columns, because the rate variable (which is a character) stores both the case count and the population. We can’t do <em>anything</em> with this format as it stands, because we can’t do math on data stored as characters. However, this form might be easier to read and record for a human being.</p>
+</div>
+<div id="tabset-1-4" class="unnumbered tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<table>
+<caption>Table 4a</caption>
+ <thead><tr>
+<th style="text-align:left;"> country </th>
+   <th style="text-align:right;"> 1999 </th>
+   <th style="text-align:right;"> 2000 </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 745 </td>
+   <td style="text-align:right;"> 2666 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Brazil </td>
+   <td style="text-align:right;"> 37737 </td>
+   <td style="text-align:right;"> 80488 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> China </td>
+   <td style="text-align:right;"> 212258 </td>
+   <td style="text-align:right;"> 213766 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+
+<table>
+<caption>Table 4b</caption>
+ <thead><tr>
+<th style="text-align:left;"> country </th>
+   <th style="text-align:right;"> 1999 </th>
+   <th style="text-align:right;"> 2000 </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 19987071 </td>
+   <td style="text-align:right;"> 20595360 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Brazil </td>
+   <td style="text-align:right;"> 172006362 </td>
+   <td style="text-align:right;"> 174504898 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> China </td>
+   <td style="text-align:right;"> 1272915272 </td>
+   <td style="text-align:right;"> 1280428583 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>In this form, we have two tables - one for population, and one for cases. Each year’s observations are in a separate column. This format is often found in separate sheets of an excel workbook. To work with this data, we’ll need to transform each table so that there is a column indicating which year an observation is from, and then merge the two tables together by country and year.</p>
+</div>
+<div id="tabset-1-5" class="unnumbered tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<table>
+<caption>Table 5</caption>
+ <thead><tr>
+<th style="text-align:left;"> country </th>
+   <th style="text-align:left;"> century </th>
+   <th style="text-align:left;"> year </th>
+   <th style="text-align:left;"> rate </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:left;"> 19 </td>
+   <td style="text-align:left;"> 99 </td>
+   <td style="text-align:left;"> 745/19987071 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 00 </td>
+   <td style="text-align:left;"> 2666/20595360 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Brazil </td>
+   <td style="text-align:left;"> 19 </td>
+   <td style="text-align:left;"> 99 </td>
+   <td style="text-align:left;"> 37737/172006362 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Brazil </td>
+   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 00 </td>
+   <td style="text-align:left;"> 80488/174504898 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> China </td>
+   <td style="text-align:left;"> 19 </td>
+   <td style="text-align:left;"> 99 </td>
+   <td style="text-align:left;"> 212258/1272915272 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> China </td>
+   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 00 </td>
+   <td style="text-align:left;"> 213766/1280428583 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Table 5 is very similar to table 3, but the year has been separated into two columns - century, and year. This is more common with year, month, and day in separate columns (or date and time in separate columns), often to deal with the fact that spreadsheets don’t always handle dates the way you’d hope they would.</p>
+</div>
+</div>
+</div>
+:::
+</details><p><br></p>
+<p>By the end of this chapter, you will have the skills needed to wrangle the most common “messy” data sets into “tidy” form.</p>
+</section><section id="pivot-operations" class="level2 page-columns page-full" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="pivot-operations">
+<span class="header-section-number">4.2</span> Pivot Operations</h2>
+<p>It’s fairly common for data to come in forms which are convenient for either human viewing or data entry. Unfortunately, these forms aren’t necessarily the most friendly for analysis.</p>
+<p><img src="https://github.com/gadenbuie/tidyexplain/raw/main/images/static/png/original-dfs-tidy.png" class="img-fluid"></p>
+<p>The two operations we’ll learn here are wide -&gt; long and long -&gt; wide.</p>
+<p><img src="https://github.com/gadenbuie/tidyexplain/raw/main/images/tidyr-pivoting.gif" class="img-fluid"></p>
+<p>This animation uses the functions <code>pivot_wider()</code> and <code>pivot_longer()</code> from the <code>tidyr</code> package in R – <a href="https://github.com/kelseygonzalez/tidyexplain/tree/wider_longer">Animation source</a>.</p>
+<section id="longer" class="level3 page-columns page-full" data-number="4.2.1"><h3 data-number="4.2.1" class="anchored" data-anchor-id="longer">
+<span class="header-section-number">4.2.1</span> Longer</h3>
+<p>In many cases, the data come in what we might call “wide” form - some of the column names are not names of variables, but instead, are themselves values of another variable.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="youtube-container">
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/2rQZNlH2734" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
+</iframe>
+</div>
+</div></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Picture the Operation</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><code>pivot_longer()</code></a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>Tables 4a and 4b (from above) are good examples of data which is in “wide” form and should be in long(er) form: the years, which are variables, are column names, and the values are cases and population respectively.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">table4a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  country     `1999` `2000`
+* &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
+1 Afghanistan    745   2666
+2 Brazil       37737  80488
+3 China       212258 213766</code></pre>
+</div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">table4b</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  country         `1999`     `2000`
+* &lt;chr&gt;            &lt;int&gt;      &lt;int&gt;
+1 Afghanistan   19987071   20595360
+2 Brazil       172006362  174504898
+3 China       1272915272 1280428583</code></pre>
+</div>
+</div>
+<p>The solution to this is to rearrange the data into “long form”: to take the columns which contain values and “stack” them, adding a variable to indicate which column each value came from. To do this, we have to duplicate the values in any column which isn’t being stacked (e.g.&nbsp;country, in both the example above and the image below).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/04-data-joins-and-data-transformations/tidyr_pivot_longer.png" class="img-fluid figure-img" alt="A wide-to-long transformation operation, where the values of the id variables are repeated for each column which is used as a key; the values in each column are moved into a value column. There is a row of data in the transformed data frame for each combination of id variables and key variables."></p>
+<p></p><figcaption class="figure-caption">A visual representation of what the pivot_longer operation looks like in practice.</figcaption><p></p>
+</figure>
+</div>
+<p>Once our data are in long form, we can (if necessary) separate values that once served as column labels into actual variables, and we’ll have tidy(er) data.</p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">table4a</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">pivot_longer</span><span class="op">(</span>cols <span class="op">=</span> <span class="va">`1999`</span><span class="op">:</span><span class="va">`2000`</span>, </span>
+<span>               names_to <span class="op">=</span> <span class="st">"year"</span>, </span>
+<span>               values_to <span class="op">=</span> <span class="st">"cases"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  country     year   cases
+  &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;
+1 Afghanistan 1999     745
+2 Afghanistan 2000    2666
+3 Brazil      1999   37737
+4 Brazil      2000   80488
+5 China       1999  212258
+6 China       2000  213766</code></pre>
+</div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">table4b</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">pivot_longer</span><span class="op">(</span>cols <span class="op">=</span> <span class="op">-</span><span class="va">country</span>, </span>
+<span>               names_to <span class="op">=</span> <span class="st">"year"</span>, </span>
+<span>               values_to <span class="op">=</span> <span class="st">"population"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  country     year  population
+  &lt;chr&gt;       &lt;chr&gt;      &lt;int&gt;
+1 Afghanistan 1999    19987071
+2 Afghanistan 2000    20595360
+3 Brazil      1999   172006362
+4 Brazil      2000   174504898
+5 China       1999  1272915272
+6 China       2000  1280428583</code></pre>
+</div>
+</div>
+<p>The columns are moved to a variable with the name passed to the argument “names_to” (hopefully, that is easy to remember), and the values are moved to a variable with the name passed to the argument “values_to” (again, hopefully easy to remember).</p>
+<p>We identify ID variables (variables which we don’t want to pivot) by not including them in the pivot statement. We can do this in one of two ways:</p>
+<ul>
+<li>select only variables (columns) we want to pivot <em>(see table4a pivot)</em>
+</li>
+<li>select variables (columns) we don’t want to pivot, using <code>-</code> to remove them <em>(see table4b pivot)</em>
+</li>
+</ul>
+<p>Which option is easier depends how many things you’re pivoting (and how the columns are structured).</p>
+</div>
+</div>
+</div>
+</section><section id="wider" class="level3 page-columns page-full" data-number="4.2.2"><h3 data-number="4.2.2" class="anchored" data-anchor-id="wider">
+<span class="header-section-number">4.2.2</span> Wider</h3>
+<p>While it’s very common to need to transform data into a longer format, it’s not that uncommon to need to do the reverse operation. When an observation is scattered across multiple rows, your data is too long and needs to be made wider again.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="youtube-container">
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/NKnl2WoNpK0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
+</iframe>
+</div>
+</div></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Picture the Operation</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false"><code>pivot_wider()</code></a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p>Table 2 (from above) is an example of a table that is in long format but needs to be converted to a wider layout to be “tidy” - there are separate rows for cases and population, which means that a single observation (one year, one country) has two rows.</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">table2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 4
+   country      year type            count
+   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
+ 1 Afghanistan  1999 cases             745
+ 2 Afghanistan  1999 population   19987071
+ 3 Afghanistan  2000 cases            2666
+ 4 Afghanistan  2000 population   20595360
+ 5 Brazil       1999 cases           37737
+ 6 Brazil       1999 population  172006362
+ 7 Brazil       2000 cases           80488
+ 8 Brazil       2000 population  174504898
+ 9 China        1999 cases          212258
+10 China        1999 population 1272915272
+11 China        2000 cases          213766
+12 China        2000 population 1280428583</code></pre>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/04-data-joins-and-data-transformations/tidyr_pivot_wider.png" class="img-fluid figure-img" alt="An illustration of the transition from long data to wide data. In the long data frame, there are alternating rows of cases and populations, with corresponding counts. In the wide data frame, for each combination of id variables country and year, there are two columns: cases, and pop, each with corresponding values. That is, the key variables (cases, pop) in the long data frame become columns in the wide data frame."></p>
+<p></p><figcaption class="figure-caption">A visual representation of what the pivot_wider operation looks like in practice.</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">table2</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from  <span class="op">=</span> <span class="va">type</span>, </span>
+<span>              values_from <span class="op">=</span> <span class="va">count</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  country      year  cases population
+  &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+1 Afghanistan  1999    745   19987071
+2 Afghanistan  2000   2666   20595360
+3 Brazil       1999  37737  172006362
+4 Brazil       2000  80488  174504898
+5 China        1999 212258 1272915272
+6 China        2000 213766 1280428583</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+</section><section id="learn-more-in-r4ds" class="level3 unnumbered learn-more"><h3 class="unnumbered anchored" data-anchor-id="learn-more-in-r4ds">Learn More in R4DS</h3>
+<p>Read more about pivoting in <a href="https://r4ds.hadley.nz/data-tidy.html#sec-pivoting">r4ds</a>.</p>
+</section><p><br></p>
+<section id="checkin4-1" class="level3 unnumbered check-in"><h3 class="unnumbered anchored" data-anchor-id="checkin4-1">Check-in 4.1: Pivoting Cereal</h3>
+<p>Load in the <code>cereal</code> data set:</p>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.uva.nl/profile/a.mohammadi">liver</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">cereal</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cereal</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                       name manuf type calories protein fat sodium fiber carbo
+1                 100% Bran     N cold       70       4   1    130  10.0   5.0
+2         100% Natural Bran     Q cold      120       3   5     15   2.0   8.0
+3                  All-Bran     K cold       70       4   1    260   9.0   7.0
+4 All-Bran with Extra Fiber     K cold       50       4   0    140  14.0   8.0
+5            Almond Delight     R cold      110       2   2    200   1.0  14.0
+6   Apple Cinnamon Cheerios     G cold      110       2   2    180   1.5  10.5
+  sugars potass vitamins shelf weight cups   rating
+1      6    280       25     3      1 0.33 68.40297
+2      8    135        0     3      1 1.00 33.98368
+3      5    320       25     3      1 0.33 59.42551
+4      0    330       25     3      1 0.50 93.70491
+5      8     -1       25     3      1 0.75 34.38484
+6     10     70       25     1      1 0.75 29.50954</code></pre>
+</div>
+</div>
+<p>Create a new data set called <code>cereals_long</code>, that has three columns:</p>
+<ul>
+<li>The <code>name</code> of the cereal</li>
+<li>A column called <code>Nutrient</code> with values “protein”, “fat”, or “fiber”.</li>
+<li>A column called <code>Amount</code> with the corresponding amount of the nutrient.</li>
+</ul>
+<p>Complete the code template to complete the task in the Canvas Quiz.</p>
+</section></section><section id="separating-and-uniting-variables" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="separating-and-uniting-variables">
+<span class="header-section-number">4.3</span> Separating and Uniting Variables</h2>
+<p>We will talk about strings and regular expressions next week, but there’s a task that is fairly commonly encountered with functions that belong to the <code>tidyr</code> package: separating variables into two different columns <code>separate()</code> and it’s complement, <code>unite()</code>, which is useful for combining two variables into one column.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true"><code>separate()</code></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false"><code>unite()</code></a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/04-data-joins-and-data-transformations/tidyr_separate.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p></p><figcaption class="figure-caption">A visual representation of what separating variables means for data set operations.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">table3</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">separate</span><span class="op">(</span>col    <span class="op">=</span> <span class="va">rate</span>, </span>
+<span>           into   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cases"</span>, <span class="st">"population"</span><span class="op">)</span>, </span>
+<span>           sep    <span class="op">=</span> <span class="st">"/"</span>, </span>
+<span>           remove <span class="op">=</span> <span class="cn">F</span></span>
+<span>           <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  country      year rate              cases  population
+  &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt;     
+1 Afghanistan  1999 745/19987071      745    19987071  
+2 Afghanistan  2000 2666/20595360     2666   20595360  
+3 Brazil       1999 37737/172006362   37737  172006362 
+4 Brazil       2000 80488/174504898   80488  174504898 
+5 China        1999 212258/1272915272 212258 1272915272
+6 China        2000 213766/1280428583 213766 1280428583</code></pre>
+</div>
+</div>
+<p>I’ve left the rate column in the original data frame (<code>remove = F</code>) just to make it easy to compare and verify that yes, it worked.</p>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<p>And, of course, there is a complementary operation, which is when it’s necessary to join two columns to get a useable data value.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/04-data-joins-and-data-transformations/tidyr_unite.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p></p><figcaption class="figure-caption">A visual representation of what uniting variables means for data set operations.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">table5</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">unite</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"year"</span>, </span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">century</span>, <span class="va">year</span><span class="op">)</span>, </span>
+<span>        sep <span class="op">=</span> <span class="st">''</span></span>
+<span>        <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  country     year  rate             
+  &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;            
+1 Afghanistan 1999  745/19987071     
+2 Afghanistan 2000  2666/20595360    
+3 Brazil      1999  37737/172006362  
+4 Brazil      2000  80488/174504898  
+5 China       1999  212258/1272915272
+6 China       2000  213766/1280428583</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<section id="learn-more-in-r4ds-1" class="level3 unnumbered learn-more"><h3 class="unnumbered anchored" data-anchor-id="learn-more-in-r4ds-1">Learn More in R4DS</h3>
+<p>Read more about <code>separate()</code> and <code>unite()</code> in <a href="https://r4ds.had.co.nz/tidy-data.html#separating-and-uniting">r4ds</a>.</p>
+</section></section><section id="merging-tables" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="merging-tables">
+<span class="header-section-number">4.4</span> Merging Tables</h2>
+<p>The final essential data tidying and transformation skill you need to acquire is joining tables. It is common for data to be organized <strong>relationally</strong> - that is, certain aspects of the data apply to a group of data points, and certain aspects apply to individual data points, and there are relationships between the individual data points and the groups of data points that have to be documented.</p>
+<details class="ex"><summary>
+Examples: Relational Data Example: Primary School Records
+</summary><p>Each individual has certain characteristics:</p>
+<ul>
+<li>full_name</li>
+<li>gender</li>
+<li>birth date</li>
+<li>ID number</li>
+</ul>
+<p>Each student has specific characteristics:</p>
+<ul>
+<li>ID number</li>
+<li>parent name</li>
+<li>parent phone number</li>
+<li>medical information</li>
+<li>Class ID</li>
+</ul>
+<p>Teachers may also have additional information:</p>
+<ul>
+<li>ID number</li>
+<li>Class ID</li>
+<li>employment start date</li>
+<li>education level</li>
+<li>compensation level</li>
+</ul>
+<p>There are also fields like grades, which occur for each student in each class, but multiple times a year.</p>
+<ul>
+<li>ID number</li>
+<li>Student ID</li>
+<li>Class ID</li>
+<li>year</li>
+<li>term number</li>
+<li>subject</li>
+<li>grade</li>
+<li>comment</li>
+</ul>
+<p>And for teachers, there are employment records on a yearly basis</p>
+<ul>
+<li>ID number</li>
+<li>Employee ID</li>
+<li>year</li>
+<li>rating</li>
+<li>comment</li>
+</ul>
+<p>But each class also has characteristics that describe the whole class as a unit:</p>
+<ul>
+<li>location ID</li>
+<li>class ID</li>
+<li>meeting time</li>
+<li>grade level</li>
+</ul>
+<p>Each location might also have some logistical information attached:</p>
+<ul>
+<li>location ID</li>
+<li>room number</li>
+<li>building</li>
+<li>number of seats</li>
+<li>AV equipment</li>
+</ul>
+<p><img src="images/04-data-joins-and-data-transformations/PrimarySchoolExample.png" class="img-fluid" alt="Primary School Database Schema"><!-- <a href="https://dbdiagram.io/embed/5ef387179ea313663b3b048e">Link to diagram of the database</a> --></p>
+<p>We could go on, but you can see that this data is hierarchical, but also relational: - each class has both a teacher and a set of students - each class is held in a specific location that has certain equipment</p>
+<p>It would be silly to store this information in a single table (though it probably can be done) because all of the teacher information would be duplicated for each student in each class; all of the student’s individual info would be duplicated for each grade. There would be a lot of wasted storage space and the tables would be much more confusing as well.</p>
+<p>But, relational data also means we have to put in some work when we have a question that requires information from multiple tables. Suppose we want a list of all of the birthdays in a certain class. We would need to take the following steps:</p>
+<ul>
+<li>get the Class ID</li>
+<li>get any teachers that are assigned that Class ID - specifically, get their ID number</li>
+<li>get any students that are assigned that Class ID - specifically, get their ID number</li>
+<li>append the results from teachers and students so that there is a list of all individuals in the class</li>
+<li>look through the “individual data” table to find any individuals with matching ID numbers, and keep those individuals’ birth days.</li>
+</ul>
+<p>It is helpful to develop the ability to lay out a set of tables in a schema (because often, database schemas aren’t well documented) and mentally map out the steps that you need to combine tables to get the information you want from the information you have.</p>
+</details><p>Table joins allow us to combine information stored in different tables, keeping certain information (the stuff we need) while discarding extraneous information.</p>
+<p><strong>keys</strong> are values that are found in multiple tables that can be used to connect the tables. A key (or set of keys) uniquely identify an observation. A <strong>primary key</strong> identifies an observation in its own table. A <strong>foreign key</strong> identifies an observation in another table.</p>
+<p>There are 3 main types of table joins:</p>
+<ul>
+<li><p><strong>Mutating joins</strong>, which add columns from one table to matching rows in another table<br>
+Ex: adding birthday to the table of all individuals in a class</p></li>
+<li><p><strong>Filtering joins</strong>, which remove rows from a table based on whether or not there is a matching row in another table (but the columns in the original table don’t change)<br>
+Ex: finding all teachers or students who have class ClassID</p></li>
+<li><p><strong>Set operations</strong>, which treat observations as set elements (e.g.&nbsp;union, intersection, etc.)<br>
+Ex: taking the union of all student and teacher IDs to get a list of individual IDs</p></li>
+</ul>
+<section id="animating-joins" class="level3" data-number="4.4.1"><h3 data-number="4.4.1" class="anchored" data-anchor-id="animating-joins">
+<span class="header-section-number">4.4.1</span> Animating Joins</h3>
+<p>Note: all of these animations are stolen from <a href="https://github.com/gadenbuie/tidyexplain" class="uri">https://github.com/gadenbuie/tidyexplain</a>.</p>
+<p>If we start with two tables, x and y,</p>
+<p><img src="https://raw.githubusercontent.com/gadenbuie/tidyexplain/master/images/static/png/original-dfs.png" class="img-fluid"></p>
+<section id="mutating-joins" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="mutating-joins">Mutating Joins</h4>
+<p>We’re primarily going to focus on mutating joins, as filtering joins can be accomplished by … filtering … rather than by table joins.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Inner Join</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Left Join</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false">Right Join</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-4" role="tab" aria-controls="tabset-5-4" aria-selected="false">Full Join</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<p>We can do a filtering <code>inner_join</code> to keep only rows which are in both tables (but we keep all columns)</p>
+<p><img src="https://raw.githubusercontent.com/gadenbuie/tidyexplain/master/images/inner-join.gif" class="img-fluid"></p>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<p>But what if we want to keep all of the rows in x? We would do a <code>left_join</code></p>
+<p><img src="https://raw.githubusercontent.com/gadenbuie/tidyexplain/master/images/left-join.gif" class="img-fluid"></p>
+<p>If there are multiple matches in the y table, though, we might have to duplicate rows in x. This is still a left join, just a more complicated one.</p>
+<p><img src="https://raw.githubusercontent.com/gadenbuie/tidyexplain/master/images/left-join-extra.gif" class="img-fluid"></p>
+</div>
+<div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
+<p>If we wanted to keep all of the rows in y, we would do a <code>right_join</code>:</p>
+<p><img src="https://raw.githubusercontent.com/gadenbuie/tidyexplain/master/images/right-join.gif" class="img-fluid"></p>
+<p>(or, we could do a left join with y and x, but… either way is fine).</p>
+</div>
+<div id="tabset-5-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-4-tab">
+<p>And finally, if we want to keep all of the rows, we’d do a <code>full_join</code>:</p>
+<p><img src="https://raw.githubusercontent.com/gadenbuie/tidyexplain/master/images/full-join.gif" class="img-fluid"></p>
+<p>You can find other animations corresponding to filtering joins and set operations <a href="https://raw.githubusercontent.com/gadenbuie/tidyexplain/master/images/full-join.gif">here</a></p>
+</div>
+</div>
+</div>
+<p>Every join has a “left side” and a “right side” - so in <code>some_join(A, B)</code>, A is the left side, B is the right side.</p>
+<p>Joins are differentiated based on how they treat the rows and columns of each side. In mutating joins, the columns from both sides are always kept.</p>
+<table class="table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 16%">
+<col style="width: 18%">
+<col style="width: 15%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>Left Side</td>
+<td>Right Side</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Join Type</td>
+<td>Rows</td>
+<td>Cols</td>
+</tr>
+<tr class="odd">
+<td>inner</td>
+<td>matching</td>
+<td>all</td>
+<td>matching</td>
+</tr>
+<tr class="even">
+<td>left</td>
+<td>all</td>
+<td>all</td>
+<td>matching</td>
+</tr>
+<tr class="odd">
+<td>right</td>
+<td>matching</td>
+<td>all</td>
+<td>all</td>
+</tr>
+<tr class="even">
+<td>outer</td>
+<td>all</td>
+<td>all</td>
+<td>all</td>
+</tr>
+</tbody>
+</table>
+<details class="ex"><summary>
+Demonstration: Mutating Joins
+</summary><div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"D"</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">t2</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span><span class="op">)</span>, z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>An inner join keeps only rows that exist on both sides, but keeps all columns.</p>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">inner_join</span><span class="op">(</span><span class="va">t1</span>, <span class="va">t2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  x         y     z
+  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 B         2     2
+2 D         3     5</code></pre>
+</div>
+</div>
+<p>A left join keeps all of the rows in the left side, and adds any columns from the right side that match rows on the left. Rows on the left that don’t match get filled in with NAs.</p>
+<div class="cell">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">left_join</span><span class="op">(</span><span class="va">t1</span>, <span class="va">t2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  x         y     z
+  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 A         1    NA
+2 B         2     2
+3 D         3     5</code></pre>
+</div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">left_join</span><span class="op">(</span><span class="va">t2</span>, <span class="va">t1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  x         z     y
+  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 B         2     2
+2 C         4    NA
+3 D         5     3</code></pre>
+</div>
+</div>
+<p>There is a similar construct called a right join that is equivalent to flipping the arguments in a left join. The row and column ordering may be different, but all of the same values will be there</p>
+<div class="cell">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">right_join</span><span class="op">(</span><span class="va">t1</span>, <span class="va">t2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  x         y     z
+  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 B         2     2
+2 D         3     5
+3 C        NA     4</code></pre>
+</div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">right_join</span><span class="op">(</span><span class="va">t2</span>, <span class="va">t1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  x         z     y
+  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 B         2     2
+2 D         5     3
+3 A        NA     1</code></pre>
+</div>
+</div>
+<p>An outer join keeps everything - all rows, all columns. In dplyr, it’s known as a <code>full_join</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">full_join</span><span class="op">(</span><span class="va">t1</span>, <span class="va">t2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+  x         y     z
+  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 A         1    NA
+2 B         2     2
+3 D         3     5
+4 C        NA     4</code></pre>
+</div>
+</div>
+</details><p><br></p>
+<p>I’ve included the other types of joins as animations because the animations are so useful for understanding the concept, but feel free to read through more information on these types of joins <a href="https://r4ds.hadley.nz/joins.html#filtering-joins">here</a>.</p>
+</section><section id="filtering-joins" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="filtering-joins">Filtering Joins</h4>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">Semi Join</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Anti Join</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="unnumbered tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<p>A semi join keeps matching rows from x and y, discarding all other rows and keeping only the columns from x.</p>
+<p><img src="https://github.com/gadenbuie/tidyexplain/raw/main/images/semi-join.gif" class="img-fluid"></p>
+</div>
+<div id="tabset-6-2" class="unnumbered tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<p>An anti-join keeps rows in x that do not have a match in y, and only keeps columns in x.</p>
+<p><img src="https://github.com/gadenbuie/tidyexplain/raw/main/images/anti-join.gif" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<p><br></p>
+</section></section><section id="learn-more-in-r4ds-2" class="level3 unnumbered learn-more"><h3 class="unnumbered anchored" data-anchor-id="learn-more-in-r4ds-2">Learn More in R4DS</h3>
+<p>Read more about joins in <a href="https://r4ds.hadley.nz/joins.html">r4ds</a></p>
+</section><p><br></p>
+<section id="checkin4-2" class="level3 unnumbered check-in"><h3 class="unnumbered anchored" data-anchor-id="checkin4-2">Check-in 4.2: Practice with Joins</h3>
+<p>The following code creates three data sets:</p>
+<div class="cell">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">prof_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  professor <span class="op">=</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Bodwin"</span>, <span class="st">"Glanz"</span>, <span class="st">"Carlton"</span>, <span class="st">"Sun"</span>, <span class="st">"Robinson"</span><span class="op">)</span>,</span>
+<span>  undergrad_school <span class="op">=</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Harvard"</span>, <span class="st">"Cal Poly"</span>, <span class="st">"Berkeley"</span>, <span class="st">"Harvard"</span>, <span class="st">"Winona State University"</span><span class="op">)</span>,</span>
+<span>  grad_school <span class="op">=</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"UNC"</span>, <span class="st">"Boston University"</span>, <span class="st">"UCLA"</span>, <span class="st">"Stanford"</span>, <span class="st">"University of Nebraska-Lincoln"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">prof_course</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  professor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Bodwin"</span>, <span class="st">"Glanz"</span>, <span class="st">"Carlton"</span>, <span class="st">"Theobold"</span>, <span class="st">"Robinson"</span><span class="op">)</span>,</span>
+<span>  Stat_331 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  Stat_330 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  Stat_431 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">course_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  course <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Stat_331"</span>, <span class="st">"Stat_330"</span>, <span class="st">"Stat_431"</span><span class="op">)</span>,</span>
+<span>  num_sections <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">8</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here is what they look like once created:</p>
+<div class="cell">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">prof_info</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  professor        undergrad_school                    grad_school
+1    Bodwin                 Harvard                            UNC
+2     Glanz                Cal Poly              Boston University
+3   Carlton                Berkeley                           UCLA
+4       Sun                 Harvard                       Stanford
+5  Robinson Winona State University University of Nebraska-Lincoln</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">prof_course</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  professor Stat_331 Stat_330 Stat_431
+1    Bodwin     TRUE    FALSE     TRUE
+2     Glanz     TRUE     TRUE     TRUE
+3   Carlton     TRUE     TRUE    FALSE
+4  Theobold     TRUE    FALSE     TRUE
+5  Robinson     TRUE     TRUE    FALSE</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">course_info</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    course num_sections
+1 Stat_331            8
+2 Stat_330            3
+3 Stat_431            1</code></pre>
+</div>
+</div>
+<p>These data sets contain information about five Cal Poly professors, their educational history, the classes they are able to teach, and the number of sections of each class that need to be assigned.</p>
+<ul>
+<li>
+<strong>Question 1</strong> Combine data sets <code>prof_info</code> and <code>prof_course</code> to make this data set:</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+
+<table>
+<thead><tr>
+<th style="text-align:left;"> professor </th>
+   <th style="text-align:left;"> undergrad_school </th>
+   <th style="text-align:left;"> grad_school </th>
+   <th style="text-align:left;"> Stat_331 </th>
+   <th style="text-align:left;"> Stat_330 </th>
+   <th style="text-align:left;"> Stat_431 </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;"> Bodwin </td>
+   <td style="text-align:left;"> Harvard </td>
+   <td style="text-align:left;"> UNC </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> TRUE </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Glanz </td>
+   <td style="text-align:left;"> Cal Poly </td>
+   <td style="text-align:left;"> Boston University </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> TRUE </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Carlton </td>
+   <td style="text-align:left;"> Berkeley </td>
+   <td style="text-align:left;"> UCLA </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> FALSE </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Robinson </td>
+   <td style="text-align:left;"> Winona State University </td>
+   <td style="text-align:left;"> University of Nebraska-Lincoln </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> FALSE </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li>
+<strong>Question 2</strong> Combine data sets <code>prof_info</code> and <code>prof_course</code> to make this data set:</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+
+<table>
+<thead><tr>
+<th style="text-align:left;"> professor </th>
+   <th style="text-align:left;"> undergrad_school </th>
+   <th style="text-align:left;"> grad_school </th>
+   <th style="text-align:left;"> Stat_331 </th>
+   <th style="text-align:left;"> Stat_330 </th>
+   <th style="text-align:left;"> Stat_431 </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;"> Bodwin </td>
+   <td style="text-align:left;"> Harvard </td>
+   <td style="text-align:left;"> UNC </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> TRUE </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Glanz </td>
+   <td style="text-align:left;"> Cal Poly </td>
+   <td style="text-align:left;"> Boston University </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> TRUE </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Carlton </td>
+   <td style="text-align:left;"> Berkeley </td>
+   <td style="text-align:left;"> UCLA </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> FALSE </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Sun </td>
+   <td style="text-align:left;"> Harvard </td>
+   <td style="text-align:left;"> Stanford </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Robinson </td>
+   <td style="text-align:left;"> Winona State University </td>
+   <td style="text-align:left;"> University of Nebraska-Lincoln </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> FALSE </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li>
+<strong>Question 3</strong> Transform and combine data sets <code>prof_course</code> and <code>course_info</code> to make this data set:</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+
+<table>
+<thead><tr>
+<th style="text-align:left;"> professor </th>
+   <th style="text-align:left;"> course </th>
+   <th style="text-align:left;"> can_teach </th>
+   <th style="text-align:right;"> num_sections </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;"> Bodwin </td>
+   <td style="text-align:left;"> Stat_331 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:right;"> 8 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Bodwin </td>
+   <td style="text-align:left;"> Stat_330 </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Bodwin </td>
+   <td style="text-align:left;"> Stat_431 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Glanz </td>
+   <td style="text-align:left;"> Stat_331 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:right;"> 8 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Glanz </td>
+   <td style="text-align:left;"> Stat_330 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Glanz </td>
+   <td style="text-align:left;"> Stat_431 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Carlton </td>
+   <td style="text-align:left;"> Stat_331 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:right;"> 8 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Carlton </td>
+   <td style="text-align:left;"> Stat_330 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Carlton </td>
+   <td style="text-align:left;"> Stat_431 </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Theobold </td>
+   <td style="text-align:left;"> Stat_331 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:right;"> 8 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Theobold </td>
+   <td style="text-align:left;"> Stat_330 </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Theobold </td>
+   <td style="text-align:left;"> Stat_431 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Robinson </td>
+   <td style="text-align:left;"> Stat_331 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:right;"> 8 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Robinson </td>
+   <td style="text-align:left;"> Stat_330 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Robinson </td>
+   <td style="text-align:left;"> Stat_431 </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Complete the code templates to complete these tasks in the Canvas Quiz.</p>
+</section><p><br></p>
+</section><section id="pa-4-government-spending" class="level2 unnumbered tryitout"><h2 class="unnumbered anchored" data-anchor-id="pa-4-government-spending">PA 4: Government Spending</h2>
+<p>This week you will be tidying untidy data to explore the relationship between countries of the world and military spending.</p>
+<p>Visit <a href="https://earobinson95.github.io/stat331-calpoly/practice-activities/PA4-government-spending.html">PA 4: Government Spending</a> for instructions.</p>
+<p>Submit your answers to associated questions to the Canvas quiz.</p>
+<ol type="1">
+<li>What four regions were NOT removed from the military_clean data set?</li>
+<li>What year was the second largest military expenditure? What country had this expenditure?</li>
+</ol></section><section id="references" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-lowndesTidyDataEfficiency2020" class="csl-entry" role="doc-biblioentry">
+Lowndes, Julie, and Allison Horst. 2020. <span>“Tidy Data for Efficiency, Reproducibility, and Collaboration.”</span> Blog. <em>Openscapes</em>. <a href="https://www.openscapes.org/blog/2020/10/12/tidy-data//">https://www.openscapes.org/blog/2020/10/12/tidy-data//</a>.
+</div>
+</div>
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./03-data-cleaning-and-manipulation.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Cleaning and Manipulation</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./05-special-data-types.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Special Data Types</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

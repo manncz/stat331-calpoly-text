@@ -8,8 +8,7 @@ editor: source
 
 # Regression & Simulating Distributions
 
-```{r}
-#| include: false
+```{r, include = FALSE}
 bytes <- file.size("09-statistical-modeling-and-simulation.qmd")
 words <- bytes/10
 minutes <- words/200
