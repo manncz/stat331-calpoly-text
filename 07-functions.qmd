@@ -296,8 +296,9 @@ add <- function(x, y) {
 add("tmp", 3)
 
 add <- function(x, y) {
-  stopifnot(is.numeric(x))
-  stopifnot(is.numeric(y))
+  stopifnot(is.numeric(x), 
+            is.numeric(y)
+            )
   x + y
 }
 
