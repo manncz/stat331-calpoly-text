@@ -117,7 +117,7 @@ where
 + $y$ are the values of the response variable,
 + $x$ are the values of the explanatory/predictor variable,
 + $a$ is the $y$-intercept (value of $y$ when $x = 0$), and
-+ $b$ is the slope coefficient (for every 1 unit increase in $x$, $y$ increases by b)
++ $b$ is the slope coefficient (for every 1 unit increase in $x$, the **average** of $y$ increases by b)
 
 ::: column-margin
 ::: note
