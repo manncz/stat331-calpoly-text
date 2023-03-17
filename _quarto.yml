@@ -38,13 +38,16 @@ from: markdown+emoji
 format:
   html:
     css: style.css
-    theme: cosmo
+    # theme: cosmo
     code-link: true
+    theme:
+      light: flatly
+      dark: darkly
 
   # pdf:
   #   documentclass: scrreport
   #epub:
   #  cover-image: cover.png
 
-editor: visual
+editor: source
 

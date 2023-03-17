@@ -452,6 +452,8 @@ What is the data structure of the values output after the `map_dbl(~.$r.squared)
 ### Inspecting the $R^2$ Values
 
 ```{r r-squared-values}
+#| message: false
+#| warning: false
 sim_r_sq <- sims |> 
   map(~ lm(body_mass_g ~ .x, data = sims)) |> 
   map(glance) |> 
@@ -482,10 +484,10 @@ tibble(sims = sim_r_sq) |>
   geom_histogram(binwidth = 0.025) +
   labs(x = expression("Simulated"~ R^2),
        y = "",
-       subtitle = "Number of Simulated Models")
+       subtitle = "Number of Simulated Models") +
   theme_bw()
 ```
 
-In this plot, we see that the simulated datasets have $R^2$ vales between 0.5 and 0.65. This indicates the data simulated under this statistical model **are moderately** similar to what was observed. On average, our simulated data account for about 50% of the variability in the observed penguin body mass.
+In this plot, we see that the simulated datasets have $R^2$ vales between 0.5 and 0.65. This indicates the data simulated under this statistical model **are moderately** similar to what was observed. On average, our simulated data account for about `r round(mean(sim_r_sq), 3)*100`% of the variability in the observed penguin body mass.
 
 ### References {-}

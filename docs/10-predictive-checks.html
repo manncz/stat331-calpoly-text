@@ -114,10 +114,12 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -153,7 +155,7 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Stat 331/531 Statistical Computing with R</a> 
-        <div class="sidebar-tools-main">
+        <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/earobinson95/stat331-calpoly-text" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
     <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
     <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
@@ -176,6 +178,7 @@ div.csl-indent {
           </a>
         </li>
     </ul>
+<a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
       </div>
@@ -795,436 +798,13 @@ F-statistic:  1071 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span>  <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.025</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="st">"Simulated"</span><span class="op">~</span> <span class="va">R</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">""</span>,</span>
-<span>       subtitle <span class="op">=</span> <span class="st">"Number of Simulated Models"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>       subtitle <span class="op">=</span> <span class="st">"Number of Simulated Models"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="10-predictive-checks_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>  <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>List of 94
- $ line                      :List of 6
-  ..$ colour       : chr "black"
-  ..$ linewidth    : num 0.5
-  ..$ linetype     : num 1
-  ..$ lineend      : chr "butt"
-  ..$ arrow        : logi FALSE
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_line" "element"
- $ rect                      :List of 5
-  ..$ fill         : chr "white"
-  ..$ colour       : chr "black"
-  ..$ linewidth    : num 0.5
-  ..$ linetype     : num 1
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_rect" "element"
- $ text                      :List of 11
-  ..$ family       : chr ""
-  ..$ face         : chr "plain"
-  ..$ colour       : chr "black"
-  ..$ size         : num 11
-  ..$ hjust        : num 0.5
-  ..$ vjust        : num 0.5
-  ..$ angle        : num 0
-  ..$ lineheight   : num 0.9
-  ..$ margin       : 'margin' num [1:4] 0points 0points 0points 0points
-  .. ..- attr(*, "unit")= int 8
-  ..$ debug        : logi FALSE
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_text" "element"
- $ title                     : NULL
- $ aspect.ratio              : NULL
- $ axis.title                : NULL
- $ axis.title.x              :List of 11
-  ..$ family       : NULL
-  ..$ face         : NULL
-  ..$ colour       : NULL
-  ..$ size         : NULL
-  ..$ hjust        : NULL
-  ..$ vjust        : num 1
-  ..$ angle        : NULL
-  ..$ lineheight   : NULL
-  ..$ margin       : 'margin' num [1:4] 2.75points 0points 0points 0points
-  .. ..- attr(*, "unit")= int 8
-  ..$ debug        : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_text" "element"
- $ axis.title.x.top          :List of 11
-  ..$ family       : NULL
-  ..$ face         : NULL
-  ..$ colour       : NULL
-  ..$ size         : NULL
-  ..$ hjust        : NULL
-  ..$ vjust        : num 0
-  ..$ angle        : NULL
-  ..$ lineheight   : NULL
-  ..$ margin       : 'margin' num [1:4] 0points 0points 2.75points 0points
-  .. ..- attr(*, "unit")= int 8
-  ..$ debug        : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_text" "element"
- $ axis.title.x.bottom       : NULL
- $ axis.title.y              :List of 11
-  ..$ family       : NULL
-  ..$ face         : NULL
-  ..$ colour       : NULL
-  ..$ size         : NULL
-  ..$ hjust        : NULL
-  ..$ vjust        : num 1
-  ..$ angle        : num 90
-  ..$ lineheight   : NULL
-  ..$ margin       : 'margin' num [1:4] 0points 2.75points 0points 0points
-  .. ..- attr(*, "unit")= int 8
-  ..$ debug        : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_text" "element"
- $ axis.title.y.left         : NULL
- $ axis.title.y.right        :List of 11
-  ..$ family       : NULL
-  ..$ face         : NULL
-  ..$ colour       : NULL
-  ..$ size         : NULL
-  ..$ hjust        : NULL
-  ..$ vjust        : num 0
-  ..$ angle        : num -90
-  ..$ lineheight   : NULL
-  ..$ margin       : 'margin' num [1:4] 0points 0points 0points 2.75points
-  .. ..- attr(*, "unit")= int 8
-  ..$ debug        : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_text" "element"
- $ axis.text                 :List of 11
-  ..$ family       : NULL
-  ..$ face         : NULL
-  ..$ colour       : chr "grey30"
-  ..$ size         : 'rel' num 0.8
-  ..$ hjust        : NULL
-  ..$ vjust        : NULL
-  ..$ angle        : NULL
-  ..$ lineheight   : NULL
-  ..$ margin       : NULL
-  ..$ debug        : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_text" "element"
- $ axis.text.x               :List of 11
-  ..$ family       : NULL
-  ..$ face         : NULL
-  ..$ colour       : NULL
-  ..$ size         : NULL
-  ..$ hjust        : NULL
-  ..$ vjust        : num 1
-  ..$ angle        : NULL
-  ..$ lineheight   : NULL
-  ..$ margin       : 'margin' num [1:4] 2.2points 0points 0points 0points
-  .. ..- attr(*, "unit")= int 8
-  ..$ debug        : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_text" "element"
- $ axis.text.x.top           :List of 11
-  ..$ family       : NULL
-  ..$ face         : NULL
-  ..$ colour       : NULL
-  ..$ size         : NULL
-  ..$ hjust        : NULL
-  ..$ vjust        : num 0
-  ..$ angle        : NULL
-  ..$ lineheight   : NULL
-  ..$ margin       : 'margin' num [1:4] 0points 0points 2.2points 0points
-  .. ..- attr(*, "unit")= int 8
-  ..$ debug        : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_text" "element"
- $ axis.text.x.bottom        : NULL
- $ axis.text.y               :List of 11
-  ..$ family       : NULL
-  ..$ face         : NULL
-  ..$ colour       : NULL
-  ..$ size         : NULL
-  ..$ hjust        : num 1
-  ..$ vjust        : NULL
-  ..$ angle        : NULL
-  ..$ lineheight   : NULL
-  ..$ margin       : 'margin' num [1:4] 0points 2.2points 0points 0points
-  .. ..- attr(*, "unit")= int 8
-  ..$ debug        : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_text" "element"
- $ axis.text.y.left          : NULL
- $ axis.text.y.right         :List of 11
-  ..$ family       : NULL
-  ..$ face         : NULL
-  ..$ colour       : NULL
-  ..$ size         : NULL
-  ..$ hjust        : num 0
-  ..$ vjust        : NULL
-  ..$ angle        : NULL
-  ..$ lineheight   : NULL
-  ..$ margin       : 'margin' num [1:4] 0points 0points 0points 2.2points
-  .. ..- attr(*, "unit")= int 8
-  ..$ debug        : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_text" "element"
- $ axis.ticks                :List of 6
-  ..$ colour       : chr "grey20"
-  ..$ linewidth    : NULL
-  ..$ linetype     : NULL
-  ..$ lineend      : NULL
-  ..$ arrow        : logi FALSE
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_line" "element"
- $ axis.ticks.x              : NULL
- $ axis.ticks.x.top          : NULL
- $ axis.ticks.x.bottom       : NULL
- $ axis.ticks.y              : NULL
- $ axis.ticks.y.left         : NULL
- $ axis.ticks.y.right        : NULL
- $ axis.ticks.length         : 'simpleUnit' num 2.75points
-  ..- attr(*, "unit")= int 8
- $ axis.ticks.length.x       : NULL
- $ axis.ticks.length.x.top   : NULL
- $ axis.ticks.length.x.bottom: NULL
- $ axis.ticks.length.y       : NULL
- $ axis.ticks.length.y.left  : NULL
- $ axis.ticks.length.y.right : NULL
- $ axis.line                 : list()
-  ..- attr(*, "class")= chr [1:2] "element_blank" "element"
- $ axis.line.x               : NULL
- $ axis.line.x.top           : NULL
- $ axis.line.x.bottom        : NULL
- $ axis.line.y               : NULL
- $ axis.line.y.left          : NULL
- $ axis.line.y.right         : NULL
- $ legend.background         :List of 5
-  ..$ fill         : NULL
-  ..$ colour       : logi NA
-  ..$ linewidth    : NULL
-  ..$ linetype     : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_rect" "element"
- $ legend.margin             : 'margin' num [1:4] 5.5points 5.5points 5.5points 5.5points
-  ..- attr(*, "unit")= int 8
- $ legend.spacing            : 'simpleUnit' num 11points
-  ..- attr(*, "unit")= int 8
- $ legend.spacing.x          : NULL
- $ legend.spacing.y          : NULL
- $ legend.key                :List of 5
-  ..$ fill         : chr "white"
-  ..$ colour       : logi NA
-  ..$ linewidth    : NULL
-  ..$ linetype     : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_rect" "element"
- $ legend.key.size           : 'simpleUnit' num 1.2lines
-  ..- attr(*, "unit")= int 3
- $ legend.key.height         : NULL
- $ legend.key.width          : NULL
- $ legend.text               :List of 11
-  ..$ family       : NULL
-  ..$ face         : NULL
-  ..$ colour       : NULL
-  ..$ size         : 'rel' num 0.8
-  ..$ hjust        : NULL
-  ..$ vjust        : NULL
-  ..$ angle        : NULL
-  ..$ lineheight   : NULL
-  ..$ margin       : NULL
-  ..$ debug        : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_text" "element"
- $ legend.text.align         : NULL
- $ legend.title              :List of 11
-  ..$ family       : NULL
-  ..$ face         : NULL
-  ..$ colour       : NULL
-  ..$ size         : NULL
-  ..$ hjust        : num 0
-  ..$ vjust        : NULL
-  ..$ angle        : NULL
-  ..$ lineheight   : NULL
-  ..$ margin       : NULL
-  ..$ debug        : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_text" "element"
- $ legend.title.align        : NULL
- $ legend.position           : chr "right"
- $ legend.direction          : NULL
- $ legend.justification      : chr "center"
- $ legend.box                : NULL
- $ legend.box.just           : NULL
- $ legend.box.margin         : 'margin' num [1:4] 0cm 0cm 0cm 0cm
-  ..- attr(*, "unit")= int 1
- $ legend.box.background     : list()
-  ..- attr(*, "class")= chr [1:2] "element_blank" "element"
- $ legend.box.spacing        : 'simpleUnit' num 11points
-  ..- attr(*, "unit")= int 8
- $ panel.background          :List of 5
-  ..$ fill         : chr "white"
-  ..$ colour       : logi NA
-  ..$ linewidth    : NULL
-  ..$ linetype     : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_rect" "element"
- $ panel.border              :List of 5
-  ..$ fill         : logi NA
-  ..$ colour       : chr "grey20"
-  ..$ linewidth    : NULL
-  ..$ linetype     : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_rect" "element"
- $ panel.spacing             : 'simpleUnit' num 5.5points
-  ..- attr(*, "unit")= int 8
- $ panel.spacing.x           : NULL
- $ panel.spacing.y           : NULL
- $ panel.grid                :List of 6
-  ..$ colour       : chr "grey92"
-  ..$ linewidth    : NULL
-  ..$ linetype     : NULL
-  ..$ lineend      : NULL
-  ..$ arrow        : logi FALSE
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_line" "element"
- $ panel.grid.major          : NULL
- $ panel.grid.minor          :List of 6
-  ..$ colour       : NULL
-  ..$ linewidth    : 'rel' num 0.5
-  ..$ linetype     : NULL
-  ..$ lineend      : NULL
-  ..$ arrow        : logi FALSE
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_line" "element"
- $ panel.grid.major.x        : NULL
- $ panel.grid.major.y        : NULL
- $ panel.grid.minor.x        : NULL
- $ panel.grid.minor.y        : NULL
- $ panel.ontop               : logi FALSE
- $ plot.background           :List of 5
-  ..$ fill         : NULL
-  ..$ colour       : chr "white"
-  ..$ linewidth    : NULL
-  ..$ linetype     : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_rect" "element"
- $ plot.title                :List of 11
-  ..$ family       : NULL
-  ..$ face         : NULL
-  ..$ colour       : NULL
-  ..$ size         : 'rel' num 1.2
-  ..$ hjust        : num 0
-  ..$ vjust        : num 1
-  ..$ angle        : NULL
-  ..$ lineheight   : NULL
-  ..$ margin       : 'margin' num [1:4] 0points 0points 5.5points 0points
-  .. ..- attr(*, "unit")= int 8
-  ..$ debug        : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_text" "element"
- $ plot.title.position       : chr "panel"
- $ plot.subtitle             :List of 11
-  ..$ family       : NULL
-  ..$ face         : NULL
-  ..$ colour       : NULL
-  ..$ size         : NULL
-  ..$ hjust        : num 0
-  ..$ vjust        : num 1
-  ..$ angle        : NULL
-  ..$ lineheight   : NULL
-  ..$ margin       : 'margin' num [1:4] 0points 0points 5.5points 0points
-  .. ..- attr(*, "unit")= int 8
-  ..$ debug        : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_text" "element"
- $ plot.caption              :List of 11
-  ..$ family       : NULL
-  ..$ face         : NULL
-  ..$ colour       : NULL
-  ..$ size         : 'rel' num 0.8
-  ..$ hjust        : num 1
-  ..$ vjust        : num 1
-  ..$ angle        : NULL
-  ..$ lineheight   : NULL
-  ..$ margin       : 'margin' num [1:4] 5.5points 0points 0points 0points
-  .. ..- attr(*, "unit")= int 8
-  ..$ debug        : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_text" "element"
- $ plot.caption.position     : chr "panel"
- $ plot.tag                  :List of 11
-  ..$ family       : NULL
-  ..$ face         : NULL
-  ..$ colour       : NULL
-  ..$ size         : 'rel' num 1.2
-  ..$ hjust        : num 0.5
-  ..$ vjust        : num 0.5
-  ..$ angle        : NULL
-  ..$ lineheight   : NULL
-  ..$ margin       : NULL
-  ..$ debug        : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_text" "element"
- $ plot.tag.position         : chr "topleft"
- $ plot.margin               : 'margin' num [1:4] 5.5points 5.5points 5.5points 5.5points
-  ..- attr(*, "unit")= int 8
- $ strip.background          :List of 5
-  ..$ fill         : chr "grey85"
-  ..$ colour       : chr "grey20"
-  ..$ linewidth    : NULL
-  ..$ linetype     : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_rect" "element"
- $ strip.background.x        : NULL
- $ strip.background.y        : NULL
- $ strip.clip                : chr "inherit"
- $ strip.placement           : chr "inside"
- $ strip.text                :List of 11
-  ..$ family       : NULL
-  ..$ face         : NULL
-  ..$ colour       : chr "grey10"
-  ..$ size         : 'rel' num 0.8
-  ..$ hjust        : NULL
-  ..$ vjust        : NULL
-  ..$ angle        : NULL
-  ..$ lineheight   : NULL
-  ..$ margin       : 'margin' num [1:4] 4.4points 4.4points 4.4points 4.4points
-  .. ..- attr(*, "unit")= int 8
-  ..$ debug        : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_text" "element"
- $ strip.text.x              : NULL
- $ strip.text.y              :List of 11
-  ..$ family       : NULL
-  ..$ face         : NULL
-  ..$ colour       : NULL
-  ..$ size         : NULL
-  ..$ hjust        : NULL
-  ..$ vjust        : NULL
-  ..$ angle        : num -90
-  ..$ lineheight   : NULL
-  ..$ margin       : NULL
-  ..$ debug        : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_text" "element"
- $ strip.switch.pad.grid     : 'simpleUnit' num 2.75points
-  ..- attr(*, "unit")= int 8
- $ strip.switch.pad.wrap     : 'simpleUnit' num 2.75points
-  ..- attr(*, "unit")= int 8
- $ strip.text.y.left         :List of 11
-  ..$ family       : NULL
-  ..$ face         : NULL
-  ..$ colour       : NULL
-  ..$ size         : NULL
-  ..$ hjust        : NULL
-  ..$ vjust        : NULL
-  ..$ angle        : num 90
-  ..$ lineheight   : NULL
-  ..$ margin       : NULL
-  ..$ debug        : NULL
-  ..$ inherit.blank: logi TRUE
-  ..- attr(*, "class")= chr [1:2] "element_text" "element"
- - attr(*, "class")= chr [1:2] "theme" "gg"
- - attr(*, "complete")= logi TRUE
- - attr(*, "validate")= logi TRUE</code></pre>
 </div>
-</div>
-<p>In this plot, we see that the simulated datasets have <span class="math inline">\(R^2\)</span> vales between 0.5 and 0.65. This indicates the data simulated under this statistical model <strong>are moderately</strong> similar to what was observed. On average, our simulated data account for about 50% of the variability in the observed penguin body mass.</p>
+<p>In this plot, we see that the simulated datasets have <span class="math inline">\(R^2\)</span> vales between 0.5 and 0.65. This indicates the data simulated under this statistical model <strong>are moderately</strong> similar to what was observed. On average, our simulated data account for about 57.7% of the variability in the observed penguin body mass.</p>
 </section><section id="references" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
 
 
@@ -1253,6 +833,119 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
