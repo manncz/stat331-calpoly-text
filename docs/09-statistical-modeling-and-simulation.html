@@ -422,7 +422,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>
 <span class="math inline">\(x\)</span> are the values of the explanatory/predictor variable,</li>
 <li>
-<span class="math inline">\(a\)</span> is the <span class="math inline">\(y\)</span>-intercept (value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x = 0\)</span>), and</li>
+<span class="math inline">\(a\)</span> is the <span class="math inline">\(y\)</span>-intercept (<strong>average</strong> value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x = 0\)</span>), and</li>
 <li>
 <span class="math inline">\(b\)</span> is the slope coefficient (for every 1 unit increase in <span class="math inline">\(x\)</span>, the <strong>average</strong> of <span class="math inline">\(y\)</span> increases by b)</li>
 </ul>
@@ -553,20 +553,20 @@ F-statistic: 19.88 on 1 and 340 DF,  p-value: 1.12e-05</code></pre>
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -1.400565</code></pre>
+<pre><code>[1] 0.6850793</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -1.478881</code></pre>
+<pre><code>[1] 0.01741668</code></pre>
 </div>
 </div>
 <p>Fortunately, pseudo-randomness depends on a <strong>seed</strong>, which is an arbitrary number where the randomizing process starts. Normally, R will choose the seed for you, from a pre-generated vector:</p>
 <div class="cell">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">.Random.seed</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]      10403          4 -179022855  948269451  944844218  690730172</code></pre>
+<pre><code>[1]       10403           4 -1887146760   843823142  1055566145 -1481447725</code></pre>
 </div>
 </div>
 <p>However, you can also choose your own seed using the <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> function. This guarantees your results will be consistent across runs (and hopefully computers):</p>
