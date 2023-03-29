@@ -33,15 +33,15 @@ library(tidyverse)
 
 This chapter is heavily from Dr. Theobold's course-page material.
 
-::: check-in
-## Check-ins {#ch9-checkins -}
+<!-- ::: check-in -->
+<!-- ## Check-ins {#ch9-checkins -} -->
 
-There are two check-ins for this week:
+<!-- There are two check-ins for this week: -->
 
-+ [Check-in 9.1: Linear Regression](#checkin9-1)
-+ [Check-in 9.2: Distributions and Simulations](#checkin9-2) 
+<!-- + [Check-in 9.1: Linear Regression](#checkin9-1) -->
+<!-- + [Check-in 9.2: Distributions and Simulations](#checkin9-2)  -->
 
-:::
+<!-- ::: -->
 
 ## Linear Regression
 
@@ -174,34 +174,34 @@ broom::glance(my_model)
 ```
 :::
 
-::: check-in
-### Check-in 9.1: Linear Regression {#checkin9-1 -}
+<!-- ::: check-in -->
+<!-- ### Check-in 9.1: Linear Regression {#checkin9-1 -} -->
 
-**1. True or False -- If you switch the order of `bill_length_mm` and `bill_depth_mm` in the `lm()` formula nothing happens.**
+<!-- **1. True or False -- If you switch the order of `bill_length_mm` and `bill_depth_mm` in the `lm()` formula nothing happens.** -->
 
-**2. What _object type_ was returned by `summary()`?**
+<!-- **2. What _object type_ was returned by `summary()`?** -->
 
-**3. What _object type_ was returned by `tidy()`?**
+<!-- **3. What _object type_ was returned by `tidy()`?** -->
 
-**4. What is the equation for the estimated regression line for the relationship between bill length and depth (given above)?**
+<!-- **4. What is the equation for the estimated regression line for the relationship between bill length and depth (given above)?** -->
 
-**5. Penguin Mopsy has a bill that is 5mm deeper than Penguin Gidget. What will be the difference between their bill lengths?**
+<!-- **5. Penguin Mopsy has a bill that is 5mm deeper than Penguin Gidget. What will be the difference between their bill lengths?** -->
 
-**6. Run the following code, and explore the results:**
+<!-- **6. Run the following code, and explore the results:** -->
 
-```{r}
-my_model_2 <- lm(bill_length_mm ~ bill_depth_mm*species, 
-                 data = penguins
-                 )
-```
+<!-- ```{r} -->
+<!-- my_model_2 <- lm(bill_length_mm ~ bill_depth_mm*species,  -->
+<!--                  data = penguins -->
+<!--                  ) -->
+<!-- ``` -->
 
-**a.  Make a plot illustrating `my_model_2`. Upload a picture of your plot!** *(Hint: Think about what needs to change in the aesthetic of the plot featured previously?)*
+<!-- **a.  Make a plot illustrating `my_model_2`. Upload a picture of your plot!** *(Hint: Think about what needs to change in the aesthetic of the plot featured previously?)* -->
 
-**b.  Which model of the two models explains the most variance in `bill_length_mm`?**
+<!-- **b.  Which model of the two models explains the most variance in `bill_length_mm`?** -->
 
-**c.  Do the three species of penguin have the same bill shape (i.e., the relationship between length and depth)?**
+<!-- **c.  Do the three species of penguin have the same bill shape (i.e., the relationship between length and depth)?** -->
 
-:::
+<!-- ::: -->
 
 ## Simulation
 
@@ -317,53 +317,53 @@ my_samples |>
   xlim(c(55, 80))
 ```
 
-::: check-in
-### Check-in 9.2: Distributions and Simulations {#checkin9-2 -}
+<!-- ::: check-in -->
+<!-- ### Check-in 9.2: Distributions and Simulations {#checkin9-2 -} -->
 
-**1. The `r`, `p`, `q`, and `d` functions: Try to predict what the following outputs will be _WITHOUT_ running the code in R. Drawing pictures of the relevant distributions may help. Explain what each of the functions produces in the output.**
+<!-- **1. The `r`, `p`, `q`, and `d` functions: Try to predict what the following outputs will be _WITHOUT_ running the code in R. Drawing pictures of the relevant distributions may help. Explain what each of the functions produces in the output.** -->
 
-*Yes, it is very easy to "cheat" on this question. But this is for your practice, and I recommend you give it some thought.*
+<!-- *Yes, it is very easy to "cheat" on this question. But this is for your practice, and I recommend you give it some thought.* -->
 
-a.
-```{r}
-#| eval: false
-pnorm(-4, mean = 2, sd = 4)
-```
+<!-- a. -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- pnorm(-4, mean = 2, sd = 4) -->
+<!-- ``` -->
 
-b.
-```{r}
-#| eval: false
-qnorm(.975, mean = 2, sd = 4)
-```
+<!-- b. -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- qnorm(.975, mean = 2, sd = 4) -->
+<!-- ``` -->
 
-c.
-```{r}
-#| eval: false
-dnorm(1.5, mean = 2, sd = 4)
-```
+<!-- c. -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- dnorm(1.5, mean = 2, sd = 4) -->
+<!-- ``` -->
 
-**2. Why does `rnorm(mean = 0, sd = 1)` give an error?**
-:::
+<!-- **2. Why does `rnorm(mean = 0, sd = 1)` give an error?** -->
+<!-- ::: -->
 
-<br>
+<!-- <br> -->
 
-::: tryitout
-## PA 9.1: Mystery Animal {-}
+<!-- ::: tryitout -->
+<!-- ## PA 9.1: Mystery Animal {-} -->
 
-You will be fitting a linear regression model to a data set that contains the weights of a particular animal before and after a year of eating only roasted duck. Plotting the residuals will result in an image of a particular mystery animal.
+<!-- You will be fitting a linear regression model to a data set that contains the weights of a particular animal before and after a year of eating only roasted duck. Plotting the residuals will result in an image of a particular mystery animal. -->
 
-Visit [PA 9.1 Mystery Animal](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA9.1-mystery-animal.html) for instructions.
-:::
+<!-- Visit [PA 9.1 Mystery Animal](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA9.1-mystery-animal.html) for instructions. -->
+<!-- ::: -->
 
-<br>
+<!-- <br> -->
 
-::: tryitout
-## PA 9.2: Instrument Con {-}
+<!-- ::: tryitout -->
+<!-- ## PA 9.2: Instrument Con {-} -->
 
-You will be simulating data from statistical distributions to determine whether Professor Hill's instruments are genuine or not.
+<!-- You will be simulating data from statistical distributions to determine whether Professor Hill's instruments are genuine or not. -->
 
-Visit [PA 9.2 Instrument Con](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA9.2-instrument-con.html) for instructions.
+<!-- Visit [PA 9.2 Instrument Con](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA9.2-instrument-con.html) for instructions. -->
 
-:::
+<!-- ::: -->
 
 ### References {-}

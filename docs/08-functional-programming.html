@@ -258,7 +258,6 @@ div.csl-indent {
    
   <ul>
 <li><a href="#ch8-objectives" id="toc-ch8-objectives" class="nav-link active" data-scroll-target="#ch8-objectives">Objectives</a></li>
-  <li><a href="#ch8-checkins" id="toc-ch8-checkins" class="nav-link" data-scroll-target="#ch8-checkins">Check-ins</a></li>
   <li>
 <a href="#introduction-to-iteration" id="toc-introduction-to-iteration" class="nav-link" data-scroll-target="#introduction-to-iteration"><span class="toc-section-number">8.1</span>  Introduction to Iteration</a>
   <ul class="collapse">
@@ -289,11 +288,9 @@ div.csl-indent {
   <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
   <li><a href="#tutorial" id="toc-tutorial" class="nav-link" data-scroll-target="#tutorial">Tutorial</a></li>
   <li><a href="#learn-more-about-purrr" id="toc-learn-more-about-purrr" class="nav-link" data-scroll-target="#learn-more-about-purrr">Learn More About Purrr</a></li>
-  <li><a href="#checkin8-1" id="toc-checkin8-1" class="nav-link" data-scroll-target="#checkin8-1">Check-in 8.1: Functional Programming with the <code>map()</code> family</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </li>
-  <li><a href="#pa-8-the-12-days-of-christmas-starter-functions" id="toc-pa-8-the-12-days-of-christmas-starter-functions" class="nav-link" data-scroll-target="#pa-8-the-12-days-of-christmas-starter-functions">PA 8: The 12 Days of Christmas Starter Functions</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/08-functional-programming.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
@@ -320,11 +317,8 @@ div.csl-indent {
 <section id="ch8-objectives" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="ch8-objectives">Objectives</h2>
 <ul>
 <li>Use functional programming techniques to create code which is well organized and easier to understand and maintain</li>
-</ul></section><section id="ch8-checkins" class="level2 unnumbered check-in"><h2 class="unnumbered anchored" data-anchor-id="ch8-checkins">Check-ins</h2>
-<p>There is one check-in for this week:</p>
-<ul>
-<li><a href="#checkin8-1">Check-in 8.1: Functional Programming with the <code>map()</code> family</a></li>
-</ul></section><section id="introduction-to-iteration" class="level2 page-columns page-full" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="introduction-to-iteration">
+</ul>
+<!-- ::: check-in --><!-- ## Check-ins {#ch8-checkins -} --><!-- There is one check-in for this week: --><!-- + [Check-in 8.1: Functional Programming with the `map()` family](#checkin8-1)  --><!-- ::: --></section><section id="introduction-to-iteration" class="level2 page-columns page-full" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="introduction-to-iteration">
 <span class="header-section-number">8.1</span> Introduction to Iteration</h2>
 <p>We just learned the rule of “don’t repeat yourself more than two times” and to instead automate our procedures with functions in order to remove duplication of code. We have used tools such as <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code> to help eliminate this copy-paste procedure even further. This is a form of iteration in programming as <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code> “iterates” over variables, applying a function to manipulate each variable and then doing the same for the next variable.</p>
 
@@ -520,8 +514,8 @@ Note
 </div></div><div class="cell">
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 2.5148897 3.5470835 2.2540411 2.2700591 2.0819251 3.4267637 0.4890702
- [8] 2.8626622 5.2006616 3.1578650</code></pre>
+<pre><code> [1] 2.2846716 4.2172871 0.3070823 1.8444881 0.7915805 2.6224117 3.9908319
+ [8] 1.6168169 1.7027174 3.1204964</code></pre>
 </div>
 </div>
 <p>With vectorized functions, we don’t have to use a for loop to add these two vectors with 10 entries each together. In languages which don’t have implicit support for vectorized computations, this might instead look like:</p>
@@ -536,8 +530,8 @@ Note
 <span></span>
 <span><span class="va">result</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  5.4630173  2.1243349  5.1283864  2.3183721  5.7978345 -0.2027371
- [7]  1.2356550  2.7103389  3.3019178  3.1934195</code></pre>
+<pre><code> [1] 3.364634 2.378479 1.717776 1.533221 3.936175 4.504935 1.659318 3.377396
+ [9] 1.434657 3.000362</code></pre>
 </div>
 </div>
 <p>That is, we would <strong>apply</strong> or <strong>map</strong> the <code>+</code> function to each entry of a and b. For atomic vectors, it’s easy to do this by default; with a list, however, we need to be a bit more explicit (because everything that’s passed into the function may not be the same type).</p>
@@ -1271,7 +1265,7 @@ Example: Benefits of List columns
   .. ..- attr(*, "order")= int 1
   .. ..- attr(*, "intercept")= int 1
   .. ..- attr(*, "response")= int 1
-  .. ..- attr(*, ".Environment")=&lt;environment: 0x0000021d6368a1b0&gt; 
+  .. ..- attr(*, ".Environment")=&lt;environment: 0x0000024090d92f00&gt; 
   .. ..- attr(*, "predvars")= language list(y, x)
   .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
   .. .. ..- attr(*, "names")= chr [1:2] "y" "x"
@@ -1288,7 +1282,7 @@ Example: Benefits of List columns
   .. .. ..- attr(*, "order")= int 1
   .. .. ..- attr(*, "intercept")= int 1
   .. .. ..- attr(*, "response")= int 1
-  .. .. ..- attr(*, ".Environment")=&lt;environment: 0x0000021d6368a1b0&gt; 
+  .. .. ..- attr(*, ".Environment")=&lt;environment: 0x0000024090d92f00&gt; 
   .. .. ..- attr(*, "predvars")= language list(y, x)
   .. .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
   .. .. .. ..- attr(*, "names")= chr [1:2] "y" "x"
@@ -1626,115 +1620,109 @@ Example: Benefits of List columns
 <li><p><a href="https://colinfay.me/purrr-code-optim/">Function factories - code optimization with purrr</a></p></li>
 <li><p><a href="https://colinfay.me/purrr-statistics/">Stats and Machine Learning examples with purrr</a></p></li>
 </ul></section><p><br></p>
-<section id="checkin8-1" class="level3 unnumbered check-in"><h3 class="unnumbered anchored" data-anchor-id="checkin8-1">Check-in 8.1: Functional Programming with the <code>map()</code> family</h3>
-<div class="cell">
-<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>1. Suppose we would like to find the median of the measurement variables (<code>bill_length_mm</code>, <code>bill_depth_mm</code>, <code>flipper_length_mm</code>, <code>body_mass_g</code>) from the penguins dataset (from the <code>palmerpenguins</code> package). Which of the following will produce a <em>numeric vector</em> of the median of every measurement variable?</strong> <em>Select all that apply!</em></p>
-<ol type="a">
-<li>
-</li></ol>
-<div class="cell">
-<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">bill_length_mm</span><span class="op">:</span><span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span>.f <span class="op">=</span> <span class="va">median</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="2" type="a">
-<li>
-</li></ol>
-<div class="cell">
-<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">bill_length_mm</span><span class="op">:</span><span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span>.f <span class="op">=</span> <span class="va">median</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="3" type="a">
-<li>
-</li></ol>
-<div class="cell">
-<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">bill_length_mm</span><span class="op">:</span><span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html">map_dfc</a></span><span class="op">(</span>.f <span class="op">=</span> <span class="va">median</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="4" type="a">
-<li>
-</li></ol>
-<div class="cell">
-<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">bill_length_mm</span><span class="op">:</span><span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>2. Recall that in the last unit, we discussed the challenge of standardizing many columns in a data frame. For example, If we wanted to standardize a numeric variable to be centered at the mean and scaled by the standard deviation, we could use the following function:</strong></p>
-<div class="cell">
-<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">standardize</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">vec</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span><span class="op">)</span></span>
-<span>  </span>
-<span>  <span class="co"># Center with mean</span></span>
-<span>  <span class="va">deviations</span> <span class="op">&lt;-</span> <span class="va">vec</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">vec</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span>  <span class="co"># Scale with standard deviation</span></span>
-<span>  <span class="va">newdata</span> <span class="op">&lt;-</span> <span class="va">deviations</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">vec</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span>  </span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">newdata</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Why does the following return a vector of NAs for the variable <code>body_mass_g</code>?</strong></p>
-<div class="cell">
-<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    body_mass_g <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="va">body_mass_g</span>, </span>
-<span>                          .f <span class="op">=</span> <span class="va">standardize</span></span>
-<span>                          <span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol type="a">
-<li><p>Because body_mass_g needs to be passed to standardize() as an argument</p></li>
-<li><p>Because <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> operates on rows, so <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code> is supplying <code>standardize()</code> with one row of <code>body_mass_g</code> at a time</p></li>
-<li><p>Because <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code> only takes one input, so you need to use <code><a href="https://purrr.tidyverse.org/reference/map2.html">map2_dbl()</a></code> instead</p></li>
-<li><p>Because there is no function named <code>standardize()</code>, so it cannot be applied to the <code>body_mass_g</code> column <code>body_mass_g</code> is not a data frame so it is not a valid argument for <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code></p></li>
-</ol>
-<p><strong>3. Which of the following returns a dataframe with the standardized version of the numerical variables (<code>bill_length_mm</code>, <code>bill_depth_mm</code>, <code>flipper_length_mm</code>, <code>body_mass_g</code>) from the penguins data set?</strong></p>
-<ol type="a">
-<li>
-</li></ol>
-<div class="cell">
-<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">bill_length_mm</span><span class="op">:</span><span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html">map_df</a></span><span class="op">(</span><span class="va">standardize</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="2" type="a">
-<li>
-</li></ol>
-<div class="cell">
-<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_if.html">map_at</a></span><span class="op">(</span><span class="va">bill_length_mm</span><span class="op">:</span><span class="va">body_mass_g</span>, <span class="va">standardize</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="3" type="a">
-<li>
-</li></ol>
-<div class="cell">
-<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_if.html">map_if</a></span><span class="op">(</span><span class="va">is.numeric</span>, <span class="va">standardize</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="4" type="a">
-<li>
-</li></ol>
-<div class="cell">
-<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_if.html">map_at</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"bill_length_mm"</span>, <span class="st">"bill_depth_mm"</span>, <span class="st">"flipper_length_mm"</span>, <span class="st">"body_mass_g"</span><span class="op">)</span>,</span>
-<span>    <span class="va">standardize</span></span>
-<span>    <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section><p><br></p>
-</section><section id="pa-8-the-12-days-of-christmas-starter-functions" class="level2 unnumbered tryitout"><h2 class="unnumbered anchored" data-anchor-id="pa-8-the-12-days-of-christmas-starter-functions">PA 8: The 12 Days of Christmas Starter Functions</h2>
-<p>The song “12 Days of Christmas”, written around 1780, tells the tale of many gifts a person receives in the days leading up to Christmas (<a href="https://en.wikipedia.org/wiki/The_Twelve_Days_of_Christmas_(song)">link to lyrics</a>). This week, you will be using your new R developer skills to write functions that automatically sing this very repetitive song.</p>
-<p>In the practice activity, we will start by writing two helper functions which we will use in the lab to write a function to sing this entire song.</p>
-<p>Visit <a href="https://earobinson95.github.io/stat331-calpoly/practice-activities/PA8-twelve-days-of-christmas.html">PA 8: The 12 Days of Christmas Starter Functions</a> for instructions.</p>
-<blockquote class="blockquote">
-<p>Your Full.Phrase column is the answer to this week’s Practice Activity.</p>
-<p>Copy and paste your Full.Phrase column to show me the phrases you made!</p>
-</blockquote>
-</section><section id="references" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
+<!-- ::: check-in -->
+<!-- ### Check-in 8.1: Functional Programming with the `map()` family {#checkin8-1 -} -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- library(palmerpenguins) -->
+<!-- data(penguins) -->
+<!-- ``` -->
+<!-- **1. Suppose we would like to find the median of the measurement variables (`bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g`) from the penguins dataset (from the `palmerpenguins` package). Which of the following will produce a _numeric vector_ of the median of every measurement variable?** *Select all that apply!* -->
+<!-- (a) -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |>  -->
+<!--   select(bill_length_mm:body_mass_g) |>  -->
+<!--   map(.f = median, na.rm = TRUE) -->
+<!-- ``` -->
+<!-- (b) -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |>  -->
+<!--   select(bill_length_mm:body_mass_g) |>  -->
+<!--   map_dbl(.f = median, na.rm = TRUE) -->
+<!-- ``` -->
+<!-- (c) -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |>  -->
+<!--   select(bill_length_mm:body_mass_g) |>  -->
+<!--   map_dfc(.f = median, na.rm = TRUE) -->
+<!-- ``` -->
+<!-- (d) -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |>  -->
+<!--   select(bill_length_mm:body_mass_g) |>  -->
+<!--   map_chr(function(x) median(x, na.rm = TRUE)) -->
+<!-- ``` -->
+<!-- **2. Recall that in the last unit, we discussed the challenge of standardizing many columns in a data frame. For example, If we wanted to standardize a numeric variable to be centered at the mean and scaled by the standard deviation, we could use the following function:** -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- standardize <- function(vec) { -->
+<!--   stopifnot(is.numeric(vec)) -->
+<!--   # Center with mean -->
+<!--   deviations <- vec - mean(vec, na.rm = TRUE) -->
+<!--   # Scale with standard deviation -->
+<!--   newdata <- deviations / sd(vec, na.rm = TRUE) -->
+<!--   return(newdata) -->
+<!-- } -->
+<!-- ``` -->
+<!-- **Why does the following return a vector of NAs for the variable `body_mass_g`?** -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |> -->
+<!--   mutate( -->
+<!--     body_mass_g = map_dbl(.x = body_mass_g,  -->
+<!--                           .f = standardize -->
+<!--                           ) -->
+<!--   ) -->
+<!-- ``` -->
+<!-- a. Because body_mass_g needs to be passed to standardize() as an argument -->
+<!-- b. Because `mutate()` operates on rows, so `map_dbl()` is supplying `standardize()` with one row of `body_mass_g` at a time -->
+<!-- c. Because `map_dbl()` only takes one input, so you need to use `map2_dbl()` instead -->
+<!-- d. Because there is no function named `standardize()`, so it cannot be applied to the `body_mass_g` column `body_mass_g` is not a data frame so it is not a valid argument for `map_dbl()` -->
+<!-- **3. Which of the following returns a dataframe with the standardized version of the numerical variables (`bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g`) from the penguins data set?** -->
+<!-- (a) -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |>  -->
+<!--   select(bill_length_mm:body_mass_g) |>  -->
+<!--   map_df(standardize) -->
+<!-- ``` -->
+<!-- (b) -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |>  -->
+<!--   map_at(bill_length_mm:body_mass_g, standardize) -->
+<!-- ``` -->
+<!-- (c) -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |>  -->
+<!--   map_if(is.numeric, standardize) -->
+<!-- ``` -->
+<!-- (d) -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |>  -->
+<!--   map_at( -->
+<!--     c("bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g"), -->
+<!--     standardize -->
+<!--     ) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- <br> -->
+<!-- ::: tryitout -->
+<!-- ## PA 8: The 12 Days of Christmas Starter Functions {-} -->
+<!-- The song "12 Days of Christmas", written around 1780, tells the tale of many gifts a person receives in the days leading up to Christmas ([link to lyrics](https://en.wikipedia.org/wiki/The_Twelve_Days_of_Christmas_(song))). This week, you will be using your new R developer skills to write functions that automatically sing this very repetitive song. -->
+<!-- In the practice activity, we will start by writing two helper functions which we will use in the lab to write a function to sing this entire song. -->
+<!-- Visit [PA 8: The 12 Days of Christmas Starter Functions](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA8-twelve-days-of-christmas.html) for instructions. -->
+<!-- > Your Full.Phrase column is the answer to this week’s Practice Activity. -->
+<!-- >  -->
+<!-- > Copy and paste your Full.Phrase column to show me the phrases you made! -->
+<!-- ::: -->
+<section id="references" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
@@ -1751,7 +1739,7 @@ Rudis, Bob. 2017. <span>“Pirating <span>Web</span> <span>Content</span> <span>
 Wickham, Hadley. 2019. <span>“Functional Programming.”</span> In <em>Advanced <span>R</span></em>, 2nd ed. The <span>R</span> Series. Chapman; Hall/CRC. <a href="http://adv-r.had.co.nz/Functional-programming.html">http://adv-r.had.co.nz/Functional-programming.html</a>.
 </div>
 </div>
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

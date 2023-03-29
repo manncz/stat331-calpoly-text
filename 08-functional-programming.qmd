@@ -33,14 +33,14 @@ library(tidyverse)
 
 - Use functional programming techniques to create code which is well organized and easier to understand and maintain
 
-::: check-in
-## Check-ins {#ch8-checkins -}
+<!-- ::: check-in -->
+<!-- ## Check-ins {#ch8-checkins -} -->
 
-There is one check-in for this week:
+<!-- There is one check-in for this week: -->
 
-+ [Check-in 8.1: Functional Programming with the `map()` family](#checkin8-1) 
+<!-- + [Check-in 8.1: Functional Programming with the `map()` family](#checkin8-1)  -->
 
-:::
+<!-- ::: -->
 
 ## Introduction to Iteration
 
@@ -776,136 +776,136 @@ got_names |>
 
 <br>
 
-::: check-in
-### Check-in 8.1: Functional Programming with the `map()` family {#checkin8-1 -}
+<!-- ::: check-in -->
+<!-- ### Check-in 8.1: Functional Programming with the `map()` family {#checkin8-1 -} -->
 
-```{r}
-#| eval: false
-library(palmerpenguins)
-data(penguins)
-```
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- library(palmerpenguins) -->
+<!-- data(penguins) -->
+<!-- ``` -->
 
-**1. Suppose we would like to find the median of the measurement variables (`bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g`) from the penguins dataset (from the `palmerpenguins` package). Which of the following will produce a _numeric vector_ of the median of every measurement variable?** *Select all that apply!*
+<!-- **1. Suppose we would like to find the median of the measurement variables (`bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g`) from the penguins dataset (from the `palmerpenguins` package). Which of the following will produce a _numeric vector_ of the median of every measurement variable?** *Select all that apply!* -->
 
-(a)
-```{r}
-#| eval: false
-penguins |> 
-  select(bill_length_mm:body_mass_g) |> 
-  map(.f = median, na.rm = TRUE)
-```
+<!-- (a) -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |>  -->
+<!--   select(bill_length_mm:body_mass_g) |>  -->
+<!--   map(.f = median, na.rm = TRUE) -->
+<!-- ``` -->
 
-(b)
-```{r}
-#| eval: false
-penguins |> 
-  select(bill_length_mm:body_mass_g) |> 
-  map_dbl(.f = median, na.rm = TRUE)
-```
+<!-- (b) -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |>  -->
+<!--   select(bill_length_mm:body_mass_g) |>  -->
+<!--   map_dbl(.f = median, na.rm = TRUE) -->
+<!-- ``` -->
 
-(c)
-```{r}
-#| eval: false
-penguins |> 
-  select(bill_length_mm:body_mass_g) |> 
-  map_dfc(.f = median, na.rm = TRUE)
-```
+<!-- (c) -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |>  -->
+<!--   select(bill_length_mm:body_mass_g) |>  -->
+<!--   map_dfc(.f = median, na.rm = TRUE) -->
+<!-- ``` -->
 
-(d)
-```{r}
-#| eval: false
-penguins |> 
-  select(bill_length_mm:body_mass_g) |> 
-  map_chr(function(x) median(x, na.rm = TRUE))
-```
+<!-- (d) -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |>  -->
+<!--   select(bill_length_mm:body_mass_g) |>  -->
+<!--   map_chr(function(x) median(x, na.rm = TRUE)) -->
+<!-- ``` -->
 
 
-**2. Recall that in the last unit, we discussed the challenge of standardizing many columns in a data frame. For example, If we wanted to standardize a numeric variable to be centered at the mean and scaled by the standard deviation, we could use the following function:**
+<!-- **2. Recall that in the last unit, we discussed the challenge of standardizing many columns in a data frame. For example, If we wanted to standardize a numeric variable to be centered at the mean and scaled by the standard deviation, we could use the following function:** -->
 
-```{r}
-#| eval: false
-standardize <- function(vec) {
-  stopifnot(is.numeric(vec))
-  
-  # Center with mean
-  deviations <- vec - mean(vec, na.rm = TRUE)
-  # Scale with standard deviation
-  newdata <- deviations / sd(vec, na.rm = TRUE)
-  
-  return(newdata)
-}
-```
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- standardize <- function(vec) { -->
+<!--   stopifnot(is.numeric(vec)) -->
 
-**Why does the following return a vector of NAs for the variable `body_mass_g`?**
+<!--   # Center with mean -->
+<!--   deviations <- vec - mean(vec, na.rm = TRUE) -->
+<!--   # Scale with standard deviation -->
+<!--   newdata <- deviations / sd(vec, na.rm = TRUE) -->
 
-```{r}
-#| eval: false
-penguins |>
-  mutate(
-    body_mass_g = map_dbl(.x = body_mass_g, 
-                          .f = standardize
-                          )
-  )
-```
+<!--   return(newdata) -->
+<!-- } -->
+<!-- ``` -->
 
-a. Because body_mass_g needs to be passed to standardize() as an argument
+<!-- **Why does the following return a vector of NAs for the variable `body_mass_g`?** -->
 
-b. Because `mutate()` operates on rows, so `map_dbl()` is supplying `standardize()` with one row of `body_mass_g` at a time
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |> -->
+<!--   mutate( -->
+<!--     body_mass_g = map_dbl(.x = body_mass_g,  -->
+<!--                           .f = standardize -->
+<!--                           ) -->
+<!--   ) -->
+<!-- ``` -->
 
-c. Because `map_dbl()` only takes one input, so you need to use `map2_dbl()` instead
+<!-- a. Because body_mass_g needs to be passed to standardize() as an argument -->
 
-d. Because there is no function named `standardize()`, so it cannot be applied to the `body_mass_g` column `body_mass_g` is not a data frame so it is not a valid argument for `map_dbl()`
+<!-- b. Because `mutate()` operates on rows, so `map_dbl()` is supplying `standardize()` with one row of `body_mass_g` at a time -->
 
-**3. Which of the following returns a dataframe with the standardized version of the numerical variables (`bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g`) from the penguins data set?**
+<!-- c. Because `map_dbl()` only takes one input, so you need to use `map2_dbl()` instead -->
 
-(a)
-```{r}
-#| eval: false
-penguins |> 
-  select(bill_length_mm:body_mass_g) |> 
-  map_df(standardize)
-```
+<!-- d. Because there is no function named `standardize()`, so it cannot be applied to the `body_mass_g` column `body_mass_g` is not a data frame so it is not a valid argument for `map_dbl()` -->
 
-(b)
-```{r}
-#| eval: false
-penguins |> 
-  map_at(bill_length_mm:body_mass_g, standardize)
-```
+<!-- **3. Which of the following returns a dataframe with the standardized version of the numerical variables (`bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g`) from the penguins data set?** -->
 
-(c)
-```{r}
-#| eval: false
-penguins |> 
-  map_if(is.numeric, standardize)
-```
+<!-- (a) -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |>  -->
+<!--   select(bill_length_mm:body_mass_g) |>  -->
+<!--   map_df(standardize) -->
+<!-- ``` -->
 
-(d)
-```{r}
-#| eval: false
-penguins |> 
-  map_at(
-    c("bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g"),
-    standardize
-    )
-```
-:::
+<!-- (b) -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |>  -->
+<!--   map_at(bill_length_mm:body_mass_g, standardize) -->
+<!-- ``` -->
 
-<br>
+<!-- (c) -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |>  -->
+<!--   map_if(is.numeric, standardize) -->
+<!-- ``` -->
 
-::: tryitout
-## PA 8: The 12 Days of Christmas Starter Functions {-}
+<!-- (d) -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |>  -->
+<!--   map_at( -->
+<!--     c("bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g"), -->
+<!--     standardize -->
+<!--     ) -->
+<!-- ``` -->
+<!-- ::: -->
 
-The song "12 Days of Christmas", written around 1780, tells the tale of many gifts a person receives in the days leading up to Christmas ([link to lyrics](https://en.wikipedia.org/wiki/The_Twelve_Days_of_Christmas_(song))). This week, you will be using your new R developer skills to write functions that automatically sing this very repetitive song.
+<!-- <br> -->
 
-In the practice activity, we will start by writing two helper functions which we will use in the lab to write a function to sing this entire song.
+<!-- ::: tryitout -->
+<!-- ## PA 8: The 12 Days of Christmas Starter Functions {-} -->
 
-Visit [PA 8: The 12 Days of Christmas Starter Functions](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA8-twelve-days-of-christmas.html) for instructions.
+<!-- The song "12 Days of Christmas", written around 1780, tells the tale of many gifts a person receives in the days leading up to Christmas ([link to lyrics](https://en.wikipedia.org/wiki/The_Twelve_Days_of_Christmas_(song))). This week, you will be using your new R developer skills to write functions that automatically sing this very repetitive song. -->
 
-> Your Full.Phrase column is the answer to this week’s Practice Activity.
-> 
-> Copy and paste your Full.Phrase column to show me the phrases you made!
+<!-- In the practice activity, we will start by writing two helper functions which we will use in the lab to write a function to sing this entire song. -->
 
-:::
+<!-- Visit [PA 8: The 12 Days of Christmas Starter Functions](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA8-twelve-days-of-christmas.html) for instructions. -->
+
+<!-- > Your Full.Phrase column is the answer to this week’s Practice Activity. -->
+<!-- >  -->
+<!-- > Copy and paste your Full.Phrase column to show me the phrases you made! -->
+
+<!-- ::: -->
 
 ### References {-}

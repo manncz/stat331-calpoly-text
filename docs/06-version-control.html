@@ -194,7 +194,6 @@ div.csl-indent {
    
   <ul>
 <li><a href="#ch6-objectives" id="toc-ch6-objectives" class="nav-link active" data-scroll-target="#ch6-objectives">Objectives</a></li>
-  <li><a href="#ch6-checkins" id="toc-ch6-checkins" class="nav-link" data-scroll-target="#ch6-checkins">Check-ins</a></li>
   <li>
 <a href="#what-is-version-control" id="toc-what-is-version-control" class="nav-link" data-scroll-target="#what-is-version-control"><span class="toc-section-number">6.1</span>  What is Version Control?</a>
   <ul class="collapse">
@@ -206,14 +205,12 @@ div.csl-indent {
   <ul class="collapse">
 <li><a href="#git-basics" id="toc-git-basics" class="nav-link" data-scroll-target="#git-basics"><span class="toc-section-number">6.2.1</span>  Git Basics</a></li>
   <li><a href="#essential-reading-git" id="toc-essential-reading-git" class="nav-link" data-scroll-target="#essential-reading-git">Essential Reading: Git</a></li>
-  <li><a href="#checkin6-1" id="toc-checkin6-1" class="nav-link" data-scroll-target="#checkin6-1">Check-in 6.1: Install Git</a></li>
   </ul>
 </li>
   <li>
 <a href="#setting-up-github" id="toc-setting-up-github" class="nav-link" data-scroll-target="#setting-up-github"><span class="toc-section-number">6.3</span>  GitHub: Git on the Web</a>
   <ul class="collapse">
-<li><a href="#checkin6-2" id="toc-checkin6-2" class="nav-link" data-scroll-target="#checkin6-2">Check-in 6.2: Register a GitHub Account</a></li>
-  <li><a href="#save-your-login-information" id="toc-save-your-login-information" class="nav-link" data-scroll-target="#save-your-login-information">Save your login information!</a></li>
+<li><a href="#save-your-login-information" id="toc-save-your-login-information" class="nav-link" data-scroll-target="#save-your-login-information">Save your login information!</a></li>
   <li><a href="#optional-install-a-git-client" id="toc-optional-install-a-git-client" class="nav-link" data-scroll-target="#optional-install-a-git-client">Optional: Install a git client</a></li>
   </ul>
 </li>
@@ -224,7 +221,6 @@ div.csl-indent {
 <li><a href="#extra-resources" id="toc-extra-resources" class="nav-link" data-scroll-target="#extra-resources">Extra Resources</a></li>
   </ul>
 </li>
-  <li><a href="#pa-6-merge-conflicts" id="toc-pa-6-merge-conflicts" class="nav-link" data-scroll-target="#pa-6-merge-conflicts">PA 6: Merge Conflicts</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/06-version-control.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
@@ -256,13 +252,7 @@ div.csl-indent {
 <li>Identify git/GitHub as a version control platform (and helper).</li>
 <li>Register for a GitHub account so you can begin applying version control practices to your workflow.</li>
 </ul>
-<p><br></p>
-</section><section id="ch6-checkins" class="level2 unnumbered check-in"><h2 class="unnumbered anchored" data-anchor-id="ch6-checkins">Check-ins</h2>
-<p>There are two check-ins for this week:</p>
-<ul>
-<li><a href="#checkin6-1">Check-in 6.1: Install Git</a></li>
-<li><a href="#checkin6-2">Check-in 6.2: Create a GitHub Account</a></li>
-</ul></section><section id="what-is-version-control" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="what-is-version-control">
+<!-- <br> --><!-- ::: check-in --><!-- ## Check-ins {#ch6-checkins .unnumbered} --><!-- There are two check-ins for this week: --><!-- + [Check-in 6.1: Install Git](#checkin6-1) --><!-- + [Check-in 6.2: Create a GitHub Account](#checkin6-2) --><!-- ::: --></section><section id="what-is-version-control" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="what-is-version-control">
 <span class="header-section-number">6.1</span> What is Version Control?</h2>
 <p>Version control is a system that (1) allows you to store your files in the cloud, (2) track change in those files over time, and (3) share your files with others.</p>
 <section id="learn-more-about-version-control" class="level3 unnumbered learn-more"><h3 class="unnumbered anchored" data-anchor-id="learn-more-about-version-control">Learn more about version control</h3>
@@ -295,15 +285,15 @@ div.csl-indent {
 <p>The git material in this chapter is just going to link directly to the book “Happy Git with R” by Jenny Bryan. It’s amazing, amusing, and generally well written. I’m not going to try to do better.</p>
 <p><a href="https://happygitwithr.com/big-picture.html">Go read Chapter 1, until it starts to become greek (aka over your head).</a></p>
 </section><p><br></p>
-<section id="checkin6-1" class="level3 unnumbered check-in"><h3 class="unnumbered anchored" data-anchor-id="checkin6-1">Check-in 6.1: Install Git</h3>
-<p>We will be working with Git/GitHub in groups during class this week. In order to be prepared, please install Git onto your computer – we will be connecting this to RStudio together, but having this installed ahead of time avoids installation time during class.</p>
-<ul>
-<li><a href="https://gitforwindows.org/">Install Git for Windows</a></li>
-<li><a href="https://git-scm.com/downloads">Install Git for Macs</a></li>
-</ul>
-<p>If you run into issues, read more about <a href="https://happygitwithr.com/install-git.html">installing Git</a>.</p>
-<p>Once you have installed Git, tell me “yes” in the Canvas Quiz.</p>
-</section><p><br> Now that you have a general idea of how git works and why we might use it, let’s talk a bit about GitHub.</p>
+<!-- ::: check-in -->
+<!-- ### Check-in 6.1: Install Git {#checkin6-1 .unnumbered} -->
+<!-- We will be working with Git/GitHub in groups during class this week. In order to be prepared, please install Git onto your computer -- we will be connecting this to RStudio together, but having this installed ahead of time avoids installation time during class. -->
+<!-- + [Install Git for Windows](https://gitforwindows.org/) -->
+<!-- + [Install Git for Macs](https://git-scm.com/downloads) -->
+<!-- If you run into issues, read more about [installing Git](https://happygitwithr.com/install-git.html). -->
+<!-- Once you have installed Git, tell me "yes" in the Canvas Quiz. -->
+<!-- ::: -->
+<p><br> Now that you have a general idea of how git works and why we might use it, let’s talk a bit about GitHub.</p>
 </section><section id="setting-up-github" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="setting-up-github">
 <span class="header-section-number">6.3</span> GitHub: Git on the Web</h2>
 <p>Git is a program that runs on your machine and keeps track of changes to files that you tell it to monitor. GitHub is a website that hosts people’s git repositories. You can use git without GitHub, but you can’t use GitHub without git.</p>
@@ -313,16 +303,15 @@ div.csl-indent {
 <!-- ::: -->
 <p>If you want, you can hook Git up to GitHub, and make a copy of your local git repository that lives in the cloud. Then, if you configure things correctly, your local repository will talk to GitHub without too much trouble. Using Github with Git allows you to <strong>easily make a cloud backup of your important code</strong>, so that even if your computer suddenly catches on fire, all of your important code files exist somewhere else.</p>
 <p>Remember: any data you don’t have in 3 different places is data you don’t care about.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<section id="checkin6-2" class="level3 unnumbered check-in"><h3 class="unnumbered anchored" data-anchor-id="checkin6-2">Check-in 6.2: Register a GitHub Account</h3>
-<p>Follow the instructions in <a href="https://happygitwithr.com/github-acct.html">Registering a GitHub Account</a> to create a <strong>free</strong> GitHub account.</p>
-<p>Copy and paste the link to your GitHub profile into the Canvas assignment.</p>
-<ul>
-<li>Your GitHub profile link should look like – https://github.com/USERNAME</li>
-<li>Here is mine! <a href="https://github.com/earobinson95">https://github.com/earobinson95</a>
-</li>
-</ul>
-<p>(Optional) You may want to check out <a href="https://education.github.com/">GitHub Education</a> and sign up for the <a href="https://education.github.com/pack">GitHub Student Developer Pack</a>.</p>
-</section><p><br></p>
+<!-- ::: check-in -->
+<!-- ### Check-in 6.2: Register a GitHub Account {#checkin6-2 .unnumbered} -->
+<!-- Follow the instructions in [Registering a GitHub Account](https://happygitwithr.com/github-acct.html) to create a **free** GitHub account.  -->
+<!-- Copy and paste the link to your GitHub profile into the Canvas assignment. -->
+<!-- + Your GitHub profile link should look like -- https://github.com/USERNAME -->
+<!-- + Here is mine! [https://github.com/earobinson95](https://github.com/earobinson95) -->
+<!-- (Optional) You may want to check out [GitHub Education](https://education.github.com/) and sign up for the [GitHub Student Developer Pack](https://education.github.com/pack). -->
+<!-- ::: -->
+<p><br></p>
 <section id="save-your-login-information" class="level3 unnumbered watchout"><h3 class="unnumbered anchored" data-anchor-id="save-your-login-information">Save your login information!</h3>
 <p>Make sure you remember your username and password so you don’t have to try to hack into your own account during class this week.</p>
 <p>Write your information down somewhere safe.</p>
@@ -505,10 +494,12 @@ div.csl-indent {
 <li><p><a href="https://dev.to/erikaheidi/stage-commit-push-a-git-story-comic-a37">More advanced git concepts, in comic form</a>, by Erika Heidi <span class="citation" data-cites="ericaheidiStageCommitPush2020">(<a href="#ref-ericaheidiStageCommitPush2020" role="doc-biblioref">Erica Heidi 2020</a>)</span></p></li>
 <li><p><a href="https://towardsdatascience.com/a-quick-guide-to-using-command-line-terminal-96815b97b955">A quick guide to the command line (Terminal)</a> <span class="citation" data-cites="weiQuickGuideUsing2019">(<a href="#ref-weiQuickGuideUsing2019" role="doc-biblioref">Wei 2019</a>)</span></p></li>
 </ul></section></section><p><br></p>
-<section id="pa-6-merge-conflicts" class="level3 unnumbered tryitout"><h3 class="unnumbered anchored" data-anchor-id="pa-6-merge-conflicts">PA 6: Merge Conflicts</h3>
-<p>In class, we will work together, step-by-step in groups, to resolve merge conflicts when collaborating with GitHub.</p>
-<p>In order to receive credit for this practice activity, you <strong>must</strong> attend class. Please email your instructor if extenuating circumstances arise.</p>
-</section><section id="references" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
+<!-- ::: tryitout -->
+<!-- ### PA 6: Merge Conflicts {-} -->
+<!-- In class, we will work together, step-by-step in groups, to resolve merge conflicts when collaborating with GitHub. -->
+<!-- In order to receive credit for this practice activity, you **must** attend class. Please email your instructor if extenuating circumstances arise. -->
+<!-- ::: -->
+<section id="references" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
