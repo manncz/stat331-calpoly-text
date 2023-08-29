@@ -238,10 +238,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
 <li><a href="#ch9-objectives" id="toc-ch9-objectives" class="nav-link active" data-scroll-target="#ch9-objectives">Objectives</a></li>
+  <li><a href="#ch9-checkins" id="toc-ch9-checkins" class="nav-link" data-scroll-target="#ch9-checkins">Check-ins</a></li>
   <li>
 <a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression"><span class="toc-section-number">9.1</span>  Linear Regression</a>
   <ul class="collapse">
 <li><a href="#linear-regression-in-r" id="toc-linear-regression-in-r" class="nav-link" data-scroll-target="#linear-regression-in-r"><span class="toc-section-number">9.1.1</span>  Linear Regression in R</a></li>
+  <li><a href="#checkin9-1" id="toc-checkin9-1" class="nav-link" data-scroll-target="#checkin9-1">Check-in 9.1: Linear Regression</a></li>
   </ul>
 </li>
   <li>
@@ -249,9 +251,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
 <li><a href="#setting-a-random-number-seed" id="toc-setting-a-random-number-seed" class="nav-link" data-scroll-target="#setting-a-random-number-seed"><span class="toc-section-number">9.2.1</span>  Setting a Random Number Seed</a></li>
   <li><a href="#plotting-density-distributions" id="toc-plotting-density-distributions" class="nav-link" data-scroll-target="#plotting-density-distributions"><span class="toc-section-number">9.2.2</span>  Plotting Density Distributions</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#checkin9-2" id="toc-checkin9-2" class="nav-link" data-scroll-target="#checkin9-2">Check-in 9.2: Distributions and Simulations</a></li>
   </ul>
 </li>
+  <li><a href="#pa-9.1-mystery-animal" id="toc-pa-9.1-mystery-animal" class="nav-link" data-scroll-target="#pa-9.1-mystery-animal">PA 9.1: Mystery Animal</a></li>
+  <li><a href="#pa-9.2-instrument-con" id="toc-pa-9.2-instrument-con" class="nav-link" data-scroll-target="#pa-9.2-instrument-con">PA 9.2: Instrument Con</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/09-statistical-modeling-and-simulation.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
@@ -270,17 +275,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header><p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C87.5 32 35.1 48.6 9 59.9c-5.6 2.4-9 8-9 14V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V73.9c0-6.1-3.4-11.6-9-14C540.9 48.6 488.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 8 minute(s) at 200 WPM</p>
+</header><p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 7 minute(s) at 200 WPM</p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"></path></svg> Videos: 48 minutes</p>
 <section id="ch9-objectives" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="ch9-objectives">Objectives</h2>
 <p>This chapter is heavily from Dr.&nbsp;Theobold’s course-page material.</p>
-<!-- ::: check-in -->
-<!-- ## Check-ins {#ch9-checkins -} -->
-<!-- There are two check-ins for this week: -->
-<!-- + [Check-in 9.1: Linear Regression](#checkin9-1) -->
-<!-- + [Check-in 9.2: Distributions and Simulations](#checkin9-2)  -->
-<!-- ::: -->
-</section><section id="linear-regression" class="level2 page-columns page-full" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="linear-regression">
+</section><section id="ch9-checkins" class="level2 unnumbered check-in"><h2 class="unnumbered anchored" data-anchor-id="ch9-checkins">Check-ins</h2>
+<p>There are two check-ins for this week:</p>
+<ul>
+<li><a href="#checkin9-1">Check-in 9.1: Linear Regression</a></li>
+<li><a href="#checkin9-2">Check-in 9.2: Distributions and Simulations</a></li>
+</ul></section><section id="linear-regression" class="level2 page-columns page-full" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="linear-regression">
 <span class="header-section-number">9.1</span> Linear Regression</h2>
 <p>You now have the skills to import, wrangle, and visualize data. All of these tools help us prepare our data for statistical modeling. In this chapter we will be learning how to implement linear regression models in R, but first let’s review simple linear regression. Linear regression models the linear relationship between two quantitative variables.</p>
 
@@ -505,33 +509,30 @@ F-statistic: 19.88 on 1 and 340 DF,  p-value: 1.12e-05</code></pre>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/glance.html">glance</a></span><span class="op">(</span><span class="va">my_model</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 12
-  r.squ…¹ adj.r…² sigma stati…³ p.value    df logLik   AIC   BIC devia…⁴ df.re…⁵
-    &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;int&gt;
-1  0.0552  0.0525  5.31    19.9 1.12e-5     1 -1056. 2117. 2129.   9603.     340
-# … with 1 more variable: nobs &lt;int&gt;, and abbreviated variable names
-#   ¹​r.squared, ²​adj.r.squared, ³​statistic, ⁴​deviance, ⁵​df.residual</code></pre>
+  r.squared adj.r.squared sigma statistic   p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1    0.0552        0.0525  5.31      19.9 0.0000112     1 -1056. 2117. 2129.
+# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<!-- ::: check-in -->
-<!-- ### Check-in 9.1: Linear Regression {#checkin9-1 -} -->
-<!-- **1. True or False -- If you switch the order of `bill_length_mm` and `bill_depth_mm` in the `lm()` formula nothing happens.** -->
-<!-- **2. What _object type_ was returned by `summary()`?** -->
-<!-- **3. What _object type_ was returned by `tidy()`?** -->
-<!-- **4. What is the equation for the estimated regression line for the relationship between bill length and depth (given above)?** -->
-<!-- **5. Penguin Mopsy has a bill that is 5mm deeper than Penguin Gidget. What will be the difference between their bill lengths?** -->
-<!-- **6. Run the following code, and explore the results:** -->
-<!-- ```{r} -->
-<!-- my_model_2 <- lm(bill_length_mm ~ bill_depth_mm*species,  -->
-<!--                  data = penguins -->
-<!--                  ) -->
-<!-- ``` -->
-<!-- **a.  Make a plot illustrating `my_model_2`. Upload a picture of your plot!** *(Hint: Think about what needs to change in the aesthetic of the plot featured previously?)* -->
-<!-- **b.  Which model of the two models explains the most variance in `bill_length_mm`?** -->
-<!-- **c.  Do the three species of penguin have the same bill shape (i.e., the relationship between length and depth)?** -->
-<!-- ::: -->
+</section><section id="checkin9-1" class="level3 unnumbered check-in"><h3 class="unnumbered anchored" data-anchor-id="checkin9-1">Check-in 9.1: Linear Regression</h3>
+<p><strong>1. True or False – If you switch the order of <code>bill_length_mm</code> and <code>bill_depth_mm</code> in the <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> formula nothing happens.</strong></p>
+<p><strong>2. What <em>object type</em> was returned by <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>?</strong></p>
+<p><strong>3. What <em>object type</em> was returned by <code><a href="https://generics.r-lib.org/reference/tidy.html">tidy()</a></code>?</strong></p>
+<p><strong>4. What is the equation for the estimated regression line for the relationship between bill length and depth (given above)?</strong></p>
+<p><strong>5. Penguin Mopsy has a bill that is 5mm deeper than Penguin Gidget. What will be the difference between their bill lengths?</strong></p>
+<p><strong>6. Run the following code, and explore the results:</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_model_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">bill_depth_mm</span><span class="op">*</span><span class="va">species</span>,</span>
+<span>                 data <span class="op">=</span> <span class="va">penguins</span></span>
+<span>                 <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>a. Make a plot illustrating <code>my_model_2</code>. Upload a picture of your plot!</strong> <em>(Hint: Think about what needs to change in the aesthetic of the plot featured previously?)</em></p>
+<p><strong>b. Which model of the two models explains the most variance in <code>bill_length_mm</code>?</strong></p>
+<p><strong>c.&nbsp;Do the three species of penguin have the same bill shape (i.e., the relationship between length and depth)?</strong></p>
 </section></section><section id="simulation" class="level2 page-columns page-full" data-number="9.2"><h2 data-number="9.2" class="anchored" data-anchor-id="simulation">
 <span class="header-section-number">9.2</span> Simulation</h2>
 <p>In statistics, we often want to simulate data (or create fake data) for a variety of purposes. For example, in your first statistics course, you may have flipped coins to “simulate” a 50-50 chance. In this section, we will learn how to simulate data from statistical distributions using R.</p>
@@ -549,34 +550,34 @@ F-statistic: 19.88 on 1 and 340 DF,  p-value: 1.12e-05</code></pre>
 <p>Functions like <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> rely on something called pseudo-randomness. Because computers can never be <em>truly</em> random, complicated processes are implemented to make “random” number generation be so unpredictable as to behave like true randomness.</p>
 <p>This means that projects involving simulation are harder to make <strong>reproducible</strong>. For example, here are two identical lines of code that give different results!</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.315057</code></pre>
+<pre><code>[1] 0.6406349</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -1.966066</code></pre>
+<pre><code>[1] -0.5387425</code></pre>
 </div>
 </div>
 <p>Fortunately, pseudo-randomness depends on a <strong>seed</strong>, which is an arbitrary number where the randomizing process starts. Normally, R will choose the seed for you, from a pre-generated vector:</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">.Random.seed</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">.Random.seed</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]       10403           4  1004142107 -1836335574 -2100076212  -472003825</code></pre>
+<pre><code>[1]       10403           4  -895367753   393876062  -587533416 -1215751429</code></pre>
 </div>
 </div>
 <p>However, you can also choose your own seed using the <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> function. This guarantees your results will be consistent across runs (and hopefully computers):</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -1.207066</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -1.207066</code></pre>
@@ -584,12 +585,12 @@ F-statistic: 19.88 on 1 and 340 DF,  p-value: 1.12e-05</code></pre>
 </div>
 <p>Of course, it doesn’t mean the results will be the same in every subsequent run if you forget or reset the seed in between each line of code!</p>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -1.207066</code></pre>
 </div>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Calling rnorm() again without a seed "resets" the seed! </span></span>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Calling rnorm() again without a seed "resets" the seed! </span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2774292</code></pre>
@@ -605,7 +606,7 @@ F-statistic: 19.88 on 1 and 340 DF,  p-value: 1.12e-05</code></pre>
 <details class="ex"><summary>
 Reproducibility: inline code example
 </summary><div class="cell">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_rand</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_rand</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">my_rand</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.084441</code></pre>
@@ -618,7 +619,7 @@ Reproducibility: inline code example
 <span class="header-section-number">9.2.2</span> Plotting Density Distributions</h3>
 <p>The code below creates a tibble <em>(read fancy data frame)</em> of 100 heights randomly simulated <em>(read drawn)</em> from a normal distribution with a mean of 67 and standard deviation of 3.</p>
 <div class="cell">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">93401</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">93401</span><span class="op">)</span></span>
 <span><span class="va">my_samples</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n    <span class="op">=</span> <span class="fl">100</span>, </span>
 <span>                                    mean <span class="op">=</span> <span class="fl">67</span>, </span>
 <span>                                    sd   <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
@@ -639,7 +640,7 @@ Reproducibility: inline code example
 </div>
 <p>To visualize the simulated heights, we can look at the density of the values. We plot the simulated values using <code>geom_histogram()</code> and define the local <span class="math inline">\(y\)</span> aesthetic to plot calculate and plot the density of these values. We can then overlay the normal distribution curve (theoretical equation) with our specified mean and standard deviation using <code>dnorm</code> within <code>stat_function()</code></p>
 <div class="cell">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_samples</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_samples</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_histogram</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">..density..</span><span class="op">)</span>, </span>
 <span>                 binwidth <span class="op">=</span> <span class="fl">1.75</span>, </span>
@@ -651,46 +652,43 @@ Reproducibility: inline code example
 <span>                <span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">xlim</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">55</span>, <span class="fl">80</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-statistical-modeling-and-simulation_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<p><img src="09-statistical-modeling-and-simulation_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<!-- ::: check-in -->
-<!-- ### Check-in 9.2: Distributions and Simulations {#checkin9-2 -} -->
-<!-- **1. The `r`, `p`, `q`, and `d` functions: Try to predict what the following outputs will be _WITHOUT_ running the code in R. Drawing pictures of the relevant distributions may help. Explain what each of the functions produces in the output.** -->
-<!-- *Yes, it is very easy to "cheat" on this question. But this is for your practice, and I recommend you give it some thought.* -->
-<!-- a. -->
-<!-- ```{r} -->
-<!-- #| eval: false -->
-<!-- pnorm(-4, mean = 2, sd = 4) -->
-<!-- ``` -->
-<!-- b. -->
-<!-- ```{r} -->
-<!-- #| eval: false -->
-<!-- qnorm(.975, mean = 2, sd = 4) -->
-<!-- ``` -->
-<!-- c. -->
-<!-- ```{r} -->
-<!-- #| eval: false -->
-<!-- dnorm(1.5, mean = 2, sd = 4) -->
-<!-- ``` -->
-<!-- **2. Why does `rnorm(mean = 0, sd = 1)` give an error?** -->
-<!-- ::: -->
-<!-- <br> -->
-<!-- ::: tryitout -->
-<!-- ## PA 9.1: Mystery Animal {-} -->
-<!-- You will be fitting a linear regression model to a data set that contains the weights of a particular animal before and after a year of eating only roasted duck. Plotting the residuals will result in an image of a particular mystery animal. -->
-<!-- Visit [PA 9.1 Mystery Animal](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA9.1-mystery-animal.html) for instructions. -->
-<!-- ::: -->
-<!-- <br> -->
-<!-- ::: tryitout -->
-<!-- ## PA 9.2: Instrument Con {-} -->
-<!-- You will be simulating data from statistical distributions to determine whether Professor Hill's instruments are genuine or not. -->
-<!-- Visit [PA 9.2 Instrument Con](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA9.2-instrument-con.html) for instructions. -->
-<!-- ::: -->
+</section><section id="checkin9-2" class="level3 unnumbered check-in"><h3 class="unnumbered anchored" data-anchor-id="checkin9-2">Check-in 9.2: Distributions and Simulations</h3>
+<p><strong>1. The <code>r</code>, <code>p</code>, <code>q</code>, and <code>d</code> functions: Try to predict what the following outputs will be <em>WITHOUT</em> running the code in R. Drawing pictures of the relevant distributions may help. Explain what each of the functions produces in the output.</strong></p>
+<p><em>Yes, it is very easy to “cheat” on this question. But this is for your practice, and I recommend you give it some thought.</em></p>
+<ol type="a">
+<li>
+</li></ol>
+<div class="cell">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>, mean <span class="op">=</span> <span class="fl">2</span>, sd <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="a">
+<li>
+</li></ol>
+<div class="cell">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">.975</span>, mean <span class="op">=</span> <span class="fl">2</span>, sd <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="a">
+<li>
+</li></ol>
+<div class="cell">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="fl">1.5</span>, mean <span class="op">=</span> <span class="fl">2</span>, sd <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>2. Why does <code>rnorm(mean = 0, sd = 1)</code> give an error?</strong></p>
+</section><p><br></p>
+</section><section id="pa-9.1-mystery-animal" class="level2 unnumbered tryitout"><h2 class="unnumbered anchored" data-anchor-id="pa-9.1-mystery-animal">PA 9.1: Mystery Animal</h2>
+<p>You will be fitting a linear regression model to a data set that contains the weights of a particular animal before and after a year of eating only roasted duck. Plotting the residuals will result in an image of a particular mystery animal.</p>
+<p>Visit <a href="https://earobinson95.github.io/stat331-calpoly/practice-activities/PA9.1-mystery-animal.html">PA 9.1 Mystery Animal</a> for instructions.</p>
+</section><p><br></p>
+<section id="pa-9.2-instrument-con" class="level2 unnumbered tryitout"><h2 class="unnumbered anchored" data-anchor-id="pa-9.2-instrument-con">PA 9.2: Instrument Con</h2>
+<p>You will be simulating data from statistical distributions to determine whether Professor Hill’s instruments are genuine or not.</p>
+<p>Visit <a href="https://earobinson95.github.io/stat331-calpoly/practice-activities/PA9.2-instrument-con.html">PA 9.2 Instrument Con</a> for instructions.</p>
 </section><section id="references" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

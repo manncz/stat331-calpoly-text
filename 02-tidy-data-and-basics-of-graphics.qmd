@@ -33,16 +33,16 @@ fa_html_dependency()
 - Create layered graphics that highlight multiple aspects of the data
 - Evaluate existing charts and develop new versions that improve accessibility and readability
 
-<!-- ::: check-in -->
-<!-- ## Check-ins {#ch2-checkins .unnumbered} -->
+::: check-in
+## Check-ins {#ch2-checkins .unnumbered}
 
-<!-- There are two check-ins for this week: -->
+There are two check-ins for this week:
 
-<!-- - [Check-in 2.1: Loading in Data](#checkin2.1-loadingdata) -->
+- [Check-in 2.1: Loading in Data](#checkin2.1-loadingdata)
 
-<!-- - [Check-in 2.2: Introduction to Data Visualization with ggplot](#checkin2.2-dataviz) -->
+- [Check-in 2.2: Introduction to Data Visualization with ggplot](#checkin2.2-dataviz)
 
-<!-- ::: -->
+:::
 
 ## Tidy Data
 
@@ -392,21 +392,21 @@ The tidyverse has some cleaned-up versions in the **readr** and **readxl** packa
 
 <br>
 
-<!-- ::: check-in -->
-<!-- ### Check-in 2.1: Loading in Data {- #checkin2.1-loadingdata} -->
+::: check-in
+### Check-in 2.1: Loading in Data {- #checkin2.1-loadingdata}
 
-<!-- For this check-in you are asked to work through reading in different data sets. The folder Age_Data contains several data sets with the names and ages of five individuals. The data sets are stored as different file types. [Download Ages_data.zip here](https://github.com/earobinson95/stat331-calpoly/raw/master/check-ins/2.1-loading-data/Ages_Data.zip), make sure to unzip the folder, save these in a reasonable place (e.g., `stat331 > check-ins > checkin2.1` or `stat331 > week2`), then use the `readr` and `readxl` packages to complete the following and fill in the "gap" code on the Canvas: -->
+For this check-in you are asked to work through reading in different data sets. The folder Age_Data contains several data sets with the names and ages of five individuals. The data sets are stored as different file types. [Download Ages_data.zip here](https://github.com/earobinson95/stat331-calpoly/raw/master/check-ins/2.1-loading-data/Ages_Data.zip), make sure to unzip the folder, save these in a reasonable place (e.g., `stat331 > check-ins > checkin2.1` or `stat331 > week2`), then use the `readr` and `readxl` packages to complete the following and fill in the "gap" code on the Canvas:
 
-<!-- ![My file folder structure looks like this:](images/checkin2.1-file-structure.jpg) -->
+![My file folder structure looks like this:](images/checkin2.1-file-structure.jpg)
 
-<!-- 1. Load the appropriate packages for reading in data. -->
-<!-- 2. Read in the data set *ages.csv* -->
-<!-- 3. Read in the data set *ages_tab.txt* -->
-<!-- 4. Read in the data set *ages_mystery.txt* -->
-<!-- 5. Read in the data set *ages.xlsx* -->
-<!-- 6. Find a way to use `read_csv()` to read *ages.csv* with the variable "Name" as a factor and "Age" as a character. -->
+1. Load the appropriate packages for reading in data.
+2. Read in the data set *ages.csv*
+3. Read in the data set *ages_tab.txt*
+4. Read in the data set *ages_mystery.txt*
+5. Read in the data set *ages.xlsx*
+6. Find a way to use `read_csv()` to read *ages.csv* with the variable "Name" as a factor and "Age" as a character.
 
-<!-- ::: -->
+:::
 
 ## Basics of Graphics
 
@@ -1053,21 +1053,21 @@ Extra dimensions and other annotations are sometimes called "chartjunk" and shou
 
 <br>
 
-<!-- ::: check-in -->
-<!-- ### Check-in 2.2: Introduction to Data Visualization with ggplot2 {- #checkin2.2-dataviz} -->
+::: check-in
+### Check-in 2.2: Introduction to Data Visualization with ggplot2 {- #checkin2.2-dataviz}
 
-<!-- Complete the Canvas quiz to make sure you understand the basics of using ggplot2 to create graphics. -->
+Complete the Canvas quiz to make sure you understand the basics of using ggplot2 to create graphics.
 
-<!-- ::: -->
+:::
 
 <br>
 
-<!-- ::: tryitout -->
-<!-- ## PA 2: Using Data Visualization to Find the Penguins {-} -->
+::: tryitout
+## PA 2: Using Data Visualization to Find the Penguins {-}
 
-<!-- You will be exploring different types of visualizations to uncover which species of penguins reside on different islands. -->
+You will be exploring different types of visualizations to uncover which species of penguins reside on different islands.
 
-<!-- Visit [PA2: Using Data Visualization to Find the Penguins](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA2-ggplot-palmer-penguins.html) to see instructions for completing this activity. -->
-<!-- ::: -->
+Visit [PA2: Using Data Visualization to Find the Penguins](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA2-ggplot-palmer-penguins.html) to see instructions for completing this activity.
+:::
 
 ### References {.unnumbered}

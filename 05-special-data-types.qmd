@@ -37,19 +37,19 @@ This chapter is heavily outsourced to [r4ds](https://r4ds.hadley.nz/) as they do
 + Clean and extract information from character strings using `stringr`
 + Work with date and time variables using `lubridate`
 
-<!-- <br> -->
+<br>
 
-<!-- ::: check-in -->
-<!-- ## Check-ins {#ch5-checkins .unnumbered} -->
+::: check-in
+## Check-ins {#ch5-checkins .unnumbered}
 
-<!-- There are three check-ins for this week: -->
+There are three check-ins for this week:
 
-<!-- + [Check-in 5.1: Functions from `forcats`](#checkin5-1) -->
-<!-- + [Check-in 5.2: Functions from `stringr`](#checkin5-2) -->
-<!-- + [Check-in 5.3: Functions from `lubridate`](#checkin5-3) -->
++ [Check-in 5.1: Functions from `forcats`](#checkin5-1)
++ [Check-in 5.2: Functions from `stringr`](#checkin5-2)
++ [Check-in 5.3: Functions from `lubridate`](#checkin5-3)
 
-<!-- *Feel free to share answers with your classmates in the Discord server, to make sure you understand. Check-ins are meant for you to learn and practice!* -->
-<!-- ::: -->
+*Feel free to share answers with your classmates in the Discord server, to make sure you understand. Check-ins are meant for you to learn and practice!*
+:::
 
 ## Factors with `forcats`
 
@@ -88,54 +88,54 @@ Download the [`forcats` cheatsheet](https://posit.co/wp-content/uploads/2022/10/
 
 <br>
 
-<!-- ::: check-in -->
-<!-- ## Check-in 5.1: Functions from `forcats` {#checkin5-1 .unnumbered} -->
+::: check-in
+## Check-in 5.1: Functions from `forcats` {#checkin5-1 .unnumbered}
 
-<!-- Answer the following questions in the Canvas Quiz. -->
+Answer the following questions in the Canvas Quiz.
 
-<!-- **1. Which of the following tasks can `fct_recode()` accomplish?** -->
+**1. Which of the following tasks can `fct_recode()` accomplish?**
 
-<!-- + changes the values of the factor levels -->
-<!-- + reorders the levels of a factor -->
-<!-- + remove levels of a factor you don’t want -->
-<!-- + collapse levels of a factor into a new level -->
++ changes the values of the factor levels
++ reorders the levels of a factor
++ remove levels of a factor you don’t want
++ collapse levels of a factor into a new level
 
-<!-- **2. Which of the following tasks can `fct_relevel()` accomplish?** -->
+**2. Which of the following tasks can `fct_relevel()` accomplish?**
 
-<!-- + reorders the levels of a factor -->
-<!-- + changes the values of the factor levels -->
-<!-- + remove levels of a factor you don’t want -->
-<!-- + collapse levels of a factor into a new level -->
++ reorders the levels of a factor
++ changes the values of the factor levels
++ remove levels of a factor you don’t want
++ collapse levels of a factor into a new level
 
-<!-- **3. What is the main difference between `fct_collapse()` and `fct_recode()`?** -->
+**3. What is the main difference between `fct_collapse()` and `fct_recode()`?**
 
-<!-- + `fct_recode()` uses strings to create factor levels -->
-<!-- + `fct_recode()` uses groups to create factor levels -->
-<!-- + `fct_recode()` cannot create an “Other” group -->
++ `fct_recode()` uses strings to create factor levels
++ `fct_recode()` uses groups to create factor levels
++ `fct_recode()` cannot create an “Other” group
 
-<!-- **4. What ordering do you get with `fct_reorder()`?** -->
+**4. What ordering do you get with `fct_reorder()`?**
 
-<!-- + largest to smallest based on another variable -->
-<!-- + order of appearance -->
-<!-- + largest to smallest based on counts -->
-<!-- + alphabetical order -->
++ largest to smallest based on another variable
++ order of appearance
++ largest to smallest based on counts
++ alphabetical order
 
-<!-- **5. What ordering do you get with `fct_inorder()`?** -->
+**5. What ordering do you get with `fct_inorder()`?**
 
-<!-- + order of appearance -->
-<!-- + alphabetical order -->
-<!-- + largest to smallest based on counts -->
-<!-- + largest to smallest based on another variable -->
-<!-- ::: -->
++ order of appearance
++ alphabetical order
++ largest to smallest based on counts
++ largest to smallest based on another variable
+:::
 
-<!-- ::: column-margin -->
-<!-- ```{r} -->
-<!-- #| echo: false -->
-<!-- #| out-width: "70%" -->
-<!-- #| fig-align: center -->
-<!-- knitr::include_graphics("https://github.com/rstudio/hex-stickers/blob/main/thumbs/forcats.png?raw=true") -->
-<!-- ``` -->
-<!-- ::: -->
+::: column-margin
+```{r}
+#| echo: false
+#| out-width: "70%"
+#| fig-align: center
+knitr::include_graphics("https://github.com/rstudio/hex-stickers/blob/main/thumbs/forcats.png?raw=true")
+```
+:::
 
 <!-- ### What is a factor? -->
 
@@ -679,46 +679,46 @@ Read at least through **section 17.4.1**.
 
 <br>
 
-<!-- ::: check-in -->
-<!-- ## Check-in 5.2: Functions from `stringr` {#checkin5-2 .unnumbered} -->
+::: check-in
+## Check-in 5.2: Functions from `stringr` {#checkin5-2 .unnumbered}
 
-<!-- **1 Which of the follow are differences between `length()` and `str_length()`?** -->
+**1 Which of the follow are differences between `length()` and `str_length()`?**
 
-<!-- -   `length()` gives the number of elements in a vector -->
-<!-- -   `str_length()` gives the number of characters in a string -->
-<!-- -   `str_length()` gives the number of strings in a vector -->
-<!-- -   `length()` gives the dimensions of a dataframe -->
+-   `length()` gives the number of elements in a vector
+-   `str_length()` gives the number of characters in a string
+-   `str_length()` gives the number of strings in a vector
+-   `length()` gives the dimensions of a dataframe
 
-<!-- **2 What of the following is true about `str_replace()`?** -->
+**2 What of the following is true about `str_replace()`?**
 
-<!-- -   `str_replace()` replaces the first instance of the pattern -->
-<!-- -   `str_replace()` replaces the last instance of the pattern -->
-<!-- -   `str_replace()` replaces every instance of the pattern -->
+-   `str_replace()` replaces the first instance of the pattern
+-   `str_replace()` replaces the last instance of the pattern
+-   `str_replace()` replaces every instance of the pattern
 
-<!-- **3 `str_trim()` allows you to remove whitespace on what sides** -->
+**3 `str_trim()` allows you to remove whitespace on what sides**
 
-<!-- -   both -->
-<!-- -   left -->
-<!-- -   right -->
+-   both
+-   left
+-   right
 
-<!-- **4 Which of the following does `str_sub()` use to create a substring?** -->
+**4 Which of the following does `str_sub()` use to create a substring?**
 
-<!-- -   starting position -->
-<!-- -   ending position -->
-<!-- -   pattern to search for -->
+-   starting position
+-   ending position
+-   pattern to search for
 
-<!-- **5 Which of the following does `str_subset()` use to create a substring?** -->
+**5 Which of the following does `str_subset()` use to create a substring?**
 
-<!-- -   starting position -->
-<!-- -   ending position -->
-<!-- -   pattern to search for -->
+-   starting position
+-   ending position
+-   pattern to search for
 
-<!-- **6 What does the collapse argument do in `str_c()`?** -->
+**6 What does the collapse argument do in `str_c()`?**
 
-<!-- -   specifies a string to be used when combining inputs into a single string -->
-<!-- -   specifies whether the string should be collapsed -->
+-   specifies a string to be used when combining inputs into a single string
+-   specifies whether the string should be collapsed
 
-<!-- ::: -->
+:::
 
 ## Dates & Times with `lubridate`
 
@@ -756,67 +756,67 @@ In order to fill in an important part of our toolbox, we need to learn how to wo
 
 <br>
 
-<!-- ::: check-in -->
-<!-- ## Check-in 5.3: Functions from `lubridate` {#checkin5-3 .unnumbered} -->
+::: check-in
+## Check-in 5.3: Functions from `lubridate` {#checkin5-3 .unnumbered}
 
-<!-- **1 Which of the following is true about the year() function?** -->
+**1 Which of the following is true about the year() function?**
 
-<!-- -   `year()` extracts the year of a datetime object -->
-<!-- -   `year()` creates a duration object to be added to a datetime -->
+-   `year()` extracts the year of a datetime object
+-   `year()` creates a duration object to be added to a datetime
 
-<!-- **2 What `tz` would you use for San Luis Obispo?** -->
+**2 What `tz` would you use for San Luis Obispo?**
 
-<!-- <!-- tz = "America/Los_Angeles" --> -->
+<!-- tz = "America/Los_Angeles" -->
 
-<!-- **3 Which of the following is true about the `%within%` operator?** -->
+**3 Which of the following is true about the `%within%` operator?**
 
-<!-- -   it checks if a date is included in an interval -->
-<!-- -   it returns a logical value -->
-<!-- -   it creates an interval with a start and end time -->
+-   it checks if a date is included in an interval
+-   it returns a logical value
+-   it creates an interval with a start and end time
 
-<!-- **4 Which of the following is true about the `%--%` operator?** -->
+**4 Which of the following is true about the `%--%` operator?**
 
-<!-- -   it creates an interval with a start and end time -->
-<!-- -   it returns a logical value -->
-<!-- -   it checks if a date is included in an interval -->
+-   it creates an interval with a start and end time
+-   it returns a logical value
+-   it checks if a date is included in an interval
 
-<!-- **5 What day of the month does the `make_date()` function use as default if no `day` argument is provided?** -->
+**5 What day of the month does the `make_date()` function use as default if no `day` argument is provided?**
 
-<!-- ::: -->
+:::
 
-<!-- ## Practice Activities {-} -->
+## Practice Activities {-}
 
-<!-- ::: tryitout -->
-<!-- ### PA 5.1: Zodiac Killer {-} -->
+::: tryitout
+### PA 5.1: Zodiac Killer {-}
 
-<!-- One of the most famous mysteries in California history is the identity of the so-called “Zodiac Killer”, who murdered 7 people in Northern California between 1968 and 1969. A new murder was committed last year in California, suspected to be the work of a new Zodiac Killer on the loose. -->
+One of the most famous mysteries in California history is the identity of the so-called “Zodiac Killer”, who murdered 7 people in Northern California between 1968 and 1969. A new murder was committed last year in California, suspected to be the work of a new Zodiac Killer on the loose.
 
-<!-- Unfortunately, the date and time of the murder is not known. You have been hired to crack the case. Use the clues below to discover the murderer’s identity. -->
+Unfortunately, the date and time of the murder is not known. You have been hired to crack the case. Use the clues below to discover the murderer’s identity.
 
-<!-- Visit [PA 5.1: Zodiac Killer](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA5_1-zodiac-killer.html) for instructions. -->
+Visit [PA 5.1: Zodiac Killer](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA5_1-zodiac-killer.html) for instructions.
 
-<!-- > Submit the name of the killer to the Canvas Quiz. -->
+> Submit the name of the killer to the Canvas Quiz.
 
-<!-- ::: -->
+:::
 
-<!-- ::: column-margin -->
-<!-- ::: note -->
+::: column-margin
+::: note
 
-<!-- We will have two practice activities this week as opposed to our usual one. The first practice activity, PA 5.1 Zodiac Killer will be completed in class on Monday and due Wednesday morning. The second practice activity, PA 5.2 Scrambled Message will be completed in class on Wednesday and due Friday morning. -->
+We will have two practice activities this week as opposed to our usual one. The first practice activity, PA 5.1 Zodiac Killer will be completed in class on Monday and due Wednesday morning. The second practice activity, PA 5.2 Scrambled Message will be completed in class on Wednesday and due Friday morning.
 
-<!-- ::: -->
-<!-- ::: -->
+:::
+:::
 
-<!-- <br> -->
+<br>
 
-<!-- ::: tryitout -->
-<!-- ### PA 5.2: Scrambled Message {-} -->
-<!-- In this activity, you will be using regular expressions to decode a message. -->
+::: tryitout
+### PA 5.2: Scrambled Message {-}
+In this activity, you will be using regular expressions to decode a message.
 
-<!-- Visit [PA 5.2: Scrambled Message](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA5_2-scrambled-message-regex.html) for instructions. -->
+Visit [PA 5.2: Scrambled Message](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA5_2-scrambled-message-regex.html) for instructions.
 
-<!-- > Submit the movie name the quote contained in the secret message is from to the Canvas Quiz -->
+> Submit the movie name the quote contained in the secret message is from to the Canvas Quiz
 
-<!-- ::: -->
+:::
 
 ### References {-}

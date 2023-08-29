@@ -256,6 +256,7 @@ div.csl-indent {
    
   <ul>
 <li><a href="#ch10-objectives" id="toc-ch10-objectives" class="nav-link active" data-scroll-target="#ch10-objectives">Objectives</a></li>
+  <li><a href="#ch10-checkins" id="toc-ch10-checkins" class="nav-link" data-scroll-target="#ch10-checkins">Check-ins</a></li>
   <li>
 <a href="#model-checking" id="toc-model-checking" class="nav-link" data-scroll-target="#model-checking"><span class="toc-section-number">10.1</span>  Model Checking</a>
   <ul class="collapse">
@@ -309,7 +310,7 @@ div.csl-indent {
   </div>
   
 
-</header><p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C87.5 32 35.1 48.6 9 59.9c-5.6 2.4-9 8-9 14V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V73.9c0-6.1-3.4-11.6-9-14C540.9 48.6 488.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 11 minute(s) at 200 WPM</p>
+</header><p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 11 minute(s) at 200 WPM</p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"></path></svg> Videos: NA</p>
 <section id="ch10-objectives" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="ch10-objectives">Objectives</h2>
 <p>This chapter is heavily from Dr.&nbsp;Theobold’s course-page material.</p>
@@ -318,15 +319,22 @@ div.csl-indent {
 <li>Include variability into predictions</li>
 <li>Understand what is assumed about the data generating process in a linear regression</li>
 <li>Assess if the assumed linear model accurately describes the observed data</li>
+</ul></section><section id="ch10-checkins" class="level2 unnumbered check-in"><h2 class="unnumbered anchored" data-anchor-id="ch10-checkins">Check-ins</h2>
+<p>There is one check-in for this week:</p>
+<ul>
+<li>Check-in 10.1: Linear Regression</li>
 </ul>
-<!-- ::: check-in --><!-- ## Check-ins {#ch10-checkins -} --><!-- There is one check-in for this week: --><!-- + Check-in 10.1: Linear Regression --><!-- > There are 7 questions scattered throughout the reading this week. --><!-- ::: --><p><br></p>
+<blockquote class="blockquote">
+<p>There are 7 questions scattered throughout the reading this week.</p>
+</blockquote>
+</section><p><br></p>
 <blockquote class="blockquote">
 <p>It is difficult to include in a [statistical model] all of one’s knowledge about a problem, and so it is wise to investigate what aspects of reality are not captured by the model.</p>
 <ul>
 <li>Andrew Gelman, Bayesian Data Analysis</li>
 </ul>
 </blockquote>
-</section><section id="model-checking" class="level2" data-number="10.1"><h2 data-number="10.1" class="anchored" data-anchor-id="model-checking">
+<section id="model-checking" class="level2" data-number="10.1"><h2 data-number="10.1" class="anchored" data-anchor-id="model-checking">
 <span class="header-section-number">10.1</span> Model Checking</h2>
 <p>In explanatory modeling, it is incredibly important to check if you can make sound inferences from the model that was fit. Whether the model is a “simple” difference in means or a more “complex” multiple linear regression, the estimated coefficients obtained from the model should not be used for inference if the conditions of the model are violated. Typically, model checking for a linear regression is taught through a “residual analysis,” inspecting different visualizations of the residuals from the model. This week, however, we will learn a different way to assess our regression model.</p>
 <section id="predictive-checks-bayesian-modeling-and-subjectivity" class="level3" data-number="10.1.1"><h3 data-number="10.1.1" class="anchored" data-anchor-id="predictive-checks-bayesian-modeling-and-subjectivity">
@@ -394,15 +402,14 @@ div.csl-indent {
 3212.256 3460.684 3907.854 3808.483 3659.426 3212.256 </code></pre>
 </div>
 </div>
-<!-- ::: check-in -->
-<!-- #### Q1: The `predict()` function {-} -->
-<!-- What is the data structure of the predictions that are output by the `predict()` function? -->
-<!-- (a) list -->
-<!-- (b) vector -->
-<!-- (c) matrix -->
-<!-- (d) dataframe -->
-<!-- ::: -->
-</section><section id="extracting-the-estimate-of-sigma-sigma" class="level3" data-number="10.2.2"><h3 data-number="10.2.2" class="anchored" data-anchor-id="extracting-the-estimate-of-sigma-sigma">
+<section id="q1-the-predict-function" class="level4 unnumbered check-in"><h4 class="unnumbered anchored" data-anchor-id="q1-the-predict-function">Q1: The <code>predict()</code> function</h4>
+<p>What is the data structure of the predictions that are output by the <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> function?</p>
+<ol type="a">
+<li>list</li>
+<li>vector</li>
+<li>matrix</li>
+<li>dataframe</li>
+</ol></section></section><section id="extracting-the-estimate-of-sigma-sigma" class="level3" data-number="10.2.2"><h3 data-number="10.2.2" class="anchored" data-anchor-id="extracting-the-estimate-of-sigma-sigma">
 <span class="header-section-number">10.2.2</span> Extracting the Estimate of <span class="math inline">\(\sigma\)</span> <code>sigma()</code>
 </h3>
 <p>The residual standard error shown in the <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> output of a linear regression is the “best” estimate for the value of <span class="math inline">\(\sigma\)</span>. We can extract this value using the built-in <code><a href="https://rdrr.io/r/stats/sigma.html">sigma()</a></code> function and save it in an object for later use.</p>
@@ -465,11 +472,9 @@ F-statistic:  1071 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
 6           3792.</code></pre>
 </div>
 </div>
-<!-- ::: check-in -->
-<!-- #### Q2: Normal Errors {-} -->
-<!-- What does a mean of 0 imply for the residuals? -->
-<!-- ::: -->
-</section></section><section id="plotting-predictions" class="level2" data-number="10.3"><h2 data-number="10.3" class="anchored" data-anchor-id="plotting-predictions">
+<section id="q2-normal-errors" class="level4 unnumbered check-in"><h4 class="unnumbered anchored" data-anchor-id="q2-normal-errors">Q2: Normal Errors</h4>
+<p>What does a mean of 0 imply for the residuals?</p>
+</section></section></section><section id="plotting-predictions" class="level2" data-number="10.3"><h2 data-number="10.3" class="anchored" data-anchor-id="plotting-predictions">
 <span class="header-section-number">10.3</span> Plotting Predictions</h2>
 <p>The best way to assess if / where there are differences between the simulated data and the observed data is through visualizations. We can do this in two ways, (1) visualizing the distribution of the responses, and (2) visualizing the relationship between the responses and the explanatory variables.</p>
 <section id="distribution-of-responses" class="level3" data-number="10.3.1"><h3 data-number="10.3.1" class="anchored" data-anchor-id="distribution-of-responses">
@@ -502,11 +507,9 @@ F-statistic:  1071 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </div>
-<!-- ::: check-in -->
-<!-- #### Q3: Simulated Data Distribution {-} -->
-<!-- Are the simulated bill lengths similar or different from the observed bill lengths? Where do you see differences? Where do you see similarities? Would you conclude that both distributions could have come from the same data generating process? -->
-<!-- ::: -->
-</section><section id="adding-in-the-observed-xs" class="level3" data-number="10.3.2"><h3 data-number="10.3.2" class="anchored" data-anchor-id="adding-in-the-observed-xs">
+<section id="q3-simulated-data-distribution" class="level4 unnumbered check-in"><h4 class="unnumbered anchored" data-anchor-id="q3-simulated-data-distribution">Q3: Simulated Data Distribution</h4>
+<p>Are the simulated bill lengths similar or different from the observed bill lengths? Where do you see differences? Where do you see similarities? Would you conclude that both distributions could have come from the same data generating process?</p>
+</section></section><section id="adding-in-the-observed-xs" class="level3" data-number="10.3.2"><h3 data-number="10.3.2" class="anchored" data-anchor-id="adding-in-the-observed-xs">
 <span class="header-section-number">10.3.2</span> Adding in the Observed x’s</h3>
 <p>If we are interested in seeing if the observed relationships between <code>flipper_length_mm</code> and <code>body_mass_g</code> are radically different from the simulated data, we need to add these variables into our simulated data set.</p>
 <p>Remember, by default <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> throws out any observations with missing values (<code>NA</code>) for any of the variables included in the regression. Thus, we will have fewer predictions than observations in our data set. To make sure the predictions match up with their corresponding row, we need to filter the missing values out of the data set before we bind the columns together.</p>
@@ -646,11 +649,10 @@ F-statistic:  1071 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre><code>[1] 0.5533018</code></pre>
 </div>
 </div>
-<!-- ::: check-in -->
-<!-- #### Q4: Interpreting $R^2$ {-} -->
-<!-- What does the $R^2$ value of 0.553 for the above regression mean? How would you interpret it? -->
-<!-- ::: -->
-</section><section id="iterating" class="level2" data-number="10.5"><h2 data-number="10.5" class="anchored" data-anchor-id="iterating">
+<section id="q4-interpreting-r2" class="level4 unnumbered check-in"><h4 class="unnumbered anchored" data-anchor-id="q4-interpreting-r2">Q4: Interpreting <span class="math inline">\(R^2\)</span>
+</h4>
+<p>What does the <span class="math inline">\(R^2\)</span> value of 0.553 for the above regression mean? How would you interpret it?</p>
+</section></section><section id="iterating" class="level2" data-number="10.5"><h2 data-number="10.5" class="anchored" data-anchor-id="iterating">
 <span class="header-section-number">10.5</span> Iterating!</h2>
 <p>We are interested in seeing how our model performs for more than one simulated data set. Thus, we need to iterate through the process outlined above. Specifically, at each step we will need to:</p>
 <ol type="1">
@@ -680,7 +682,7 @@ F-statistic:  1071 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
 4   4445.   3608.   3342.   3672.   4412.   3510.   3543.   4393.   4261.
 5   3356.   3924.   3464.   3581.   3304.   4460.   3600.   3877.   3568.
 6   3100.   3072.   3534.   3054.   3006.   3769.   2769.   2546.   3224.
-# … with 91 more variables: sim...10 &lt;dbl&gt;, sim...11 &lt;dbl&gt;, sim...12 &lt;dbl&gt;,
+# ℹ 91 more variables: sim...10 &lt;dbl&gt;, sim...11 &lt;dbl&gt;, sim...12 &lt;dbl&gt;,
 #   sim...13 &lt;dbl&gt;, sim...14 &lt;dbl&gt;, sim...15 &lt;dbl&gt;, sim...16 &lt;dbl&gt;,
 #   sim...17 &lt;dbl&gt;, sim...18 &lt;dbl&gt;, sim...19 &lt;dbl&gt;, sim...20 &lt;dbl&gt;,
 #   sim...21 &lt;dbl&gt;, sim...22 &lt;dbl&gt;, sim...23 &lt;dbl&gt;, sim...24 &lt;dbl&gt;,
@@ -706,15 +708,15 @@ F-statistic:  1071 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">sims</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 101
-  body_mas…¹ sim_1 sim_2 sim_3 sim_4 sim_5 sim_6 sim_7 sim_8 sim_9 sim_10 sim_11
-       &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-1       3750 3330. 2653. 3087. 3150. 3129. 3859. 3454. 3088. 3262.  3379.  3095.
-2       3800 3446. 3754. 3335. 2994. 2989. 3979. 3456. 3929. 3401.  3845.  3151.
-3       3250 3904. 4197. 3450. 3582. 4103. 4317. 3666. 4069. 3626.  3981.  4141.
-4       3450 4445. 3608. 3342. 3672. 4412. 3510. 3543. 4393. 4261.  4222.  3579.
-5       3650 3356. 3924. 3464. 3581. 3304. 4460. 3600. 3877. 3568.  4258.  3127.
-6       3625 3100. 3072. 3534. 3054. 3006. 3769. 2769. 2546. 3224.  2885.  2996.
-# … with 89 more variables: sim_12 &lt;dbl&gt;, sim_13 &lt;dbl&gt;, sim_14 &lt;dbl&gt;,
+  body_mass_g sim_1 sim_2 sim_3 sim_4 sim_5 sim_6 sim_7 sim_8 sim_9 sim_10
+        &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+1        3750 3330. 2653. 3087. 3150. 3129. 3859. 3454. 3088. 3262.  3379.
+2        3800 3446. 3754. 3335. 2994. 2989. 3979. 3456. 3929. 3401.  3845.
+3        3250 3904. 4197. 3450. 3582. 4103. 4317. 3666. 4069. 3626.  3981.
+4        3450 4445. 3608. 3342. 3672. 4412. 3510. 3543. 4393. 4261.  4222.
+5        3650 3356. 3924. 3464. 3581. 3304. 4460. 3600. 3877. 3568.  4258.
+6        3625 3100. 3072. 3534. 3054. 3006. 3769. 2769. 2546. 3224.  2885.
+# ℹ 90 more variables: sim_11 &lt;dbl&gt;, sim_12 &lt;dbl&gt;, sim_13 &lt;dbl&gt;, sim_14 &lt;dbl&gt;,
 #   sim_15 &lt;dbl&gt;, sim_16 &lt;dbl&gt;, sim_17 &lt;dbl&gt;, sim_18 &lt;dbl&gt;, sim_19 &lt;dbl&gt;,
 #   sim_20 &lt;dbl&gt;, sim_21 &lt;dbl&gt;, sim_22 &lt;dbl&gt;, sim_23 &lt;dbl&gt;, sim_24 &lt;dbl&gt;,
 #   sim_25 &lt;dbl&gt;, sim_26 &lt;dbl&gt;, sim_27 &lt;dbl&gt;, sim_28 &lt;dbl&gt;, sim_29 &lt;dbl&gt;,
@@ -731,44 +733,41 @@ F-statistic:  1071 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sims</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">map</span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">body_mass_g</span> <span class="op">~</span> <span class="va">.x</span>, data <span class="op">=</span> <span class="va">sims</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<!-- ::: check-in -->
-<!-- #### Q5: Mapping Linear Regression {-} -->
-<!-- What is the data structure of the values output after the `map(~lm(body_mass_g ~ .x, data = sims))` step? -->
-<!-- (a) list -->
-<!-- (b) vector -->
-<!-- (c) matrix -->
-<!-- (d) dataframe -->
-<!-- ::: -->
-<p>Next, I <code>map()</code> the <code>glance()</code> function onto each of these 100 regressions.</p>
+<section id="q5-mapping-linear-regression" class="level4 unnumbered check-in"><h4 class="unnumbered anchored" data-anchor-id="q5-mapping-linear-regression">Q5: Mapping Linear Regression</h4>
+<p>What is the data structure of the values output after the <code>map(~lm(body_mass_g ~ .x, data = sims))</code> step?</p>
+<ol type="a">
+<li>list</li>
+<li>vector</li>
+<li>matrix</li>
+<li>dataframe</li>
+</ol></section><p>Next, I <code>map()</code> the <code>glance()</code> function onto each of these 100 regressions.</p>
 <div class="cell">
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sims</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">map</span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">body_mass_g</span> <span class="op">~</span> <span class="va">.x</span>, data <span class="op">=</span> <span class="va">sims</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">map</span><span class="op">(</span><span class="va">glance</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<!-- ::: check-in -->
-<!-- #### Q6: Mapping Linear Regression Summaries {-} -->
-<!-- What is the data structure of the values output after the `map(glance)` step? -->
-<!-- (a) list -->
-<!-- (b) vector -->
-<!-- (c) matrix -->
-<!-- (d) dataframe -->
-<!-- ::: -->
-<p>Finally, I use <code>map_dbl()</code> to extract the <code>r.squared</code> from each of the model fit summaries.</p>
+<section id="q6-mapping-linear-regression-summaries" class="level4 unnumbered check-in"><h4 class="unnumbered anchored" data-anchor-id="q6-mapping-linear-regression-summaries">Q6: Mapping Linear Regression Summaries</h4>
+<p>What is the data structure of the values output after the <code>map(glance)</code> step?</p>
+<ol type="a">
+<li>list</li>
+<li>vector</li>
+<li>matrix</li>
+<li>dataframe</li>
+</ol></section><p>Finally, I use <code>map_dbl()</code> to extract the <code>r.squared</code> from each of the model fit summaries.</p>
 <div class="cell">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sims</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">map</span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">body_mass_g</span> <span class="op">~</span> <span class="va">.x</span>, data <span class="op">=</span> <span class="va">sims</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">map</span><span class="op">(</span><span class="va">glance</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">map_dbl</span><span class="op">(</span><span class="op">~</span> <span class="va">.x</span><span class="op">$</span><span class="va">r.squared</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<!-- ::: check-in -->
-<!-- #### Q7: Mapping Regression Summaries {-} -->
-<!-- What is the data structure of the values output after the `map_dbl(~.$r.squared)` step? -->
-<!-- (a) list -->
-<!-- (b) vector -->
-<!-- (c) matrix -->
-<!-- (d) dataframe -->
-<!-- ::: -->
-</section><section id="inspecting-the-r2-values" class="level3" data-number="10.5.3"><h3 data-number="10.5.3" class="anchored" data-anchor-id="inspecting-the-r2-values">
+<section id="q7-mapping-regression-summaries" class="level4 unnumbered check-in"><h4 class="unnumbered anchored" data-anchor-id="q7-mapping-regression-summaries">Q7: Mapping Regression Summaries</h4>
+<p>What is the data structure of the values output after the <code>map_dbl(~.$r.squared)</code> step?</p>
+<ol type="a">
+<li>list</li>
+<li>vector</li>
+<li>matrix</li>
+<li>dataframe</li>
+</ol></section></section><section id="inspecting-the-r2-values" class="level3" data-number="10.5.3"><h3 data-number="10.5.3" class="anchored" data-anchor-id="inspecting-the-r2-values">
 <span class="header-section-number">10.5.3</span> Inspecting the <span class="math inline">\(R^2\)</span> Values</h3>
 <div class="cell">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sim_r_sq</span> <span class="op">&lt;-</span> <span class="va">sims</span> <span class="op">|&gt;</span> </span>

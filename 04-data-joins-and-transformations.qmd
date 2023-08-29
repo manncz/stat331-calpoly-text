@@ -52,16 +52,16 @@ Functions covered this week:
 
 :::
 
-<!-- <br> -->
+<br>
 
-<!-- ::: check-in -->
-<!-- ## Check-ins {#ch4-checkins .unnumbered} -->
+::: check-in
+## Check-ins {#ch4-checkins .unnumbered}
 
-<!-- There are two check-ins for this week: -->
+There are two check-ins for this week:
 
-<!-- + [Check-in 4.1: Pivoting Cereal](#checkin4-1) -->
-<!-- + [Check-in 4.2: Practice with Joins](#checkin4-2) -->
-<!-- ::: -->
++ [Check-in 4.1: Pivoting Cereal](#checkin4-1)
++ [Check-in 4.2: Practice with Joins](#checkin4-2)
+:::
 
 ## Identifying the problem: Messy data
 
@@ -280,77 +280,77 @@ Read more about pivoting in [r4ds](https://r4ds.hadley.nz/data-tidy.html#sec-piv
 
 <br>
 
-<!-- ::: check-in -->
-<!-- ### Check-in 4.1: Pivoting Cereal {#checkin4-1 .unnumbered} -->
+::: check-in
+### Check-in 4.1: Pivoting Cereal {#checkin4-1 .unnumbered}
 
-<!-- Load in the `cereal` data set: -->
+Load in the `cereal` data set:
 
-<!-- ```{r} -->
-<!-- library(liver) -->
-<!-- data(cereal) -->
-<!-- head(cereal) -->
-<!-- ``` -->
+```{r}
+library(liver)
+data(cereal)
+head(cereal)
+```
 
-<!-- Create a new data set called `cereals_long`, that has three columns: -->
+Create a new data set called `cereals_long`, that has three columns:
 
-<!-- + The `name` of the cereal -->
-<!-- + A column called `Nutrient` with values "protein", "fat", or "fiber". -->
-<!-- + A column called `Amount` with the corresponding amount of the nutrient. -->
++ The `name` of the cereal
++ A column called `Nutrient` with values "protein", "fat", or "fiber".
++ A column called `Amount` with the corresponding amount of the nutrient.
 
-<!-- Complete the code template to complete the task in the Canvas Quiz. -->
+Complete the code template to complete the task in the Canvas Quiz.
 
-<!-- ```{r checkin4-1-answer} -->
-<!-- #| include: false -->
-<!-- cereal |>  -->
-<!--   pivot_longer(cols = c(protein, fat, fiber), -->
-<!--                names_to = "Nutrient", -->
-<!--                values_to = "Amount") |>  -->
-<!--   select(name, Nutrient, Amount) -->
-<!-- ``` -->
+```{r checkin4-1-answer}
+#| include: false
+cereal |>
+  pivot_longer(cols = c(protein, fat, fiber),
+               names_to = "Nutrient",
+               values_to = "Amount") |>
+  select(name, Nutrient, Amount)
+```
 
-<!-- ::: -->
+:::
 
-<!-- ## Separating and Uniting Variables -->
+## Separating and Uniting Variables
 
-<!-- We will talk about strings and regular expressions next week, but there's a task that is fairly commonly encountered with functions that belong to the `tidyr` package: separating variables into two different columns `separate()` and it's complement, `unite()`, which is useful for combining two variables into one column. -->
+We will talk about strings and regular expressions next week, but there's a task that is fairly commonly encountered with functions that belong to the `tidyr` package: separating variables into two different columns `separate()` and it's complement, `unite()`, which is useful for combining two variables into one column.
 
-<!-- ::: panel-tabset -->
+::: panel-tabset
 
-<!-- ### `separate()` -->
+### `separate()`
 
-<!-- ```{r tidy-separate-pic, echo = F, out.width = "50%", fig.cap = "A visual representation of what separating variables means for data set operations."} -->
-<!-- knitr::include_graphics("images/04-data-joins-and-data-transformations/tidyr_separate.png") -->
-<!-- ``` -->
+```{r tidy-separate-pic, echo = F, out.width = "50%", fig.cap = "A visual representation of what separating variables means for data set operations."}
+knitr::include_graphics("images/04-data-joins-and-data-transformations/tidyr_separate.png")
+```
 
-<!-- ```{r separate-demo} -->
-<!-- table3 |> -->
-<!--   separate(col    = rate,  -->
-<!--            into   = c("cases", "population"),  -->
-<!--            sep    = "/",  -->
-<!--            remove = F -->
-<!--            ) -->
-<!-- ``` -->
+```{r separate-demo}
+table3 |>
+  separate(col    = rate,
+           into   = c("cases", "population"),
+           sep    = "/",
+           remove = F
+           )
+```
 
-<!-- I've left the rate column in the original data frame (`remove = F`) just to make it easy to compare and verify that yes, it worked.  -->
+I've left the rate column in the original data frame (`remove = F`) just to make it easy to compare and verify that yes, it worked.
 
-<!-- ### `unite()` -->
+### `unite()`
 
-<!-- And, of course, there is a complementary operation, which is when it's necessary to join two columns to get a useable data value.  -->
+And, of course, there is a complementary operation, which is when it's necessary to join two columns to get a useable data value.
 
-<!-- ```{r tidyr-unite-pic, echo = F, out.width = "50%", fig.cap = "A visual representation of what uniting variables means for data set operations."} -->
-<!-- knitr::include_graphics("images/04-data-joins-and-data-transformations/tidyr_unite.png") -->
-<!-- ``` -->
+```{r tidyr-unite-pic, echo = F, out.width = "50%", fig.cap = "A visual representation of what uniting variables means for data set operations."}
+knitr::include_graphics("images/04-data-joins-and-data-transformations/tidyr_unite.png")
+```
 
-<!-- ```{r tidyr-unite-demo} -->
-<!-- table5 |> -->
-<!--   unite(col = "year",  -->
-<!--         c(century, year),  -->
-<!--         sep = '' -->
-<!--         ) -->
-<!-- ``` -->
-<!-- ::: -->
+```{r tidyr-unite-demo}
+table5 |>
+  unite(col = "year",
+        c(century, year),
+        sep = ''
+        )
+```
+:::
 
-<!-- <br> -->
+<br>
 
 ::: learn-more
 ### Learn More in R4DS {-}
@@ -589,96 +589,96 @@ Read more about joins in [r4ds](https://r4ds.hadley.nz/joins.html)
 
 <br>
 
-<!-- ::: check-in -->
-<!-- ### Check-in 4.2: Practice with Joins {#checkin4-2 .unnumbered} -->
+::: check-in
+### Check-in 4.2: Practice with Joins {#checkin4-2 .unnumbered}
 
-<!-- The following code creates three data sets: -->
+The following code creates three data sets:
 
-<!-- ```{r} -->
-<!-- prof_info <- data.frame( -->
-<!--   professor =  -->
-<!--     c("Bodwin", "Glanz", "Carlton", "Sun", "Robinson"), -->
-<!--   undergrad_school =  -->
-<!--     c("Harvard", "Cal Poly", "Berkeley", "Harvard", "Winona State University"), -->
-<!--   grad_school =  -->
-<!--     c("UNC", "Boston University", "UCLA", "Stanford", "University of Nebraska-Lincoln") -->
-<!-- ) -->
+```{r}
+prof_info <- data.frame(
+  professor =
+    c("Bodwin", "Glanz", "Carlton", "Sun", "Robinson"),
+  undergrad_school =
+    c("Harvard", "Cal Poly", "Berkeley", "Harvard", "Winona State University"),
+  grad_school =
+    c("UNC", "Boston University", "UCLA", "Stanford", "University of Nebraska-Lincoln")
+)
 
-<!-- prof_course <- data.frame( -->
-<!--   professor = c("Bodwin", "Glanz", "Carlton", "Theobold", "Robinson"), -->
-<!--   Stat_331 = c(TRUE, TRUE, TRUE, TRUE, TRUE), -->
-<!--   Stat_330 = c(FALSE, TRUE, TRUE, FALSE, TRUE), -->
-<!--   Stat_431 = c(TRUE, TRUE, FALSE, TRUE, FALSE) -->
-<!-- ) -->
+prof_course <- data.frame(
+  professor = c("Bodwin", "Glanz", "Carlton", "Theobold", "Robinson"),
+  Stat_331 = c(TRUE, TRUE, TRUE, TRUE, TRUE),
+  Stat_330 = c(FALSE, TRUE, TRUE, FALSE, TRUE),
+  Stat_431 = c(TRUE, TRUE, FALSE, TRUE, FALSE)
+)
 
-<!-- course_info <- data.frame( -->
-<!--   course = c("Stat_331", "Stat_330", "Stat_431"), -->
-<!--   num_sections = c(8, 3, 1) -->
-<!-- ) -->
-<!-- ``` -->
+course_info <- data.frame(
+  course = c("Stat_331", "Stat_330", "Stat_431"),
+  num_sections = c(8, 3, 1)
+)
+```
 
-<!-- Here is what they look like once created: -->
+Here is what they look like once created:
 
-<!-- ```{r} -->
-<!-- prof_info -->
-<!-- ``` -->
+```{r}
+prof_info
+```
 
-<!-- ```{r} -->
-<!-- prof_course  -->
-<!-- ``` -->
+```{r}
+prof_course
+```
 
-<!-- ```{r} -->
-<!-- course_info -->
-<!-- ``` -->
+```{r}
+course_info
+```
 
-<!-- These data sets contain information about five Cal Poly professors, their educational history, the classes they are able to teach, and the number of sections of each class that need to be assigned. -->
+These data sets contain information about five Cal Poly professors, their educational history, the classes they are able to teach, and the number of sections of each class that need to be assigned.
 
-<!-- + **Question 1** Combine data sets `prof_info` and `prof_course` to make this data set: -->
++ **Question 1** Combine data sets `prof_info` and `prof_course` to make this data set:
 
-<!-- ```{r} -->
-<!-- #| echo: false -->
-<!-- inner_join(prof_info, prof_course) |>  -->
-<!--   kable() -->
-<!-- ``` -->
+```{r}
+#| echo: false
+inner_join(prof_info, prof_course) |>
+  kable()
+```
 
-<!-- + **Question 2** Combine data sets `prof_info` and `prof_course` to make this data set: -->
++ **Question 2** Combine data sets `prof_info` and `prof_course` to make this data set:
 
-<!-- ```{r} -->
-<!-- #| echo: false -->
-<!-- left_join(prof_info, prof_course) |>  -->
-<!--   knitr::kable() -->
-<!-- ``` -->
+```{r}
+#| echo: false
+left_join(prof_info, prof_course) |>
+  knitr::kable()
+```
 
-<!-- + **Question 3** Transform and combine data sets `prof_course` and `course_info` to make this data set: -->
++ **Question 3** Transform and combine data sets `prof_course` and `course_info` to make this data set:
 
-<!-- ```{r} -->
-<!-- #| echo: false -->
+```{r}
+#| echo: false
 
-<!-- prof_course |>  -->
-<!--   pivot_longer(cols = c(Stat_331, Stat_330, Stat_431), -->
-<!--                names_to = "course", -->
-<!--                values_to = "can_teach") |>  -->
-<!-- full_join(course_info) |>  -->
-<!--   kable() -->
-<!-- ``` -->
+prof_course |>
+  pivot_longer(cols = c(Stat_331, Stat_330, Stat_431),
+               names_to = "course",
+               values_to = "can_teach") |>
+full_join(course_info) |>
+  kable()
+```
 
-<!-- Complete the code templates to complete these tasks in the Canvas Quiz. -->
+Complete the code templates to complete these tasks in the Canvas Quiz.
 
-<!-- ::: -->
+:::
 
-<!-- <br> -->
+<br>
 
-<!-- ::: tryitout -->
-<!-- ## PA 4: Government Spending {.unnumbered} -->
+::: tryitout
+## PA 4: Government Spending {.unnumbered}
 
-<!-- This week you will be tidying untidy data to explore the relationship between countries of the world and military spending. -->
+This week you will be tidying untidy data to explore the relationship between countries of the world and military spending.
 
-<!-- Visit [PA 4: Government Spending](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA4-government-spending.html) for instructions. -->
+Visit [PA 4: Government Spending](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA4-government-spending.html) for instructions.
 
-<!-- Submit your answers to associated questions to the Canvas quiz. -->
+Submit your answers to associated questions to the Canvas quiz.
 
-<!-- 1. What four regions were NOT removed from the military_clean data set? -->
-<!-- 2. What year was the second largest military expenditure? What country had this expenditure? -->
-<!-- ::: -->
+1. What four regions were NOT removed from the military_clean data set?
+2. What year was the second largest military expenditure? What country had this expenditure?
+:::
 
 ### References {.unnumbered}

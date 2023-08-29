@@ -50,17 +50,17 @@ These sections contain things you should definitely not consider as fact and sho
 Note sections contain clarification points (anywhere I would normally say "note that ....)
 :::
 
-<!-- ::: check-in -->
-<!-- #### Check-in -->
+::: check-in
+#### Check-in
 
-<!-- Check-in sections contain quizzes or preview activities you **must** complete and submit to Canvas for credit. -->
-<!-- ::: -->
+Check-in sections contain quizzes or preview activities you **must** complete and submit to Canvas for credit.
+:::
 
-<!-- ::: tryitout -->
-<!-- #### Try It Out -->
+::: tryitout
+#### Try It Out
 
-<!-- Try it out sections contain the required weekly practice activities (and sometimes additional/optional activities) you should do to reinforce the things you've just read. -->
-<!-- ::: -->
+Try it out sections contain the required weekly practice activities (and sometimes additional/optional activities) you should do to reinforce the things you've just read.
+:::
 
 #### Expandable Sections
 
