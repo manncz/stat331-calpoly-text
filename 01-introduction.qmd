@@ -1,23 +1,22 @@
 ---
 editor: source
 execute:
-  freeze: auto  # re-render only when source changes
+  freeze: auto
 ---
 
-```{r echo=FALSE}
-bytes <- file.size("01-introduction.qmd")
-words <- bytes/10
+```{r}
+#| echo: false
+bytes   <- file.size("01-introduction.qmd")
+words   <- bytes/10
 minutes <- words/200
 ```
 
 # Introduction
 
-```{r fa-setup, include=FALSE}
-# library(reticulate)
-library(quarto)
+```{r fa-setup}
+#| include: false
 library(fontawesome)
 fa_html_dependency()
-# htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
 `r fa("book-open")` Reading: `r ceiling(minutes)` minute(s) at 200 WPM.
@@ -28,7 +27,7 @@ fa_html_dependency()
 
 -   Set up necessary software for this class on personal machines.
 -   Detect and resolve problems related to file systems, working directories, and system paths when troubleshooting software installation.
--   Create R Markdown or Quarto documents with good reproducible principles.
+-   Create Quarto documents with good reproducible principles.
 
 ::: check-in
 ## Check-ins {#getting-started-checkins .unnumbered}
@@ -41,7 +40,7 @@ There are four check-ins for this week:
 
 <summary>Complete the Syllabus & Learning Community Quiz on Canvas.</summary>
 
-The [course syllabus](https://earobinson95.github.io/stat331-calpoly/00-course-info/syllabus-W2023.html) includes information about class dates, course structure, and expectations.
+The [course syllabus](https://earobinson95.github.io/stat331-calpoly/00-course-info/syllabus-W2024.html) includes information about class dates, course structure, and expectations.
 
 I will also be asking you some questions about yourself so I can best support you in this course! If you plan to take this quiz more than once (you have up to three retakes on check-ins) you may want to copy your open ended answers into another document so you do not have to retype them each time.
 
@@ -51,7 +50,7 @@ I will also be asking you some questions about yourself so I can best support yo
 
 <details class="check-in">
 
-<summary>Introduce yourself in the "introductions" channel of the Discord Server (under WEEK 0: BASICS OF CODING).</summary>
+<summary>Introduce yourself in the "introductions" channel of the Discord Server (under COURSE DETAILS).</summary>
 
 <br>
 
@@ -162,7 +161,7 @@ Last but not least - for the teams you are a part of, you may want to use Discor
 
 ![](images/screencast_gifs/new_server.gif)
 
-**Introduce yourself in the "introductions" channel of the Discord Server under WEEK 0: BASICS OF CODING. Share your name, major, year in school, and either (1) your favorite comfort food or (2) your go to study spot on campus or in SLO. Take a screenshot of your introduction on the discord channel and upload it to the Canvas assignment.**
+**Introduce yourself in the "introductions" channel of the Discord Server under WEEK 0: BASICS OF CODING. Share your name, major, year in school, and either (1) something you are currently obsessed with or (2) your go to study spot on campus or in SLO. Take a screenshot of your introduction on the discord channel and upload it to the Canvas assignment.**
 
 </details>
 
@@ -183,15 +182,24 @@ Take a screenshot of your class directory, showing the `r fa('r-project')` **RPr
 
 ## Getting Started
 
-### Setting up your computer {#setting-up-your-computer .unnumbered}
+### Setting up your computer {- #setting-up-your-computer}
 
-In this section, I will provide you with links to set up various programs on your own machine. If you have trouble with these instructions or encounter an error, post on the class message board or contact me for help.
+In this section, I will provide you with links to set up various programs on your own machine. If you have trouble with these instructions or encounter an error, post on the class discord or contact me for help.
+
+Here’s a very broad overview of what each of these programs or services does and why I’m asking you to install them.
+
+| Program	    | Logo	| Purpose                                                           |
+|-------------|-------|-------------------------------------------------------------------|
+| R		        | ![](images/01-introduction/Rlogo.png)       | A statistical programming language built around working with data |
+| RStudio IDE |	![](images/01-introduction/RStudio-Ball.png)      | An integrated desktop environment created to make it easy to work with R and other data-science programming tools. |
+| Quarto      | ![](images/01-introduction/quarto-logo.png)      |	A document creation system based on pandoc. Quarto allows you to include code, results, and pictures generated from data within a document so that they automatically update when the document is recompiled. |
 
 If you already have `R` downloaded, please follow these steps anyways, to make sure you have the most recent version of `R`. Do not ignore these instructions. If you neglect to update your version of `R`, you may find that updating a package will make it so your code will not run.
 
 ::: check-in
-#### Check-in 1.3: Installing `R`, RStudio, and Quarto {#checkin3-install .unnumbered}
-#### Installing `R`, RStudio, and Quarto {#checkin3-install .unnumbered}
+#### Check-in 1.3: Installing `R`, RStudio, and Quarto {- #checkin3-install}
+
+<!-- #### Installing `R`, RStudio, and Quarto {- #checkin3-install} -->
 
 1.  Download and run the R installer for your operating system from CRAN:
 
@@ -205,9 +213,23 @@ If you already have `R` downloaded, please follow these steps anyways, to make s
 
 2.  Download and install the [latest version of RStudio](https://www.rstudio.com/products/rstudio/download/#download) for your operating system (see Step 2 Installers). RStudio is a integrated development environment (IDE) for `R` - it contains a set of tools designed to make writing `R` code easier.
 
-3.  Download and install the [latest version of Quarto](https://quarto.org/docs/get-started/) for your operating system. Quarto is a command-line tool released by RStudio that allows Rstudio to work with python and other R specific tools in a unified way. We will talk more about Quarto in a later [section](#intro-to-quarto), but for now just know this is the "notebook" you will be completing and writing all your assignments in.
+3.  Ensure [Quarto](https://quarto.org/docs/get-started/) is downloaded and installed. Quarto is a command-line tool released by RStudio that allows Rstudio to work with R specific tools in a unified way. We will talk more about Quarto in a later [section](#intro-to-quarto), but for now just know this is the "notebook" you will be completing and writing all your assignments in.
 
-<!-- *Make sure you remember to create your [RProject](#checkin3-r-project) and upload a screenshot to canvas.* -->
+    The newest versions of RStudio have started automatically installing Quarto when RStudio is downloaded
+
+    To check -- Open a new Rstudio window > click `+` in the top left under `File` > `Quarto Document`
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+#| echo: false
+knitr::include_graphics("images/01-introduction/check-quarto-install.png")
+```
+
+If you do not see Quarto, download and install the [latest version of Quarto](https://quarto.org/docs/get-started/) for your operating system.
+
+`r fa("warning")` Make sure you remember to create your [RProject](#checkin3-r-project) and upload a screenshot to canvas.
+
 :::
 
 ::: column-margin
@@ -228,28 +250,21 @@ If you would like a video tutorial on downloading RStudio, here is one:
 
 <br>
 
-::: youtube-video-container
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/0_UNtwEh7kY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+{{< video https://www.youtube.com/embed/0_UNtwEh7kY >}} 
 
-</iframe>
-:::
 :::
 :::
 
-### Introduction to `R` and RStudio {.unnumbered}
+### Introduction to `R` and RStudio {-}
 
-In this section, we will learn about some of the tools you just installed. You may have worked with `R` and RStudio in previous classes, but never had a course dedicated to learning about their functionality.
+In this section, we will learn more about some of the tools you just installed. You may have worked with `R` and RStudio in previous classes, but never had a course dedicated to learning about their functionality.
 
-#### Introduction to `R` {.unnumbered}
+#### Introduction to `R` {-}
 
 R is a statistical programming language. Unlike more general-purpose languages, R is optimized for working with data and doing statistics. R was created by Ross Ihaka and Robert Gentleman in 1993 (hence "R") and was formally released by the **R Core Group** in 1997 (a group of 20ish volunteers who are the *only* people who can change the base - built in- functionality of `R`). If you want to build an independent, standalone graphical interface, or run a web server, R is probably not the ideal language to use (you might want C/python or PHP/python, respectively). If you want to vacuum up a bunch of data, fit several regression models, and then compare the models, R is a great option and will be faster than working in a more general-purpose language like C or base python.
 
 ::: column-margin
-::: youtube-video-container
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/svRvp8QSvXI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-
-</iframe>
-:::
+{{< video https://www.youtube.com/embed/svRvp8QSvXI >}} 
 :::
 
 R is
@@ -298,32 +313,76 @@ RStudio is not `R` - it's just a layer on top of `R`. So if you have a question 
 knitr::include_graphics("https://srvanderplas.github.io/stat-computing-r-python/images/tools/Rstudio-important-buttons.png")
 ```
 
--   In the top-left pane is the text editor. This is where you'll do most of your work.
+::: panel-tabset
+## Top-left
 
--   In the top right, you'll find the environment, history, and connections tabs. The environment tab shows you the objects available in R (variables, data files, etc.), the history tab shows you what code you've run recently, and the connections tab is useful for setting up database connections.
+Includes the text editor. This is where you'll do most of your work.
 
--   On the bottom left is the console. There are also other tabs to give you a terminal (command line) prompt, and a jobs tab to monitor progress of long-running jobs. In this class we'll primarily use the console tab.
+```{r}
+#| echo: false
+knitr::include_graphics("https://srvanderplas.github.io/stat-computing-r-python/images/tools/Rstudio-editor-pane-buttons.png")
+```
+The logo on the script file indicates the file type. When an R file is open, there are Run and Source buttons on the top which allow you to run selected lines of code (Run) or source (run) the entire file. Code line numbers are provided on the left (this is a handy way to see where in the code the errors occur), and you can see line:character numbers at the bottom left. At the bottom right, there is another indicator of what type of file Rstudio thinks this is.
 
--   On the bottom right, there are a set of tabs:
+## Top-right
 
-    -   files (to give you an idea of where you are working, and what files are present),
-    -   plots (which will be self-explanatory),
-    -   packages (which extensions to R are installed and loaded),
-    -   the help window (where documentation will show up), and
-    -   the viewer window, which is used for interactive graphics or previewing HTML documents.
+In the top right, you'll find the environment, history, and connections tabs. The environment tab shows you the objects available in R (variables, data files, etc.), the history tab shows you what code you've run recently, and the connections tab is useful for setting up database connections.
+
+## Bottom-left
+
+On the bottom left is the console. There are also other tabs to give you a terminal (command line) prompt, and a jobs tab to monitor progress of long-running jobs. In this class we'll primarily use the console tab.
+
+```{r}
+knitr::include_graphics("https://srvanderplas.github.io/stat-computing-r-python/images/tools/Rstudio-terminal-R.png")
+```
+
+## Bottom-right
+
+On the bottom right, there are a set of tabs:
+
++ **files** (to give you an idea of where you are working, and what files are present),
+
+```{r}
+#| echo: false
+#| fig-align: center
+#| out-width: 80%
+knitr::include_graphics("https://srvanderplas.github.io/stat-computing-r-python/images/tools/Rstudio-file-tab.png")
+```
+    
++ **plots** (which will be self-explanatory),
+
++ **packages** (which extensions to R are installed and loaded),
+
+```{r}
+knitr::include_graphics("https://srvanderplas.github.io/stat-computing-r-python/images/tools/Rstudio-packages-tab.png")
+```
+
++ the **help** tab (where documentation will show up), and
+
+```{r}
+#| echo: false
+#| fig-align: center
+#| out-width: 80%
+knitr::include_graphics("https://srvanderplas.github.io/stat-computing-r-python/images/tools/Rstudio-help-tab.png")
+```
+
++ the **viewer** window, which is used for interactive graphics or previewing HTML documents.
+
+:::
+
 
 #### Installing Packages {#installing-packages .unnumbered}
 
 One of R's strengths is the package repository, CRAN (Comprehensive R Archive Network), that allows anyone (yes, even you!) to write an R package. Packages contain "extra" functionality (outside the base functionality of R). This means that R generally has the latest statistical methods available, and one of the best ways to ensure someone uses your work is to write an `R` package to make that work accessible to the general population of statisticians/biologists/geneticists.
 
-To install the `tibble` package in R, we would use the following code:
+To *install* the `tibble` package in R, we would use the following code:
 
 ```{r}
 #| eval: false
 install.packages("tibble")
 ```
 
-Then, to use the functions within that package, we need to load the package:
+Then, to use the functions within that package, we need to *load* the package:
 
 ```{r}
 #| eval: false
@@ -338,7 +397,7 @@ You only need to *install* a package once and your computer will be able to find
 
 If you want to use a function from a package without loading the package into your namespace, you can do that by using pkgname::function syntax.
 
-For instance, this code creates a sample data frame using the `tribble` function in the tibble package.
+For instance, this code creates a sample data frame using the `tribble()` function in the `tibble` package.
 
 ```{r}
 tibble::tribble(~col1, ~col2, 1, 'a', 2, 'b', 3, 'c')
@@ -371,19 +430,6 @@ install.packages(
     -   If this all worked, you have RStudio, Quarto, and `R` set up correctly on your machine.
 :::
 
-<!-- <br> -->
-
-::: check-in
-#### Check-in 1.4: Introduction to `R` & RStudio {#checkin4-intro-to-r .unnumbered}
-
-Answer the following questions on the Canvas Quiz.
-
-**Question 1:** What does it mean for R to be "open-source"?
-
-**Question 2:** How often do you need to install a package on your computer?
-
-**Question 3:** What is the tidyverse?
-:::
 
 <br>
 
@@ -408,17 +454,13 @@ Answer the following questions on the Canvas Quiz.
 In the pre-reading section, [File Systems](#file-systems), we learned how to organize our personal files and locate them using absolute and relative file paths. The idea of a "base folder" or starting place was introduced as a **working directory**. In `R`, there are two ways to set up your file path and file system organization:
 
 ::: column-margin
-::: youtube-video-container
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/SCgzPTOER_w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-
-</iframe>
-:::
+{{< video https://www.youtube.com/embed/SCgzPTOER_w >}} 
 :::
 
 1.  Set your working directory in `R` (do not reccommend)
 2.  Use RProjects (preferred!)
 
-### Working Directories in `R` {.unnumbered}
+### Working Directories in `R` {-}
 
 To find where your working directory is in `R`, you can either look at the top of your console or type `getwd()` into your console.
 
@@ -439,20 +481,60 @@ Although it is not recommended, you can set your working directory in `R` with `
 setwd("/path/to/my/assignment/folder")
 ```
 
-### Rprojects {.unnumbered}
+### Rprojects {-}
 
-Since there are often many files necessary for a project (e.g. data sources, images, etc.), `R` has a nice built in system for setting up your project organization with RProjects.
+Since there are often many files necessary for a project (e.g. data sources, images, etc.), `R` has a nice built in system for setting up your project organization with RProjects. You can either create a new folder on your computer containing an Rproject (e.g., you have not yet created a folder for this class) or you can add an Rproject to an existing folder on your computer (e.g., you have already created a folder for this class).
 
-To create an Rproject, first open RStudio on your computer and click `File > New Project`, then:
+::: panel-tabset
+
+#### Create with a new folder {-}
+
+To create a Rproject, first open RStudio on your computer and click `File > New Project`, then:
 
 ```{r}
 #| out-width: "70%"
 #| echo: false
 #| fig-align: center
-knitr::include_graphics("images/Rproject-1.png")
-knitr::include_graphics("images/Rproject-2.png")
-knitr::include_graphics("images/Rproject-3.png")
+knitr::include_graphics("images/01-introduction/create-new-rproj-step1.png")
+knitr::include_graphics("images/01-introduction/create-new-rproj-step2.png")
 ```
+
+Give your folder a name (it doesn't have to be my-stat331). However, it is good practice for this file folder name to not contain spaces.
+
+Then, browse on your computer for a location to save this folder to. For example, mine is saved in my Documents. Make sure you know how to find this; it should NOT be saved in your Downloads!
+
+```{r}
+#| out-width: "70%"
+#| echo: false
+#| fig-align: center
+knitr::include_graphics("images/01-introduction/create-new-rproj-step3.png")
+```
+
+This new folder, `my-stat331` should now live in your Documents folder (or wherever you save it to) and contain a `my-stat331.Rproj` file. This is your new "home" base for this class - whenever you refer to a file with a relative path it will begin to look for it here.
+
+#### Add to an existing folder {-}
+
+To add a Rproject to an existing folder on your computer (e.g., you already created a folder for this class), first open RStudio on your computer and click `File > New Project`, then:
+
+```{r}
+#| out-width: "70%"
+#| echo: false
+#| fig-align: center
+knitr::include_graphics("images/01-introduction/create-existing-rproj-step1.png")
+```
+
+Then, browse on your computer to select the existing folder you wish to add your Rproject to. For example, mine is saved in my Documents and called `my-stat331`.
+
+```{r}
+#| out-width: "70%"
+#| echo: false
+#| fig-align: center
+knitr::include_graphics("images/01-introduction/create-existing-rproj-step2.png")
+```
+
+Your existing folder, `my-stat331` should now contain a `my-stat331.Rproj` file. This is your new "home" base for this class - whenever you refer to a file with a relative path it will begin to look for it here.
+
+:::
 
 ::: column-margin
 ::: note
@@ -460,12 +542,10 @@ If you plan to use the Studio computers during class, I recommend having a way t
 :::
 :::
 
-This new folder, `stat331-test-student` should now live in your OneDrive folder (or whatever sub-directory you save it to). This is your new "home" base for this class - whenever you refer to a file with a relative path it will look for it here.
-
 ::: check-in
 #### Check-in 1.3: RProject {#checkin3-r-project .unnumbered}
 
-4.  Take a screenshot of your class directory, showing the RProject and the folder organization, including a *week-1* or *practice-activity* folder. Upload this screenshot to the Canvas assignment.
+4.  Take a screenshot of your class directory, showing the Rproject and the folder organization, including a *week-1* or *practice-activity* folder. Upload this screenshot to the Canvas assignment.
 :::
 
 <br>
@@ -509,7 +589,7 @@ This code will use concepts we have not yet introduced - feel free to tinker wit
 #| fig-cap: "A Cartesian Spiral in R"
 # Define the angle of the spiral (polar coords)
 # go around two full times (2*pi = one revolution)
-theta <- seq(0, 4*pi, .01) 
+theta <- seq(0, 4*pi, .01)
 # Define the distance from the origin of the spiral
 # Needs to have the same length as theta
 r <- seq(0, 5, length.out = length(theta))
@@ -900,8 +980,37 @@ Learn to:
 -   Ask questions on Twitter
 -   Make good use of the vast and welcoming R network on the internet
 
+::: check-in
+#### Check-in 1.4: Introduction to `R` & RStudio {#checkin4-intro-to-r .unnumbered}
+
+Answer the following multiple choice questions on the Canvas Quiz.
+
+**Question 1:** What does it mean for R to be "open-source"?
+
+**Question 2:** How often do you need to install a package on your computer?
+
+**Question 3:** What is the tidyverse?
+
+**Question 4:** What is the purpose of RStudio in relation to R?
+
+Directories, paths, and projects -- use the following image to answer the next three questions.
+
+```{r}
+#| echo: false
+#| out-width: 60%
+knitr::include_graphics("images/01-introduction/file-folder-structure-checkin1.4.PNG")
+```
+**Question 5:** When working with R projects, what is the purpose of the ".Rproj" file?
+
+**Question 6:** In what order would you 'enter' the files to access my-data.csv using a relative file path from your my-331-class as "home base"?
+
+**Question 7:** When naming folders, sub-folders, and files, it is good practice to use spaces.
+:::
+
+<br>
+
 ::: tryitout
-## PA 1: Find the Mistakes {.unnumbered}
+## PA 1: Find the Mistakes {-}
 
 You can access [PA1: Find the Mistakes](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA1-find-the-mistakes.html) one of two ways:
 
@@ -926,16 +1035,12 @@ Submit the name of the poem as the answer to the Canvas Quiz question.
 
 ::: column-margin
 ::: note
-Monday classtime will be dedicated to working through practice activities in groups and will be due the following classday. In order to make classtime most effective, you may want to spend some time prior to class reviewing and preparing for the activity.
+Tuesday classtime will be dedicated to working through practice activities and will be due the following classday.
 :::
 
 <br>
 
 A useful video by Dr. Theobold on "Troubleshooting in R".
 
-::: youtube-video-container
-<iframe width="963" height="602" src="https://www.youtube.com/embed/pY64VvSMy5s" title="Troubleshooting in R" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-
-</iframe>
-:::
+{{< video https://www.youtube.com/embed/pY64VvSMy5s >}} 
 :::

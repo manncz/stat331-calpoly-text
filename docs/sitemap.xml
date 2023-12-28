@@ -2,50 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/index.html</loc>
-    <lastmod>2023-08-29T15:58:14.888Z</lastmod>
+    <lastmod>2023-12-28T22:56:33.550Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/00-prereading.html</loc>
-    <lastmod>2023-08-29T15:58:14.893Z</lastmod>
+    <lastmod>2023-12-28T22:56:33.598Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/01-introduction.html</loc>
-    <lastmod>2023-09-07T22:41:45.156Z</lastmod>
-  </url>
-  <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/02-tidy-data-and-basics-of-graphics.html</loc>
-    <lastmod>2023-08-29T15:58:14.901Z</lastmod>
-  </url>
-  <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/03-data-cleaning-and-manipulation.html</loc>
-    <lastmod>2023-08-29T15:58:14.907Z</lastmod>
-  </url>
-  <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/04-data-joins-and-transformations.html</loc>
-    <lastmod>2023-08-29T15:58:14.910Z</lastmod>
-  </url>
-  <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/05-special-data-types.html</loc>
-    <lastmod>2023-08-29T15:58:14.916Z</lastmod>
-  </url>
-  <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/06-version-control.html</loc>
-    <lastmod>2023-08-29T15:58:14.919Z</lastmod>
-  </url>
-  <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/07-functions.html</loc>
-    <lastmod>2023-08-29T15:58:14.923Z</lastmod>
-  </url>
-  <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/08-functional-programming.html</loc>
-    <lastmod>2023-08-29T15:58:14.929Z</lastmod>
-  </url>
-  <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/09-statistical-modeling-and-simulation.html</loc>
-    <lastmod>2023-08-29T15:58:14.931Z</lastmod>
-  </url>
-  <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/10-predictive-checks.html</loc>
-    <lastmod>2023-08-29T15:58:14.935Z</lastmod>
+    <lastmod>2023-12-28T22:56:33.622Z</lastmod>
   </url>
 </urlset>

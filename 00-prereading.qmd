@@ -1,10 +1,11 @@
 ---
 execute:
-  freeze: auto  # re-render only when source changes
+  freeze: auto
 editor: source
 ---
 
-```{r echo=FALSE}
+```{r}
+#| echo: false
 bytes <- file.size("00-prereading.qmd")
 words <- bytes/10
 minutes <- words/200
@@ -12,11 +13,10 @@ minutes <- words/200
 
 # Pre-reading {.unnumbered}
 
-```{r fa-setup, include=FALSE}
-library(quarto)
+```{r fa-setup}
+#| include: false
 library(fontawesome)
 fa_html_dependency()
-# htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
 `r fa("book-open")` Reading: `r ceiling(minutes)` minute(s) at 200 WPM.
@@ -48,31 +48,17 @@ We all use computers daily - we carry them around with us on our wrists, in our 
 Here is a short 3-minute video on the basic hardware that makes up your computer. It is focused on desktops, but the same components (with the exception of the optical drive) are commonly found in cell phones, smart watches, and laptops.
 
 ::: column-margin
-::: youtube-video-container
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/Rdm8E59L8Og" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-
-</iframe>
-:::
+{{< video https://www.youtube.com/embed/Rdm8E59L8Og >}}
 :::
 
 When programming, it is usually helpful to understand the distinction between RAM and disk storage (hard drives). We also need to know at least a little bit about processors (so that we know when we've asked our processor to do too much). Most of the other details aren't necessary (for now).
-
-<!-- ::: learn-more -->
-
-<!-- -   [Chapter 1 of Python for Everybody](https://www.py4e.com/html3/01-intro) - Computer hardware architecture -->
-
-<!-- ::: -->
 
 ### Operating Systems
 
 Operating systems, such as Windows, MacOS, or Linux, are a sophisticated program that allows CPUs to keep track of multiple programs and tasks and execute them at the same time.
 
 ::: column-margin
-::: youtube-video-container
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/RhHMgkUdhdk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-
-</iframe>
-:::
+{{< video https://www.youtube.com/embed/RhHMgkUdhdk >}}
 :::
 
 ### File Systems {#file-systems}
@@ -82,23 +68,14 @@ Evidently, there has been a bit of generational shift as computers have evolved:
 Regardless of how you tend to organize your personal files, it is probably helpful to understand the basics of what is meant by a computer **file system** -- a way to organize data stored on a hard drive. Since data is always stored as 0's and 1's, it's important to have some way to figure out what type of data is stored in a specific location, and how to interpret it.
 
 ::: column-margin
-::: youtube-video-container
-<iframe width="560" height="315" src="https://www.youtube.com/embed/BV0-EPUYuQc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-
-</iframe>
-:::
-
+{{< video https://www.youtube.com/embed/BV0-EPUYuQc >}}
 Stop watching at 4:16.
 :::
 
 That's not enough, though - we also need to know how computers remember the location of what is stored where. Specifically, we need to understand **file paths**.
 
 ::: column-margin
-::: youtube-video-container
-<iframe width="560" height="315" src="https://www.youtube.com/embed/BMT3JUWmqYY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-
-</iframe>
-:::
+{{< video https://www.youtube.com/embed/BMT3JUWmqYY >}}
 
 <br>
 
@@ -631,11 +608,7 @@ Before we start on the types of control structures, let's get in the right minds
 ::: column-margin
 Check out this video of the classic "make a peanut butter sandwich instructions challenge":
 
-::: youtube-video-container
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/Ct-lOOUqmyY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-
-</iframe>
-:::
+{{< video https://youtu.be/j-6N3bLgYyQ?si=bMVO8NnVAm92LZpS >}}
 
 <br>
 

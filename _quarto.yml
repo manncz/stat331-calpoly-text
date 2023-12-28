@@ -5,20 +5,20 @@ project:
 book:
   title: "Stat 331/531 Statistical Computing with R"
   author: "Emily Robinson"
-  date: "January 9, 2023"
+  date: "January 8, 2024"
   chapters:
     - index.qmd
     - 00-prereading.qmd
     - 01-introduction.qmd
-    - 02-tidy-data-and-basics-of-graphics.qmd
-    - 03-data-cleaning-and-manipulation.qmd
-    - 04-data-joins-and-transformations.qmd
-    - 05-special-data-types.qmd
-    - 06-version-control.qmd
-    - 07-functions.qmd
-    - 08-functional-programming.qmd
-    - 09-statistical-modeling-and-simulation.qmd
-    - 10-predictive-checks.qmd
+    # - 02-tidy-data-and-basics-of-graphics.qmd
+    # - 03-data-cleaning-and-manipulation.qmd
+    # - 04-data-joins-and-transformations.qmd
+    # - 05-special-data-types.qmd
+    # - 06-version-control.qmd
+    # - 07-functions.qmd
+    # - 08-functional-programming.qmd
+    # - 09-statistical-modeling-and-simulation.qmd
+    # - 10-predictive-checks.qmd
   site-url: https://earobinson95.github.io/stat331-calpoly-text/
   repo-url: https://github.com/earobinson95/stat331-calpoly-text
   repo-branch: main
@@ -31,23 +31,18 @@ bibliography: references.bib
 
 engine: knitr
 
-#pdf-engine: context
-
 from: markdown+emoji
 
 format:
   html:
     css: style.css
-    # theme: cosmo
     code-link: true
-    theme:
-      light: flatly
-      dark: darkly
-
-  # pdf:
-  #   documentclass: scrreport
-  #epub:
-  #  cover-image: cover.png
-
+    # theme:
+      # light: ['flatly', callouts.scss]
+    #   dark: ['darkly', callouts.scss]
+    theme: 
+      light: [matria, custom_callouts.scss, callouts.scss]
+      dark: [slate, custom_callouts.scss, callouts.scss]
+      
 editor: source
 
