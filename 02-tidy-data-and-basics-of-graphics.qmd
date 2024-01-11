@@ -1,11 +1,12 @@
 ---
 execute:
-  freeze: auto  # re-render only when source changes
+  freeze: auto
   warning: false
   message: false
 ---
 
-```{r echo=FALSE}
+```{r}
+#| echo: false
 bytes <- file.size("02-tidy-data-and-basics-of-graphics.qmd")
 words <- bytes/10
 minutes <- words/200
@@ -13,12 +14,11 @@ minutes <- words/200
 
 # Tidy Data & Basics of Graphics
 
-```{r fa-setup, include=FALSE}
-# library(reticulate)
+```{r fa-setup}
+#| include: false
 library(quarto)
 library(fontawesome)
 fa_html_dependency()
-# htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
 `r fa("book-open")` Reading: `r ceiling(minutes)` minute(s) at 200 WPM.
@@ -27,7 +27,7 @@ fa_html_dependency()
 
 ## Objectives {#ch2-objectives .unnumbered}
 
-- Recognize tidy data formats and identify the variables and columns in the data sets
+- Recognize tidy data formats and identify the variables and columns in data sets
 - Read in data from common formats into R
 - Describe charts using the grammar of graphics 
 - Create layered graphics that highlight multiple aspects of the data
@@ -46,9 +46,9 @@ There are two check-ins for this week:
 
 ## Tidy Data
 
-In the pre-reading, we learned about [Basic Data Types](#basic-data-types) (strings/characters, numeric/double/floats, integers, and logical/booleans) and [Data Structures](#data-structures) (1D - vectors and lists; 2D - matrices and data frames). This class will mainly focus on working with data frames it is important to know the type and format of the data you're working with. It is much easier to create data visualizations or conduct statistical analyses if the data you use is in the right shape. 
+In the pre-reading, we learned about [Basic Data Types](#basic-data-types) (strings/characters, numeric/double/floats, integers, and logical/booleans) and [Data Structures](#data-structures) (1D - vectors and lists; 2D - matrices and data frames). This class will mainly focus on working with data frames. It is important to know the type and format of the data you're working with. It is much easier to create data visualizations or conduct statistical analyses if the data you use is in the right shape. 
 
-Data can be formatted in what are often referred to as *wide format* or *long format*. Wide format data has variables spread across columns and typically uses less space to display. This format is how you would typically choose to present your data as there is far less repetition of labels and row elements. Long format data is going to have each variable in a column and each observation in a row; this is likely not the data's most compact form.
+Data can be formatted in what are often referred to as *wide format* or *long format*. Wide format data has variables spread across columns and typically uses less space to display. This format is how you would typically choose to present your data as there is far less repetition of labels and row elements. Long format data is going to have each variable in a column and each observation in a row; this is likely not the most compact form of the data.
 
 Long formatted data is often what we call **tidy data** - a specific format of data in which each *variable* is a *column*, each *observation* is a *row* and each type of observational unit forms a table (or in R, a data frame).
 
@@ -99,10 +99,12 @@ Can you determine which of the following data sets follows the tidy data format?
 
 :::
 
-Data frames are a specific object type in R, `data.frame()`, and can be [indexed the same as matrices](#indexing-matrices). It may be useful to look at your data before beginning to work with it to see the format of the data. The following funcitons in R help us learn information about our data sets:
+Data frames are a specific object type in R, `data.frame()`, and can be [indexed the same as matrices](#indexing-matrices). It may be useful to actually look at your data before beginning to work with it to see the format of the data. The following functions in R help us learn information about our data sets:
 
 + `class()`: outputs the object type
-+ `head()`: outputs the first 6 rows of the data set
++ `names()`: outputs the variable (column) names
++ `head()`: outputs the first 6 rows of a dataframe
++ `glimpse()` or `str()`: output a transpose of dataframe or matrix; shows the data types
 + `summary()` outputs 6-number summaries or frequencies for all variables in the data set depending on the variables data type
 + `data$variable`: extracts a specific variable (column) from the data set
 
@@ -117,6 +119,9 @@ The `cars` data set is a default data set that lives in R (for examples like thi
 ```{r}
 # outputs the class of the cars data set (data.frame)
 class(cars)
+
+# outputs the names of the variables included in the cars data set (speed, dist)
+names(cars)
 
 # outputs the first six rows of the cars data set
 head(cars)
@@ -139,13 +144,22 @@ cars$speed
 
 In a perfect world, all data would come in the right format for our needs, but this is often not the case. We will spend the next few weeks learning about how to use R to reformat our data to follow the **tidy data** framework and see why this is so important. For now, we will work with nice clean data sets but you should be able to identify when data follows a tidy data format and when it does not.
 
+::: my-opinion
+#### Wait. So is it Tidy format?
+
+The concept of tidy data is useful for mapping variables from the data set to elements in a graph, specifications of a model, or aggregating to create summaries. However, what is considered to be "tidy data" format for one task, might not be in the correct "tidy data" format for a different task. It is important for you to consider the end goal when restructuring your data.
+
+Part of this course is building the skills for you to be able to map your data operation steps from an original data set to the correct format (and output).
+
+:::
+
 ## Loading External Data
 
 ### An Overview of External Data Formats {#external-data-formats}
 
 In order to use statistical software to do anything interesting, we need to be able to get data into the program so that we can work with it effectively. For the moment, we'll focus on tabular data - data that is stored in a rectangular shape, with rows indicating observations and columns that show variables (like tidy data we learned about above!). This type of data can be stored on the computer in multiple ways:
 
-- **as raw text**, usually in a file that ends with .txt, .tsv, .csv, .dat, or sometimes, there will be no file extension at all. These types of files are human-readable. If part of a text file gets corrupted, the rest of the file may be recoverable. 
+- **as raw text**, usually in a file that ends with `.txt`, `.tsv`, `.csv`, `.dat`, or sometimes, there will be no file extension at all. These types of files are human-readable. If part of a text file gets corrupted, the rest of the file may be recoverable. 
   + `.csv` "Comma-separated"
   + `.txt` plain text - could be just text, comma-separated, tab-separated, etc.
 
@@ -154,7 +168,7 @@ In order to use statistical software to do anything interesting, we need to be a
   + `.xlsx`
 
 ::: note
-There is a collection of spreadsheet horror stories [here](https://github.com/jennybc/scary-excel-stories) and a series of even more horrifying tweets [here](https://twitter.com/JennyBryan/status/722954354198597632).    
+There is a collection of spreadsheet horror stories [here](https://github.com/jennybc/scary-excel-stories) and a series of even more horrifying threads [here](https://twitter.com/JennyBryan/status/722954354198597632).    
 Also, there's this amazing comic:    
 [![](https://imgs.xkcd.com/comics/algorithms.png)](https://xkcd.com/1667/)
 :::
@@ -189,21 +203,19 @@ There are, of course, many other non-tabular data formats -- some open and easy 
 
 ::: column-margin
 
-::: youtube-video-container
-
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/jvWwrELLEw8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-
-</iframe>
+{{< video https://www.youtube.com/embed/jvWwrELLEw8 >}} 
 
 :::
-:::
 
-The most common way to read data into R is with `read_csv()` and you may provide the file input as either a *url* to the data set or a *path* for the file input.
+The most common way to read data into R is with the `read_csv()` function. You may provide the file input as either a *url* to the data set or a *path* for the file input.
 
 ::: note
-The `read_csv()` function belongs to the **readr** package.
+The `read_csv()` function belongs to the **readr** package (side note: **readr** is installed and loaded as part of the **tidyverse** package). To install, either click on your *Packages* tab or use:
 
-`install.packages("readr")` or click on your `Packages` tab to install.
+```{r}
+#| eval: false
+install.packages("readr")
+```
 :::
 
 <br>
@@ -214,11 +226,11 @@ The `read_csv()` function belongs to the **readr** package.
 ```{r}
 #| eval: false
 
-# load the readr package
+# load the readr package (or alternatively the tidyverse package)
 library(readr)
 
 # this will work for everyone!
-surveys <- read_csv(file = "https://www.dropbox.com/s/1qqyshx5ikt9zoc/surveys.csv?dl=1")
+surveys <- read_csv(file = "https://raw.githubusercontent.com/earobinson95/stat331-calpoly/master/lab-assignments/Lab2-graphics/surveys.csv")
 
 # this will work only on my computer
 # notice this is an absolute file path on my computer
@@ -234,10 +246,11 @@ Recall our discussion about [Directories, Paths, and Projects](#directories-and-
 ```{r}
 #| eval: false
 # this will work if the file is in the same directory as the code
-# (i.e., the Quarto document and the data re in the same folder)
+# (i.e., the Quarto document and the data are in the same folder)
 surveys <- read_csv(file = "surveys.csv")
 
 # this will work if a sub-folder called "data" is in the same directory as the code
+# (i.e., you first have to enter the data sub folder and then you can access the surveys.csv data set)
 surveys <- read_csv(file = "data/surveys.csv")
 ```
 :::
@@ -256,15 +269,22 @@ You can either choose to create an overall data sub-folder right within your sta
 
 ::: watchout
 
-But wait! I thought we created our RProjects to indicate our "home base" directory? When working with a Quarto document, this changes your base directory (for any code running within the .qmd file) to the same folder the .qmd file lives in.
+But wait! I thought we created our RProjects (`my-stat331.Rproj`) to indicate our "home base" directory? When working with a Quarto document, this changes your base directory (for any code running within the `.qmd` file) to the same folder the `.qmd` file lives in.
 
-Open your class directory RProject and type `getwd()` into the Console. This should lead you to the folder directory your RProject was created in.
+Open your class directory `my-stat331.Rproj` and type `getwd()` into the Console. This should lead you to the folder directory your RProject was created in.
 
-Now open your lab1 assignment and type `getwd()` into a code chunk. This should lead you to the folder directory your lab1.qmd file is saved in.
+Now open your `lab1.qmd` assignment and type `getwd()` into a code chunk. This should lead you to the folder directory your `lab1.qmd` file is saved in.
+
+Ugh. Well that is confusing.
 
 :::
 
 A great solution to consistency in file paths is the **here** package:
+
+```{r}
+#| eval: false
+install.packages("here")
+```
 
 ::: column-margin
 
@@ -276,9 +296,7 @@ knitr::include_graphics("images/import-data-directories.png")
 ```
 :::
 
-`install.packages("here")`
-
-This package thinks *"here"* is the your directory folder the RProject lives in (e.g., your stat331 folder). This makes a global "home base" that overrides any other directory path.
+This package thinks *"here"* is the your directory folder the RProject (`my-331.Rproj`) lives in (e.g., your stat331 folder). This makes a global "home base" that overrides any other directory path (e.g., from your `.qmd` files).
 
 ```{r}
 #| eval: false
@@ -288,7 +306,7 @@ here::dr_here()
 ```
 
 ::: ex
-#### The here package {-}
+#### The *here* package {-}
 
 If my stat331 file structure looks like this:
 
@@ -297,16 +315,21 @@ If my stat331 file structure looks like this:
 knitr::include_graphics("images/stat331-filepath-here.jpg")
 ```
 
-then my RProject sets the working directory to this stat331 folder. However, if my *lab1.qmd* file lives in `C:/Users/erobin17/OneDrive - Cal Poly/stat331/labs/lab1` then when I try to load data in within the .qmd file, it will be looking for that relative file path from the *lab1* folder and not from the *stat331* folder.
-
-If my data is stored within a *data* subfolder as shown above, within my .qmd file, my relative file path must "backtrack" out of the *lab1* folder two moves before entering into the data folder to find my data.
+then my RProject sets the working directory to this stat331 folder. However, if my `lab1.qmd` file lives inside my `labs` folder -- e.g., `C:/Users/erobin17/OneDrive - Cal Poly/stat331/labs/lab1.qmd`, then when I try to load data (`surveys.csv`) in within the `lab1.qmd` file, it will be looking for that relative file path from within the `labs` folder (where the `lab1.qmd` lives) and not from within the `stat331` ("home base") folder.
 
 ```{r}
 #| eval: false
-surveys <- read_csv("../../data/surveys.csv")
+surveys <- read_csv("surveys.csv")
 ```
 
-With the here package however, within my .qmd file I can *ALWAYS* assume I am in my *stat331* folder and enter directly into the *data* folder.
+However, if my data is stored within a `data` sub-folder as shown above, then within my `lab1.qmd` file, my relative file path must "backtrack" (`..`) out of the `labs` folder one move before entering into the data folder to access the data set.
+
+```{r}
+#| eval: false
+surveys <- read_csv("../data/surveys.csv")
+```
+
+Enter the **here** package! With the here package, within my `lab1.qmd` file I can *ALWAYS* assume I am in my `stat331` ("home base") folder and enter directly into the `data` sub-folder.
 
 ```{r}
 #| eval: false
@@ -320,38 +343,33 @@ Note the folder and file names are in quotations because they are *names* of fil
 ::: column-margin
 
 ::: note
-Using "::" before the function is a way of telling R which package the function lives in without having to load that entire package (e.g., PackageName::FunctionName). There are some common functions the R community does this for mainly just out of practice. Essentially it saves memory from not having to load unnecessary functions if you only need one funciton from that package.
+Using "::" before the function (e.g., `PackageName::FunctionName`) is a way of telling R which package the function lives in without having to load that entire package (e.g., `library(PackageName)`. There are some common functions the R community does this for mainly just out of practice. **here** is one of them and you will often see `here::here()` telling you to go into the **here** package and access/use the `here()` function. Essentially it saves memory from not having to load unnecessary functions if you only need one function from that package. 
 :::
 
 <br>
 
 ::: my-opinion
 
-I have a complicated relationship with the here package. I see the strong uses for it, but I don't always set up my workflow in this way. You will form your own opinions, but the important thing for you to know is how to find the correct file path to read your data into your .qmd files.
+I have a complicated relationship with the **here** package. I see the strong uses for it, but I don't always set up my workflow in this way. You will form your own opinions, but the important thing for you to know is how to find the correct file path to read your data into your `.qmd` files.
 
 :::
 :::
 
 ### How do I load in my data?
 
-::: column-margin
-::: youtube-video-container
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Kp4tJYCAvUs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-</iframe>
-:::
-:::
+{{< video https://www.youtube.com/embed/Kp4tJYCAvUs >}}
 
 It may be helpful to save this [data import with the tidyverse](https://github.com/rstudio/cheatsheets/raw/main/data-import.pdf) cheat sheet.
 
 ::: go-read
 
-(required) Read the following to learn about importing data into `R`
+(required) Read the following to learn more about importing data into `R`
 
 - [R4DS: Data Import](https://r4ds.hadley.nz/data-import.html)
 
 :::
 
-Previously, we learned about [common types of data files](#external-data-formats) and briefly introduced the `read_csv()` and function. There are many functions in R that read in specific formats of data:
+Previously in this chapter, we learned about [common types of data files](#external-data-formats) and briefly introduced the `read_csv()` and function. There are many functions in R that read in specific formats of data:
 
 ::: panel-tabset
 
@@ -370,7 +388,7 @@ read.table(file = "ages.txt", sep = "\t")
 
 #### `readr` & `readxl` {-}
 
-The tidyverse has some cleaned-up versions in the **readr** and **readxl** packages:
+The **tidyverse** has some cleaned-up versions in the **readr** and **readxl** packages:
 
 + `read_csv()` works like `read.csv`, with some extra stuff
 + `read_txv()` is for tab-separated data
@@ -395,7 +413,7 @@ The tidyverse has some cleaned-up versions in the **readr** and **readxl** packa
 ::: check-in
 ### Check-in 2.1: Loading in Data {- #checkin2.1-loadingdata}
 
-For this check-in you are asked to work through reading in different data sets. The folder Age_Data contains several data sets with the names and ages of five individuals. The data sets are stored as different file types. [Download Ages_data.zip here](https://github.com/earobinson95/stat331-calpoly/raw/master/check-ins/2.1-loading-data/Ages_Data.zip), make sure to unzip the folder, save these in a reasonable place (e.g., `stat331 > check-ins > checkin2.1` or `stat331 > week2`), then use the `readr` and `readxl` packages to complete the following and fill in the "gap" code on the Canvas:
+For this check-in you are asked to work through reading in different data sets. The folder Age_Data contains several data sets with the names and ages of five individuals. The data sets are stored as different file types. [Download Ages_data.zip here](https://github.com/earobinson95/stat331-calpoly/raw/master/check-ins/2.1-loading-data/Ages_Data.zip), make sure to unzip the folder, save these in a reasonable place (e.g., `stat331 > check-ins > checkin2.1` or `stat331 > week2`), then use the `readr` and `readxl` packages to complete the following and fill in the "gap" code in the Canvas quiz:
 
 ![My file folder structure looks like this:](images/checkin2.1-file-structure.jpg)
 
@@ -404,13 +422,12 @@ For this check-in you are asked to work through reading in different data sets. 
 3. Read in the data set *ages_tab.txt*
 4. Read in the data set *ages_mystery.txt*
 5. Read in the data set *ages.xlsx*
-6. Find a way to use `read_csv()` to read *ages.csv* with the variable "Name" as a factor and "Age" as a character.
-
+6. Find a way to use `read_csv()` to read *ages.csv* with the variable "Name" as a factor data type and "Age" as a character data type.
 :::
 
 ## Basics of Graphics
 
-Now that we understand the format of **tidy data** and how to load external data into R, we want to be able to *do* something with that data! We are going to start with creating data visualizations.
+Now that we understand the format of *tidy data* and how to load external data into R, we want to be able to *do* something with that data! We are going to start with creating data visualizations (arguably my favorite!).
 
 There are a lot of different types of charts, and equally many ways  to categorize and describe the different types of charts.
 
@@ -431,19 +448,48 @@ Fundamentally, charts are easier to understand than raw data.
 
 When you think about it, data is a pretty artificial thing. We exist in a world of tangible objects, but data are an abstraction - even when the data record information about the tangible world, the measurements are a way of removing the physical and transforming the "real world" into a virtual thing. As a result, it can be hard to wrap our heads around what our data contain. The solution to this is to transform our data back into something that is "tangible" in some way -- if not physical and literally touch-able, at least something we can view and "wrap our heads around". 
 
-Consider this thought experiment: You have a simple data set - 2 variables, 500 observations. You want to get a sense of how the variables relate to each other. You can do one of the following options:
+Consider this thought experiment: You have a simple data set - 2 numeric variables, 500 observations. You want to get a sense of how the variables relate to each other. You can do one of the following options:
+
+```{r}
+#| echo: false
+library(tidyverse)
+set.seed(93401)
+simple_data <- tibble(var1 = runif(500, min = 0, max = 10),
+                      var2 = 4*var1^2 + 0.2*var1 + rnorm(500, mean = 0, sd = 20)
+                      )
+```
 
 1. Print out the data set
+
+```{r}
+head(simple_data)
+```
+
 2. Create some summary statistics of each variable and perhaps the covariance between the two variables
+
+```{r}
+summary(simple_data)
+cov(simple_data$var1, simple_data$var2)
+```
+
 3. Draw a scatter plot of the two variables
+
+```{r}
+#| out-width: 50%
+#| fig-align: center
+ggplot(data = simple_data,
+       mapping = aes(x = var1,
+                     y = var2
+                     )
+       ) +
+  geom_point()
+```
 
 Which one would you rather use? Why?
 
 Our brains are very good at processing large amounts of visual information quickly. Evolutionarily, it's important to be able to e.g. survey a field and pick out the tiger that might eat you. When we present information visually, in a format that can leverage our visual processing abilities, we offload some of the work of understanding the data to a chart that organizes it for us. You could argue that printing out the data is a visual presentation, but it requires that you read that data in as text, which we're not nearly as equipped to process quickly (and in parallel). 
 
-
 It's a lot easier to talk to non-experts about complicated statistics using visualizations. Moving the discussion from abstract concepts to concrete shapes and lines keeps people who are potentially already math or stat phobic from completely tuning out.
-
 
 ::: note
 
@@ -455,32 +501,41 @@ You're going to learn how to make graphics by finding sample code, changing that
 
 ### ggplot2
 
-In this class, we're going to use the `ggplot2` package to create graphics in R. This package is already installed in the `tidyverse`, but can be installed:
+In this class, we're going to use the `ggplot2` package to create graphics in R. This package is already installed as part of the `tidyverse`, but can be installed:
+
+```{r}
+install.packages("ggplot2")
+```
+
+and/or loaded:
+
+```{r}
+library("ggplot2")
+
+# alternatively
+library("tidyverse") # (my preference!)
+```
 
 ::: column-margin
 ![Building a masterpiece, by Allison Horst](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/ggplot2_masterpiece.png)
 :::
 
-`install.packages("ggplot2")`
-
-and/or loaded:
-
-`library("tidyverse")` (my preference!) or `library("ggplot2")`
-
 We will learn about all of these different pieces and the process of creating graphics by working through examples, but there is a general "template" for creating graphics in ggplot:
 
 ```{r}
 #| eval: false
-ggplot(data = <DATA>) +
-  <GEOM FUNCTION>(mapping = aes(<MAPPINGS>)) +
+ggplot(data = <DATA>,
+       mapping = aes(<MAPPINGS>)
+       ) +
+  <GEOM FUNCTION>() +
   any other arugments ...
 ```
 
 where 
 
 + <DATA> is the name of the data set
-+ <GEOM FUNCTION> is the name of the geom you want for the plot (e.g., geom_histogram(), geom_line(), geom_point())
-+ <MAPPINGS> is where variables from the data are mapped to parts of the plot (e.g., x = speed, y = distance, color = carmodel)
++ <GEOM FUNCTION> is the name of the geom you want for the plot (e.g., `geom_histogram()`, `geom_line()`, `geom_point()`)
++ <MAPPINGS> is where variables from the data are mapped to parts of the plot (e.g., `x = speed`, `y = distance`, `color = carmodel`)
 + any other arguments could include the theme, labels, faceting, etc.
 
 You may want to download and save [cheat sheets and reference guides for ggplot](#rgraphics).
@@ -494,7 +549,6 @@ This has a few advantages:
 1. It's relatively easy to represent the same data set with different types of plots (and to find their strengths and weaknesses)
 2. Grammar leads to a concise description of the plot and its contents
 3. We can add layers to modify the graphics, each with their own basic grammar (just like we combine sentences and clauses to build a rich, descriptive paragraph)
-
 
 ![A pyramid view of the major components of the grammar of graphics, with data as the base, aesthetics building on data, scales building on aesthetics, geometric objects, statistics, facets, and the coordinate system at the top of the pyramid. Source: [@sarkarComprehensiveGuideGrammar2018]](images/grammar-pyramid.png)
 
@@ -518,7 +572,11 @@ I have turned off warnings for all of the code chunks in this chapter. When you 
 library(ggplot2)
 data(txhousing) # this data set is housed internally to R
 
-ggplot(data = txhousing, aes(x = date, y = median)) + 
+ggplot(data = txhousing, 
+       aes(x = date, 
+           y = median
+           )
+       ) + 
   geom_point()
 ```
 
@@ -526,18 +584,18 @@ ggplot(data = txhousing, aes(x = date, y = median)) +
 
 When creating a grammar of graphics chart, we start with the data (this is consistent with the data-first tidyverse philosophy). 
 
-1. Identify the dimensions of your dataset you want to visualize.
+1. Identify the **dimensions/aspects** of your data set you want to visualize.
 
-2. Decide what aesthetics you want to map to different variables. For instance, it may be natural to put time on the $x$ axis, or the experimental response variable on the $y$ axis. You may want to think about other aesthetics, such as color, size, shape, etc. at this step as well.
-    a. It may be that your preferred representation requires some summary **statistics** in order to work. At this stage, you would want to determine what variables you feed in to those statistics, and then how the statistics relate to the geoms that you're envisioning. You may want to think in terms of layers - showing the raw data AND a summary geom.
+2. Decide what **aesthetics** you want to map to different variables. For instance, it may be natural to put time on the $x$ axis, or the experimental response variable on the $y$ axis. You may want to think about other aesthetics, such as color, size, shape, etc. at this step as well.
+    a. It may be that your preferred representation requires some summary **statistics** in order to work. At this stage, you would want to determine what variables you feed in to those statistics, and then how the statistics relate to the geoms (geometric objects) that you're envisioning. You may want to think in terms of layers - showing the raw data AND a summary geom (e.g., points on a scatter plot WITH a line of best fit overlaid).
 
-3. Decide the geometric objects (`geoms`) you want to represent your variables with on the chart. For example, a scatterplot displays the information as points by mapping the $x$ and $y$ aesthetics to points on the graph.
+3. Decide the **geometric objects** (`geoms`) you want to represent your variables with on the chart. For example, a scatterplot displays the information as points by mapping the $x$ and $y$ aesthetics to points on the graph.
 
-4. In most cases, `ggplot` will determine the scale for you, but sometimes you want finer control over the scale - for instance, there may be specific, meaningful bounds for a variable that you want to directly set. 
+4. In most cases, `ggplot` will determine the **scale** for you, but sometimes you want finer control over the scale - for instance, there may be specific, meaningful bounds for a variable that you want to directly set. 
 
-5. Coordinate system: Are you going to use a polar coordinate system? (Please say no, for reasons we'll get into later!)
+5. **Coordinate system:** Are you going to use a polar coordinate system? (Please say no, for reasons we'll get into later!)
 
-6. Facets: Do you want to show subplots based on specific categorical variable values?
+6. **Facets:** Do you want to show subplots based on specific categorical variable values?
 
 (this list modified from @sarkarComprehensiveGuideGrammar2018).
 
@@ -553,10 +611,14 @@ Before we start exploring, let's add a title and label our axes, so that we're c
 Alternatively, you could use `labs(title = , x = , y = )` to add a title and label the axes. 
 
 ```{r}
-ggplot(data = txhousing, aes(x = date, y = median)) + 
+ggplot(data = txhousing, 
+       aes(x = date, 
+           y = median)
+       ) + 
   geom_point() + 
-  xlab("Date") + ylab("Median Home Price") + 
-  ggtitle("Texas Housing Prices")
+  xlab("Date") + #<<
+  ylab("Median Home Price") + #<<
+  ggtitle("Texas Housing Prices") #<<
 ```
 
 First, we may want to show some sort of overall trend line. We can start with a linear regression, but it may be better to use a loess smooth ([loess regression](https://en.wikipedia.org/wiki/Local_regression) is a fancy weighted average and can create curves without too much additional effort on your part).
@@ -572,25 +634,32 @@ First, we may want to show some sort of overall trend line. We can start with a 
 #### ggplot {-}
 
 ```{r}
-ggplot(data = txhousing, aes(x = date, y = median)) + 
+ggplot(data = txhousing, 
+       aes(x = date, 
+           y = median)
+       ) + 
   geom_point() + 
-  geom_smooth(method = "lm") +
-  xlab("Date") + ylab("Median Home Price") + 
+  geom_smooth(method = "lm") + #<<
+  xlab("Date") + 
+  ylab("Median Home Price") + 
   ggtitle("Texas Housing Prices")
 ```
 
 We can also use a loess (locally weighted) smooth:
 
 ```{r}
-ggplot(data = txhousing, aes(x = date, y = median)) + 
+ggplot(data = txhousing, 
+       aes(x = date, 
+           y = median)
+       ) + 
   geom_point() + 
-  geom_smooth(method = "loess") + 
-  xlab("Date") + ylab("Median Home Price") + 
+  geom_smooth(method = "loess") + #<<
+  xlab("Date") + 
+  ylab("Median Home Price") + 
   ggtitle("Texas Housing Prices")
 ```
 
 :::
-
 
 Looking at the plots here, it's clear that there are small sub-groupings (see, for instance, the almost continuous line of points at the very top of the group between 2000 and 2005). Let's see if we can figure out what those additional variables are...
 
@@ -607,22 +676,33 @@ As it happens, the best viable option is City.
 #### ggplot {-}
 
 ```{r}
-ggplot(data = txhousing, aes(x = date, y = median, color = city)) + 
+ggplot(data = txhousing, 
+       aes(x = date, 
+           y = median, 
+           color = city #<<
+           )
+       ) + 
   geom_point() + 
   geom_smooth(method = "loess") + 
-  xlab("Date") + ylab("Median Home Price") + 
+  xlab("Date") + 
+  ylab("Median Home Price") + 
   ggtitle("Texas Housing Prices")
 ```
 
 That's a really crowded graph! It's slightly easier if we just take the points away and only show the statistics, but there are still way too many cities to be able to tell what shade matches which city.
 
 ```{r}
-ggplot(data = txhousing, aes(x = date, y = median, color = city)) + 
+ggplot(data = txhousing, 
+       aes(x = date, 
+           y = median, 
+           color = city
+           )
+       ) + 
   # geom_point() + 
   geom_smooth(method = "loess") + 
-  xlab("Date") + ylab("Median Home Price") + 
+  xlab("Date") + 
+  ylab("Median Home Price") + 
   ggtitle("Texas Housing Prices")
-
 ```
 
 :::
@@ -634,28 +714,40 @@ So let's work with a smaller set of data: Houston, Dallas, Fort worth, Austin, a
 
 ```{r}
 citylist <- c("Houston", "Austin", "Dallas", "Fort Worth", "San Antonio")
-housingsub <- dplyr::filter(txhousing, city %in% citylist)
+housingsub <- txhousing |>
+  filter(city %in% citylist)
 
-ggplot(data = housingsub, aes(x = date, y = median, color = city)) + 
+ggplot(data = housingsub, #<< 
+       aes(x = date, 
+           y = median, 
+           color = city
+           )
+       ) + 
   geom_point() + 
   geom_smooth(method = "loess") + 
-  xlab("Date") + ylab("Median Home Price") + 
-  ggtitle("Texas Housing Prices")
+  xlab("Date") + 
+  ylab("Median Home Price") + 
+  ggtitle("Texas Housing Prices (subset of cities)")
 ```
 
-Another way to show this data is to plot each city as its own subplot. In ggplot2 lingo, these subplots are called "facets". In visualization terms, we call this type of plot "small multiples" - we have many small charts, each showing the trend for a subset of the data.
+Instead of using color, another way to show this data is to plot each city as its own subplot. In **ggplot2** lingo, these subplots are called "facets". In visualization terms, we call this type of plot "small multiples" - we have many small charts, each showing the trend for a subset of the data.
 
 `facet_wrap()`, `facet_grid()`
 
 Here's the facetted version of the chart: 
 
 ```{r}
-ggplot(data = housingsub, aes(x = date, y = median)) + 
+ggplot(data = housingsub, 
+       aes(x = date, 
+           y = median
+           )
+       ) + 
   geom_point() + 
   geom_smooth(method = "loess") + 
-  facet_wrap(~city) + 
-  xlab("Date") + ylab("Median Home Price") + 
-  ggtitle("Texas Housing Prices")
+  facet_wrap(~ city) + #<<
+  xlab("Date") + 
+  ylab("Median Home Price") + 
+  ggtitle("Texas Housing Prices (subset of cities)")
 ```
 
 Notice I've removed the aesthetic mapping to color as it's redundant now that each city is split out in its own plot.
@@ -663,30 +755,46 @@ Notice I've removed the aesthetic mapping to color as it's redundant now that ea
 Now that we've simplified our charts a bit, we can explore a couple of the other quantitative variables by mapping them to additional aesthetics:
 
 ```{r}
-ggplot(data = housingsub, aes(x = date, y = median, size = sales)) + 
-  geom_point(alpha = .15) + # Make points transparent
+ggplot(data = housingsub, 
+       aes(x = date, 
+           y = median, 
+           size = sales)
+       ) + 
+  # Make points transparent
+  geom_point(alpha = 0.15) +  #<<
   geom_smooth(method = "loess") + 
-  facet_wrap(~city) +
+  facet_wrap(~ city) +
   # Remove extra information from the legend - 
   # line and error bands aren't what we want to show
   # Also add a title
-  guides(size = guide_legend(title = 'Number of Sales', 
-                             override.aes = list(linetype = NA, 
-                                                 fill = 'transparent'))) + 
+  guides(size = guide_legend(title = 'Number of Sales',  #<<
+                             override.aes = list(linetype = NA,  #<<
+                                                 fill = 'transparent' #<<
+                                                 ) #<<
+                             ) #<<
+         ) + #<< 
   # Move legend to bottom right of plot
-  theme(legend.position = c(1, 0), legend.justification = c(1, 0)) + 
-  xlab("Date") + ylab("Median Home Price") + 
-  ggtitle("Texas Housing Prices")
+  theme(legend.position = c(1, 0), #<< 
+        legend.justification = c(1, 0) #<<
+        ) + #<< 
+  xlab("Date") + 
+  ylab("Median Home Price") + 
+  ggtitle("Texas Housing Prices (subset of cities)")
 ```
 
 Up to this point, we've used the same position information - date for the $x$ axis, median sale price for the $y$ axis. Let's switch that up a bit so that we can play with some transformations on the $x$ and $y$ axis and add variable mappings to a continuous variable.
 
 ```{r}
-ggplot(data = housingsub, aes(x = listings, y = sales, color = city)) + 
-  geom_point(alpha = .15) + # Make points transparent
+ggplot(data = housingsub, 
+       aes(x = listings, 
+           y = sales, 
+           color = city)
+       ) + 
+  geom_point(alpha = 0.15) +
   geom_smooth(method = "loess") +
-  xlab("Number of Listings") + ylab("Number of Sales") + 
-  ggtitle("Texas Housing Prices")
+  xlab("Number of Listings") + 
+  ylab("Number of Sales") + 
+  ggtitle("Texas Housing Prices (subset of cities)")
 ```
 
 The points for Fort Worth are compressed pretty tightly relative to the points for Houston and Dallas. When we get this type of difference, it is sometimes common to use a log transformation^[This isn't necessarily a good thing, but you should know how to do it. The jury is still very much out on whether log transformations make data easier to read and understand]. Here, I have transformed both the x and y axis, since the number of sales seems to be proportional to the number of listings.
@@ -694,31 +802,50 @@ The points for Fort Worth are compressed pretty tightly relative to the points f
 `scale_x_log10()`, `scale_y_log10()`
 
 ```{r}
-ggplot(data = housingsub, aes(x = listings, y = sales, color = city)) + 
-  geom_point(alpha = .15) + # Make points transparent
+ggplot(data = housingsub, 
+       aes(x = listings, #<< 
+           y = sales, #<< 
+           color = city
+           )
+       ) + 
+  geom_point(alpha = 0.15) +
   geom_smooth(method = "loess") +
-  scale_x_log10() + 
-  scale_y_log10() + 
-  xlab("Number of Listings") + ylab("Number of Sales") + 
+  scale_x_log10() + #<< 
+  scale_y_log10() + #<< 
+  xlab("Number of Listings") + 
+  ylab("Number of Sales") + 
   ggtitle("Texas Housing Prices")
 ```
 
 For the next demonstration, let's look at just Houston's data. We can examine the inventory's relationship to the number of sales by looking at the inventory-date relationship in $x$ and $y$, and mapping the size or color of the point to number of sales. 
 
 ```{r}
-houston <- dplyr::filter(txhousing, city == "Houston")
+houston <- txhousing |> 
+  filter(city == "Houston")
 
-ggplot(data = houston, aes(x = date, y = inventory, size = sales)) + 
+ggplot(data = houston,
+       aes(x = date, 
+           y = inventory, 
+           size = sales #<<
+           )
+       ) + 
   geom_point(shape = 1) + 
-  xlab("Date") + ylab("Months of Inventory") + 
+  xlab("Date") + 
+  ylab("Months of Inventory") + 
   guides(size = guide_legend(title = "Number of Sales")) + 
   ggtitle("Houston Housing Data")
 ```
 
 ```{r}
-ggplot(data = houston, aes(x = date, y = inventory, color = sales)) + 
+ggplot(data = houston, 
+       aes(x = date, 
+           y = inventory, 
+           color = sales #<<
+           )
+       ) + 
   geom_point() + 
-  xlab("Date") + ylab("Months of Inventory") + 
+  xlab("Date") + 
+  ylab("Months of Inventory") + 
   guides(size = guide_colorbar(title = "Number of Sales")) + 
   ggtitle("Houston Housing Data")
 ```
@@ -728,9 +855,15 @@ Which is easier to read?
 What happens if we move the variables around and map date to the point color?
 
 ```{r}
-ggplot(data = houston, aes(x = sales, y = inventory, color = date)) + 
+ggplot(data = houston, 
+       aes(x = sales, #<< 
+           y = inventory, 
+           color = date #<<
+           )
+       ) + 
   geom_point() + 
-  xlab("Number of Sales") + ylab("Months of Inventory") + 
+  xlab("Number of Sales") + 
+  ylab("Months of Inventory") + 
   guides(size = guide_colorbar(title = "Date")) + 
   ggtitle("Houston Housing Data")
 ```
@@ -752,7 +885,12 @@ Any aesthetics assigned to the mapping within the first line, `ggplot()`, will b
 ```{r}
 #| message: false
 #| warning: false
-ggplot(data = housingsub, mapping = aes(x = date, y = median, color = city)) +
+ggplot(data = housingsub, 
+       mapping = aes(x = date, 
+                     y = median, 
+                     color = city #<<
+                     )
+       ) +
   geom_point() +
   geom_smooth(method = "lm")
 ```
@@ -762,29 +900,42 @@ Any aesthetics assigned to the mapping within a geometric object is only applied
 ```{r}
 #| message: false
 #| warning: false
-ggplot(data = housingsub, mapping = aes(x = date, y = median)) +
-  geom_point(mapping = aes(color = city)) +
+ggplot(data = housingsub, 
+       mapping = aes(x = date, 
+                     y = median
+                     )
+       ) +
+  geom_point(mapping = aes(color = city) #<<
+             ) +
   geom_smooth(method = "lm")
 ```
 
 **Assigning your aesthetics vs Setting your aesthetics**
 
-When you assign a variable from your data set to your aesthetics, you put it inside `aes()` without quotation marks around the variable name:
+When you *assign* a variable from your data set to your aesthetics, you put it *inside* `aes()` *without* quotation marks around the variable name:
 
 ```{r}
 #| message: false
 #| warning: false
 ggplot(data = housingsub) +
-  geom_point(mapping = aes(x = date, y = median, color = city))
+  geom_point(mapping = aes(x = date, 
+                           y = median, 
+                           color = city #<<
+                           )
+             )
 ```
 
-If you want to set a specific color, you could put this outside the `aes()` mapping in quotation marks because blue is not an object in R. Notice this color is assigned specifically in that geometric object.
+If you want to *set* a specific color, you could put this *outside* the `aes()` mapping *in* quotation marks because blue is not an object in R. Notice this color is assigned specifically in that geometric object.
 
 ```{r}
 #| message: false
 #| warning: false
 ggplot(data = housingsub) +
-  geom_point(mapping = aes(x = date, y = median), color = "blue")
+  geom_point(mapping = aes(x = date, 
+                           y = median
+                           ), 
+             color = "blue" #<<
+             )
 ```
 
 You should *NOT* put your color inside the `aes()` parentheses.
@@ -793,7 +944,11 @@ You should *NOT* put your color inside the `aes()` parentheses.
 #| message: false
 #| warning: false
 ggplot(data = txhousing) +
-  geom_point(mapping = aes(x = date, y = median, color = "blue"))
+  geom_point(mapping = aes(x = date, 
+                           y = median, 
+                           color = "blue" #<<
+                           )
+             )
 ```
 
 </details>
@@ -812,9 +967,7 @@ It can be hard to know what type of chart to use for a particular type of data. 
 
 - Do I have data that might be best shown in small multiples? E.g. a categorical moderating variable and a lot of data, where the categorical variable might be important for showing different features of the data?
 
-Once you've thought through this, take a look through catalogues like the [R Graph Gallery](https://r-graph-gallery.com/) to see what visualizations match your data and use-case. 
-
-
+Once you've thought through this, take a look through cataloges like the [R Graph Gallery](https://r-graph-gallery.com/) to see what visualizations match your data and use-case. 
 ### Creating Good Charts
 
 A chart is good if it allows the user to draw useful conclusions that are supported by data. Obviously, this definition depends on the purpose of the chart - a simple EDA chart is going to have a different purpose than a chart showing e.g. the predicted path of a hurricane, which people will use to make decisions about whether or not to evacuate. 
@@ -951,13 +1104,16 @@ Suppose I want to emphasize the change in the murder rate between 1980 and 2010.
 
 I could use a bar chart (showing only the first 4 states alphabetically for space)
 
-```{r chart-emphasis-bar-r, fig.height = 4, fig.width = 6}
+```{r chart-emphasis-bar-r}
+#| fig-height: 4
+#| fig-width: 6
+#| echo: false
 fbiwide <- read.csv("https://github.com/srvanderplas/Stat151/raw/main/data/fbiwide.csv")
 library(dplyr)
 
-fbiwide %>% 
-  filter(Year %in% c(1980, 2010)) %>%
-  filter(State %in% c("Alabama", "Alaska", "Arizona", "Arkansas")) %>% 
+fbiwide |> 
+  filter(Year %in% c(1980, 2010)) |>
+  filter(State %in% c("Alabama", "Alaska", "Arizona", "Arkansas")) |> 
   ggplot(aes(x = State, y = Murder/Population*100000, fill = factor(Year))) + 
   geom_col(position = "dodge") +
   coord_flip() + 
@@ -966,9 +1122,12 @@ fbiwide %>%
 
 Or, I could use a line chart 
 
-```{r chart-emphasis-line-r, fig.height = 4, fig.width = 6}
-fbiwide %>% 
-  filter(Year %in% c(1980, 2010)) %>%
+```{r chart-emphasis-line-r}
+#| fig-height: 4
+#| fig-width: 6
+#| echo: false
+fbiwide |> 
+  filter(Year %in% c(1980, 2010)) |>
   ggplot(aes(x = Year, y = Murder/Population*100000, group = State)) + 
   geom_line() + 
   ylab("Murders per 100,000 residents")
@@ -976,9 +1135,12 @@ fbiwide %>%
 
 Or, I could use a box plot
 
-```{r chart-emphasis-boxplot-r, fig.height = 4, fig.width = 6}
-fbiwide %>% 
-  filter(Year %in% c(1980, 2010)) %>%
+```{r chart-emphasis-boxplot-r}
+#| fig-height: 4
+#| fig-width: 6
+#| echo: false
+fbiwide |> 
+  filter(Year %in% c(1980, 2010)) |>
   ggplot(aes(x = factor(Year), y = Murder/Population*100000)) + 
   geom_boxplot() + 
   ylab("Murders per 100,000 residents")
@@ -990,20 +1152,35 @@ The line segment plot connects related observations (from the same state) but al
 
 :::
 
-The aesthetic mappings and choices you make when creating plots have a huge impact on the conclusions that you (and others) can easily make when examining those plots.^[See [this paper](https://doi.org/10.1080/10618600.2016.1209116) for more details. This is the last chapter of my dissertation, for what it's worth. It was a lot of fun. (no sarcasm, seriously, it was fun!)] 
+The aesthetic mappings and choices you make when creating plots have a huge impact on the conclusions that you (and others) can easily make when examining those plots.^[See [this paper](https://doi.org/10.1080/10618600.2016.1209116) for more details.
 
 #### General guidelines for accuracy {-}
 
 There are certain tasks which are easier for us relative to other, similar tasks. 
 
-```{r accuracy-guidelines, echo = F, fig.cap = "Which of the lines is the longest? Shortest? It is much easier to determine the relative length of the line when the ends are aligned. In fact, the line lengths are the same in both panels."}
+```{r accuracy-guidelines}
+#| echo: false
+#| fig-cap: "Which of the lines is the longest? Shortest? It is much easier to determine the relative length of the line when the ends are aligned. In fact, the line lengths are the same in both panels."
+
 segs <- bind_rows(
   tibble(x = 1:3, y1 = 0, y2 = c(2.5, 2.75, 2.25), type = "Aligned scale"),
   tibble(x = 1:3, y1 = c(1, 0, .5), y2 = c(1, 0, .5) + c(2.5, 2.75, 2.25), type = "Unaligned scale")
 )
-ggplot(segs, aes(x = x, xend = x, y = y1, yend = y2)) + 
-  geom_segment() + facet_wrap(~type) + coord_fixed() + 
-  theme(axis.text = element_blank(), axis.ticks = element_blank(), axis.title = element_blank())
+
+ggplot(segs, 
+       aes(x = x,
+           xend = x, 
+           y = y1, 
+           yend = y2
+           )
+       ) + 
+  geom_segment() + 
+  facet_wrap(~ type) + 
+  coord_fixed() + 
+  theme(axis.text = element_blank(), 
+        axis.ticks = element_blank(), 
+        axis.title = element_blank()
+        )
 ```
 
 When making judgments corresponding to numerical quantities, there is an order of tasks from easiest (1) to hardest (6), with equivalent tasks at the same level.^[See [this paper](https://www.jstor.org/stable/2288400) for the major source of this ranking; other follow-up studies have been integrated, but the essential order is largely unchanged.] 
@@ -1021,17 +1198,18 @@ When creating a chart, it is helpful to consider which variables you want to sho
 
 There is also a general increase in dimensionality from 1-3 to 4 (2d) to 5 (3d). In general, showing information in 3 dimensions when 2 will suffice is misleading - the addition of that extra dimension causes an increase in chart area allocated to the item that is disproportionate to the actual area. 
 
-```{r disproportionate-pixels, include = F}
-imgs <- list.files("images", "3d_pie", full.names = T)
-tmp <- tibble(portfolio = c("Cash", "Bond", "Stocks"), 
-              pct = c(.05, .35, .5),
-              img = purrr::map(imgs, ~png::readPNG(source = .)),
-              px = purrr::map_dbl(img, ~sum(.[,,4] != 0 ))) %>%
-  mutate(px_pct = px/sum(px))
-tmp
-```
+<!-- # ```{r disproportionate-pixels} -->
+<!-- # #| include: false -->
+<!-- # imgs <- list.files("images", "3d_pie", full.names = T) -->
+<!-- # tmp <- tibble(portfolio = c("Cash", "Bond", "Stocks"),  -->
+<!-- #               pct = c(.05, .35, .5), -->
+<!-- #               img = purrr::map(imgs, ~ png::readPNG(source = .)), -->
+<!-- #               px = purrr::map_dbl(img, ~sum(.[,,4] != 0 ))) %>% -->
+<!-- #   mutate(px_pct = px/sum(px)) -->
+<!-- # tmp -->
+<!-- # ``` -->
 
-![Here, the area and height both encode the same variable, leading to a far disproportionate number of pixels allocated to "Stocks" than "Cash Investments" ([h/t Junk Charts](https://junkcharts.typepad.com/junk_charts/2020/06/when-the-pie-chart-is-more-complex-than-the-data.html)). In the first chart, stocks make up 60% of the portfolio, but have 67.5% of the pixels; Cash makes up 5% of the portfolio but those investments represent 2.3% of the pixels.](images/3d_graphs_suck.jpg). 
+![Here, the area and height both encode the same variable, leading to a far disproportionate number of pixels allocated to "Stocks" than "Cash Investments" ([h/t Junk Charts](https://junkcharts.typepad.com/junk_charts/2020/06/when-the-pie-chart-is-more-complex-than-the-data.html). In the first chart, stocks make up 60% of the portfolio, but have 67.5% of the pixels; Cash makes up 5% of the portfolio but those investments represent 2.3% of the pixels.](images/3d_graphs_suck.jpg). 
 
 + [Ted ED: How to spot a misleading graph - Lea Gaslowitz](https://youtu.be/E91bGT9BjYk)
 + [Business Insider: The Worst Graphs Ever](https://www.businessinsider.com/the-27-worst-charts-of-all-time-2013-6)
@@ -1040,7 +1218,7 @@ Extra dimensions and other annotations are sometimes called "chartjunk" and shou
 
 ::: learn-more
 
-### R graphics {.unnumbered #rgraphics}
+### R graphics {- #rgraphics}
 
 - [ggplot2 cheat sheet](https://github.com/rstudio/cheatsheets/raw/main/data-visualization-2.1.pdf)
 - [ggplot2 aesthetics cheat sheet](https://drive.google.com/file/d/1Dvul1p6TYH6gWJzZRwpE0YX1dO0hDF-b/view) - aesthetic mapping one page cheatsheet
@@ -1056,7 +1234,7 @@ Extra dimensions and other annotations are sometimes called "chartjunk" and shou
 ::: check-in
 ### Check-in 2.2: Introduction to Data Visualization with ggplot2 {- #checkin2.2-dataviz}
 
-Complete the Canvas quiz to make sure you understand the basics of using ggplot2 to create graphics.
+Complete the Canvas quiz to make sure you understand the basics of using **ggplot2** to create graphics.
 
 :::
 

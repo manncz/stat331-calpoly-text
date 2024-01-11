@@ -10,7 +10,7 @@ book:
     - index.qmd
     - 00-prereading.qmd
     - 01-introduction.qmd
-    # - 02-tidy-data-and-basics-of-graphics.qmd
+    - 02-tidy-data-and-basics-of-graphics.qmd
     # - 03-data-cleaning-and-manipulation.qmd
     # - 04-data-joins-and-transformations.qmd
     # - 05-special-data-types.qmd
@@ -46,3 +46,6 @@ format:
       
 editor: source
 
+filters:
+  - quarto
+  - line-highlight

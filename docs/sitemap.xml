@@ -2,14 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/index.html</loc>
-    <lastmod>2023-12-28T22:56:33.550Z</lastmod>
+    <lastmod>2024-01-11T01:23:43.028Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/00-prereading.html</loc>
-    <lastmod>2023-12-28T22:56:33.598Z</lastmod>
+    <lastmod>2024-01-11T01:23:43.068Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/01-introduction.html</loc>
-    <lastmod>2023-12-28T22:56:33.622Z</lastmod>
+    <lastmod>2024-01-11T01:23:43.092Z</lastmod>
+  </url>
+  <url>
+    <loc>https://earobinson95.github.io/stat331-calpoly-text/02-tidy-data-and-basics-of-graphics.html</loc>
+    <lastmod>2024-01-11T01:23:43.132Z</lastmod>
   </url>
 </urlset>
