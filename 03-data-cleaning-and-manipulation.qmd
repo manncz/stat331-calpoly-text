@@ -6,7 +6,9 @@ execute:
   editor: source
 ---
 
-```{r echo=FALSE}
+```{r}
+#| echo: false
+
 bytes <- file.size("03-data-cleaning-and-manipulation.qmd")
 words <- bytes/10
 minutes <- words/200
@@ -14,7 +16,8 @@ minutes <- words/200
 
 # Data Cleaning and Manipulation
 
-```{r fa-setup, include=FALSE}
+```{r fa-setup}
+#| include: false
 library(quarto)
 library(fontawesome)
 library(ggplot2)
@@ -29,7 +32,7 @@ library(tidyverse)
 
 `r fa("video")` Videos: 60 minutes
 
-## Objectives {#ch3-objectives .unnumbered}
+## Objectives {- #ch3-objectives}
 
 -   Apply data manipulation verbs (filter, select, group by, summarize, mutate) to prepare data for analysis
 -   Identify required sequence of steps for data cleaning
@@ -37,14 +40,14 @@ library(tidyverse)
 -   Create summaries of data appropriate for analysis or display using data manipulation techniques
 
 ::: check-in
-## Check-ins {#ch3-checkins .unnumbered}
+## Check-ins {- #ch3-checkins}
 
 There is one check-in for this week:
 
 -   [Check-in 3.1: Data Wrangling](#checkin3-1)
 :::
 
-## Tibbles
+## A quick note about `tibble`
 
 We have been talking about our data in terms of `data.frame` objects in R. This is meant to inform you there is another object type in R called `tibble`s. Essentially, Tibbles *are* data frames, but they have certain features that make them easier to work with and provide additional cool features that can be useful (e.g., see `nest()`).
 
@@ -58,7 +61,7 @@ tibble(
 You can use `as_tibble()` to convert `data.frame` objects in R to a `tibble` object.
 
 ::: learn-more
-### Learn more about tibbles {.unnumbered}
+### Learn more about tibbles {-}
 
 You can read more about Tibbles in [R for Data Science: Tibbles](https://r4ds.had.co.nz/tibbles.html)
 :::
@@ -82,16 +85,12 @@ We will be using the `tidyverse` for this. It's a meta-package (a package that j
 `dplyr` (one of the packages in the tidyverse) creates a "grammar of data manipulation" to make it easier to describe different operations. I find the `dplyr` grammar to be extremely useful when talking about data operations.
 
 ::: column-margin
-::: youtube-video-container
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/jgVi2znoHgg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-
-</iframe>
-:::
+{{< video https://www.youtube.com/embed/jgVi2znoHgg >}} 
 :::
 
 Each `dplyr` verb describes a common task when doing both exploratory data analysis and more formal statistical modeling. In all tidyverse functions, **data comes first** -- literally, as it's the first argument to any function. In addition, you don't use `df$variable` to access a variable - you refer to the variable by its name alone ("bare" names). This makes the syntax much cleaner and easier to read, which is another principle of the tidy philosophy.
 
-### Main `dplyr` verbs {.unnumbered}
+### Main `dplyr` verbs {-}
 
 -   `filter()`
 -   `arrange()`
@@ -105,7 +104,7 @@ Each `dplyr` verb describes a common task when doing both exploratory data analy
 [There is an excellent dplyr cheatsheet available from RStudio](https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf). You may want to print it out to have a copy to reference as you work through this chapter.
 :::
 
-## Motivation & Example Dataset {.unnumbered}
+## Motivation & Example Dataset {-}
 
 Last week we learned all about creating graphics in `ggplot2`. I am hoping to use data visualization as motivation going forward in this class -- **how do we get our data look like what we need in order to create the graph we want?**
 
@@ -155,11 +154,7 @@ There is way too much going on in these plots to see anything of importance. Let
 Filter allows us to work with a subset of a larger data frame, keeping only the rows we're interested in. We provide one or more logical conditions, and only those rows which meet the logical conditions are returned from `filter()`. Note that unless we store the result from `filter()` in the original object, we don't change the original.
 
 ::: column-margin
-::: youtube-video-container
-<iframe width="560" height="315" src="https://www.youtube.com/embed/pPI-prhLYqI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-
-</iframe>
-:::
+{{< video https://www.youtube.com/embed/pPI-prhLYqI >}} 
 :::
 
 ![dplyr filter() by Allison Horst](https://github.com/allisonhorst/stats-illustrations/raw/main/rstats-artwork/dplyr_filter.jpg){fig-alt="Cartoon showing three fuzzy monsters either selecting or crossing out rows of a data table. If the type of animal in the table is “otter” and the site is “bay”, a monster is drawing a purple rectangle around the row. If those conditions are not met, another monster is putting a line through the column indicating it will be excluded. Stylized text reads “dplyr::filter() - keep rows that satisfy your conditions.”"}
@@ -174,7 +169,9 @@ Let's say we were interested in only the people, we could create a new data set 
 ```{r}
 #| eval: false
 # Get only the people
-starwars_people <- filter(starwars, species == "Human")
+starwars_people <- filter(.data = starwars, 
+                          species == "Human"
+                          )
 starwars_people
 ```
 
@@ -189,15 +186,17 @@ starwars_people  |>
   column_spec(column = 11, bold = T, color = "black", background = "yellow")
 ```
 
-We can create the same plot with our new subset of data.
+We can create the same plot with our new subset of data (`starwars_people`).
 
 ```{r}
 #| message: false
 #| warning: false
 #| code-fold: true
-ggplot(data = starwars_people, aes(x = height, 
-                            y = mass, 
-                            color = species)
+ggplot(data = starwars_people, 
+       mapping = aes(x = height, 
+                     y = mass, 
+                     color = species
+                     )
        ) +
   geom_point() +
   facet_wrap(~ homeworld)
@@ -208,7 +207,10 @@ This looks better, but what if we only care about the people who come from Tatoo
 ```{r}
 #| eval: false
 # Get only the people who come from Tatooine
-starwars_tatooine_people <- filter(starwars, species == "Human", homeworld == "Tatooine")
+starwars_tatooine_people <- filter(.data = starwars, 
+                                   species == "Human", 
+                                   homeworld == "Tatooine"
+                                   )
 starwars_tatooine_people
 ```
 
@@ -227,9 +229,11 @@ starwars_tatooine_people |>
 #| message: false
 #| warning: false
 #| code-fold: true
-ggplot(data = starwars_tatooine_people, aes(x = height, 
-                            y = mass, 
-                            color = species)
+ggplot(data = starwars_tatooine_people, 
+       mapping = aes(x = height, 
+                     y = mass, 
+                     color = species
+                     )
        ) +
   geom_point() +
   facet_wrap(~ homeworld)
@@ -239,7 +243,7 @@ ggplot(data = starwars_tatooine_people, aes(x = height,
 <br>
 
 ::: note
-#### Useful comparison operations in R {.unnumbered}
+#### Useful comparison operations in R {-}
 
 We might not always want to only filter on a variable set equal to a certain category or value, the following operations can help you combine logical operations in `filter()`.
 
@@ -255,14 +259,10 @@ We might not always want to only filter on a variable set equal to a certain cat
 In `dplyr`, there are a few helper functions which may be useful when constructing filter statements.
 
 ::: column-margin
-::: youtube-video-container
-<iframe width="560" height="315" src="https://www.youtube.com/embed/4Qhdc81mpvo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-
-</iframe>
-:::
+{{< video https://www.youtube.com/embed/4Qhdc81mpvo >}}
 :::
 
-#### Filtering by row number {.unnumbered}
+#### Filtering by row number {-}
 
 `row_number()` is a helper function that is only used inside of another dplyr function (e.g. filter). You might want to keep only even rows, or only the first 10 rows in a table.
 
@@ -271,20 +271,22 @@ Notice how we now have C-3PO, Darth Vader, Beru Whites, Anakin Skywalker, etc. (
 
 ```{r}
 #| eval: false
-filter(starwars, (row_number() %% 2 == 0)) 
+filter(.data = starwars, 
+       row_number() %% 2 == 0
+       ) 
 ```
 
 ::: panel-tabset
-##### Even Rows {.unnumbered}
+##### Even Rows {-}
 
 ```{r}
 #| echo: false
-filter(starwars, (row_number() %% 2 == 0))  |>
+filter(starwars, row_number() %% 2 == 0)  |>
   slice(1:5) |>
   kable(format = 'html')
 ```
 
-##### Original `starwars` {.unnumbered}
+##### Original `starwars` {-}
 
 ```{r}
 #| echo: false
@@ -299,7 +301,7 @@ starwars|>
 :::
 :::
 
-#### `arrange()` Sorting rows by variable values {.unnumbered}
+#### `arrange()` Sorting rows by variable values {-}
 
 Another common operation is to sort your data frame by the values of one or more variables.
 
@@ -310,7 +312,9 @@ The code below arranges the starwars characters tallest to shortest.
 
 ```{r arrange-starwars-dplyr1}
 #| eval: false
-arrange(starwars, desc(height))
+arrange(.data = starwars, 
+        desc(height)
+        )
 ```
 
 ```{r arrange-starwars-dplyr2}
@@ -332,7 +336,10 @@ The code below outputs the 5 **tallest** characters in star wars.
 
 ```{r slice-starwars-arrange1}
 #| eval: false
-slice_max(starwars, order_by = height, n = 5)
+slice_max(.data = starwars, 
+          order_by = height, 
+          n = 5
+          )
 ```
 
 ```{r slice-starwars-arrange2}
@@ -349,7 +356,10 @@ The code below outputs the 5 **shortest** characters in star wars.
 
 ```{r slice-poke-arrange-31}
 #| eval: false
-slice_min(starwars, order_by = height, n = 5)
+slice_min(.data = starwars, 
+          order_by = height, 
+          n = 5
+          )
 ```
 
 ```{r slice-poke-arrange-32}
@@ -368,7 +378,11 @@ Use `with_ties = FALSE`.
 
 ```{r}
 #| eval: false
-slice_min(starwars, order_by = height, n = 5, with_ties = FALSE)
+slice_min(.data = starwars, 
+          order_by = height, 
+          n = 5, 
+          with_ties = FALSE
+          )
 ```
 
 ```{r}
@@ -385,7 +399,10 @@ The code below outputs the **shortest 1%** of characters in star wars.
 
 ```{r slice-starwars-arrange-41}
 #| eval: false
-slice_max(starwars, order_by = height, prop = .01)
+slice_max(.data = starwars, 
+          order_by = height, 
+          prop = 0.01
+          )
 ```
 
 ```{r slice-starwars-arrange-42}
@@ -403,7 +420,7 @@ In `dplyr`, the function to pick a few columns is `select()`. The syntax from th
 
 > select(.data, ...)
 
-So as with just about every other tidyverse function, the first argument in a select statement is the data. After that, though, you can put just about anything that R can interpret. `...` means something along the lines of "put in any additional arguments that make sense in context or might be passed on to other functions".
+So as with just about every other tidyverse function, the first argument in a select statement is the data (`.data = `). After that, though, you can put just about anything that R can interpret. `...` means something along the lines of "put in any additional arguments that make sense in context or might be passed on to other functions".
 
 So what can go in there?
 
@@ -476,7 +493,7 @@ Starting simple, let's only subset and keep only the following variables from th
 
 ```{r}
 #| eval: false
-select(starwars, name, height, mass, birth_year, species, homeworld)
+select(.data = starwars, name, height, mass, birth_year, species, homeworld)
 ```
 
 ```{r}
@@ -490,7 +507,7 @@ Since `name`, `height`, and `mass` are next to each other, we could have specifi
 
 ```{r}
 #| eval: false
-select(starwars, name:mass, birth_year, species, homeworld)
+select(.data = starwars, name:mass, birth_year, species, homeworld)
 ```
 
 ```{r}
@@ -509,7 +526,7 @@ Perhaps we want the `birth_year`, `sex`, `gender`, `homeworld`, and `species` to
 
 ```{r}
 #| eval: false
-select(starwars, name, birth_year:species, everything())
+select(.data = starwars, name, birth_year:species, everything())
 ```
 
 ```{r}
@@ -535,7 +552,9 @@ Another handy `dplyr` function is `relocate`; while you definitely can do this o
 
 ```{r relocate-dplyr}
 # move numeric variables to the front
-relocate(starwars, where(is.numeric))
+relocate(.data = starwars, 
+         where(is.numeric)
+         )
 ```
 
 </details>
@@ -545,11 +564,7 @@ relocate(starwars, where(is.numeric))
 Up to this point, we've been primarily focusing on how to decrease the dimensionality of our data set in various ways (i.e., remove rows or columns from the original data set). But frequently, we also need to add columns for derived measures (e.g. BMI from weight and height information), change units, and replace missing or erroneous observations. The tidyverse verb for this is `mutate()`.
 
 ::: column-margin
-::: youtube-video-container
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/QWyUnQ2EzPs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-
-</iframe>
-:::
+{{< video https://www.youtube.com/embed/QWyUnQ2EzPs >}} 
 :::
 
 ![Mutate (by Allison Horst)](https://github.com/allisonhorst/stats-illustrations/raw/main/rstats-artwork/dplyr_mutate.png)
@@ -559,7 +574,10 @@ Let's create a new variable, `BMI` calculated from existing columns -- `mass`/`h
 
 ```{r}
 #| eval: false
-mutate(starwars, BMI = mass/height^2, .after = mass)
+mutate(.data = starwars, 
+       BMI = mass/height^2, 
+       .after = mass
+       )
 ```
 
 ```{r}
@@ -579,15 +597,18 @@ Let's replace the species variable to indicate `Human` or `Not Human`.
 
 ```{r}
 #| eval: false
-mutate(starwars, 
-       species = ifelse(species == "Human", species, "Not Human")
-)
+mutate(.data = starwars, 
+       species = if_else(species == "Human", 
+                        species, 
+                        "Not Human"
+                        )
+       )
 ```
 
 ```{r}
 #| echo: false
 mutate(starwars, 
-       species = ifelse(species == "Human", species, "Not Human")
+       species = if_else(species == "Human", species, "Not Human")
 )   |>
   slice(1:10) |> 
   kable(format = 'html')
@@ -600,7 +621,7 @@ The learning curve here isn't actually knowing how to assign new variables (thou
 
 <summary>Mutate and new challenges</summary>
 
-I'm not going to be able to teach you how to handle every mutate statement task you'll come across (people invent new ways to screw up data all the time!) but my goal is instead to teach you how to *read documentation* and *google things intelligently*, and to *understand what you're reading* enough to actually implement it. This is something that comes with practice (and lots of googling, stack overflow searches, etc.).
+I'm not going to be able to teach you how to handle every mutate statement task you'll come across (people invent new ways to screw up data all the time!) but my goal is instead to teach you how to *read documentation* and *Google things intelligently*, and to *understand what you're reading* enough to actually implement it. This is something that comes with practice (and lots of Googling, stack overflow searches, etc.).
 
 Google and StackOverflow are very common and important programming skills!
 
@@ -621,18 +642,14 @@ Part of the goal of this textbook is to help you **learn how to read through a p
 The next verb is one that we've already implicitly seen in action: `summarize()` takes a data frame with potentially many rows of data and reduces it down to one row of data using some function.
 
 ::: column-margin
-::: youtube-video-container
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/mIGu8gxx3CM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-
-</iframe>
-:::
+{{< video https://www.youtube.com/embed/mIGu8gxx3CM >}} 
 :::
 
 ::: ex
 Here (in a trivial example), I compute the overall average height of a star war's character.
 
 ```{r summarize, cache = F}
-summarize(starwars,
+summarize(.data = starwars,
           avg_height = mean(height, na.rm = T)
           )
 ```
@@ -640,16 +657,14 @@ summarize(starwars,
 The `na.rm = T` argument says to ignore/remove the missing (NA) values in calculating the average.
 :::
 
-The real power of summarize, though, is in combination with Group By. We'll see more summarize examples, but it's easier to make good examples when you have all the tools - it's hard to demonstrate how to use a hammer if you don't also have a nail.
+The real power of summarize, though, is in combination with `group_by`. We'll see more summarize examples, but it's easier to make good examples when you have all the tools - it's hard to demonstrate how to use a hammer if you don't also have a nail.
 
 ## `group_by()` Group By + (?) = Power!
 
 Frequently, we have data that is more specific than the data we need - for instance, I may have observations of the temperature at 15-minute intervals, but I might want to record the daily high and low value. To do this, I need to
 
 ::: column-margin
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/3SWgEe9wJSE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-
-</iframe>
+{{< video https://www.youtube.com/embed/3SWgEe9wJSE >}} 
 :::
 
 1.  split my data set into smaller data sets - one for each day
@@ -663,7 +678,7 @@ In tidy parlance, `group_by()` is the verb that accomplishes the first task. `su
 ::: ex
 Let's see how things change when we calculate the average height of star wars characters by their species.
 
-```{r summarize2, cache = F}
+```{r summarize2}
 starwars |> 
   group_by(species) |> 
   summarize(height = mean(height, na.rm = T))
@@ -682,24 +697,16 @@ When you `group_by()` a variable, your result carries this grouping with it. `su
 
 ## Pipe Operator {#pipe}
 
-The powerhouse of the `tidyverse` package comes from the pipe operator. This specifies a sequence of operations (kind of like how we layered our graphics in `ggplot2`). The output from the previous line (often a subset) is automatically passed into the first argument of the next line (remember, data first! `data =`).
+The powerhouse of the `tidyverse` package comes from the pipe operator. This specifies a sequence of operations (kind of like how we layered our graphics in `ggplot2`). The output from the previous line (often a subset) is automatically passed into the first argument of the next line (remember, data first! `.data =`).
 
 The native pipe operator is `|>`, but the magrittr pipe operator `%>%` was used up until recently (and still is often used!).
 
 ::: column-margin
-::: youtube-video-container
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/Y5WuR20M3dg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-
-</iframe>
-:::
+{{< video https://www.youtube.com/embed/RhHMgkUdhdk >}} 
 
 <br>
 
-::: youtube-video-container
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/QLtiC4LCxSo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-
-</iframe>
-:::
+{{< video https://www.youtube.com/embed/QLtiC4LCxSo >}} 
 :::
 
 ::: note
@@ -756,7 +763,7 @@ starwars |>
   
 ```
 
-As with ggplot, formatting your code so it is readable will help both you and me!
+As with ggplot, formatting your `dplyr` code pipelines so it is readable will help both you and me!
 :::
 
 <br>
@@ -870,7 +877,7 @@ penguins |>
 <br>
 
 ::: learn-more
-## Additional Resources {.unnumbered}
+## Additional Resources {-}
 
 -   [Introduction to dplyr](https://stat545.com/dplyr-intro.html) and [Single Table dplyr functions](https://stat545.com/dplyr-single.html)
 
@@ -886,7 +893,7 @@ penguins |>
 <br>
 
 ::: tryitout
-## PA 3: Identify the Mystery College {.unnumbered}
+## PA 3: Identify the Mystery College {-}
 
 Today you will be using the `dplyr` package to clean a data set and then using that cleaned data set to figure out what college Ephelia has been accepted to.
 
@@ -895,4 +902,4 @@ Visit [PA 3: Identify the Mystery College](https://earobinson95.github.io/stat33
 Submit the full name of the college Ephelia will attend to the Canvas Quiz.
 :::
 
-## References {.unnumbered}
+## References {-}

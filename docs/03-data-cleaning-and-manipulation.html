@@ -1,0 +1,2945 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Stat 331/531 Statistical Computing with R - 3&nbsp; Data Cleaning and Manipulation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./02-tidy-data-and-basics-of-graphics.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script><link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="style.css">
+</head>
+<body class="nav-sidebar floating slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-data-cleaning-and-manipulation.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Cleaning and Manipulation</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Stat 331/531 Statistical Computing with R</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/earobinson95/stat331-calpoly-text" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+<li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
+              <i class="bi bi-bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
+              <i class="bi bi-bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
+              <i class="bi bi-bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+      </ul>
+</div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-prereading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pre-reading</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-tidy-data-and-basics-of-graphics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tidy Data &amp; Basics of Graphics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-data-cleaning-and-manipulation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Cleaning and Manipulation</span></span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#ch3-objectives" id="toc-ch3-objectives" class="nav-link active" data-scroll-target="#ch3-objectives">Objectives</a></li>
+  <li><a href="#ch3-checkins" id="toc-ch3-checkins" class="nav-link" data-scroll-target="#ch3-checkins">Check-ins</a></li>
+  <li>
+<a href="#a-quick-note-about-tibble" id="toc-a-quick-note-about-tibble" class="nav-link" data-scroll-target="#a-quick-note-about-tibble"><span class="header-section-number">3.1</span> A quick note about <code>tibble</code></a>
+  <ul class="collapse">
+<li><a href="#learn-more-about-tibbles" id="toc-learn-more-about-tibbles" class="nav-link" data-scroll-target="#learn-more-about-tibbles">Learn more about tibbles</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#introduction-to-dplyr" id="toc-introduction-to-dplyr" class="nav-link" data-scroll-target="#introduction-to-dplyr"><span class="header-section-number">3.2</span> Introduction to <code>dplyr</code></a>
+  <ul class="collapse">
+<li><a href="#main-dplyr-verbs" id="toc-main-dplyr-verbs" class="nav-link" data-scroll-target="#main-dplyr-verbs">Main <code>dplyr</code> verbs</a></li>
+  </ul>
+</li>
+  <li><a href="#motivation-example-dataset" id="toc-motivation-example-dataset" class="nav-link" data-scroll-target="#motivation-example-dataset">Motivation &amp; Example Dataset</a></li>
+  <li>
+<a href="#filter-pick-cases-rows-based-on-their-values" id="toc-filter-pick-cases-rows-based-on-their-values" class="nav-link" data-scroll-target="#filter-pick-cases-rows-based-on-their-values"><span class="header-section-number">3.3</span> <code>filter()</code>: Pick cases (rows) based on their values</a>
+  <ul class="collapse">
+<li><a href="#common-row-selection-tasks" id="toc-common-row-selection-tasks" class="nav-link" data-scroll-target="#common-row-selection-tasks"><span class="header-section-number">3.3.1</span> Common Row Selection Tasks</a></li>
+  </ul>
+</li>
+  <li><a href="#select-pick-columns" id="toc-select-pick-columns" class="nav-link" data-scroll-target="#select-pick-columns"><span class="header-section-number">3.4</span> <code>select()</code>: Pick columns</a></li>
+  <li><a href="#mutate-add-and-transform-variables" id="toc-mutate-add-and-transform-variables" class="nav-link" data-scroll-target="#mutate-add-and-transform-variables"><span class="header-section-number">3.5</span> <code>mutate()</code>: Add and transform variables</a></li>
+  <li><a href="#summarize" id="toc-summarize" class="nav-link" data-scroll-target="#summarize"><span class="header-section-number">3.6</span> <code>summarize()</code></a></li>
+  <li><a href="#group_by-group-by-power" id="toc-group_by-group-by-power" class="nav-link" data-scroll-target="#group_by-group-by-power"><span class="header-section-number">3.7</span> <code>group_by()</code> Group By + (?) = Power!</a></li>
+  <li><a href="#pipe" id="toc-pipe" class="nav-link" data-scroll-target="#pipe"><span class="header-section-number">3.8</span> Pipe Operator</a></li>
+  <li><a href="#checkin3-1" id="toc-checkin3-1" class="nav-link" data-scroll-target="#checkin3-1">Check-in 3.1: Data Wrangling</a></li>
+  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
+  <li><a href="#pa-3-identify-the-mystery-college" id="toc-pa-3-identify-the-mystery-college" class="nav-link" data-scroll-target="#pa-3-identify-the-mystery-college">PA 3: Identify the Mystery College</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/03-data-cleaning-and-manipulation.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">
+<span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Cleaning and Manipulation</span>
+</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 18 minute(s) at 200 WPM.</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"></path></svg> Videos: 60 minutes</p>
+<section id="ch3-objectives" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="ch3-objectives">Objectives</h2>
+<ul>
+<li>Apply data manipulation verbs (filter, select, group by, summarize, mutate) to prepare data for analysis</li>
+<li>Identify required sequence of steps for data cleaning</li>
+<li>Describe step-by-step data cleaning process in lay terms appropriately and understand the consequences of data cleaning steps</li>
+<li>Create summaries of data appropriate for analysis or display using data manipulation techniques</li>
+</ul></section><section id="ch3-checkins" class="level2 unnumbered check-in"><h2 class="unnumbered anchored" data-anchor-id="ch3-checkins">Check-ins</h2>
+<p>There is one check-in for this week:</p>
+<ul>
+<li><a href="#checkin3-1">Check-in 3.1: Data Wrangling</a></li>
+</ul></section><section id="a-quick-note-about-tibble" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="a-quick-note-about-tibble">
+<span class="header-section-number">3.1</span> A quick note about <code>tibble</code>
+</h2>
+<p>We have been talking about our data in terms of <code>data.frame</code> objects in R. This is meant to inform you there is another object type in R called <code>tibble</code>s. Essentially, Tibbles <em>are</em> data frames, but they have certain features that make them easier to work with and provide additional cool features that can be useful (e.g., see <code>nest()</code>).</p>
+<div class="cell">
+<div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tibble</span><span class="op">(</span></span>
+<span>  team   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span><span class="op">)</span>, </span>
+<span>  points <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">22</span>, <span class="fl">30</span>, <span class="fl">18</span>, <span class="fl">54</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code># A tibble: 4 × 2
+  team  points
+  &lt;chr&gt;  &lt;dbl&gt;
+1 A         22
+2 B         30
+3 C         18
+4 D         54</code></pre>
+</div>
+</div>
+<p>You can use <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble()</a></code> to convert <code>data.frame</code> objects in R to a <code>tibble</code> object.</p>
+<section id="learn-more-about-tibbles" class="level3 unnumbered learn-more"><h3 class="unnumbered anchored" data-anchor-id="learn-more-about-tibbles">Learn more about tibbles</h3>
+<p>You can read more about Tibbles in <a href="https://r4ds.had.co.nz/tibbles.html">R for Data Science: Tibbles</a></p>
+</section></section><section id="introduction-to-dplyr" class="level2 page-columns page-full" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="introduction-to-dplyr">
+<span class="header-section-number">3.2</span> Introduction to <code>dplyr</code>
+</h2>
+<p>In this section, we’re going start learning how to work with data. Generally speaking, data doesn’t come in a form suitable for data visualization or statistical analysis<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> - you have to clean it up, create the variables you care about, get rid of those you don’t care about, and so on.</p>
+<p>Some people call the process of cleaning and organizing your data “data wrangling”, which is a fantastic way to think about chasing down all of the issues in the data.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/main/rstats-artwork/data_cowboy.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Data wrangling (by Allison Horst)</figcaption></figure>
+</div>
+</div></div><p>We will be using the <code>tidyverse</code> for this. It’s a meta-package (a package that just loads other packages) that collects packages designed with the same philosophy<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> and interface (basically, the commands will use predictable argument names and structure). You’ve already been introduced to parts of the tidyverse - specifically, <code>readr</code> and <code>ggplot2</code>.</p>
+<p><code>dplyr</code> (one of the packages in the tidyverse) creates a “grammar of data manipulation” to make it easier to describe different operations. I find the <code>dplyr</code> grammar to be extremely useful when talking about data operations.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/jgVi2znoHgg" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div></div><p>Each <code>dplyr</code> verb describes a common task when doing both exploratory data analysis and more formal statistical modeling. In all tidyverse functions, <strong>data comes first</strong> – literally, as it’s the first argument to any function. In addition, you don’t use <code>df$variable</code> to access a variable - you refer to the variable by its name alone (“bare” names). This makes the syntax much cleaner and easier to read, which is another principle of the tidy philosophy.</p>
+<section id="main-dplyr-verbs" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="main-dplyr-verbs">Main <code>dplyr</code> verbs</h3>
+<ul>
+<li><code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code></li>
+<li><code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code></li>
+<li><code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code></li>
+<li><code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code></li>
+<li><code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code></li>
+<li>Use <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> to perform group wise operations</li>
+<li>Use the pipe operator (<code>|&gt;</code> or <code>%&gt;%</code>) to chain together data wrangling operations</li>
+</ul>
+<div class="note">
+<p><a href="https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf">There is an excellent dplyr cheatsheet available from RStudio</a>. You may want to print it out to have a copy to reference as you work through this chapter.</p>
+</div>
+</section></section><section id="motivation-example-dataset" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="motivation-example-dataset">Motivation &amp; Example Dataset</h2>
+<p>Last week we learned all about creating graphics in <code>ggplot2</code>. I am hoping to use data visualization as motivation going forward in this class – <strong>how do we get our data look like what we need in order to create the graph we want?</strong></p>
+<div class="ex">
+<p>Let’s explore how the <code>dplyr</code> verbs work, using the <code>starwars</code> data set, which contains a comprehensive list of the characters in the Star Wars movies and information about their <code>height</code>, <code>mass</code>, <code>hair_color</code>, <code>skin_color</code>, <code>eye_color</code>, <code>birth_year</code>, <code>sex</code>, <code>gender</code>, <code>homeworld</code>, <code>species</code>, <code>films</code>, <code>vehicles</code>, and <code>starships</code>.</p>
+<p>This data set is included in the <code>dplyr</code> package, so we load that package and then use the <code><a href="https://rdrr.io/r/utils/data.html">data()</a></code> function to load data set into memory. The loading isn’t complete until we actually use the data set though… so let’s look at our variables and types and print the first few rows.</p>
+<div class="cell">
+<div class="sourceCode" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">)</span></span>
+<span><span class="va">starwars</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">height</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mass</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">hair_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">skin_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">eye_color</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">birth_year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">sex</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gender</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">homeworld</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Luke Skywalker</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">blond</td>
+<td style="text-align: left;">fair</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C-3PO</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">gold</td>
+<td style="text-align: left;">yellow</td>
+<td style="text-align: right;">112.0</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Droid</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R2-D2</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">white, blue</td>
+<td style="text-align: left;">red</td>
+<td style="text-align: right;">33.0</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Naboo</td>
+<td style="text-align: left;">Droid</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Darth Vader</td>
+<td style="text-align: right;">202</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">yellow</td>
+<td style="text-align: right;">41.9</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Leia Organa</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">feminine</td>
+<td style="text-align: left;">Alderaan</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Owen Lars</td>
+<td style="text-align: right;">178</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: left;">brown, grey</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">52.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Beru Whitesun Lars</td>
+<td style="text-align: right;">165</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">47.0</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">feminine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R5-D4</td>
+<td style="text-align: right;">97</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">white, red</td>
+<td style="text-align: left;">red</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Droid</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Biggs Darklighter</td>
+<td style="text-align: right;">183</td>
+<td style="text-align: right;">84</td>
+<td style="text-align: left;">black</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: right;">24.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Obi-Wan Kenobi</td>
+<td style="text-align: right;">182</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">auburn, white</td>
+<td style="text-align: left;">fair</td>
+<td style="text-align: left;">blue-gray</td>
+<td style="text-align: right;">57.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Stewjon</td>
+<td style="text-align: left;">Human</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>We could create a scatterplot of the character’s <code>height</code> by <code>mass</code>, color by <code>species</code>, and facet by <code>homeworld</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb4" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">starwars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">height</span>, </span>
+<span>                            y <span class="op">=</span> <span class="va">mass</span>, </span>
+<span>                            color <span class="op">=</span> <span class="va">species</span><span class="op">)</span></span>
+<span>       <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">homeworld</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="03-data-cleaning-and-manipulation_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>There is way too much going on in these plots to see anything of importance. Let’s break it down into the parts we are interested in.</p>
+</div>
+</section><section id="filter-pick-cases-rows-based-on-their-values" class="level2 page-columns page-full" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="filter-pick-cases-rows-based-on-their-values">
+<span class="header-section-number">3.3</span> <code>filter()</code>: Pick cases (rows) based on their values</h2>
+<p>Filter allows us to work with a subset of a larger data frame, keeping only the rows we’re interested in. We provide one or more logical conditions, and only those rows which meet the logical conditions are returned from <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>. Note that unless we store the result from <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> in the original object, we don’t change the original.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/pPI-prhLYqI" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div></div><div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="https://github.com/allisonhorst/stats-illustrations/raw/main/rstats-artwork/dplyr_filter.jpg" class="img-fluid figure-img" alt="Cartoon showing three fuzzy monsters either selecting or crossing out rows of a data table. If the type of animal in the table is “otter” and the site is “bay”, a monster is drawing a purple rectangle around the row. If those conditions are not met, another monster is putting a line through the column indicating it will be excluded. Stylized text reads “dplyr::filter() - keep rows that satisfy your conditions.”"></p>
+<figcaption class="figure-caption">dplyr filter() by Allison Horst</figcaption></figure>
+</div>
+<p>Once the data is set up, filtering the data (selecting certain <strong>rows</strong>) is actually very simple. Of course, we’ve talked about how to use logical indexing before in <a href="00-prereading.html#indexing-matrices">Indexing Matrices</a>, but here we’ll focus on using specific functions to perform the same operation.</p>
+<p>The dplyr verb for selecting rows is <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>. <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> takes a set of one or more logical conditions, using bare column names and logical operators. Each provided condition is combined using AND.</p>
+<div class="ex">
+<p>Let’s say we were interested in only the people, we could create a new data set <code>starwars_people</code> and filter on the species variable.</p>
+<div class="cell">
+<div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Get only the people</span></span>
+<span><span class="va">starwars_people</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">starwars</span>, </span>
+<span>                          <span class="va">species</span> <span class="op">==</span> <span class="st">"Human"</span></span>
+<span>                          <span class="op">)</span></span>
+<span><span class="va">starwars_people</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">height</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mass</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">hair_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">skin_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">eye_color</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">birth_year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">sex</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gender</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">homeworld</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Luke Skywalker</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">blond</td>
+<td style="text-align: left;">fair</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Darth Vader</td>
+<td style="text-align: right;">202</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">yellow</td>
+<td style="text-align: right;">41.9</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Human</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Leia Organa</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">feminine</td>
+<td style="text-align: left;">Alderaan</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Owen Lars</td>
+<td style="text-align: right;">178</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: left;">brown, grey</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">52.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Human</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Beru Whitesun Lars</td>
+<td style="text-align: right;">165</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">47.0</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">feminine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Human</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>We can create the same plot with our new subset of data (<code>starwars_people</code>).</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">starwars_people</span>, </span>
+<span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">height</span>, </span>
+<span>                     y <span class="op">=</span> <span class="va">mass</span>, </span>
+<span>                     color <span class="op">=</span> <span class="va">species</span></span>
+<span>                     <span class="op">)</span></span>
+<span>       <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">homeworld</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="03-data-cleaning-and-manipulation_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This looks better, but what if we only care about the people who come from Tatooine? Starting with our original starwars data set, we can combine logical AND statements with a comma to define a data subset called <code>starwars_tatoonie_people</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Get only the people who come from Tatooine</span></span>
+<span><span class="va">starwars_tatooine_people</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">starwars</span>, </span>
+<span>                                   <span class="va">species</span> <span class="op">==</span> <span class="st">"Human"</span>, </span>
+<span>                                   <span class="va">homeworld</span> <span class="op">==</span> <span class="st">"Tatooine"</span></span>
+<span>                                   <span class="op">)</span></span>
+<span><span class="va">starwars_tatooine_people</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">height</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mass</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">hair_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">skin_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">eye_color</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">birth_year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">sex</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gender</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">homeworld</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Luke Skywalker</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">blond</td>
+<td style="text-align: left;">fair</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Tatooine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Darth Vader</td>
+<td style="text-align: right;">202</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">yellow</td>
+<td style="text-align: right;">41.9</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Tatooine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Human</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Owen Lars</td>
+<td style="text-align: right;">178</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: left;">brown, grey</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">52.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Tatooine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Beru Whitesun Lars</td>
+<td style="text-align: right;">165</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">47.0</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">feminine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Tatooine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Human</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Biggs Darklighter</td>
+<td style="text-align: right;">183</td>
+<td style="text-align: right;">84</td>
+<td style="text-align: left;">black</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: right;">24.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Tatooine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Human</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb8" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">starwars_tatooine_people</span>, </span>
+<span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">height</span>, </span>
+<span>                     y <span class="op">=</span> <span class="va">mass</span>, </span>
+<span>                     color <span class="op">=</span> <span class="va">species</span></span>
+<span>                     <span class="op">)</span></span>
+<span>       <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">homeworld</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="03-data-cleaning-and-manipulation_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p><br></p>
+<section id="useful-comparison-operations-in-r" class="level4 unnumbered note"><h4 class="unnumbered anchored" data-anchor-id="useful-comparison-operations-in-r">Useful comparison operations in R</h4>
+<p>We might not always want to only filter on a variable set equal to a certain category or value, the following operations can help you combine logical operations in <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>.</p>
+<ul>
+<li>
+<code>&gt;</code> greater than</li>
+<li>
+<code>&lt;</code> less than</li>
+<li>
+<code>==</code> equal to</li>
+<li>
+<code>%in%</code> identifies if an element belongs to a vector</li>
+<li>
+<code>|</code> or</li>
+</ul></section><section id="common-row-selection-tasks" class="level3 page-columns page-full" data-number="3.3.1"><h3 data-number="3.3.1" class="anchored" data-anchor-id="common-row-selection-tasks">
+<span class="header-section-number">3.3.1</span> Common Row Selection Tasks</h3>
+<p>In <code>dplyr</code>, there are a few helper functions which may be useful when constructing filter statements.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/4Qhdc81mpvo" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div></div><section id="filtering-by-row-number" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="filtering-by-row-number">Filtering by row number</h4>
+<p><code><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number()</a></code> is a helper function that is only used inside of another dplyr function (e.g.&nbsp;filter). You might want to keep only even rows, or only the first 10 rows in a table.</p>
+<div class="ex">
+<p>Notice how we now have C-3PO, Darth Vader, Beru Whites, Anakin Skywalker, etc. (rows 2, 4, 6, …) from the original <code>starwars</code> data set output above.</p>
+<div class="cell">
+<div class="sourceCode" id="cb9" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">starwars</span>, </span>
+<span>       <span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span></span>
+<span>       <span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Even Rows</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Original <code>starwars</code></a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">height</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mass</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">hair_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">skin_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">eye_color</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">birth_year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">sex</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gender</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">homeworld</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">C-3PO</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">gold</td>
+<td style="text-align: left;">yellow</td>
+<td style="text-align: right;">112.0</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Droid</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Darth Vader</td>
+<td style="text-align: right;">202</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">yellow</td>
+<td style="text-align: right;">41.9</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Owen Lars</td>
+<td style="text-align: right;">178</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: left;">brown, grey</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">52.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R5-D4</td>
+<td style="text-align: right;">97</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">white, red</td>
+<td style="text-align: left;">red</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Droid</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Obi-Wan Kenobi</td>
+<td style="text-align: right;">182</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">auburn, white</td>
+<td style="text-align: left;">fair</td>
+<td style="text-align: left;">blue-gray</td>
+<td style="text-align: right;">57.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Stewjon</td>
+<td style="text-align: left;">Human</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">height</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mass</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">hair_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">skin_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">eye_color</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">birth_year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">sex</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gender</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">homeworld</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Luke Skywalker</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">blond</td>
+<td style="text-align: left;">fair</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">C-3PO</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">167</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">75</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">NA</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">gold</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">yellow</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">112.0</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">none</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">masculine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Tatooine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Droid</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R2-D2</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">white, blue</td>
+<td style="text-align: left;">red</td>
+<td style="text-align: right;">33.0</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Naboo</td>
+<td style="text-align: left;">Droid</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Darth Vader</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">202</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">136</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">none</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">white</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">yellow</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">41.9</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">male</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">masculine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Tatooine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Human</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Leia Organa</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">feminine</td>
+<td style="text-align: left;">Alderaan</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Owen Lars</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">178</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">120</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">brown, grey</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">light</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">blue</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">52.0</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">male</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">masculine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Tatooine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Human</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Beru Whitesun Lars</td>
+<td style="text-align: right;">165</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">47.0</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">feminine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">R5-D4</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">97</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">32</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">NA</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">white, red</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">red</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">NA</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">none</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">masculine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Tatooine</td>
+<td style="text-align: left; font-weight: bold; color: black !important; background-color: yellow !important;">Droid</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Biggs Darklighter</td>
+<td style="text-align: right;">183</td>
+<td style="text-align: right;">84</td>
+<td style="text-align: left;">black</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: right;">24.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Obi-Wan Kenobi</td>
+<td style="text-align: right;">182</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">auburn, white</td>
+<td style="text-align: left;">fair</td>
+<td style="text-align: left;">blue-gray</td>
+<td style="text-align: right;">57.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Stewjon</td>
+<td style="text-align: left;">Human</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="arrange-sorting-rows-by-variable-values" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="arrange-sorting-rows-by-variable-values">
+<code>arrange()</code> Sorting rows by variable values</h4>
+<p>Another common operation is to sort your data frame by the values of one or more variables.</p>
+<p><code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> is a dplyr verb for sorting rows in the table by one or more variables. It is often used with a helper function, <code><a href="https://dplyr.tidyverse.org/reference/desc.html">desc()</a></code>, which reverses the order of a variable, sorting it in descending order. Multiple arguments can be passed to <code>arrange</code> to sort the data frame by multiple columns hierarchically; each column can be modified with <code><a href="https://dplyr.tidyverse.org/reference/desc.html">desc()</a></code> separately.</p>
+<div class="ex">
+<p>The code below arranges the starwars characters tallest to shortest.</p>
+<div class="cell">
+<div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">starwars</span>, </span>
+<span>        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span></span>
+<span>        <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">height</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mass</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">hair_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">skin_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">eye_color</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">birth_year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">sex</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gender</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">homeworld</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Yarael Poof</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">264</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">yellow</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Quermia</td>
+<td style="text-align: left;">Quermian</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tarfful</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">234</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Kashyyyk</td>
+<td style="text-align: left;">Wookiee</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lama Su</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">229</td>
+<td style="text-align: right;">88</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">grey</td>
+<td style="text-align: left;">black</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Kamino</td>
+<td style="text-align: left;">Kaminoan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chewbacca</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">228</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">unknown</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">200.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Kashyyyk</td>
+<td style="text-align: left;">Wookiee</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Roos Tarpals</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">224</td>
+<td style="text-align: right;">82</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">grey</td>
+<td style="text-align: left;">orange</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Naboo</td>
+<td style="text-align: left;">Gungan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Grievous</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">216</td>
+<td style="text-align: right;">159</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">brown, white</td>
+<td style="text-align: left;">green, yellow</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Kalee</td>
+<td style="text-align: left;">Kaleesh</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Taun We</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">213</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">grey</td>
+<td style="text-align: left;">black</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">feminine</td>
+<td style="text-align: left;">Kamino</td>
+<td style="text-align: left;">Kaminoan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rugor Nass</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">206</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">green</td>
+<td style="text-align: left;">orange</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Naboo</td>
+<td style="text-align: left;">Gungan</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Tion Medon</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">206</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">grey</td>
+<td style="text-align: left;">black</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Utapau</td>
+<td style="text-align: left;">Pau'an</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Darth Vader</td>
+<td style="text-align: right; font-weight: bold; color: black !important; background-color: yellow !important;">202</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">yellow</td>
+<td style="text-align: right;">41.9</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section><section id="keep-the-top-n-values-of-a-variable" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="keep-the-top-n-values-of-a-variable">Keep the top <span class="math inline">\(n\)</span> values of a variable</h4>
+<p><code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max()</a></code> will keep the top values of a specified variable. This is like a filter statement, but it’s a shortcut built to handle a common task. You could write a filter statement that would do this, but it would take a few more lines of code.</p>
+<div class="ex">
+<p>The code below outputs the 5 <strong>tallest</strong> characters in star wars.</p>
+<div class="cell">
+<div class="sourceCode" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">starwars</span>, </span>
+<span>          order_by <span class="op">=</span> <span class="va">height</span>, </span>
+<span>          n <span class="op">=</span> <span class="fl">5</span></span>
+<span>          <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">height</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mass</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">hair_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">skin_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">eye_color</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">birth_year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">sex</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gender</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">homeworld</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Yarael Poof</td>
+<td style="text-align: right;">264</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">yellow</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Quermia</td>
+<td style="text-align: left;">Quermian</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tarfful</td>
+<td style="text-align: right;">234</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Kashyyyk</td>
+<td style="text-align: left;">Wookiee</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lama Su</td>
+<td style="text-align: right;">229</td>
+<td style="text-align: right;">88</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">grey</td>
+<td style="text-align: left;">black</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Kamino</td>
+<td style="text-align: left;">Kaminoan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chewbacca</td>
+<td style="text-align: right;">228</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">unknown</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Kashyyyk</td>
+<td style="text-align: left;">Wookiee</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Roos Tarpals</td>
+<td style="text-align: right;">224</td>
+<td style="text-align: right;">82</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">grey</td>
+<td style="text-align: left;">orange</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Naboo</td>
+<td style="text-align: left;">Gungan</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Of course, there is a similar <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min()</a></code> function as well:</p>
+<div class="ex">
+<p>The code below outputs the 5 <strong>shortest</strong> characters in star wars.</p>
+<div class="cell">
+<div class="sourceCode" id="cb12" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">starwars</span>, </span>
+<span>          order_by <span class="op">=</span> <span class="va">height</span>, </span>
+<span>          n <span class="op">=</span> <span class="fl">5</span></span>
+<span>          <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">height</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mass</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">hair_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">skin_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">eye_color</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">birth_year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">sex</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gender</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">homeworld</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Yoda</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">green</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: right;">896</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Yoda's species</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ratts Tyerel</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">grey, blue</td>
+<td style="text-align: left;">unknown</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Aleen Minor</td>
+<td style="text-align: left;">Aleena</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Wicket Systri Warrick</td>
+<td style="text-align: right;">88</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Endor</td>
+<td style="text-align: left;">Ewok</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dud Bolt</td>
+<td style="text-align: right;">94</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">blue, grey</td>
+<td style="text-align: left;">yellow</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Vulpter</td>
+<td style="text-align: left;">Vulptereen</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R2-D2</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">white, blue</td>
+<td style="text-align: left;">red</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Naboo</td>
+<td style="text-align: left;">Droid</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R4-P17</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">silver, red</td>
+<td style="text-align: left;">red, blue</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">feminine</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Droid</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>By default, <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min()</a></code> return values tied with the nth value as well, which is why our result above has 6 rows.</p>
+</div>
+<p><br></p>
+<div class="ex">
+<p>Use <code>with_ties = FALSE</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">starwars</span>, </span>
+<span>          order_by <span class="op">=</span> <span class="va">height</span>, </span>
+<span>          n <span class="op">=</span> <span class="fl">5</span>, </span>
+<span>          with_ties <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>          <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">height</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mass</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">hair_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">skin_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">eye_color</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">birth_year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">sex</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gender</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">homeworld</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Yoda</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">green</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: right;">896</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Yoda's species</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ratts Tyerel</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">grey, blue</td>
+<td style="text-align: left;">unknown</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Aleen Minor</td>
+<td style="text-align: left;">Aleena</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Wicket Systri Warrick</td>
+<td style="text-align: right;">88</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Endor</td>
+<td style="text-align: left;">Ewok</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dud Bolt</td>
+<td style="text-align: right;">94</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">blue, grey</td>
+<td style="text-align: left;">yellow</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Vulpter</td>
+<td style="text-align: left;">Vulptereen</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R2-D2</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">white, blue</td>
+<td style="text-align: left;">red</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Naboo</td>
+<td style="text-align: left;">Droid</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p><code>slice_max</code> and <code>slice_min</code> also take a <code>prop</code> argument that gives you a certain proportion of the values:</p>
+<div class="ex">
+<p>The code below outputs the <strong>shortest 1%</strong> of characters in star wars.</p>
+<div class="cell">
+<div class="sourceCode" id="cb14" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">starwars</span>, </span>
+<span>          order_by <span class="op">=</span> <span class="va">height</span>, </span>
+<span>          prop <span class="op">=</span> <span class="fl">0.01</span></span>
+<span>          <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">height</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mass</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">hair_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">skin_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">eye_color</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">birth_year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">sex</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gender</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">homeworld</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
+</tr></thead>
+<tbody><tr class="odd">
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr></tbody>
+</table>
+</div>
+</div>
+</div>
+</section></section></section><section id="select-pick-columns" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="select-pick-columns">
+<span class="header-section-number">3.4</span> <code>select()</code>: Pick columns</h2>
+<p>Sometimes, we don’t want to work with a set of 50 variables when we’re only interested in 5. When that happens, we might be able to pick the variables we want by index (e.g.&nbsp;<code>df[, c(1, 3, 5)]</code>), but this can get tedious.</p>
+<p>In <code>dplyr</code>, the function to pick a few columns is <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>. The syntax from the help file (<code><a href="https://dplyr.tidyverse.org/reference/select.html">?select</a></code>) looks deceptively simple.</p>
+<blockquote class="blockquote">
+<p>select(.data, …)</p>
+</blockquote>
+<p>So as with just about every other tidyverse function, the first argument in a select statement is the data (<code>.data =</code>). After that, though, you can put just about anything that R can interpret. <code>...</code> means something along the lines of “put in any additional arguments that make sense in context or might be passed on to other functions”.</p>
+<p>So what can go in there?</p>
+
+<details class="note"><summary>
+An exhaustive(?) list of ways to select variables in <code>dplyr</code>
+</summary><p>First, dplyr aims to work with standard R syntax, making it intuitive (and also, making it work with variable names instead of just variable indices).<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a><br>
+Most <code>dplyr</code> commands work with “bare” variable names - you don’t need to put the variable name in quotes to reference it. There are a few exceptions to this rule, but they’re very explicitly exceptions.</p>
+<ul>
+<li><p><code>var3:var5</code>: <code>select(df, var3:var5)</code> will give you a data frame with columns var3, anything between var3 and var 5, and var5</p></li>
+<li>
+<p><code>!(&lt;set of variables&gt;)</code> will give you any columns that aren’t in the set of variables in parentheses</p>
+<ul>
+<li>
+<code>(&lt;set of vars 1&gt;) &amp; (&lt;set of vars 2&gt;)</code> will give you any variables that are in both set 1 and set 2. <code>(&lt;set of vars 1&gt;) | (&lt;set of vars 2&gt;)</code> will give you any variables that are in either set 1 or set 2.</li>
+<li>
+<code><a href="https://rdrr.io/r/base/c.html">c()</a></code> combines sets of variables.</li>
+</ul>
+</li>
+</ul>
+<p><code>dplyr</code> also defines a lot of variable selection “helpers” that can be used inside <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> statements. These statements work with bare column names (so you don’t have to put quotes around the column names when you use them).</p>
+<ul>
+<li>
+<code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code> matches all variables</li>
+<li>
+<code><a href="https://tidyselect.r-lib.org/reference/everything.html">last_col()</a></code> matches the last variable. <code>last_col(offset = n)</code> selects the n-th to last variable.</li>
+<li>
+<code>starts_with("xyz")</code> will match any columns with names that start with xyz. Similarly, <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with()</a></code> does exactly what you’d expect as well.</li>
+<li>
+<code>contains("xyz")</code> will match any columns with names containing the literal string “xyz”. Note, <code>contains</code> does not work with regular expressions (you don’t need to know what that means right now).</li>
+<li>
+<code>matches(regex)</code> takes a regular expression as an argument and returns all columns matching that expression.</li>
+<li>
+<code>num_range(prefix, range)</code> selects any columns that start with prefix and have numbers matching the provided numerical range.</li>
+</ul>
+<p>There are also selectors that deal with character vectors. These can be useful if you have a list of important variables and want to just keep those variables.</p>
+<ul>
+<li>
+<code>all_of(char)</code> matches all variable names in the character vector <code>char</code>. If one of the variables doesn’t exist, this will return an error.</li>
+<li>
+<code>any_of(char)</code> matches the contents of the character vector <code>char</code>, but does not throw an error if the variable doesn’t exist in the data set.</li>
+</ul>
+<p>There’s one final selector -</p>
+<ul>
+<li>
+<code><a href="https://tidyselect.r-lib.org/reference/where.html">where()</a></code> applies a function to each variable and selects those for which the function returns TRUE. This provides a lot of flexibility and opportunity to be creative.</li>
+</ul></details><p>Let’s try these selector functions out and see what we can accomplish!</p>
+<!-- ::: ex -->
+<!-- We'll start out with the `nycflights13` package, which contains information on all flights that left a NYC airport to destinations in the US, Puerto Rico, and the US Virgin Islands. -->
+<!-- ```{r nycflightsinstall} -->
+<!-- library(nycflights13) -->
+<!-- data(flights) -->
+<!-- str(flights) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- <br> -->
+<!-- ::: note -->
+<!-- You might want to try out your data visualization and exploratory data analysis skills from the previous module to see what you can find out about the data set, before seeing how `select()` works. -->
+<!-- ::: -->
+<div class="ex">
+<p>Starting simple, let’s only subset and keep only the following variables from the <code>starwars</code> data set: <code>name</code>, <code>height</code>, <code>mass</code>, <code>birth_year</code>, <code>species</code>, and <code>homeworld</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb15" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">starwars</span>, <span class="va">name</span>, <span class="va">height</span>, <span class="va">mass</span>, <span class="va">birth_year</span>, <span class="va">species</span>, <span class="va">homeworld</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">height</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mass</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">birth_year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">homeworld</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Luke Skywalker</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: left;">Tatooine</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C-3PO</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">112.0</td>
+<td style="text-align: left;">Droid</td>
+<td style="text-align: left;">Tatooine</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R2-D2</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">33.0</td>
+<td style="text-align: left;">Droid</td>
+<td style="text-align: left;">Naboo</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Darth Vader</td>
+<td style="text-align: right;">202</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: right;">41.9</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: left;">Tatooine</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Leia Organa</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: left;">Alderaan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Owen Lars</td>
+<td style="text-align: right;">178</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">52.0</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: left;">Tatooine</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Beru Whitesun Lars</td>
+<td style="text-align: right;">165</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">47.0</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: left;">Tatooine</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R5-D4</td>
+<td style="text-align: right;">97</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">Droid</td>
+<td style="text-align: left;">Tatooine</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Biggs Darklighter</td>
+<td style="text-align: right;">183</td>
+<td style="text-align: right;">84</td>
+<td style="text-align: right;">24.0</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: left;">Tatooine</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Obi-Wan Kenobi</td>
+<td style="text-align: right;">182</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">57.0</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: left;">Stewjon</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Since <code>name</code>, <code>height</code>, and <code>mass</code> are next to each other, we could have specified <code>name:mass</code> to tell us to select all of the columns between and including <code>name</code> to <code>mass</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb16" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">starwars</span>, <span class="va">name</span><span class="op">:</span><span class="va">mass</span>, <span class="va">birth_year</span>, <span class="va">species</span>, <span class="va">homeworld</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">height</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mass</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">birth_year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">homeworld</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Luke Skywalker</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: left;">Tatooine</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C-3PO</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">112.0</td>
+<td style="text-align: left;">Droid</td>
+<td style="text-align: left;">Tatooine</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R2-D2</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">33.0</td>
+<td style="text-align: left;">Droid</td>
+<td style="text-align: left;">Naboo</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Darth Vader</td>
+<td style="text-align: right;">202</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: right;">41.9</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: left;">Tatooine</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Leia Organa</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: left;">Alderaan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Owen Lars</td>
+<td style="text-align: right;">178</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">52.0</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: left;">Tatooine</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Beru Whitesun Lars</td>
+<td style="text-align: right;">165</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">47.0</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: left;">Tatooine</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R5-D4</td>
+<td style="text-align: right;">97</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">Droid</td>
+<td style="text-align: left;">Tatooine</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Biggs Darklighter</td>
+<td style="text-align: right;">183</td>
+<td style="text-align: right;">84</td>
+<td style="text-align: right;">24.0</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: left;">Tatooine</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Obi-Wan Kenobi</td>
+<td style="text-align: right;">182</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">57.0</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: left;">Stewjon</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>The select column is also useful for reordering the variables in your data set.</p>
+<p>:::</p>
+<p>Perhaps we want the <code>birth_year</code>, <code>sex</code>, <code>gender</code>, <code>homeworld</code>, and <code>species</code> to follow the <code>name</code> of the star wars character. We can use the <code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code> function to specify we want all the other variables to follow.</p>
+<div class="cell">
+<div class="sourceCode" id="cb17" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">starwars</span>, <span class="va">name</span>, <span class="va">birth_year</span><span class="op">:</span><span class="va">species</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">birth_year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">sex</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gender</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">homeworld</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">height</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mass</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">hair_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">skin_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">eye_color</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Luke Skywalker</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">blond</td>
+<td style="text-align: left;">fair</td>
+<td style="text-align: left;">blue</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C-3PO</td>
+<td style="text-align: right;">112.0</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Droid</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">gold</td>
+<td style="text-align: left;">yellow</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R2-D2</td>
+<td style="text-align: right;">33.0</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Naboo</td>
+<td style="text-align: left;">Droid</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">white, blue</td>
+<td style="text-align: left;">red</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Darth Vader</td>
+<td style="text-align: right;">41.9</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: right;">202</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">yellow</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Leia Organa</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">feminine</td>
+<td style="text-align: left;">Alderaan</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">brown</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Owen Lars</td>
+<td style="text-align: right;">52.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: right;">178</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: left;">brown, grey</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">blue</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Beru Whitesun Lars</td>
+<td style="text-align: right;">47.0</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">feminine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: right;">165</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">blue</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R5-D4</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Droid</td>
+<td style="text-align: right;">97</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">white, red</td>
+<td style="text-align: left;">red</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Biggs Darklighter</td>
+<td style="text-align: right;">24.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: right;">183</td>
+<td style="text-align: right;">84</td>
+<td style="text-align: left;">black</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">brown</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Obi-Wan Kenobi</td>
+<td style="text-align: right;">57.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Stewjon</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: right;">182</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">auburn, white</td>
+<td style="text-align: left;">fair</td>
+<td style="text-align: left;">blue-gray</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Note that <code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code> won’t duplicate columns you’ve already added.</p>
+<p>:::</p>
+<p>So for now, at least in R, you know how to cut your data down to size rowwise (with <code>filter</code>) and column-wise (with <code>select</code>).</p>
+<details class="note"><summary>
+dplyr::relocate
+</summary><p>Another handy <code>dplyr</code> function is <code>relocate</code>; while you definitely can do this operation in many, many different ways, it may be simpler to do it using relocate. But, I’m covering relocate here mostly because it also comes with this amazing cartoon illustration.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="https://github.com/allisonhorst/stats-illustrations/raw/main/rstats-artwork/dplyr_relocate.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">relocate lets you rearrange columns (by Allison Horst)</figcaption></figure>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb18" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># move numeric variables to the front</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">starwars</span>, </span>
+<span>         <span class="fu"><a href="https://tidyselect.r-lib.org/reference/where.html">where</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span></span>
+<span>         <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code># A tibble: 87 × 11
+   height  mass birth_year name     hair_color skin_color eye_color sex   gender
+    &lt;int&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt; 
+ 1    172    77       19   Luke Sk… blond      fair       blue      male  mascu…
+ 2    167    75      112   C-3PO    &lt;NA&gt;       gold       yellow    none  mascu…
+ 3     96    32       33   R2-D2    &lt;NA&gt;       white, bl… red       none  mascu…
+ 4    202   136       41.9 Darth V… none       white      yellow    male  mascu…
+ 5    150    49       19   Leia Or… brown      light      brown     fema… femin…
+ 6    178   120       52   Owen La… brown, gr… light      blue      male  mascu…
+ 7    165    75       47   Beru Wh… brown      light      blue      fema… femin…
+ 8     97    32       NA   R5-D4    &lt;NA&gt;       white, red red       none  mascu…
+ 9    183    84       24   Biggs D… black      light      brown     male  mascu…
+10    182    77       57   Obi-Wan… auburn, w… fair       blue-gray male  mascu…
+# ℹ 77 more rows
+# ℹ 2 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;</code></pre>
+</div>
+</div>
+</details></section><section id="mutate-add-and-transform-variables" class="level2 page-columns page-full" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="mutate-add-and-transform-variables">
+<span class="header-section-number">3.5</span> <code>mutate()</code>: Add and transform variables</h2>
+<p>Up to this point, we’ve been primarily focusing on how to decrease the dimensionality of our data set in various ways (i.e., remove rows or columns from the original data set). But frequently, we also need to add columns for derived measures (e.g.&nbsp;BMI from weight and height information), change units, and replace missing or erroneous observations. The tidyverse verb for this is <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/QWyUnQ2EzPs" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div></div><div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="https://github.com/allisonhorst/stats-illustrations/raw/main/rstats-artwork/dplyr_mutate.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Mutate (by Allison Horst)</figcaption></figure>
+</div>
+<div class="ex">
+<p>Let’s create a new variable, <code>BMI</code> calculated from existing columns – <code>mass</code>/<code>height</code><span class="math inline">\(^2\)</span></p>
+<div class="cell">
+<div class="sourceCode" id="cb20" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">starwars</span>, </span>
+<span>       BMI <span class="op">=</span> <span class="va">mass</span><span class="op">/</span><span class="va">height</span><span class="op">^</span><span class="fl">2</span>, </span>
+<span>       .after <span class="op">=</span> <span class="va">mass</span></span>
+<span>       <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">height</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mass</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">BMI</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">hair_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">skin_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">eye_color</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">birth_year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">sex</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gender</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">homeworld</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Luke Skywalker</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">0.0026028</td>
+<td style="text-align: left;">blond</td>
+<td style="text-align: left;">fair</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C-3PO</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">0.0026892</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">gold</td>
+<td style="text-align: left;">yellow</td>
+<td style="text-align: right;">112.0</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Droid</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R2-D2</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">0.0034722</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">white, blue</td>
+<td style="text-align: left;">red</td>
+<td style="text-align: right;">33.0</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Naboo</td>
+<td style="text-align: left;">Droid</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Darth Vader</td>
+<td style="text-align: right;">202</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: right;">0.0033330</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">yellow</td>
+<td style="text-align: right;">41.9</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Leia Organa</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">0.0021778</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">feminine</td>
+<td style="text-align: left;">Alderaan</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Owen Lars</td>
+<td style="text-align: right;">178</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">0.0037874</td>
+<td style="text-align: left;">brown, grey</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">52.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Beru Whitesun Lars</td>
+<td style="text-align: right;">165</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">0.0027548</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">47.0</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">feminine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R5-D4</td>
+<td style="text-align: right;">97</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">0.0034010</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">white, red</td>
+<td style="text-align: left;">red</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Droid</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Biggs Darklighter</td>
+<td style="text-align: right;">183</td>
+<td style="text-align: right;">84</td>
+<td style="text-align: right;">0.0025083</td>
+<td style="text-align: left;">black</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: right;">24.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Obi-Wan Kenobi</td>
+<td style="text-align: right;">182</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">0.0023246</td>
+<td style="text-align: left;">auburn, white</td>
+<td style="text-align: left;">fair</td>
+<td style="text-align: left;">blue-gray</td>
+<td style="text-align: right;">57.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Stewjon</td>
+<td style="text-align: left;">Human</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>By default, the new variable will be tacked on to the end of the data set as the last column. Using <code>.after</code> or <code>.before</code> arguments allows you to place the new variable in the middle of the data set.</p>
+</div>
+<p>We can combine the <code>mutate</code> function with other variables such as <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>.</p>
+<div class="ex">
+<p>Let’s replace the species variable to indicate <code>Human</code> or <code>Not Human</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb21" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">starwars</span>, </span>
+<span>       species <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Human"</span>, </span>
+<span>                        <span class="va">species</span>, </span>
+<span>                        <span class="st">"Not Human"</span></span>
+<span>                        <span class="op">)</span></span>
+<span>       <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">height</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mass</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">hair_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">skin_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">eye_color</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">birth_year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">sex</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gender</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">homeworld</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Luke Skywalker</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">blond</td>
+<td style="text-align: left;">fair</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C-3PO</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">gold</td>
+<td style="text-align: left;">yellow</td>
+<td style="text-align: right;">112.0</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Not Human</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R2-D2</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">white, blue</td>
+<td style="text-align: left;">red</td>
+<td style="text-align: right;">33.0</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Naboo</td>
+<td style="text-align: left;">Not Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Darth Vader</td>
+<td style="text-align: right;">202</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">yellow</td>
+<td style="text-align: right;">41.9</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Leia Organa</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">feminine</td>
+<td style="text-align: left;">Alderaan</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Owen Lars</td>
+<td style="text-align: right;">178</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: left;">brown, grey</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">52.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Beru Whitesun Lars</td>
+<td style="text-align: right;">165</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">47.0</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">feminine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R5-D4</td>
+<td style="text-align: right;">97</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">white, red</td>
+<td style="text-align: left;">red</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Not Human</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Biggs Darklighter</td>
+<td style="text-align: right;">183</td>
+<td style="text-align: right;">84</td>
+<td style="text-align: left;">black</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: right;">24.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Obi-Wan Kenobi</td>
+<td style="text-align: right;">182</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">auburn, white</td>
+<td style="text-align: left;">fair</td>
+<td style="text-align: left;">blue-gray</td>
+<td style="text-align: right;">57.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Stewjon</td>
+<td style="text-align: left;">Human</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>The learning curve here isn’t actually knowing how to assign new variables (though that’s important). The challenge comes when you want to do something <em>new</em> and have to figure out how to e.g.&nbsp;use find and replace in a string, or work with dates and times, or recode variables. We will cover special data types like these in a few weeks!</p>
+<details class="note"><summary>
+Mutate and new challenges
+</summary><p>I’m not going to be able to teach you how to handle every mutate statement task you’ll come across (people invent new ways to screw up data all the time!) but my goal is instead to teach you how to <em>read documentation</em> and <em>Google things intelligently</em>, and to <em>understand what you’re reading</em> enough to actually implement it. This is something that comes with practice (and lots of Googling, stack overflow searches, etc.).</p>
+<p>Google and StackOverflow are very common and important programming skills!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/data-transformations/twitter-google-stackoverflow.png" class="img-fluid figure-img" alt="A screenshot of a tweet from @madsbrodt. Tweet text: Googling and StackOverflow'ing is a natural part of programming. Don't think of it as cheating. Knowing what to search for, and which results will fit your given situation is an important skill (flame emoji)."></p>
+<figcaption class="figure-caption"><a href="https://twitter.com/madsbrodt/status/1339127984670773251">Source</a></figcaption></figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/data-transformations/twitter-happy-debugging.png" class="img-fluid figure-img" alt="A screenshot of a tweet from @cszhu. Tweet text: if you're not happy single, you won't be happy in a relationship. true happiness comes from closing 100 chrome tabs after solving an obscure programming bug, not from someone else."></p>
+<figcaption class="figure-caption"><a href="https://twitter.com/cszhu/status/1230954186520461312">Source</a></figcaption></figure>
+</div>
+<p>In this textbook, the examples will expose you to solutions to common problems (or require that you do some basic reading yourself); unfortunately, there are too many common problems for us to work through line-by-line.</p>
+<p>Part of the goal of this textbook is to help you <strong>learn how to read through a package description and evaluate whether the package will do what you want</strong>. We’re going to try to build some of those skills starting now. It would be relatively easy to teach you how to do a set list of tasks, but you’ll be better statisticians and programmers if you learn the skills to solve niche problems on your own.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/data-transformations/twitter-teach-program.png" class="img-fluid figure-img" alt="A screenshot of a tweet from @abt_programming. Tweet text: Give a man a program, frustrate him for a day.Teach a man to program, frustrate him for a lifetime - Muhammad Waseem."></p>
+<figcaption class="figure-caption">Apologies for the noninclusive language, but the sentiment is real. <a href="https://twitter.com/abt_programming/status/459414524303785984">Source</a></figcaption></figure>
+</div>
+</details></section><section id="summarize" class="level2 page-columns page-full" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="summarize">
+<span class="header-section-number">3.6</span> <code>summarize()</code>
+</h2>
+<p>The next verb is one that we’ve already implicitly seen in action: <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> takes a data frame with potentially many rows of data and reduces it down to one row of data using some function.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/mIGu8gxx3CM" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div></div><div class="ex">
+<p>Here (in a trivial example), I compute the overall average height of a star war’s character.</p>
+<div class="cell">
+<div class="sourceCode" id="cb22" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">starwars</span>,</span>
+<span>          avg_height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">height</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span>          <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code># A tibble: 1 × 1
+  avg_height
+       &lt;dbl&gt;
+1       175.</code></pre>
+</div>
+</div>
+<p>The <code>na.rm = T</code> argument says to ignore/remove the missing (NA) values in calculating the average.</p>
+</div>
+<p>The real power of summarize, though, is in combination with <code>group_by</code>. We’ll see more summarize examples, but it’s easier to make good examples when you have all the tools - it’s hard to demonstrate how to use a hammer if you don’t also have a nail.</p>
+</section><section id="group_by-group-by-power" class="level2 page-columns page-full" data-number="3.7"><h2 data-number="3.7" class="anchored" data-anchor-id="group_by-group-by-power">
+<span class="header-section-number">3.7</span> <code>group_by()</code> Group By + (?) = Power!</h2>
+<p>Frequently, we have data that is more specific than the data we need - for instance, I may have observations of the temperature at 15-minute intervals, but I might want to record the daily high and low value. To do this, I need to</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/3SWgEe9wJSE" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div></div><ol type="1">
+<li>split my data set into smaller data sets - one for each day</li>
+<li>compute summary values for each smaller data set</li>
+<li>put my summarized data back together into a single data set</li>
+</ol>
+<p>This is known as the <code>split-apply-combine</code> <span class="citation" data-cites="wickhamSplitapplycombineStrategyData2011"><span>“Group by: Split-Apply-Combine”</span> (<a href="#ref-GroupSplitapplycombine2022" role="doc-biblioref">2022</a>)</span> or sometimes, <code>map-reduce</code> <span class="citation" data-cites="deanMapReduceSimplifiedData2008">(<a href="#ref-deanMapReduceSimplifiedData2008" role="doc-biblioref">Dean and Ghemawat 2008</a>)</span> strategy (though map-reduce is usually on specifically large data sets and performed in parallel).</p>
+<p>In tidy parlance, <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> is the verb that accomplishes the first task. <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> accomplishes the second task and implicitly accomplishes the third as well.</p>
+<div class="ex">
+<p>Let’s see how things change when we calculate the average height of star wars characters by their species.</p>
+<div class="cell">
+<div class="sourceCode" id="cb24" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">starwars</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">height</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code># A tibble: 38 × 2
+   species   height
+   &lt;chr&gt;      &lt;dbl&gt;
+ 1 Aleena       79 
+ 2 Besalisk    198 
+ 3 Cerean      198 
+ 4 Chagrian    196 
+ 5 Clawdite    168 
+ 6 Droid       131.
+ 7 Dug         112 
+ 8 Ewok         88 
+ 9 Geonosian   183 
+10 Gungan      209.
+# ℹ 28 more rows</code></pre>
+</div>
+</div>
+<p>The next section <a href="#pipe">Pipe Operator</a> will introduce and talk about what the <code>|&gt;</code> symbol is, this example is just hard to show without it!</p>
+</div>
+<p><br></p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/main/rstats-blanks/ungroup_blank.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">The ungroup() command is just as important as the group_by() command! (by Allison Horst)</figcaption></figure>
+</div>
+</div></div><p>When you <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> a variable, your result carries this grouping with it. <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> will remove one layer of grouping (by default), but if you ever want to return to a completely ungrouped data set, you should use the <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code> command.</p>
+</section><section id="pipe" class="level2 page-columns page-full" data-number="3.8"><h2 data-number="3.8" class="anchored" data-anchor-id="pipe">
+<span class="header-section-number">3.8</span> Pipe Operator</h2>
+<p>The powerhouse of the <code>tidyverse</code> package comes from the pipe operator. This specifies a sequence of operations (kind of like how we layered our graphics in <code>ggplot2</code>). The output from the previous line (often a subset) is automatically passed into the first argument of the next line (remember, data first! <code>.data =</code>).</p>
+<p>The native pipe operator is <code>|&gt;</code>, but the magrittr pipe operator <code>%&gt;%</code> was used up until recently (and still is often used!).</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/RhHMgkUdhdk" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p><br></p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/QLtiC4LCxSo" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div></div><div class="note">
+<p>The keyboard shortcut for adding a pipe operator to your code is <code>Ctrl/Cmd</code> + <code>Shift</code> + <code>M</code>.</p>
+<p>However, if you want to use this shortcut for the native pipe, you need to change your global R settings:</p>
+<p><code>Tools &gt; Global Options &gt; Code &gt; checkbox Use native pipe operator, |&gt;</code></p>
+</div>
+<p><br></p>
+<div class="go-read">
+<p>(required) Read more about the pipe operators at <a href="https://r4ds.hadley.nz/workflow-pipes.html">Workflow Pipes</a>.</p>
+<p><br></p>
+</div>
+<p><br></p>
+<p>Let’s combine all of our new skills with the pipe operator!</p>
+<div class="ex">
+<ol type="1">
+<li>Use <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> to subset our data to only <code>Human</code>’s and <code>Droid</code>’s</li>
+<li>Use <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> to create the new variable, <code>BMI</code>,</li>
+<li>Use <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> to create groups by species,</li>
+<li>Use <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> to calculate the mean and standard deviation of <code>BMI</code>
+</li>
+<li>Use <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> to calculate the average plus/minus one standard deviation.</li>
+</ol>
+<p>We could either assign this new data set that has summary values of BMI by species or we could pipe the data set directly into a plot – recall the first argument for <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> is <code>data =</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb26" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">starwars</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Human"</span>, <span class="st">"Droid"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>BMI <span class="op">=</span> <span class="va">mass</span><span class="op">/</span><span class="va">height</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>avg_BMI <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">BMI</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>            sd_BMI <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">BMI</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>            <span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>BMI_1sd_below <span class="op">=</span> <span class="va">avg_BMI</span> <span class="op">-</span> <span class="va">sd_BMI</span>,</span>
+<span>         BMI_1sd_above <span class="op">=</span> <span class="va">avg_BMI</span> <span class="op">+</span> <span class="va">sd_BMI</span></span>
+<span>         <span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">species</span>, </span>
+<span>             y <span class="op">=</span> <span class="va">avg_BMI</span><span class="op">)</span></span>
+<span>         <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">BMI_1sd_below</span>,</span>
+<span>                    ymax <span class="op">=</span> <span class="va">BMI_1sd_above</span><span class="op">)</span>,</span>
+<span>                width <span class="op">=</span> <span class="fl">0.2</span></span>
+<span>                <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Species"</span>, </span>
+<span>       subtitle <span class="op">=</span> <span class="st">"Average BMI"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.title.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="03-data-cleaning-and-manipulation_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>As with ggplot, formatting your <code>dplyr</code> code pipelines so it is readable will help both you and me!</p>
+</div>
+<p><br></p>
+</section><section id="checkin3-1" class="level2 unnumbered check-in"><h2 class="unnumbered anchored" data-anchor-id="checkin3-1">Check-in 3.1: Data Wrangling</h2>
+<p><strong>Q1: Arrange the pipeline</strong></p>
+<p>Working with the Palmer Penguins data set:</p>
+<div class="cell">
+<div class="sourceCode" id="cb27" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code># A tibble: 6 × 8
+  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+1 Adelie  Torgersen           39.1          18.7               181        3750
+2 Adelie  Torgersen           39.5          17.4               186        3800
+3 Adelie  Torgersen           40.3          18                 195        3250
+4 Adelie  Torgersen           NA            NA                  NA          NA
+5 Adelie  Torgersen           36.7          19.3               193        3450
+6 Adelie  Torgersen           39.3          20.6               190        3650
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>Suppose we would like to study how the ratio of penguin body mass to flipper size differs across the species. Arrange the following steps into an order that accomplishes this goal (assuming the steps are connected with a |&gt; or a %&gt;%).</p>
+<p><code>arrange(med_mass_flipper_ratio)</code></p>
+<p><code>group_by(species)</code></p>
+<p><code>penguins</code></p>
+<p><code>summarize(med_mass_flipper_ratio = median(mass_flipper_ratio))</code></p>
+<p><code>mutate(mass_flipper_ratio = body_mass_g / flipper_length_mm)</code></p>
+<p><br></p>
+<p><strong>Q2 - Q7: <code>dplyr</code> pipelines</strong></p>
+<p>Consider the base R code below.</p>
+<div class="cell">
+<div class="sourceCode" id="cb29" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">[</span><span class="va">penguins</span><span class="op">$</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span>, <span class="op">]</span><span class="op">$</span><span class="va">body_mass_g</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 3700.662</code></pre>
+</div>
+</div>
+<p>For each of the following <code>dplyr</code> pipelines, indicate which of the following is true:</p>
+<ol type="i">
+<li><p>It returns the exact same thing as the (above) base R code</p></li>
+<li><p>It returns the correct information, but the wrong object type</p></li>
+<li><p>It returns incorrect information</p></li>
+<li><p>It returns an error</p></li>
+</ol>
+<p><strong>Q2</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb31" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span>  <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="st">"body_mass_g"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="st">"Adelie"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span>na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Q3</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb32" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">body_mass_g</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Q4</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb33" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span>na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Q5</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb34" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span>na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Q6</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb35" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span>na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Q7</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb36" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">body_mass_g</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><p><br></p>
+<section id="additional-resources" class="level2 unnumbered learn-more"><h2 class="unnumbered anchored" data-anchor-id="additional-resources">Additional Resources</h2>
+<ul>
+<li><p><a href="https://stat545.com/dplyr-intro.html">Introduction to dplyr</a> and <a href="https://stat545.com/dplyr-single.html">Single Table dplyr functions</a></p></li>
+<li><p>R for Data Science: <a href="https://r4ds.hadley.nz/data-transform.html">Data Transformations</a></p></li>
+<li><p>Modern Dive: <a href="https://moderndive.com/3-wrangling.html#wrangling">Data Wrangling</a></p></li>
+<li><p>Additional practice exercises: <a href="https://stat579-at-isu.github.io/materials/03_tidyverse/01_dplyr.html#19">Intro to the tidyverse</a>, <a href="https://stat579-at-isu.github.io/materials//03_tidyverse/02_dplyr-examples.html">group_by + summarize examples</a>, <a href="https://stat579-at-isu.github.io/materials//03_tidyverse/03_dplyr-examples.html#1">group_by + mutate examples</a> (from a similar class at Iowa State)</p></li>
+<li><p><a href="https://www.youtube.com/playlist?list=PL19ev-r1GBwkuyiwnxoHTRC8TTqP8OEi8">Videos of analysis of new data from Tidy Tuesday</a> - may include use of other packages, but almost definitely includes use of <code>dplyr</code> as well.</p></li>
+</ul></section><p><br></p>
+<section id="pa-3-identify-the-mystery-college" class="level2 unnumbered tryitout"><h2 class="unnumbered anchored" data-anchor-id="pa-3-identify-the-mystery-college">PA 3: Identify the Mystery College</h2>
+<p>Today you will be using the <code>dplyr</code> package to clean a data set and then using that cleaned data set to figure out what college Ephelia has been accepted to.</p>
+<p>Visit <a href="https://earobinson95.github.io/stat331-calpoly/practice-activities/PA3-find-the-mystery-college">PA 3: Identify the Mystery College</a> for instructions.</p>
+<p>Submit the full name of the college Ephelia will attend to the Canvas Quiz.</p>
+</section><section id="references" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-deanMapReduceSimplifiedData2008" class="csl-entry" role="listitem">
+Dean, Jeffrey, and Sanjay Ghemawat. 2008. <span>“<span>MapReduce</span>: Simplified Data Processing on Large Clusters.”</span> <em>Communications of the ACM</em> 51 (1): 107–13. <a href="https://doi.org/10.1145/1327452.1327492">https://doi.org/10.1145/1327452.1327492</a>.
+</div>
+<div id="ref-GroupSplitapplycombine2022" class="csl-entry" role="listitem">
+<span>“Group by: Split-Apply-Combine.”</span> 2022. In <em>Pandas 1.4.3 Documentation</em>. Python. <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html">https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html</a>.
+</div>
+<div id="ref-wickhamSplitapplycombineStrategyData2011" class="csl-entry" role="listitem">
+Wickham, Hadley. 2011. <span>“The Split-Apply-Combine Strategy for Data Analysis.”</span> <em>Journal of Statistical Software</em> 40: 1–29.
+</div>
+</div>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>See <a href="https://twitter.com/JennyBryan/status/722954354198597632">this twitter thread</a> for some horror stories. <a href="https://twitter.com/jengolbeck/status/1153064308483510272?s=20">This tweet</a> is also pretty good at showing one type of messiness.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The philosophy includes a preference for pipes, but this preference stems from the belief that code should be readable in the same way that text is readable.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>It accomplishes this through the magic of quasiquotation, which we will not cover in this course because it’s basically witchcraft.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./02-tidy-data-and-basics-of-graphics.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tidy Data &amp; Basics of Graphics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+<script src="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.js" defer="true"></script>
+</body></html>
