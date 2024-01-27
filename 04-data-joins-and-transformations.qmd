@@ -750,20 +750,13 @@ full_join(course_info) |>
 <br>
 
 ::: tryitout
-## PA COMING SOON!
+## PA 4.1: Government Spending {-}
+
+This week you will be tidying untidy data to explore the relationship between countries of the world and military spending. You will then be using this cleaned data set to create a visualization by using properties of factors to enhance the order of your plots.
+
+Visit [PA 4: Government Spending](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA4-government-spending.html) for instructions.
+
+Submit your answer to the Canvas Quiz.
 :::
-
-<!-- ::: tryitout -->
-<!-- ## PA 4.1: Government Spending {-} -->
-
-<!-- This week you will be tidying untidy data to explore the relationship between countries of the world and military spending. You will then be using this cleaned data set to create a visualization by using properties of factors to enhance the order of your plots. -->
-
-<!-- Visit [PA 4: Government Spending](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA4-government-spending.html) for instructions. -->
-
-<!-- Submit your answers to associated questions to the Canvas quiz. -->
-
-<!-- 1. What four regions were NOT removed from the military_clean data set? -->
-<!-- 2. What year was the second largest military expenditure? What country had this expenditure? -->
-<!-- ::: -->
 
 ### References {-}
