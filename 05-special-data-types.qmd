@@ -6,7 +6,8 @@ execute:
 editor: source
 ---
 
-```{r echo=FALSE}
+```{r}
+#| echo: false
 bytes <- file.size("05-special-data-types.qmd")
 words <- bytes/10
 minutes <- words/200
@@ -14,7 +15,8 @@ minutes <- words/200
 
 # Special Data Types
 
-```{r fa-setup, include=FALSE}
+```{r}
+#| include: false
 library(quarto)
 library(fontawesome)
 library(ggplot2)
@@ -22,27 +24,25 @@ fa_html_dependency()
 library(knitr)
 library(kableExtra)
 library(tidyverse)
-# htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
 `r fa("book-open")` Reading: `r ceiling(minutes)` minute(s) at 200 WPM + [r4ds](https://r4ds.hadley.nz/) required readings
 
 `r fa("video")` Videos: 32 minutes
 
-## Objectives {#ch5-objectives .unnumbered}
+## Objectives {- #ch5-objectives}
 
 This chapter is heavily outsourced to [r4ds](https://r4ds.hadley.nz/) as they do a much better job at providing examples and covering the extensive functionality of each of the packages than I myself would ever be able to.
 
-+ Use `forcats` to reorder and relabel factor variables in data cleaning steps and data visualizations.
 + Clean and extract information from character strings using `stringr`
 + Work with date and time variables using `lubridate`
 
 <br>
 
 ::: check-in
-## Check-ins {#ch5-checkins .unnumbered}
+## Check-ins {- #ch5-checkins}
 
-There are three check-ins for this week:
+There are two check-ins for this week:
 
 + [Check-in 5.1: Functions from `stringr`](#checkin5-1)
 + [Check-in 5.2: Functions from `lubridate`](#checkin5-2)
@@ -55,11 +55,7 @@ There are three check-ins for this week:
 Nearly always, when multiple variables are stored in a single column, they are stored as character variables. There are many different "levels" of working with strings in programming, from simple find-and-replaced of fixed (constant) strings to regular expressions, which are extremely powerful (and extremely complicated).
 
 ::: column-margin
-::: youtube-video-container
-
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/Oo_MtXwpi2Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-:::
+{{< video https://www.youtube.com/embed/Oo_MtXwpi2Q >}} 
 :::
 
 > Some people, when confronted with a problem, think "I know, I'll use regular expressions." Now they have two problems. - Jamie Zawinski
@@ -470,15 +466,11 @@ Read at least through **section 17.4.1**.
 In order to fill in an important part of our toolbox, we need to learn how to work with date variables. These variables feel like they should be simple and intuitive given we all work with schedules and calendars everyday. However, there are little nuances that we will learn to make working with dates and times easier.
 
 ::: column-margin
-::: youtube-video-container
-
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/SEPjN2AJqbo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-:::
+{{< video https://www.youtube.com/embed/SEPjN2AJqbo >}} 
 :::
 
 ::: go-read
-(Required) GO read about dates and times in [r4ds](https://r4ds.hadley.nz/datetimes.html).
+(Required) Go read about dates and times in [r4ds](https://r4ds.hadley.nz/datetimes.html).
 <br>
 :::
 
@@ -546,9 +538,7 @@ Visit [PA 5.1: Zodiac Killer](https://earobinson95.github.io/stat331-calpoly/pra
 
 ::: column-margin
 ::: note
-
-We will have two practice activities this week as opposed to our usual one. The first practice activity, PA 5.1 Zodiac Killer will be completed in class on Monday and due Wednesday morning. The second practice activity, PA 5.2 Scrambled Message will be completed in class on Wednesday and due Friday morning.
-
+We will have two practice activities this week as opposed to our usual one. The first practice activity, PA 5.1 Zodiac Killer will be completed in class on Tuesday and due Thursday morning. The second practice activity, PA 5.2 Scrambled Message will be completed in class on Thursday and due Monday morning.
 :::
 :::
 
