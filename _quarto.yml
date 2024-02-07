@@ -14,7 +14,7 @@ book:
     - 03-data-cleaning-and-manipulation.qmd
     - 04-data-joins-and-transformations.qmd
     - 05-special-data-types.qmd
-    # - 06-version-control.qmd
+    - 06-version-control.qmd
     # - 07-functions.qmd
     # - 08-functional-programming.qmd
     # - 09-statistical-modeling-and-simulation.qmd
