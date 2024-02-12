@@ -6,7 +6,9 @@ execute:
 editor: source
 ---
 
-```{r echo=FALSE}
+```{r}
+#| echo: false
+
 bytes <- file.size("07-functions.qmd")
 words <- bytes/10
 minutes <- words/200
@@ -14,7 +16,9 @@ minutes <- words/200
 
 # Writing Functions
 
-```{r fa-setup, include=FALSE}
+```{r fa-setup}
+#| include: false
+
 library(quarto)
 library(fontawesome)
 library(ggplot2)
@@ -22,14 +26,13 @@ fa_html_dependency()
 library(knitr)
 library(kableExtra)
 library(tidyverse)
-# htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
 `r fa("book-open")` Reading: `r ceiling(minutes)` minute(s) at 200 WPM
 
 `r fa("video")` Videos: 20 minute(s)
 
-## Objectives {#ch7-objectives .unnumbered}
+## Objectives {- #ch7-objectives}
 
 + Write your own functions in R
 + Make good decisions about function arguments and returns
@@ -37,7 +40,7 @@ library(tidyverse)
 + Extend your use of good R coding style
 
 ::: check-in
-## Check-ins {#ch7-checkins .unnumbered}
+## Check-ins {- #ch7-checkins}
 
 There is one check-in for this week:
 
@@ -63,9 +66,7 @@ If you've written the same code (with a few minor changes, like variable names) 
 
 
 ::: column-margin
-::: youtube-video-container
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/Le2ngDEHaXs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-:::
+{{< video https://www.youtube.com/embed/Le2ngDEHaXs >}} 
 :::
 
 ::: learn-more
@@ -163,10 +164,8 @@ The process for creating a function is important: first, you figure out how to d
 
 ![R syntax for defining functions. Portions of the command that indicate the function name, function scope, and return statement are highlighted.](images/07-writing-functions/Annotating_function_syntax.png)
 
-::: column-margin
-::: youtube-video-container
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/D6NC4_S4m9g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-:::
+::: column-margin'
+{{< video https://www.youtube.com/embed/D6NC4_S4m9g >}} 
 :::
 
 In R, functions are defined (or assigned names) the same as other variables, using `<-`, but we specify the arguments a function takes by using the `function()` statement. The contents of the function are contained within `{` and `}`. If the function returns a value, a `return()` statement can be used; alternately, if there is no return statement, the last computation in the function will be returned.

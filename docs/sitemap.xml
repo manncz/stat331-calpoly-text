@@ -2,34 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/index.html</loc>
-    <lastmod>2024-02-07T17:25:40.838Z</lastmod>
+    <lastmod>2024-02-12T18:14:41.095Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/00-prereading.html</loc>
-    <lastmod>2024-02-07T17:25:40.907Z</lastmod>
+    <lastmod>2024-02-12T18:14:41.141Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/01-introduction.html</loc>
-    <lastmod>2024-02-07T17:25:40.931Z</lastmod>
+    <lastmod>2024-02-12T18:14:41.157Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/02-tidy-data-and-basics-of-graphics.html</loc>
-    <lastmod>2024-02-07T17:25:40.995Z</lastmod>
+    <lastmod>2024-02-12T18:14:41.199Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/03-data-cleaning-and-manipulation.html</loc>
-    <lastmod>2024-02-07T17:25:41.067Z</lastmod>
+    <lastmod>2024-02-12T18:14:41.277Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/04-data-joins-and-transformations.html</loc>
-    <lastmod>2024-02-07T17:25:41.107Z</lastmod>
+    <lastmod>2024-02-12T18:14:41.310Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/05-special-data-types.html</loc>
-    <lastmod>2024-02-07T17:25:41.123Z</lastmod>
+    <lastmod>2024-02-12T18:14:41.327Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/06-version-control.html</loc>
-    <lastmod>2024-02-07T17:25:41.139Z</lastmod>
+    <lastmod>2024-02-12T18:14:41.336Z</lastmod>
+  </url>
+  <url>
+    <loc>https://earobinson95.github.io/stat331-calpoly-text/07-functions.html</loc>
+    <lastmod>2024-02-12T18:14:41.376Z</lastmod>
   </url>
 </urlset>

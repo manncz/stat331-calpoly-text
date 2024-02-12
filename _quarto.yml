@@ -15,7 +15,7 @@ book:
     - 04-data-joins-and-transformations.qmd
     - 05-special-data-types.qmd
     - 06-version-control.qmd
-    # - 07-functions.qmd
+    - 07-functions.qmd
     # - 08-functional-programming.qmd
     # - 09-statistical-modeling-and-simulation.qmd
     # - 10-predictive-checks.qmd
