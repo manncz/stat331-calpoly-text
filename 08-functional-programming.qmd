@@ -161,9 +161,7 @@ You can get a more thorough review of vectors and lists [from Jenny Bryan's purr
 Operations in R are (usually) **vectorized** - that is, by default, they operate on vectors. This is primarily a feature that applies to atomic vectors (and we don't even think about it): 
 
 ::: column-margin
-::: youtube-video-container
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/sxIX9lzPjDQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-:::
+{{< video https://www.youtube.com/embed/sxIX9lzPjDQ >}}
 :::
 
 ```{r purrr-review9}
@@ -187,15 +185,14 @@ result
 That is, we would **apply** or **map** the `+` function to each entry of a and b. For atomic vectors, it's easy to do this by default; with a list, however, we need to be a bit more explicit (because everything that's passed into the function may not be the same type). 
 
 ::: column-margin
-I find the `purrr` package easier to work with, so we won't be working with the base functions in this course. You can find a [side-by-side comparison in the `purrr` tutorial](https://jennybc.github.io/purrr-tutorial/bk01_base-functions.html).
+I find the `purrr` package easier to work with, so we won't be working with the base functions (the *apply* family) in this course. You can find a [side-by-side comparison in the `purrr` tutorial](https://jennybc.github.io/purrr-tutorial/bk01_base-functions.html).
 
 <br>
 
 You can also watch Dr. Theobold's video to learn more:
 
 ::: youtube-video-container
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/NadUAnlrh-M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-:::
+{{< video https://www.youtube.com/embed/NadUAnlrh-M >}} 
 :::
 
 The R package `purrr` (and similar base functions `apply`, `lapply`, `sapply`, `tapply`, and `mapply`) are based on extending "vectorized" functions to a wider variety of vector-like structures. 
@@ -347,407 +344,445 @@ install.packages("purrr")
 library(purrr)
 ```
 
+```{r}
+#| echo: false
+#| eval: true
+library(purrr)
+```
+
 [Download the `purrr` cheatsheet](https://posit.co/wp-content/uploads/2022/10/purrr.pdf).
 :::
 
-
-::: column-margin
-::: youtube-video-container
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/FPD3a6IHO6w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-:::
-:::
-
-### Data Setup
-
-We'll use one of the datasets in the `repurrsive` package, `got_chars`, to start playing with the `map_` series of functions. First, let's export the data from `repurrrsive` to a JSON file that we can read into R.
-
-::: column-margin
-The source data for this example comes from [An API of Ice and Fire](https://anapioficeandfire.com/) and is fairly typical for API (automatic programming interface) data in both cleanliness and complexity.
-:::
-
-```{r export-got-data-py}
-library(repurrrsive) # example data
-data(got_chars)
-
-library(rjson)
-write(toJSON(got_chars), "data/got_chars.json")
-```
-
-```{r purrr-pkg-load}
-library(purrr) # functions for working with lists
-got_chars <- fromJSON(file = "data/got_chars.json")
-```
-
-```{r purrr-demo1}
-length(got_chars)
-got_chars[[1]][1:6] # Only show the first 6 fields
-names(got_chars[[1]]) # How many total fields? names?
-```
-
-It appears that each entry in this 30-item list is a character from Game of Thrones, and there are several sub-fields for each character. 
-
-### Exploring the Data
-
-What characters do we have? How is the data structured?
-
-List data can be incredibly hard to work with because the structure is so flexible. It's important to have a way to visualize the structure of a complex list object: the `View()` command in RStudio is one good way to explore and poke around a list.
-
-::: panel-ex
-
-We can use `purrr::map(x, "name")` to get a list of all characters' names. Since they are all the same type, we could also use an extension of `map()`, `map_chr()`, which will coerce the returned list into a character vector (which may be simpler to operate on). 
-
-::: note
-There are several packages with `map()` functions including functions that are meant to actually plot maps; it generally saves time and effort to just type the function name with the package you want in `package::function` notation. You don't *have* to do so, but if you have a lot of other (non tidyverse, in particular) packages loaded, it will save you a lot of grief.
-:::
-
-```{r purrr-demo2}
-purrr::map(got_chars, "name")[1:5]
-purrr::map_chr(got_chars, "name")[1:5]
-```
-
-Similar shortcuts work to get the nth item in each sub list:
-```{r purrr-demo3}
-purrr::map_chr(got_chars, 4)
-```
-
-Specifying the output type using e.g. `map_chr()` works if each item in the list is an atomic vector of length 1. If the list is more complicated, though, these shortcuts will issue an error:
-
-```{r purrr-demo4, error = T}
-purrr::map(got_chars, "books")[1:5]
-purrr::map_chr(got_chars, "books")[1:5]
-```
-
-What if we want to extract several things? This trick works off of the idea that `[` is a function: that is, the single brackets we used before are actually a special type of function. In R functions, there is often the argument `...`, which is a convention that allows us to pass arguments to other functions that are called within the main function we are using (you'll see ... used in plotting and regression functions frequently as well). 
-
-Here, we use `...` to pass in our list of 3 things we want to pull from each item in the list.
-
-```{r purrr-demo5}
-purrr::map(got_chars, `[`, c("name", "gender", "born"))[1:5]
-```
-
-What if we want this to be a data frame instead? We can use `map_dfr()` to get a data frame that is formed by row-binding each element in the list. 
-
-```{r purrr-demo7}
-purrr::map_dfr(got_chars, `[`, c("name", "gender", "born")) 
-
-# Equivalent to
-purrr::map(got_chars, `[`, c("name", "gender", "born")) |>
-  dplyr::bind_rows()
-```
-
-If we want to more generally convert the entire data set to a data frame, we can use a couple of handy functions to do that: 
-
-- `purrr::transpose` transposes a list, so that x[[1]][[2]] becomes x[[2]][[1]]. This turns the list into a set of columns.
-- `tibble::as_tibble` turns an object into a tibble. This creates a rectangular, data frame like structure
-- `purrr::unnest` takes columns and "ungroups" them, so that each entry in the sub-lists of the column gets a row in the data frame. Here, I've used this to unwrap lists that are all single items so that we can see some of the data. 
-
-```{r}
-got_df <- got_chars |>
-  transpose() |>
-  as_tibble() |>
-  unnest(c("url", "id", "name", "gender", 
-           "culture", "born", "died", "alive", 
-           "father", "mother", "spouse"))
-```
-
-```{r}
-#| echo: false
-head(got_df) |> 
-  knitr::kable("html") |> 
-  kable_styling() |> 
-  kableExtra::scroll_box(height = "600px")
-  
-```
-
-:::
-
-### Map inside Mutate
-
-A very powerful way to work with data is to use a map function inside of a mutate statement: to simplify data and create a new column all in one go. Let's use this to create a more human-readable (though somewhat less "clean") data frame: 
-
-- function to simplify a character list-column, 
-    - replace any 0-length/NULL entries with an empty string
-    - paste all of the entries together, separated by ", "
-    - ensure that the resulting list is coerced to a character vector
-- Then, we can apply the above function to each list column in our data frame.
-
-```{r}
-paste_entries <- function(x) {
-  # Replace any null entries of x with ""
-  x[map_int(x, length) == 0] <- ""
-  
-  map_chr(x, ~paste(., collapse = ", "))
-}
-
-got_df <- got_df |>
-  mutate(across(where(is.list), paste_entries))
-```
-
-### Creating (and Using) List-columns
-
-Data structures in R are typically list-based in one way or another. Sometimes, more complicated data structures are actually lists of lists, or tibbles with a list-column, or other variations on "list within a ____". In combination with `purrr`, this is an *incredibly* powerful setup that can make working with simulations and data very easy.
-
-<details class="ex">
-
-<summary>Example: Benefits of List columns</summary>
-
-Suppose, for instance, I want to simulate some data for modeling purposes, where I can control the number of outliers in the dataset:
-
-```{r list-cols1}
-data_sim <- function(n_outliers = 0) {
-  tmp <- tibble(x = seq(-10, 10, .1),
-                y = rnorm(length(x), mean = x, sd = 1)
-                )
-  
-  
-  outlier_sample <- c(NULL, sample(tmp$x, n_outliers))
-  
-  # Create outliers
-  tmp |> 
-    mutate(
-      is_outlier = x %in% outlier_sample,
-      y = y + is_outlier * sample(c(-1, 1), n(), replace = T) * runif(n(), 5, 10)
-    )
-}
-data_sim()
-```
-
-Now, lets suppose that I want 100 replicates of each of 0, 5, 10, and 20 outliers. 
-
-```{r list-cols2}
-sim <- crossing(rep = 1:100, n_outliers = c(0, 5, 10, 20)) |>
-  mutate(sim_data = purrr::map(n_outliers, data_sim))
-```
-
-I could use `unnest(sim_data)` if I wanted to expand my data a bit to see what I have, but in this case, it's more useful to leave it in its current, compact form. Instead, suppose I fit a linear regression to each of the simulated data sets, and store the fitted linear regression object in a new list-column?
-
-```{r list-cols3}
-sim <- sim |>
-  mutate(reg = purrr::map(sim_data, 
-                          ~lm(data = ., y ~ x)
-                          )
-         )
-```
-
-Here, we use an **anonymous** function in purrr: by using `~{expression}`, we have defined a function that takes the argument `.` (which is just a placeholder). So in our case, we're saying "use the data that I pass in to fit a linear regression of `y` using `x` as a predictor". 
-
-Let's play around a bit with this: We might want to look at our regression coefficients or standard errors to see how much the additional outliers affect us. We could use a fancy package for tidy modeling, such as `broom`, but for now, lets do something a bit simpler and apply the purrr name extraction functions we used earlier.
-
-It can be helpful to examine one of the objects just to see what you're dealing with:
-
-```{r list-cols4}
-str(sim$reg[[1]])
-```
-
-If we pull out the coefficients by name we get a vector of length two. So before we unnest, we need to change that so that R formats it as a row of a data frame.
-
-```{r list-cols5}
-sim$reg[[1]]$coefficients |> 
-  as_tibble_row()
-```
-
-This will make our formatting a lot easier and prevent any duplication that might occur if we unnest a vector that has length > 1. 
-
-```{r list-cols6}
-sim <- sim |>
-  mutate(coefs = purrr::map(reg, "coefficients") |>
-           purrr::map(as_tibble_row))
-
-sim$coefs[1:5]
-```
-
-Then, we can plot our results:
-
-```{r list-cols7}
-sim |>
-  unnest(coefs) |>
-  select(rep, n_outliers, `(Intercept)`, x) |>
-  pivot_longer(-c(rep, n_outliers), 
-               names_to = "coef", 
-               values_to = "value"
-               ) |>
-  ggplot(aes(x = value, 
-             color = factor(n_outliers))
-         ) + 
-  geom_density() + 
-  facet_wrap(~coef, scales = "free_x")
-```
-
-So as there are more and more outliers, the coefficient estimates get a wider distribution, but remain (relatively) centered on the "true" values of 0 and 1, respectively. 
-
-Notice that we keep our data in list column form right up until it is time to actually unnest it - which means that we have at the ready the simulated data, the simulated model, and the conditions under which it was simulated, all in the same data structure. It's a really nice, organized system.
-
-</details>
-
-### Ways to use `map`
-
-There are 3 main use cases for `map` (and its cousins `pmap`, `map2`, etc.):
-
-1. Use with an existing function
-2. Use with an anonymous function, defined on the fly
-3. Use with a formula (which is just a concise way to define an anonymous function)
-
-I'll use a trivial example to show the difference between these options:
-
-```{r map1}
-# An existing function
-res <- tibble(x = 1:10, 
-              y1 = map_dbl(x, log10)
-              )
-
-# An anonymous function
-res <- res |> 
-  mutate(
-    y2 = map_dbl(x, function(z) z^2/10)
-    )
-
-# A formula equivalent to function(z) z^5/(z + 10)
-# the . is the variable you're manipulating
-res <- res |> 
-  mutate(
-    y3 = map_dbl(x, ~.x^5/(.x+10))
-    )
-```
-
-It can be a bit tricky to differentiate between options 2 and 3 in practice - the biggest difference is that you're not using the keyword `function` and your variable is the default placeholder variable `.x` used in the tidyverse. 
-
-::: ex
-### Example {-}
-
-::: panel-tabset
-
-#### Problem
-Create a new column containing a single string of all of the books each character was in. 
-
-To do this, you'll need to collapse the list of books for each character into a single string, which you can do with the `str_flatten()` function and the `collapse` argument. I've copied here for convenience. (The function won't work out of the box, because it was designed to work on each column of a dataframe, and here we'd be applying it to each row.)
-
-```{r map-tryitout1}
-letters[1:10] |> str_flatten(collapse = "|")
-```
-
-Start with this data frame of character names and book list-columns:
-
-```{r map-tryitout2, error = T}
-data(got_chars)
-
-got_df <- tibble(name = map_chr(got_chars, "name"),
-                 id = map_int(got_chars, "id"),
-                 books = map(got_chars, "books")
-                 )
-```
-
-#### Solution
-
-```{r map-tryitout-solution, depends = c("map-tryitout2", "map-tryitout1"), error = T}
-# Define a function
-my_collapse <- function(x){
-  
-  str_flatten(x, collapse = " | ")
-  
-}
-
-data(got_chars)
-
-got_df <- tibble(name = map_chr(got_chars, "name"),
-                 id = map_int(got_chars, "id"),
-                 books = map(got_chars, "books")
-                 )
-
-got_df <- got_df |>
-  mutate(
-    fun_def_res = map_chr(.x = books, 
-                          .f = my_collapse
-                          ),
-    # Here, I don't have to define a function, I just pass my additional 
-    # argument in after the fact (recall ...)
-    fun_base_res = map_chr(.x = books, 
-                           .f = str_flatten, 
-                           collapse = " | "
-                           ),
-    
-    # Here, I can just define a new function without a name and apply it to 
-    # each entry
-    fun_anon_res = map_chr(.x = books, 
-                           .f = function(x) str_flatten(x, collapse = " | ")
-                           ),
-    
-    # And here, I don't even bother to specifically say that I'm defining a 
-    # function, I just apply a formula to each entry
-    fun_formula_res = map_chr(.x = books, 
-                              .f = ~ str_flatten(.x, collapse = " | ")
-                              )
-  ) 
-```
-
-```{r}
-#| echo: false
-head(got_df) |> 
-  knitr::kable() |> 
-  kable_styling() |> 
-  kableExtra::scroll_box(height = "600px")
-```
-:::
-:::
-
-<details>
-
-<summary>(Optional) Beyond `map`: Functions with multiple inputs</summary>
-
-Sometimes, you might need to map a function over two vectors/lists in parallel. `purrr` has you covered with the `map2` function. As with `map`, the syntax is `map2(thing1, thing2, function, other.args)`; the big difference is that `function` takes two arguments.
-
-::: ex
-#### Example {-}
-
-Let's create a simple times-table:
-```{r pivot-map}
-crossing(x = 1:10, y = 1:10) |>
-  mutate(times = map2_int(x, y, `*`)) |>
-  pivot_wider(names_from = y, names_prefix = 'y=', values_from = times)
-# we could use `multiply_by` instead of `*` if we wanted to
-```
-
-If you are using formula notation to define functions with `map2`, you will need to refer to your two arguments as `.x` and `.y`. You can determine this from the Usage section when you run `map2`, which shows you `map2(.x, .y, .f, ...)` - that is, the first argument is .x, the second is .y, and the third is the function. 
-
-Like `map`, you can specify the type of the output response using `map2`. This makes it very easy to format the output appropriately for your application.
-
-You can use functions with many arguments with `map` by using the `pmap` variant; here, you pass in a list of functions, which are identified by position (`..1, ..2, ..3,` etc). Note the `..` - you are referencing the list first, and the index within the list argument 2nd. 
-
-:::
-
-::: ex
-#### Example {-}
-
-::: panel-tabset
-##### Problem
-Determine if each Game of Thrones character has more titles than aliases. Start with this code:
-
-```{r map2-tryitout}
-library(repurrrsive)
-library(tidyverse)
-
-data(got_chars)
-got_names <- tibble(name = purrr::map_chr(got_chars, "name"),
-                    titles = purrr::map(got_chars, "titles"),
-                    aliases = purrr::map(got_chars, "aliases"))
-```
-
-##### Solution
-```{r map2-tryitout-solution}
-got_names |>
-  mutate(more_titles = map2_lgl(titles, aliases, ~length(.x) > length(.y)))
-```
-:::
-:::
-
-</details>
+<br>
 
 ::: go-read
-### Tutorial {-}
 
-(Required) Complete the [tutorial on iteration and functional programming](https://posit.cloud/learn/primers/5).
+`r emo::ji("book")` (REQUIRED) Please read [Sections 21.5 through 21.7 *R for Data Science*](https://r4ds.had.co.nz/iteration.html#the-map-functions)
 :::
 
-<br>
+
+::: column-margin
+
+{{< video https://www.youtube.com/embed/FPD3a6IHO6w >}}
+:::
+
+<!-- ### Data Setup -->
+
+<!-- We'll use one of the data sets in the `repurrsive` package, `got_chars`, to start playing with the `map_` series of functions. This data is read in as a JSON file format, but we are going to skip over that for now and convert it to a data frame. -->
+
+<!-- ::: column-margin -->
+<!-- The source data for this example comes from [An API of Ice and Fire](https://anapioficeandfire.com/) and is fairly typical for API (automatic programming interface) data in both cleanliness and complexity. -->
+<!-- ::: -->
+
+<!-- ```{r get-data} -->
+<!-- #| eval: true -->
+<!-- #| echo: true -->
+
+<!-- library(repurrrsive) # contains example data -->
+<!-- data(got_chars) -->
+
+<!-- # need to convert data from json format to a tibble (data frame) object -->
+<!-- got_df <- got_chars |> -->
+<!--   transpose() |> -->
+<!--   as_tibble() |> -->
+<!--   unnest(c("url", "id", "name", "gender", -->
+<!--            "culture", "born", "died", "alive", -->
+<!--            "father", "mother", "spouse") -->
+<!--          ) -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- #| eval: false -->
+
+<!-- head(got_df) -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- #| echo: false -->
+
+<!-- head(got_df) |> -->
+<!--   knitr::kable("html") |> -->
+<!--   kable_styling() |> -->
+<!--   kableExtra::scroll_box(height = "600px") -->
+<!-- ``` -->
+
+<!-- ```{r purrr-pkg-load} -->
+<!-- #| echo: false -->
+<!-- got_chars <- fromJSON(file = "data/got_chars.json") -->
+<!-- ``` -->
+
+<!-- # ```{r purrr-demo1} -->
+<!-- # length(got_chars) -->
+<!-- # got_chars[[1]][1:6] # Only show the first 6 fields -->
+<!-- # names(got_chars[[1]]) # How many total fields? names? -->
+<!-- # ``` -->
+
+<!-- It appears that each entry in this 30-item list is a character from Game of Thrones, and there are several sub-fields for each character. -->
+
+<!-- ### Exploring the Data -->
+
+<!-- What characters do we have? How is the data structured? -->
+
+<!-- List data can be incredibly hard to work with because the structure is so flexible. It's important to have a way to visualize the structure of a complex list object: the `View()` command in RStudio is one good way to explore and poke around a list. -->
+
+<!-- ::: panel-ex -->
+
+<!-- We can use `purrr::map(x, "name")` to get a list of all characters' names. Since they are all the same type, we could also use an extension of `map()`, `map_chr()`, which will coerce the returned list into a character vector (which may be simpler to operate on). -->
+
+<!-- ::: note -->
+<!-- There are several packages with `map()` functions including functions that are meant to actually plot maps; it generally saves time and effort to just type the function name with the package you want in `package::function` notation. You don't *have* to do so, but if you have a lot of other (non tidyverse, in particular) packages loaded, it will save you a lot of grief. -->
+<!-- ::: -->
+
+<!-- ```{r purrr-demo2} -->
+<!-- purrr::map(got_chars, "name")[1:5] -->
+<!-- purrr::map_chr(got_chars, "name")[1:5] -->
+<!-- ``` -->
+
+<!-- Similar shortcuts work to get the nth item in each sub list: -->
+<!-- ```{r purrr-demo3} -->
+<!-- purrr::map_chr(got_chars, 4) -->
+<!-- ``` -->
+
+<!-- Specifying the output type using e.g. `map_chr()` works if each item in the list is an atomic vector of length 1. If the list is more complicated, though, these shortcuts will issue an error: -->
+
+<!-- ```{r purrr-demo4, error = T} -->
+<!-- purrr::map(got_chars, "books")[1:5] -->
+<!-- purrr::map_chr(got_chars, "books")[1:5] -->
+<!-- ``` -->
+
+<!-- What if we want to extract several things? This trick works off of the idea that `[` is a function: that is, the single brackets we used before are actually a special type of function. In R functions, there is often the argument `...`, which is a convention that allows us to pass arguments to other functions that are called within the main function we are using (you'll see ... used in plotting and regression functions frequently as well). -->
+
+<!-- Here, we use `...` to pass in our list of 3 things we want to pull from each item in the list. -->
+
+<!-- ```{r purrr-demo5} -->
+<!-- purrr::map(got_chars, `[`, c("name", "gender", "born"))[1:5] -->
+<!-- ``` -->
+
+<!-- What if we want this to be a data frame instead? We can use `map_dfr()` to get a data frame that is formed by row-binding each element in the list. -->
+
+<!-- ```{r purrr-demo7} -->
+<!-- purrr::map_dfr(got_chars, `[`, c("name", "gender", "born")) -->
+
+<!-- # Equivalent to -->
+<!-- purrr::map(got_chars, `[`, c("name", "gender", "born")) |> -->
+<!--   dplyr::bind_rows() -->
+<!-- ``` -->
+
+<!-- If we want to more generally convert the entire data set to a data frame, we can use a couple of handy functions to do that: -->
+
+<!-- - `purrr::transpose` transposes a list, so that x[[1]][[2]] becomes x[[2]][[1]]. This turns the list into a set of columns. -->
+<!-- - `tibble::as_tibble` turns an object into a tibble. This creates a rectangular, data frame like structure -->
+<!-- - `purrr::unnest` takes columns and "ungroups" them, so that each entry in the sub-lists of the column gets a row in the data frame. Here, I've used this to unwrap lists that are all single items so that we can see some of the data. -->
+
+<!-- # ```{r} -->
+<!-- # #| echo: false -->
+<!-- # got_df <- got_chars |> -->
+<!-- #   transpose() |> -->
+<!-- #   as_tibble() |> -->
+<!-- #   unnest(c("url", "id", "name", "gender", -->
+<!-- #            "culture", "born", "died", "alive", -->
+<!-- #            "father", "mother", "spouse")) -->
+<!-- # got_df -->
+<!-- # ``` -->
+
+<!-- # ```{r} -->
+<!-- # #| echo: false -->
+<!-- # head(got_df) |> -->
+<!-- #   knitr::kable("html") |> -->
+<!-- #   kable_styling() |> -->
+<!-- #   kableExtra::scroll_box(height = "600px") -->
+<!-- #  -->
+<!-- # ``` -->
+
+<!-- ::: -->
+
+<!-- ### Map inside Mutate -->
+
+<!-- A very powerful way to work with data is to use a map function inside of a mutate statement: to simplify data and create a new column all in one go. Let's use this to create a more human-readable (though somewhat less "clean") data frame:  -->
+
+<!-- - function to simplify a character list-column,  -->
+<!--     - replace any 0-length/NULL entries with an empty string -->
+<!--     - paste all of the entries together, separated by ", " -->
+<!--     - ensure that the resulting list is coerced to a character vector -->
+<!-- - Then, we can apply the above function to each list column in our data frame. -->
+
+<!-- ```{r} -->
+<!-- paste_entries <- function(x) { -->
+<!--   # Replace any null entries of x with "" -->
+<!--   x[map_int(x, length) == 0] <- "" -->
+
+<!--   map_chr(x, ~paste(., collapse = ", ")) -->
+<!-- } -->
+
+<!-- got_df <- got_df |> -->
+<!--   mutate(across(where(is.list), paste_entries)) -->
+<!-- ``` -->
+
+<!-- ### Creating (and Using) List-columns -->
+
+<!-- Data structures in R are typically list-based in one way or another. Sometimes, more complicated data structures are actually lists of lists, or tibbles with a list-column, or other variations on "list within a ____". In combination with `purrr`, this is an *incredibly* powerful setup that can make working with simulations and data very easy. -->
+
+<!-- <details class="ex"> -->
+
+<!-- <summary>Example: Benefits of List columns</summary> -->
+
+<!-- Suppose, for instance, I want to simulate some data for modeling purposes, where I can control the number of outliers in the dataset: -->
+
+<!-- ```{r list-cols1} -->
+<!-- data_sim <- function(n_outliers = 0) { -->
+<!--   tmp <- tibble(x = seq(-10, 10, .1), -->
+<!--                 y = rnorm(length(x), mean = x, sd = 1) -->
+<!--                 ) -->
+
+
+<!--   outlier_sample <- c(NULL, sample(tmp$x, n_outliers)) -->
+
+<!--   # Create outliers -->
+<!--   tmp |>  -->
+<!--     mutate( -->
+<!--       is_outlier = x %in% outlier_sample, -->
+<!--       y = y + is_outlier * sample(c(-1, 1), n(), replace = T) * runif(n(), 5, 10) -->
+<!--     ) -->
+<!-- } -->
+<!-- data_sim() -->
+<!-- ``` -->
+
+<!-- Now, lets suppose that I want 100 replicates of each of 0, 5, 10, and 20 outliers.  -->
+
+<!-- ```{r list-cols2} -->
+<!-- sim <- crossing(rep = 1:100, n_outliers = c(0, 5, 10, 20)) |> -->
+<!--   mutate(sim_data = purrr::map(n_outliers, data_sim)) -->
+<!-- ``` -->
+
+<!-- I could use `unnest(sim_data)` if I wanted to expand my data a bit to see what I have, but in this case, it's more useful to leave it in its current, compact form. Instead, suppose I fit a linear regression to each of the simulated data sets, and store the fitted linear regression object in a new list-column? -->
+
+<!-- ```{r list-cols3} -->
+<!-- sim <- sim |> -->
+<!--   mutate(reg = purrr::map(sim_data,  -->
+<!--                           ~lm(data = ., y ~ x) -->
+<!--                           ) -->
+<!--          ) -->
+<!-- ``` -->
+
+<!-- Here, we use an **anonymous** function in purrr: by using `~{expression}`, we have defined a function that takes the argument `.` (which is just a placeholder). So in our case, we're saying "use the data that I pass in to fit a linear regression of `y` using `x` as a predictor".  -->
+
+<!-- Let's play around a bit with this: We might want to look at our regression coefficients or standard errors to see how much the additional outliers affect us. We could use a fancy package for tidy modeling, such as `broom`, but for now, lets do something a bit simpler and apply the purrr name extraction functions we used earlier. -->
+
+<!-- It can be helpful to examine one of the objects just to see what you're dealing with: -->
+
+<!-- ```{r list-cols4} -->
+<!-- str(sim$reg[[1]]) -->
+<!-- ``` -->
+
+<!-- If we pull out the coefficients by name we get a vector of length two. So before we unnest, we need to change that so that R formats it as a row of a data frame. -->
+
+<!-- ```{r list-cols5} -->
+<!-- sim$reg[[1]]$coefficients |>  -->
+<!--   as_tibble_row() -->
+<!-- ``` -->
+
+<!-- This will make our formatting a lot easier and prevent any duplication that might occur if we unnest a vector that has length > 1.  -->
+
+<!-- ```{r list-cols6} -->
+<!-- sim <- sim |> -->
+<!--   mutate(coefs = purrr::map(reg, "coefficients") |> -->
+<!--            purrr::map(as_tibble_row)) -->
+
+<!-- sim$coefs[1:5] -->
+<!-- ``` -->
+
+<!-- Then, we can plot our results: -->
+
+<!-- ```{r list-cols7} -->
+<!-- sim |> -->
+<!--   unnest(coefs) |> -->
+<!--   select(rep, n_outliers, `(Intercept)`, x) |> -->
+<!--   pivot_longer(-c(rep, n_outliers),  -->
+<!--                names_to = "coef",  -->
+<!--                values_to = "value" -->
+<!--                ) |> -->
+<!--   ggplot(aes(x = value,  -->
+<!--              color = factor(n_outliers)) -->
+<!--          ) +  -->
+<!--   geom_density() +  -->
+<!--   facet_wrap(~coef, scales = "free_x") -->
+<!-- ``` -->
+
+<!-- So as there are more and more outliers, the coefficient estimates get a wider distribution, but remain (relatively) centered on the "true" values of 0 and 1, respectively.  -->
+
+<!-- Notice that we keep our data in list column form right up until it is time to actually unnest it - which means that we have at the ready the simulated data, the simulated model, and the conditions under which it was simulated, all in the same data structure. It's a really nice, organized system. -->
+
+<!-- </details> -->
+
+<!-- ### Ways to use `map` -->
+
+<!-- There are 3 main use cases for `map` (and its cousins `pmap`, `map2`, etc.): -->
+
+<!-- 1. Use with an existing function -->
+<!-- 2. Use with an anonymous function, defined on the fly -->
+<!-- 3. Use with a formula (which is just a concise way to define an anonymous function) -->
+
+<!-- I'll use a trivial example to show the difference between these options: -->
+
+<!-- ```{r map1} -->
+<!-- # An existing function -->
+<!-- res <- tibble(x  = 1:10,  -->
+<!--               y1 = map_dbl(x, log10) -->
+<!--               ) -->
+
+<!-- # An anonymous function -->
+<!-- res <- res |>  -->
+<!--   mutate( -->
+<!--     y2 = map_dbl(x, function(z) z^2/10) -->
+<!--     ) -->
+
+<!-- # A formula equivalent to function(z) z^5/(z + 10) -->
+<!-- # the . is the variable you're manipulating -->
+<!-- res <- res |>  -->
+<!--   mutate( -->
+<!--     y3 = map_dbl(x, ~.x^5/(.x+10)) -->
+<!--     ) -->
+<!-- ``` -->
+
+<!-- It can be a bit tricky to differentiate between options 2 and 3 in practice - the biggest difference is that you're not using the keyword `function` and your variable is the default placeholder variable `.x` used in the tidyverse.  -->
+
+<!-- ::: ex -->
+<!-- ### Example {-} -->
+
+<!-- ::: panel-tabset -->
+
+<!-- #### Problem -->
+<!-- Create a new column containing a single string of all of the books each character was in.  -->
+
+<!-- To do this, you'll need to collapse the list of books for each character into a single string, which you can do with the `str_flatten()` function and the `collapse` argument. I've copied here for convenience. (The function won't work out of the box, because it was designed to work on each column of a dataframe, and here we'd be applying it to each row.) -->
+
+<!-- ```{r map-tryitout1} -->
+<!-- letters[1:10] |> str_flatten(collapse = "|") -->
+<!-- ``` -->
+
+<!-- Start with this data frame of character names and book list-columns: -->
+
+<!-- ```{r map-tryitout2, error = T} -->
+<!-- data(got_chars) -->
+
+<!-- got_df <- tibble(name = map_chr(got_chars, "name"), -->
+<!--                  id = map_int(got_chars, "id"), -->
+<!--                  books = map(got_chars, "books") -->
+<!--                  ) -->
+<!-- ``` -->
+
+<!-- #### Solution -->
+
+<!-- ```{r map-tryitout-solution, depends = c("map-tryitout2", "map-tryitout1"), error = T} -->
+<!-- # Define a function -->
+<!-- my_collapse <- function(x){ -->
+
+<!--   str_flatten(x, collapse = " | ") -->
+
+<!-- } -->
+
+<!-- data(got_chars) -->
+
+<!-- got_df <- tibble(name = map_chr(got_chars, "name"), -->
+<!--                  id = map_int(got_chars, "id"), -->
+<!--                  books = map(got_chars, "books") -->
+<!--                  ) -->
+
+<!-- got_df <- got_df |> -->
+<!--   mutate( -->
+<!--     fun_def_res = map_chr(.x = books,  -->
+<!--                           .f = my_collapse -->
+<!--                           ), -->
+<!--     # Here, I don't have to define a function, I just pass my additional  -->
+<!--     # argument in after the fact (recall ...) -->
+<!--     fun_base_res = map_chr(.x = books,  -->
+<!--                            .f = str_flatten,  -->
+<!--                            collapse = " | " -->
+<!--                            ), -->
+
+<!--     # Here, I can just define a new function without a name and apply it to  -->
+<!--     # each entry -->
+<!--     fun_anon_res = map_chr(.x = books,  -->
+<!--                            .f = function(x) str_flatten(x, collapse = " | ") -->
+<!--                            ), -->
+
+<!--     # And here, I don't even bother to specifically say that I'm defining a  -->
+<!--     # function, I just apply a formula to each entry -->
+<!--     fun_formula_res = map_chr(.x = books,  -->
+<!--                               .f = ~ str_flatten(.x, collapse = " | ") -->
+<!--                               ) -->
+<!--   )  -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- head(got_df) |>  -->
+<!--   knitr::kable() |>  -->
+<!--   kable_styling() |>  -->
+<!--   kableExtra::scroll_box(height = "600px") -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- <details> -->
+
+<!-- <summary>(Optional) Beyond `map`: Functions with multiple inputs</summary> -->
+
+<!-- Sometimes, you might need to map a function over two vectors/lists in parallel. `purrr` has you covered with the `map2` function. As with `map`, the syntax is `map2(thing1, thing2, function, other.args)`; the big difference is that `function` takes two arguments. -->
+
+<!-- ::: ex -->
+<!-- #### Example {-} -->
+
+<!-- Let's create a simple times-table: -->
+<!-- ```{r pivot-map} -->
+<!-- crossing(x = 1:10, y = 1:10) |> -->
+<!--   mutate(times = map2_int(x, y, `*`)) |> -->
+<!--   pivot_wider(names_from = y, names_prefix = 'y=', values_from = times) -->
+<!-- # we could use `multiply_by` instead of `*` if we wanted to -->
+<!-- ``` -->
+
+<!-- If you are using formula notation to define functions with `map2`, you will need to refer to your two arguments as `.x` and `.y`. You can determine this from the Usage section when you run `map2`, which shows you `map2(.x, .y, .f, ...)` - that is, the first argument is .x, the second is .y, and the third is the function.  -->
+
+<!-- Like `map`, you can specify the type of the output response using `map2`. This makes it very easy to format the output appropriately for your application. -->
+
+<!-- You can use functions with many arguments with `map` by using the `pmap` variant; here, you pass in a list of functions, which are identified by position (`..1, ..2, ..3,` etc). Note the `..` - you are referencing the list first, and the index within the list argument 2nd.  -->
+
+<!-- ::: -->
+
+<!-- ::: ex -->
+<!-- #### Example {-} -->
+
+<!-- ::: panel-tabset -->
+<!-- ##### Problem -->
+<!-- Determine if each Game of Thrones character has more titles than aliases. Start with this code: -->
+
+<!-- ```{r map2-tryitout} -->
+<!-- library(repurrrsive) -->
+<!-- library(tidyverse) -->
+
+<!-- data(got_chars) -->
+<!-- got_names <- tibble(name = purrr::map_chr(got_chars, "name"), -->
+<!--                     titles = purrr::map(got_chars, "titles"), -->
+<!--                     aliases = purrr::map(got_chars, "aliases")) -->
+<!-- ``` -->
+
+<!-- ##### Solution -->
+<!-- ```{r map2-tryitout-solution} -->
+<!-- got_names |> -->
+<!--   mutate(more_titles = map2_lgl(titles, aliases, ~length(.x) > length(.y))) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- </details> -->
+
+<!-- ::: go-read -->
+<!-- ### Tutorial {-} -->
+
+<!-- (Required) Complete the [tutorial on iteration and functional programming](https://posit.cloud/learn/primers/5). -->
+<!-- ::: -->
+
+<!-- <br> -->
 
 ::: learn-more
 
@@ -785,38 +820,46 @@ library(palmerpenguins)
 data(penguins)
 ```
 
-**1. Suppose we would like to find the median of the measurement variables (`bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g`) from the penguins dataset (from the `palmerpenguins` package). Which of the following will produce a _numeric vector_ of the median of every measurement variable?** *Select all that apply!*
+**1. Suppose we would like to find the median of the measurement variables (`bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g`) from the penguins dataset (from the `palmerpenguins` package). Which of the following will produce a *numeric vector* of the median of every measurement variable?** *Select all that apply!*
+
+```{r}
+#| eval: false
+penguin_vars <- penguins |>
+  select(bill_length_mm:body_mass_g)
+
+head(penguin_vars)
+```
 
 (a)
 ```{r}
 #| eval: false
-penguins |>
-  select(bill_length_mm:body_mass_g) |>
-  map(.f = median, na.rm = TRUE)
+map(.x = penguin_vars,
+    .f = ~ median(.x, na.rm = TRUE)
+    )
 ```
 
 (b)
 ```{r}
 #| eval: false
-penguins |>
-  select(bill_length_mm:body_mass_g) |>
-  map_dbl(.f = median, na.rm = TRUE)
+map_dbl(.x = penguin_vars,
+        .f = ~ median(.x, na.rm = TRUE)
+        )
 ```
 
 (c)
 ```{r}
 #| eval: false
-penguins |>
-  select(bill_length_mm:body_mass_g) |>
-  map_dfc(.f = median, na.rm = TRUE)
+map_dfc(.x = penguin_vars,
+        .f =  ~ median(.x, na.rm = TRUE)
+        )
 ```
 
 (d)
 ```{r}
 #| eval: false
-penguins |>
-  select(bill_length_mm:body_mass_g) |>
-  map_chr(function(x) median(x, na.rm = TRUE))
+map_chr(.x = penguin_vars, 
+        .f = ~ median(.x, na.rm = TRUE) |> as.character()
+        )
 ```
 
 
@@ -843,9 +886,10 @@ standardize <- function(vec) {
 penguins |>
   mutate(
     body_mass_g = map_dbl(.x = body_mass_g,
-                          .f = standardize
+                          .f = ~ standardize(.x)
                           )
-  )
+  ) |> 
+  select(species, island, body_mass_g)
 ```
 
 a. Because body_mass_g needs to be passed to standardize() as an argument
@@ -861,33 +905,35 @@ d. Because there is no function named `standardize()`, so it cannot be applied t
 (a)
 ```{r}
 #| eval: false
-penguins |>
-  select(bill_length_mm:body_mass_g) |>
-  map_df(standardize)
+map(.x = penguin_vars, 
+    .f = ~ standardize(.x)
+    )
 ```
 
 (b)
 ```{r}
 #| eval: false
-penguins |>
-  map_at(bill_length_mm:body_mass_g, standardize)
+map_if(.x = penguins, 
+       .p = ~ is.numeric(.x),
+       .f = ~ standardize(.x)
+       )
 ```
 
 (c)
 ```{r}
 #| eval: false
-penguins |>
-  map_if(is.numeric, standardize)
+map_at(.x = penguins,
+       .at = c("bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g"),
+       .f = ~ standardize(.x)
+       )
 ```
 
 (d)
 ```{r}
 #| eval: false
-penguins |>
-  map_at(
-    c("bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g"),
-    standardize
-    )
+map_df(.x = penguin_vars,
+       .f = ~ standardize(.x)
+       )
 ```
 :::
 
