@@ -333,7 +333,7 @@ broom::glance(my_model)
 
 You will be simulating data from statistical distributions to determine whether Professor Hill's instruments are genuine or not.
 
-Visit [PA 9.1 Instrument Con](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA9.2-instrument-con.html) for instructions.
+Visit [PA 9.1 Instrument Con](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA9.1-instrument-con.html) for instructions.
 
 :::
 
@@ -342,7 +342,7 @@ Visit [PA 9.1 Instrument Con](https://earobinson95.github.io/stat331-calpoly/pra
 
 You will be fitting a linear regression model to a data set that contains the weights of a particular animal before and after a year of eating only roasted duck. Plotting the residuals will result in an image of a particular mystery animal.
 
-Visit [PA 9.2 Mystery Animal](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA9.1-mystery-animal.html) for instructions.
+Visit [PA 9.2 Mystery Animal](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA9.2-mystery-animal.html) for instructions.
 :::
 
 <br>

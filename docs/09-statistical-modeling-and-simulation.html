@@ -288,20 +288,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1] 0.4544439</code></pre>
+<pre data-code-line-numbers=""><code>[1] -0.4413039</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1] 0.8052014</code></pre>
+<pre data-code-line-numbers=""><code>[1] 0.2611197</code></pre>
 </div>
 </div>
 <p>Fortunately, pseudo-randomness depends on a <strong>seed</strong>, which is an arbitrary number where the randomizing process starts. Normally, R will choose the seed for you, from a pre-generated vector:</p>
 <div class="cell">
 <div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">.Random.seed</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1]       10403           4 -1073047371  1278832655  1740810518 -1681386560</code></pre>
+<pre data-code-line-numbers=""><code>[1]      10403          4  936856890  429788220  433138559 -210151211</code></pre>
 </div>
 </div>
 <p>However, you can also choose your own seed using the <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> function. This guarantees your results will be consistent across runs (and hopefully computers):</p>
@@ -649,10 +649,10 @@ F-statistic: 19.88 on 1 and 340 DF,  p-value: 1.12e-05</code></pre>
 <p><strong>5. Penguin Mopsy has a bill that is 5mm deeper than Penguin Gidget. What will be the difference between their bill lengths?</strong></p>
 </section></section><section id="pa-9.1-instrument-con" class="level2 unnumbered tryitout"><h2 class="unnumbered anchored" data-anchor-id="pa-9.1-instrument-con">PA 9.1: Instrument Con</h2>
 <p>You will be simulating data from statistical distributions to determine whether Professor Hill’s instruments are genuine or not.</p>
-<p>Visit <a href="https://earobinson95.github.io/stat331-calpoly/practice-activities/PA9.2-instrument-con.html">PA 9.1 Instrument Con</a> for instructions.</p>
+<p>Visit <a href="https://earobinson95.github.io/stat331-calpoly/practice-activities/PA9.1-instrument-con.html">PA 9.1 Instrument Con</a> for instructions.</p>
 </section><section id="pa-9.2-mystery-animal" class="level2 unnumbered tryitout"><h2 class="unnumbered anchored" data-anchor-id="pa-9.2-mystery-animal">PA 9.2: Mystery Animal</h2>
 <p>You will be fitting a linear regression model to a data set that contains the weights of a particular animal before and after a year of eating only roasted duck. Plotting the residuals will result in an image of a particular mystery animal.</p>
-<p>Visit <a href="https://earobinson95.github.io/stat331-calpoly/practice-activities/PA9.1-mystery-animal.html">PA 9.2 Mystery Animal</a> for instructions.</p>
+<p>Visit <a href="https://earobinson95.github.io/stat331-calpoly/practice-activities/PA9.2-mystery-animal.html">PA 9.2 Mystery Animal</a> for instructions.</p>
 </section><p><br></p>
 <section id="references" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
 
