@@ -18,7 +18,7 @@ book:
     - 07-functions.qmd
     - 08-functional-programming.qmd
     - 09-statistical-modeling-and-simulation.qmd
-    # - 10-predictive-checks.qmd
+    - 10-predictive-checks.qmd
   site-url: https://earobinson95.github.io/stat331-calpoly-text/
   repo-url: https://github.com/earobinson95/stat331-calpoly-text
   repo-branch: main

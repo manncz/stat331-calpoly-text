@@ -2,46 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/index.html</loc>
-    <lastmod>2024-02-29T17:53:51.856Z</lastmod>
+    <lastmod>2024-03-07T01:25:02.618Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/00-prereading.html</loc>
-    <lastmod>2024-02-29T17:53:51.930Z</lastmod>
+    <lastmod>2024-03-07T01:25:02.666Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/01-introduction.html</loc>
-    <lastmod>2024-02-29T17:53:51.969Z</lastmod>
+    <lastmod>2024-03-07T01:25:02.690Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/02-tidy-data-and-basics-of-graphics.html</loc>
-    <lastmod>2024-02-29T17:53:52.042Z</lastmod>
+    <lastmod>2024-03-07T01:25:02.730Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/03-data-cleaning-and-manipulation.html</loc>
-    <lastmod>2024-02-29T17:53:52.135Z</lastmod>
+    <lastmod>2024-03-07T01:25:02.786Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/04-data-joins-and-transformations.html</loc>
-    <lastmod>2024-02-29T17:53:52.196Z</lastmod>
+    <lastmod>2024-03-07T01:25:02.810Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/05-special-data-types.html</loc>
-    <lastmod>2024-02-29T17:53:52.228Z</lastmod>
+    <lastmod>2024-03-07T01:25:02.826Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/06-version-control.html</loc>
-    <lastmod>2024-02-29T17:53:52.236Z</lastmod>
+    <lastmod>2024-03-07T01:25:02.834Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/07-functions.html</loc>
-    <lastmod>2024-02-29T17:53:52.302Z</lastmod>
+    <lastmod>2024-03-07T01:25:02.882Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/08-functional-programming.html</loc>
-    <lastmod>2024-02-29T17:53:52.353Z</lastmod>
+    <lastmod>2024-03-07T01:25:02.914Z</lastmod>
   </url>
   <url>
     <loc>https://earobinson95.github.io/stat331-calpoly-text/09-statistical-modeling-and-simulation.html</loc>
-    <lastmod>2024-02-29T17:53:52.382Z</lastmod>
+    <lastmod>2024-03-07T01:25:02.930Z</lastmod>
+  </url>
+  <url>
+    <loc>https://earobinson95.github.io/stat331-calpoly-text/10-predictive-checks.html</loc>
+    <lastmod>2024-03-07T01:25:02.954Z</lastmod>
   </url>
 </urlset>

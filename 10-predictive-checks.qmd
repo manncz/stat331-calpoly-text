@@ -8,13 +8,15 @@ editor: source
 
 # Predictive Checks
 
-```{r, include = FALSE}
+```{r}
+#| include: false
 bytes <- file.size("10-predictive-checks.qmd")
 words <- bytes/10
 minutes <- words/200
 ```
 
-```{r setup, include = FALSE}
+```{r setup}
+#| include: false
 library(quarto)
 library(fontawesome)
 fa_html_dependency()
@@ -200,7 +202,9 @@ The best way to assess if / where there are differences between the simulated da
 
 obs_p <- penguins |>
   ggplot(aes(x = body_mass_g)) +
-  geom_histogram(binwidth = 350) +
+  geom_histogram(binwidth = 350, 
+                 color = "white"
+                 ) +
   labs(x = "Observed Body Mass (g)",
        y = "",
        subtitle = "Count") +
@@ -209,7 +213,9 @@ obs_p <- penguins |>
 
 new_p <- sim_response |>
   ggplot(aes(x = sim_body_mass_g)) +
-  geom_histogram(binwidth = 350) +
+  geom_histogram(binwidth = 350, 
+                 color = "white"
+                 ) +
   labs(x = "Simulated Body Mass (g)",
        y = "",
        subtitle = "Count") +
