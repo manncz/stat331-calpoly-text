@@ -39,13 +39,13 @@ library(tidyverse)
 -   Describe step-by-step data cleaning process in lay terms appropriately and understand the consequences of data cleaning steps
 -   Create summaries of data appropriate for analysis or display using data manipulation techniques
 
-::: check-in
-## Check-ins {- #ch3-checkins}
+<!-- ::: check-in -->
+<!-- ## Check-ins {- #ch3-checkins} -->
 
-There is one check-in for this week:
+<!-- There is one check-in for this week: -->
 
--   [Check-in 3.1: Data Wrangling](#checkin3-1)
-:::
+<!-- -   [Check-in 3.1: Data Wrangling](#checkin3-1) -->
+<!-- ::: -->
 
 ## A quick note about `tibble`
 
@@ -768,111 +768,111 @@ As with ggplot, formatting your `dplyr` code pipelines so it is readable will he
 
 <br>
 
-::: check-in
-## Check-in 3.1: Data Wrangling {#checkin3-1 .unnumbered}
+<!-- ::: check-in -->
+<!-- ## Check-in 3.1: Data Wrangling {#checkin3-1 .unnumbered} -->
 
-**Q1: Arrange the pipeline**
+<!-- **Q1: Arrange the pipeline** -->
 
-Working with the Palmer Penguins data set:
+<!-- Working with the Palmer Penguins data set: -->
 
-```{r}
-library(palmerpenguins)
-data(penguins)
-head(penguins)
-```
+<!-- ```{r} -->
+<!-- library(palmerpenguins) -->
+<!-- data(penguins) -->
+<!-- head(penguins) -->
+<!-- ``` -->
 
-Suppose we would like to study how the ratio of penguin body mass to flipper size differs across the species. Arrange the following steps into an order that accomplishes this goal (assuming the steps are connected with a \|\> or a %\>%).
+<!-- Suppose we would like to study how the ratio of penguin body mass to flipper size differs across the species. Arrange the following steps into an order that accomplishes this goal (assuming the steps are connected with a \|\> or a %\>%). -->
 
-`arrange(med_mass_flipper_ratio)`
+<!-- `arrange(med_mass_flipper_ratio)` -->
 
-`group_by(species)`
+<!-- `group_by(species)` -->
 
-`penguins`
+<!-- `penguins` -->
 
-`summarize(med_mass_flipper_ratio = median(mass_flipper_ratio))`
+<!-- `summarize(med_mass_flipper_ratio = median(mass_flipper_ratio))` -->
 
-`mutate(mass_flipper_ratio = body_mass_g / flipper_length_mm)`
+<!-- `mutate(mass_flipper_ratio = body_mass_g / flipper_length_mm)` -->
 
-<br>
+<!-- <br> -->
 
-**Q2 - Q7: `dplyr` pipelines**
+<!-- **Q2 - Q7: `dplyr` pipelines** -->
 
-Consider the base R code below.
+<!-- Consider the base R code below. -->
 
-```{r}
-mean(penguins[penguins$species == "Adelie", ]$body_mass_g, na.rm = T)
-```
+<!-- ```{r} -->
+<!-- mean(penguins[penguins$species == "Adelie", ]$body_mass_g, na.rm = T) -->
+<!-- ``` -->
 
-For each of the following `dplyr` pipelines, indicate which of the following is true:
+<!-- For each of the following `dplyr` pipelines, indicate which of the following is true: -->
 
-i)  It returns the exact same thing as the (above) base R code
+<!-- i)  It returns the exact same thing as the (above) base R code -->
 
-ii) It returns the correct information, but the wrong object type
+<!-- ii) It returns the correct information, but the wrong object type -->
 
-iii) It returns incorrect information
+<!-- iii) It returns incorrect information -->
 
-iv) It returns an error
+<!-- iv) It returns an error -->
 
-**Q2**
+<!-- **Q2** -->
 
-```{r}
-#| eval: false
-penguins  |>
-  filter("body_mass_g") |>
-  pull("Adelie") |>
-  mean(na.rm = T)
-```
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins  |> -->
+<!--   filter("body_mass_g") |> -->
+<!--   pull("Adelie") |> -->
+<!--   mean(na.rm = T) -->
+<!-- ``` -->
 
-**Q3**
+<!-- **Q3** -->
 
-```{r}
-#| eval: false
-penguins |>
-  filter(species == "Adelie") |>
-  select(body_mass_g) |>
-  summarize(mean(body_mass_g, na.rm = T))
-```
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |> -->
+<!--   filter(species == "Adelie") |> -->
+<!--   select(body_mass_g) |> -->
+<!--   summarize(mean(body_mass_g, na.rm = T)) -->
+<!-- ``` -->
 
-**Q4**
+<!-- **Q4** -->
 
-```{r}
-#| eval: false
-penguins |>
-  pull(body_mass_g) |>
-  filter(species == "Adelie") |>
-  mean(na.rm = T)
-```
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |> -->
+<!--   pull(body_mass_g) |> -->
+<!--   filter(species == "Adelie") |> -->
+<!--   mean(na.rm = T) -->
+<!-- ``` -->
 
-**Q5**
+<!-- **Q5** -->
 
-```{r}
-#| eval: false
-penguins |>
-  filter(species == "Adelie") |>
-  select(body_mass_g) |>
-  mean(na.rm = T)
-```
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |> -->
+<!--   filter(species == "Adelie") |> -->
+<!--   select(body_mass_g) |> -->
+<!--   mean(na.rm = T) -->
+<!-- ``` -->
 
-**Q6**
+<!-- **Q6** -->
 
-```{r}
-#| eval: false
-penguins |>
-  filter(species == "Adelie") |>
-  pull(body_mass_g) |>
-  mean(na.rm = T)
-```
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |> -->
+<!--   filter(species == "Adelie") |> -->
+<!--   pull(body_mass_g) |> -->
+<!--   mean(na.rm = T) -->
+<!-- ``` -->
 
-**Q7**
+<!-- **Q7** -->
 
-```{r}
-#| eval: false
-penguins |>
-  select(species == "Adelie") |>
-  filter(body_mass_g) |>
-  summarize(mean(body_mass_g, na.rm = T))
-```
-:::
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |> -->
+<!--   select(species == "Adelie") |> -->
+<!--   filter(body_mass_g) |> -->
+<!--   summarize(mean(body_mass_g, na.rm = T)) -->
+<!-- ``` -->
+<!-- ::: -->
 
 <br>
 
@@ -892,14 +892,14 @@ penguins |>
 
 <br>
 
-::: tryitout
-## PA 3: Identify the Mystery College {-}
+<!-- ::: tryitout -->
+<!-- ## PA 3: Identify the Mystery College {-} -->
 
-Today you will be using the `dplyr` package to clean a data set and then using that cleaned data set to figure out what college Ephelia has been accepted to.
+<!-- Today you will be using the `dplyr` package to clean a data set and then using that cleaned data set to figure out what college Ephelia has been accepted to. -->
 
-Visit [PA 3: Identify the Mystery College](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA3-find-the-mystery-college) for instructions.
+<!-- Visit [PA 3: Identify the Mystery College](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA3-find-the-mystery-college) for instructions. -->
 
-Submit the full name of the college Ephelia will attend to the Canvas Quiz.
-:::
+<!-- Submit the full name of the college Ephelia will attend to the Canvas Quiz. -->
+<!-- ::: -->
 
 ## References {-}

@@ -39,14 +39,14 @@ library(tidyverse)
 + Include side effects and / or error messages in your functions
 + Extend your use of good R coding style
 
-::: check-in
-## Check-ins {- #ch7-checkins}
+<!-- ::: check-in -->
+<!-- ## Check-ins {- #ch7-checkins} -->
 
-There is one check-in for this week:
+<!-- There is one check-in for this week: -->
 
-+ [Check-in 7.1: Writing Functions](#checkin7-1)
+<!-- + [Check-in 7.1: Writing Functions](#checkin7-1) -->
 
-:::
+<!-- ::: -->
 
 <br>
 
@@ -769,99 +769,99 @@ In summary, designing functions is somewhat subjective, but there are a few prin
   + Functions should never load or install packages!
   
   
-::: check-in
-## Check-in 7.1: Writing Functions {#checkin7-1 -}
+<!-- ::: check-in -->
+<!-- ## Check-in 7.1: Writing Functions {#checkin7-1 -} -->
 
-**Simple Functions**
+<!-- **Simple Functions** -->
 
-1. Fill in the necessary code to write a function called `times_seven()`. The function should take a single argument (`x`) and multiply the input by 7.
-  + This function should check that the argument is numeric.
-  + This function should also excitedly announce (print) *“I love sevens!”* if the argument to the function is a 7.
+<!-- 1. Fill in the necessary code to write a function called `times_seven()`. The function should take a single argument (`x`) and multiply the input by 7. -->
+<!--   + This function should check that the argument is numeric. -->
+<!--   + This function should also excitedly announce (print) *“I love sevens!”* if the argument to the function is a 7. -->
 
-```{r}
-#| eval: false
-times_seven <- function(x){
-  stopifnot(___)
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- times_seven <- function(x){ -->
+<!--   stopifnot(___) -->
 
-  if(___){
-    print(___)
-  }
-  return(___)
-}
-```
+<!--   if(___){ -->
+<!--     print(___) -->
+<!--   } -->
+<!--   return(___) -->
+<!-- } -->
+<!-- ``` -->
 
-**Predicting Function Behavior**
+<!-- **Predicting Function Behavior** -->
 
-2. For the following function, `add_or_subtract()`:
+<!-- 2. For the following function, `add_or_subtract()`: -->
 
-```{r}
-#| eval: false
-add_or_subtract <- function(first_num,
-                            second_num = 2,
-                            type = "add") {
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- add_or_subtract <- function(first_num, -->
+<!--                             second_num = 2, -->
+<!--                             type = "add") { -->
 
-  if (type == "add") {
-    first_num + second_num
-  } else if (type == "subtract") {
-    first_num - second_num
-  } else {
-    stop("Please choose `add` or `subtract` as the type.")
-  }
+<!--   if (type == "add") { -->
+<!--     first_num + second_num -->
+<!--   } else if (type == "subtract") { -->
+<!--     first_num - second_num -->
+<!--   } else { -->
+<!--     stop("Please choose `add` or `subtract` as the type.") -->
+<!--   } -->
 
-}
-```
+<!-- } -->
+<!-- ``` -->
 
-What will be the output for the following three calls to the `add_or_subtract()` function?
+<!-- What will be the output for the following three calls to the `add_or_subtract()` function? -->
 
-```{r}
-#| eval: false
-add_or_subtract(5, 6, type = "subtract")
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- add_or_subtract(5, 6, type = "subtract") -->
 
-add_or_subtract("orange")
+<!-- add_or_subtract("orange") -->
 
-add_or_subtract(5, 6, type = "multiply")
-```
+<!-- add_or_subtract(5, 6, type = "multiply") -->
+<!-- ``` -->
 
-  a. 1
-  b. -1
-  c. 30
-  d. An error defined by the function `add_or_subtract()`
-  e. An error defined in a different function, which is called inside the `add_or_subtract()` function
+<!--   a. 1 -->
+<!--   b. -1 -->
+<!--   c. 30 -->
+<!--   d. An error defined by the function `add_or_subtract()` -->
+<!--   e. An error defined in a different function, which is called inside the `add_or_subtract()` function -->
 
-3. Consider the following code:
+<!-- 3. Consider the following code: -->
 
-```{r}
-#| eval: false
-first_num  <- 5
-second_num <- 3
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- first_num  <- 5 -->
+<!-- second_num <- 3 -->
 
-result <- 8
+<!-- result <- 8 -->
 
-result <- add_or_subtract(first_num, second_num = 4)
+<!-- result <- add_or_subtract(first_num, second_num = 4) -->
 
-result_2 <- add_or_subtract(first_num)
-```
+<!-- result_2 <- add_or_subtract(first_num) -->
+<!-- ``` -->
 
-In your Global Environment, what is the value of...
+<!-- In your Global Environment, what is the value of... -->
 
-a. first_num
-b. second_num
-c. result
-d. result_2
+<!-- a. first_num -->
+<!-- b. second_num -->
+<!-- c. result -->
+<!-- d. result_2 -->
 
-:::
+<!-- ::: -->
 
-<br>
+<!-- <br> -->
 
-::: tryitout
-### PA 7: Functions {-}
+<!-- ::: tryitout -->
+<!-- ### PA 7: Functions {-} -->
 
-You will write several small functions, then use them to unscramble a message. Many of the functions have been started for you below, but **none** of them are complete as-is.
+<!-- You will write several small functions, then use them to unscramble a message. Many of the functions have been started for you below, but **none** of them are complete as-is. -->
 
-Visit [PA 7: Functions](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA7-functions.html) for instructions.
+<!-- Visit [PA 7: Functions](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA7-functions.html) for instructions. -->
 
-If you have done everything correctly, your final vector will be six numbers long. Google these six numbers to find a TV show as your final answer and submit to Canvas.
+<!-- If you have done everything correctly, your final vector will be six numbers long. Google these six numbers to find a TV show as your final answer and submit to Canvas. -->
 
-:::
+<!-- ::: -->
 
 ### References {-}

@@ -41,16 +41,16 @@ This chapter is heavily from Dr. Theobold's course-page material.
 + Understand what is assumed about the data generating process in a linear regression
 + Assess if the assumed linear model accurately describes the observed data
 
-::: check-in
-## Check-ins {#ch10-checkins -}
+<!-- ::: check-in -->
+<!-- ## Check-ins {#ch10-checkins -} -->
 
-There is one check-in for this week:
+<!-- There is one check-in for this week: -->
 
-+ Check-in 10.1: Linear Regression
+<!-- + Check-in 10.1: Linear Regression -->
 
-> There are 7 questions scattered throughout the reading this week.
+<!-- > There are 7 questions scattered throughout the reading this week. -->
 
-:::
+<!-- ::: -->
 
 <br>
 
@@ -141,16 +141,16 @@ penguin_predict <- predict(penguin_lm)
 head(penguin_predict)
 ```
 
-::: check-in
-#### Q1: The `predict()` function {-}
+<!-- ::: check-in -->
+<!-- #### Q1: The `predict()` function {-} -->
 
-What is the data structure of the predictions that are output by the `predict()` function?
+<!-- What is the data structure of the predictions that are output by the `predict()` function? -->
 
-(a) list
-(b) vector
-(c) matrix
-(d) dataframe
-:::
+<!-- (a) list -->
+<!-- (b) vector -->
+<!-- (c) matrix -->
+<!-- (d) dataframe -->
+<!-- ::: -->
 
 ### Extracting the Estimate of $\sigma$ `sigma()`
 
@@ -185,11 +185,11 @@ sim_response <- tibble(sim_body_mass_g = noise(penguin_predict,
 head(sim_response)
 ```
 
-::: check-in
-#### Q2: Normal Errors {-}
+<!-- ::: check-in -->
+<!-- #### Q2: Normal Errors {-} -->
 
-What does a mean of 0 imply for the residuals?
-:::
+<!-- What does a mean of 0 imply for the residuals? -->
+<!-- ::: -->
 
 ## Plotting Predictions
 
@@ -226,11 +226,11 @@ library(patchwork)
 obs_p + new_p
 ```
 
-::: check-in
-#### Q3: Simulated Data Distribution {-}
+<!-- ::: check-in -->
+<!-- #### Q3: Simulated Data Distribution {-} -->
 
-Are the simulated bill lengths similar or different from the observed bill lengths? Where do you see differences? Where do you see similarities? Would you conclude that both distributions could have come from the same data generating process?
-:::
+<!-- Are the simulated bill lengths similar or different from the observed bill lengths? Where do you see differences? Where do you see similarities? Would you conclude that both distributions could have come from the same data generating process? -->
+<!-- ::: -->
 
 ### Adding in the Observed x's
 
@@ -342,11 +342,11 @@ sim_r2 <- lm(body_mass_g ~ sim_body_mass_g,
 sim_r2
 ```
 
-::: check-in
-#### Q4: Interpreting $R^2$ {-}
+<!-- ::: check-in -->
+<!-- #### Q4: Interpreting $R^2$ {-} -->
 
-What does the $R^2$ value of `r round(sim_r2, 3)` for the above regression mean? How would you interpret it?
-:::
+<!-- What does the $R^2$ value of `r round(sim_r2, 3)` for the above regression mean? How would you interpret it? -->
+<!-- ::: -->
 
 ## Iterating!
 
@@ -403,57 +403,57 @@ sims |>
   map(~ lm(body_mass_g ~ .x, data = sims))
 ```
 
-::: check-in
-#### Q5: Mapping Linear Regression {-}
+<!-- ::: check-in -->
+<!-- #### Q5: Mapping Linear Regression {-} -->
 
-What is the data structure of the values output after the `map(~lm(body_mass_g ~ .x, data = sims))` step?
+<!-- What is the data structure of the values output after the `map(~lm(body_mass_g ~ .x, data = sims))` step? -->
 
-(a) list
-(b) vector
-(c) matrix
-(d) dataframe
-:::
+<!-- (a) list -->
+<!-- (b) vector -->
+<!-- (c) matrix -->
+<!-- (d) dataframe -->
+<!-- ::: -->
 
-Next, I `map()` the `glance()` function onto each of these 100 regressions.
+<!-- Next, I `map()` the `glance()` function onto each of these 100 regressions. -->
 
-```{r}
-#| eval: false
-sims |> 
-  map(~ lm(body_mass_g ~ .x, data = sims)) |> 
-  map(glance)
-```
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- sims |>  -->
+<!--   map(~ lm(body_mass_g ~ .x, data = sims)) |>  -->
+<!--   map(glance) -->
+<!-- ``` -->
 
-::: check-in
-#### Q6: Mapping Linear Regression Summaries {-}
+<!-- ::: check-in -->
+<!-- #### Q6: Mapping Linear Regression Summaries {-} -->
 
-What is the data structure of the values output after the `map(glance)` step?
+<!-- What is the data structure of the values output after the `map(glance)` step? -->
 
-(a) list
-(b) vector
-(c) matrix
-(d) dataframe
-:::
+<!-- (a) list -->
+<!-- (b) vector -->
+<!-- (c) matrix -->
+<!-- (d) dataframe -->
+<!-- ::: -->
 
-Finally, I use `map_dbl()` to extract the `r.squared` from each of the model fit summaries.
+<!-- Finally, I use `map_dbl()` to extract the `r.squared` from each of the model fit summaries. -->
 
-```{r}
-#| eval: false
-sims |> 
-  map(~ lm(body_mass_g ~ .x, data = sims)) |> 
-  map(glance) |> 
-  map_dbl(~ .x$r.squared)
-```
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- sims |>  -->
+<!--   map(~ lm(body_mass_g ~ .x, data = sims)) |>  -->
+<!--   map(glance) |>  -->
+<!--   map_dbl(~ .x$r.squared) -->
+<!-- ``` -->
 
-::: check-in
-#### Q7: Mapping Regression Summaries {-}
+<!-- ::: check-in -->
+<!-- #### Q7: Mapping Regression Summaries {-} -->
 
-What is the data structure of the values output after the `map_dbl(~.$r.squared)` step?
+<!-- What is the data structure of the values output after the `map_dbl(~.$r.squared)` step? -->
 
-(a) list
-(b) vector
-(c) matrix
-(d) dataframe
-:::
+<!-- (a) list -->
+<!-- (b) vector -->
+<!-- (c) matrix -->
+<!-- (d) dataframe -->
+<!-- ::: -->
 
 ### Inspecting the $R^2$ Values
 

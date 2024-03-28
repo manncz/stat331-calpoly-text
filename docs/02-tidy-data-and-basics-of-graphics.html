@@ -251,7 +251,6 @@ div.csl-indent {
    
   <ul>
 <li><a href="#ch2-objectives" id="toc-ch2-objectives" class="nav-link active" data-scroll-target="#ch2-objectives">Objectives</a></li>
-  <li><a href="#ch2-checkins" id="toc-ch2-checkins" class="nav-link" data-scroll-target="#ch2-checkins">Check-ins</a></li>
   <li>
 <a href="#tidy-data" id="toc-tidy-data" class="nav-link" data-scroll-target="#tidy-data"><span class="header-section-number">2.1</span> Tidy Data</a>
   <ul class="collapse">
@@ -264,7 +263,6 @@ div.csl-indent {
 <li><a href="#external-data-formats" id="toc-external-data-formats" class="nav-link" data-scroll-target="#external-data-formats"><span class="header-section-number">2.2.1</span> An Overview of External Data Formats</a></li>
   <li><a href="#where-does-my-data-live" id="toc-where-does-my-data-live" class="nav-link" data-scroll-target="#where-does-my-data-live"><span class="header-section-number">2.2.2</span> Where does my data live?</a></li>
   <li><a href="#how-do-i-load-in-my-data" id="toc-how-do-i-load-in-my-data" class="nav-link" data-scroll-target="#how-do-i-load-in-my-data"><span class="header-section-number">2.2.3</span> How do I load in my data?</a></li>
-  <li><a href="#checkin2.1-loadingdata" id="toc-checkin2.1-loadingdata" class="nav-link" data-scroll-target="#checkin2.1-loadingdata">Check-in 2.1: Loading in Data</a></li>
   </ul>
 </li>
   <li>
@@ -274,11 +272,9 @@ div.csl-indent {
   <li><a href="#ggplot2" id="toc-ggplot2" class="nav-link" data-scroll-target="#ggplot2"><span class="header-section-number">2.3.2</span> ggplot2</a></li>
   <li><a href="#the-grammar-of-graphics" id="toc-the-grammar-of-graphics" class="nav-link" data-scroll-target="#the-grammar-of-graphics"><span class="header-section-number">2.3.3</span> The Grammar of Graphics</a></li>
   <li><a href="#rgraphics" id="toc-rgraphics" class="nav-link" data-scroll-target="#rgraphics">R graphics</a></li>
-  <li><a href="#checkin2.2-dataviz" id="toc-checkin2.2-dataviz" class="nav-link" data-scroll-target="#checkin2.2-dataviz">Check-in 2.2: Introduction to Data Visualization with ggplot2</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </li>
-  <li><a href="#pa-2-using-data-visualization-to-find-the-penguins" id="toc-pa-2-using-data-visualization-to-find-the-penguins" class="nav-link" data-scroll-target="#pa-2-using-data-visualization-to-find-the-penguins">PA 2: Using Data Visualization to Find the Penguins</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/02-tidy-data-and-basics-of-graphics.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
@@ -307,12 +303,8 @@ div.csl-indent {
 <li>Describe charts using the grammar of graphics</li>
 <li>Create layered graphics that highlight multiple aspects of the data</li>
 <li>Evaluate existing charts and develop new versions that improve accessibility and readability</li>
-</ul></section><section id="ch2-checkins" class="level2 unnumbered check-in"><h2 class="unnumbered anchored" data-anchor-id="ch2-checkins">Check-ins</h2>
-<p>There are two check-ins for this week:</p>
-<ul>
-<li><p><a href="#checkin2.1-loadingdata">Check-in 2.1: Loading in Data</a></p></li>
-<li><p><a href="#checkin2.2-dataviz">Check-in 2.2: Introduction to Data Visualization with ggplot</a></p></li>
-</ul></section><section id="tidy-data" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="tidy-data">
+</ul>
+<!-- ::: check-in --><!-- ## Check-ins {#ch2-checkins .unnumbered} --><!-- There are two check-ins for this week: --><!-- - [Check-in 2.1: Loading in Data](#checkin2.1-loadingdata) --><!-- - [Check-in 2.2: Introduction to Data Visualization with ggplot](#checkin2.2-dataviz) --><!-- ::: --></section><section id="tidy-data" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="tidy-data">
 <span class="header-section-number">2.1</span> Tidy Data</h2>
 <p>In the pre-reading, we learned about <a href="00-prereading.html#basic-data-types">Basic Data Types</a> (strings/characters, numeric/double/floats, integers, and logical/booleans) and <a href="00-prereading.html#data-structures">Data Structures</a> (1D - vectors and lists; 2D - matrices and data frames). This class will mainly focus on working with data frames. It is important to know the type and format of the data you’re working with. It is much easier to create data visualizations or conduct statistical analyses if the data you use is in the right shape.</p>
 <p>Data can be formatted in what are often referred to as <em>wide format</em> or <em>long format</em>. Wide format data has variables spread across columns and typically uses less space to display. This format is how you would typically choose to present your data as there is far less repetition of labels and row elements. Long format data is going to have each variable in a column and each observation in a row; this is likely not the most compact form of the data.</p>
@@ -703,24 +695,18 @@ Additional external data formats
 <a href="https://speakerdeck.com/jennybc/spreadsheets">Slides from Jenny Bryan’s talk on spreadsheets</a> (sadly, no audio. It was a good talk.)</li>
 <li>The <a href="https://www.tidyverse.org/blog/2019/05/vroom-1-0-0/"><code>vroom</code> package</a> works like <code>read_csv</code> but allows you to read in and write to many files at incredible speeds.</li>
 </ul></section><p><br></p>
-</section><section id="checkin2.1-loadingdata" class="level3 unnumbered check-in"><h3 class="unnumbered anchored" data-anchor-id="checkin2.1-loadingdata">Check-in 2.1: Loading in Data</h3>
-<p>For this check-in you are asked to work through reading in different data sets. The folder Age_Data contains several data sets with the names and ages of five individuals. The data sets are stored as different file types. <a href="https://github.com/earobinson95/stat331-calpoly/raw/master/check-ins/2.1-loading-data/Ages_Data.zip">Download Ages_data.zip here</a>, make sure to unzip the folder, save these in a reasonable place (e.g., <code>stat331 &gt; check-ins &gt; checkin2.1</code> or <code>stat331 &gt; week2</code>), then use the <code>readr</code> and <code>readxl</code> packages to complete the following and fill in the “gap” code in the Canvas quiz:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/checkin2.1-file-structure.jpg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">My file folder structure looks like this:</figcaption></figure>
-</div>
-<ol type="1">
-<li>Load the appropriate packages for reading in data.</li>
-<li>Read in the data set <em>ages.csv</em>
-</li>
-<li>Read in the data set <em>ages_tab.txt</em>
-</li>
-<li>Read in the data set <em>ages_mystery.txt</em>
-</li>
-<li>Read in the data set <em>ages.xlsx</em>
-</li>
-<li>Find a way to use <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> to read <em>ages.csv</em> with the variable “Name” as a factor data type and “Age” as a character data type.</li>
-</ol></section></section><section id="basics-of-graphics" class="level2 page-columns page-full" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="basics-of-graphics">
+<!-- ::: check-in -->
+<!-- ### Check-in 2.1: Loading in Data {- #checkin2.1-loadingdata} -->
+<!-- For this check-in you are asked to work through reading in different data sets. The folder Age_Data contains several data sets with the names and ages of five individuals. The data sets are stored as different file types. [Download Ages_data.zip here](https://github.com/earobinson95/stat331-calpoly/raw/master/check-ins/2.1-loading-data/Ages_Data.zip), make sure to unzip the folder, save these in a reasonable place (e.g., `stat331 > check-ins > checkin2.1` or `stat331 > week2`), then use the `readr` and `readxl` packages to complete the following and fill in the "gap" code in the Canvas quiz: -->
+<!-- ![My file folder structure looks like this:](images/checkin2.1-file-structure.jpg) -->
+<!-- 1. Load the appropriate packages for reading in data. -->
+<!-- 2. Read in the data set *ages.csv* -->
+<!-- 3. Read in the data set *ages_tab.txt* -->
+<!-- 4. Read in the data set *ages_mystery.txt* -->
+<!-- 5. Read in the data set *ages.xlsx* -->
+<!-- 6. Find a way to use `read_csv()` to read *ages.csv* with the variable "Name" as a factor data type and "Age" as a character data type. -->
+<!-- ::: -->
+</section></section><section id="basics-of-graphics" class="level2 page-columns page-full" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="basics-of-graphics">
 <span class="header-section-number">2.3</span> Basics of Graphics</h2>
 <p>Now that we understand the format of <em>tidy data</em> and how to load external data into R, we want to be able to <em>do</em> something with that data! We are going to start with creating data visualizations (arguably my favorite!).</p>
 <p>There are a lot of different types of charts, and equally many ways to categorize and describe the different types of charts.</p>
@@ -1497,13 +1483,17 @@ What was the third number?
 <li><a href="https://r-graphics.org/">R graph cookbook</a></li>
 <li><a href="https://ramnathv.github.io/pycon2014-r/visualize/base_graphics.html">Data Visualization in R</a></li>
 </ul></section><p><br></p>
-<section id="checkin2.2-dataviz" class="level3 unnumbered check-in"><h3 class="unnumbered anchored" data-anchor-id="checkin2.2-dataviz">Check-in 2.2: Introduction to Data Visualization with ggplot2</h3>
-<p>Complete the Canvas quiz to make sure you understand the basics of using <strong>ggplot2</strong> to create graphics.</p>
-</section><p><br></p>
-</section><section id="pa-2-using-data-visualization-to-find-the-penguins" class="level2 unnumbered tryitout"><h2 class="unnumbered anchored" data-anchor-id="pa-2-using-data-visualization-to-find-the-penguins">PA 2: Using Data Visualization to Find the Penguins</h2>
-<p>You will be exploring different types of visualizations to uncover which species of penguins reside on different islands.</p>
-<p>Visit <a href="https://earobinson95.github.io/stat331-calpoly/practice-activities/PA2-ggplot-palmer-penguins.html">PA2: Using Data Visualization to Find the Penguins</a> to see instructions for completing this activity.</p>
-</section><section id="references" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
+<!-- ::: check-in -->
+<!-- ### Check-in 2.2: Introduction to Data Visualization with ggplot2 {- #checkin2.2-dataviz} -->
+<!-- Complete the Canvas quiz to make sure you understand the basics of using **ggplot2** to create graphics. -->
+<!-- ::: -->
+<p><br></p>
+<!-- ::: tryitout -->
+<!-- ## PA 2: Using Data Visualization to Find the Penguins {-} -->
+<!-- You will be exploring different types of visualizations to uncover which species of penguins reside on different islands. -->
+<!-- Visit [PA2: Using Data Visualization to Find the Penguins](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA2-ggplot-palmer-penguins.html) to see instructions for completing this activity. -->
+<!-- ::: -->
+<section id="references" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
@@ -1514,7 +1504,7 @@ Sarkar, Dipanjan (DJ). 2018. <span>“A <span>Comprehensive</span> <span>Guide</
 Wilkinson, Leland. 2005. <em>The Grammar of Graphics</em>. 2nd ed. Statistics and Computing. New York: Springer Science.
 </div>
 </div>
-</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p>though there are a seemingly infinite number of actual formats, and they pop up at the most inconvenient times<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>This isn’t necessarily a good thing, but you should know how to do it. The jury is still very much out on whether log transformations make data easier to read and understand<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>

@@ -29,156 +29,156 @@ fa_html_dependency()
 -   Detect and resolve problems related to file systems, working directories, and system paths when troubleshooting software installation.
 -   Create Quarto documents with good reproducible principles.
 
-::: check-in
-## Check-ins {#getting-started-checkins .unnumbered}
+<!-- ::: check-in -->
+<!-- ## Check-ins {#getting-started-checkins .unnumbered} -->
 
-There are four check-ins for this week:
+<!-- There are four check-ins for this week: -->
 
--   Check-in 1.1: Syllabus & Learning Community Quiz
+<!-- -   Check-in 1.1: Syllabus & Learning Community Quiz -->
 
-<details class="check-in">
+<!-- <details class="check-in"> -->
 
-<summary>Complete the Syllabus & Learning Community Quiz on Canvas.</summary>
+<!-- <summary>Complete the Syllabus & Learning Community Quiz on Canvas.</summary> -->
 
-The [course syllabus](https://earobinson95.github.io/stat331-calpoly/00-course-info/syllabus-W2024.html) includes information about class dates, course structure, and expectations.
+<!-- The [course syllabus](https://earobinson95.github.io/stat331-calpoly/00-course-info/syllabus-W2024.html) includes information about class dates, course structure, and expectations. -->
 
-I will also be asking you some questions about yourself so I can best support you in this course! If you plan to take this quiz more than once (you have up to three retakes on check-ins) you may want to copy your open ended answers into another document so you do not have to retype them each time.
+<!-- I will also be asking you some questions about yourself so I can best support you in this course! If you plan to take this quiz more than once (you have up to three retakes on check-ins) you may want to copy your open ended answers into another document so you do not have to retype them each time. -->
 
-</details>
+<!-- </details> -->
 
--   Check-in 1.2: Discord Server
+<!-- -   Check-in 1.2: Discord Server -->
 
-<details class="check-in">
+<!-- <details class="check-in"> -->
 
-<summary>Introduce yourself in the "introductions" channel of the Discord Server (under COURSE DETAILS).</summary>
+<!-- <summary>Introduce yourself in the "introductions" channel of the Discord Server (under COURSE DETAILS).</summary> -->
 
-<br>
+<!-- <br> -->
 
-**Using the Class Discord**
+<!-- **Using the Class Discord** -->
 
-We'll be using Discord to interact with our peers and instructor outside of class.
+<!-- We'll be using Discord to interact with our peers and instructor outside of class. -->
 
-Discord is a platform for text chatting, voice chatting, and screen sharing.
+<!-- Discord is a platform for text chatting, voice chatting, and screen sharing. -->
 
-I will often be on Discord when in my office.
+<!-- I will often be on Discord when in my office. -->
 
-**Join the server**
+<!-- **Join the server** -->
 
-Join the Stat 331/531 Server *(link to join can be found on canvas)* to start experimenting with the interface.
+<!-- Join the Stat 331/531 Server *(link to join can be found on canvas)* to start experimenting with the interface. -->
 
-When you join the server, you will be given some suggestions to get started.
+<!-- When you join the server, you will be given some suggestions to get started. -->
 
-![](images/screencast_gifs/welcome_discord.png)
+<!-- ![](images/screencast_gifs/welcome_discord.png) -->
 
-I recommend you click through these - and in particular, it is probably a good idea to download the desktop version of Discord, and perhaps to install it on your phone if you wish.
+<!-- I recommend you click through these - and in particular, it is probably a good idea to download the desktop version of Discord, and perhaps to install it on your phone if you wish. -->
 
-**Set up your account**
+<!-- **Set up your account** -->
 
-***Verify your email***
+<!-- ***Verify your email*** -->
 
-To use this Discord server, you **must** have a verified email.
+<!-- To use this Discord server, you **must** have a verified email. -->
 
-Nobody (including your professors) will be able to see this email, and it does not have to be your Cal Poly email. This is simply to keep the server from being overrun by temporary accounts.
+<!-- Nobody (including your professors) will be able to see this email, and it does not have to be your Cal Poly email. This is simply to keep the server from being overrun by temporary accounts. -->
 
-***Create your identity***
+<!-- ***Create your identity*** -->
 
-The first thing you should do is decide what name and picture you would like to use.
+<!-- The first thing you should do is decide what name and picture you would like to use. -->
 
-![](images/screencast_gifs/pic.gif)
+<!-- ![](images/screencast_gifs/pic.gif) -->
 
-I would like to **strongly** encourage you to use your **real name and picture**, so that everyone can get to know you. However, if you prefer to remain anonymous, you are free to do so.
+<!-- I would like to **strongly** encourage you to use your **real name and picture**, so that everyone can get to know you. However, if you prefer to remain anonymous, you are free to do so. -->
 
-![](images/screencast_gifs/pic_name.gif)
+<!-- ![](images/screencast_gifs/pic_name.gif) -->
 
-(Please do not be like Regina and use the name of another student, however! This kind of impersonation will result in a permanent ban from the server.)
+<!-- (Please do not be like Regina and use the name of another student, however! This kind of impersonation will result in a permanent ban from the server.) -->
 
-**Decide about privacy and notifications**
+<!-- **Decide about privacy and notifications** -->
 
-The default settings on the channel are probably just fine for you.\
-Feel free to make any changes that work for you, though.
+<!-- The default settings on the channel are probably just fine for you.\ -->
+<!-- Feel free to make any changes that work for you, though. -->
 
-You can change your message notifications:
+<!-- You can change your message notifications: -->
 
-![](images/screencast_gifs/notifications.gif)
+<!-- ![](images/screencast_gifs/notifications.gif) -->
 
-You can edit your privacy settings, although most things are already private:
+<!-- You can edit your privacy settings, although most things are already private: -->
 
-![](images/screencast_gifs/privacy.gif)
+<!-- ![](images/screencast_gifs/privacy.gif) -->
 
-**Connect other apps**
+<!-- **Connect other apps** -->
 
-You can connect other apps to Discord, either for productivity or just for fun.
+<!-- You can connect other apps to Discord, either for productivity or just for fun. -->
 
-![](images/screencast_gifs/connect_spotify.gif)
+<!-- ![](images/screencast_gifs/connect_spotify.gif) -->
 
-**Using the Channels**
+<!-- **Using the Channels** -->
 
-The server is made up of many channels. Some are text chatrooms, while some are "Voice Channels" that connect you via audio to everyone else in the channel.
+<!-- The server is made up of many channels. Some are text chatrooms, while some are "Voice Channels" that connect you via audio to everyone else in the channel. -->
 
-**Text Channels**
+<!-- **Text Channels** -->
 
-Use the `#general` channel for anything and everything:
+<!-- Use the `#general` channel for anything and everything: -->
 
-![](images/screencast_gifs/saying_hi.gif)
+<!-- ![](images/screencast_gifs/saying_hi.gif) -->
 
-If your question is about course logistics, rather than the material itself, consider using the `#class-logistics` channel:
+<!-- If your question is about course logistics, rather than the material itself, consider using the `#class-logistics` channel: -->
 
-![](images/screencast_gifs/logistics.gif)
+<!-- ![](images/screencast_gifs/logistics.gif) -->
 
-You can use the specific weekly channels to ask questions about the material...
+<!-- You can use the specific weekly channels to ask questions about the material... -->
 
-![](images/screencast_gifs/github.gif)
+<!-- ![](images/screencast_gifs/github.gif) -->
 
-... or the specific lab assignment.
+<!-- ... or the specific lab assignment. -->
 
-![](images/screencast_gifs/code_in_chat.gif)
+<!-- ![](images/screencast_gifs/code_in_chat.gif) -->
 
-Notice that you can use tick marks (```` ``` ````), like in `R` Markdown / Quarto, to make your code appear in a formatted code box.
+<!-- Notice that you can use tick marks (```` ``` ````), like in `R` Markdown / Quarto, to make your code appear in a formatted code box. -->
 
-**Voice Channels**
+<!-- **Voice Channels** -->
 
-To join a voice channel, simply click it! Make sure you are careful about when you are muted or unmuted.
+<!-- To join a voice channel, simply click it! Make sure you are careful about when you are muted or unmuted. -->
 
-![](images/screencast_gifs/voice_channel.gif)
+<!-- ![](images/screencast_gifs/voice_channel.gif) -->
 
-The extra "Side Chat" channels are limited to 4 or 8 people, if you would like to start an impromptu study conversation without being heard by me and / or the rest of the class. (I'll only drop in if you invite us!)
+<!-- The extra "Side Chat" channels are limited to 4 or 8 people, if you would like to start an impromptu study conversation without being heard by me and / or the rest of the class. (I'll only drop in if you invite us!) -->
 
-Voice channels can also be used for people to "Go Live", and share their screen with everyone else.
+<!-- Voice channels can also be used for people to "Go Live", and share their screen with everyone else. -->
 
-![](images/screencast_gifs/going_live.gif)
+<!-- ![](images/screencast_gifs/going_live.gif) -->
 
-While this will usually be something professors use to demonstrate code, you can go live, too! But you may need to download the desktop version of Discord to do so.
+<!-- While this will usually be something professors use to demonstrate code, you can go live, too! But you may need to download the desktop version of Discord to do so. -->
 
-**Private messages**
+<!-- **Private messages** -->
 
-It is also easy to send private messages, to your professor or to each other. These private messages can also easily be used to launch a private video chat and / or screen sharing.
+<!-- It is also easy to send private messages, to your professor or to each other. These private messages can also easily be used to launch a private video chat and / or screen sharing. -->
 
-![](images/screencast_gifs/private_message.gif)
+<!-- ![](images/screencast_gifs/private_message.gif) -->
 
-**Creating your own server**
+<!-- **Creating your own server** -->
 
-Last but not least - for the teams you are a part of, you may want to use Discord to communicate with each other about the weekly assignments. You can do this by creating your own server! You can easily hop between servers during work parties, to ask each other questions or just to take a break and chat about life.
+<!-- Last but not least - for the teams you are a part of, you may want to use Discord to communicate with each other about the weekly assignments. You can do this by creating your own server! You can easily hop between servers during work parties, to ask each other questions or just to take a break and chat about life. -->
 
-![](images/screencast_gifs/new_server.gif)
+<!-- ![](images/screencast_gifs/new_server.gif) -->
 
-**Introduce yourself in the "introductions" channel of the Discord Server under WEEK 0: BASICS OF CODING. Share your name, major, year in school, and either (1) something you are currently obsessed with or (2) your go to study spot on campus or in SLO. Take a screenshot of your introduction on the discord channel and upload it to the Canvas assignment.**
+<!-- **Introduce yourself in the "introductions" channel of the Discord Server under WEEK 0: BASICS OF CODING. Share your name, major, year in school, and either (1) something you are currently obsessed with or (2) your go to study spot on campus or in SLO. Take a screenshot of your introduction on the discord channel and upload it to the Canvas assignment.** -->
 
-</details>
+<!-- </details> -->
 
--   [Check-in 1.3: RStudio Project](#setting-up-your-computer)
+<!-- -   [Check-in 1.3: RStudio Project](#setting-up-your-computer) -->
 
-<details class="check-in">
+<!-- <details class="check-in"> -->
 
-<summary>Get set-up!</summary>
+<!-- <summary>Get set-up!</summary> -->
 
-Follow the instructions for [Installing `R`, RStudio, and Quarto](#checkin3-install). Then create a class directory and [RStudio project](#checkin3-r-project) for this course. You are set up and ready to go!
+<!-- Follow the instructions for [Installing `R`, RStudio, and Quarto](#checkin3-install). Then create a class directory and [RStudio project](#checkin3-r-project) for this course. You are set up and ready to go! -->
 
-Take a screenshot of your class directory, showing the `r fa('r-project')` **RProject** and the folder organization, including a `r fa('folder')` **week-1** or **practice-activity** folder. Upload this screenshot to the Canvas assignment.
+<!-- Take a screenshot of your class directory, showing the `r fa('r-project')` **RProject** and the folder organization, including a `r fa('folder')` **week-1** or **practice-activity** folder. Upload this screenshot to the Canvas assignment. -->
 
-</details>
+<!-- </details> -->
 
--   [Check-in 1.4: Introduction to `R` & RStudio](#checkin4-intro-to-r)
-:::
+<!-- -   [Check-in 1.4: Introduction to `R` & RStudio](#checkin4-intro-to-r) -->
+<!-- ::: -->
 
 ## Getting Started
 
@@ -196,10 +196,10 @@ Here’s a very broad overview of what each of these programs or services does a
 
 If you already have `R` downloaded, please follow these steps anyways, to make sure you have the most recent version of `R`. Do not ignore these instructions. If you neglect to update your version of `R`, you may find that updating a package will make it so your code will not run.
 
-::: check-in
-#### Check-in 1.3: Installing `R`, RStudio, and Quarto {- #checkin3-install}
+<!-- ::: check-in -->
+<!-- #### Check-in 1.3: Installing `R`, RStudio, and Quarto {- #checkin3-install} -->
 
-<!-- #### Installing `R`, RStudio, and Quarto {- #checkin3-install} -->
+#### Installing `R`, RStudio, and Quarto {- #checkin3-install}
 
 1.  Download and run the R installer for your operating system from CRAN:
 
@@ -230,7 +230,7 @@ If you do not see Quarto, download and install the [latest version of Quarto](ht
 
 `r fa("warning")` Make sure you remember to create your [RProject](#checkin3-r-project) and upload a screenshot to canvas.
 
-:::
+<!-- ::: -->
 
 ::: column-margin
 If you would like a video tutorial on downloading RStudio, here is one:
@@ -542,11 +542,11 @@ If you plan to use the Studio computers during class, I recommend having a way t
 :::
 :::
 
-::: check-in
-#### Check-in 1.3: RProject {#checkin3-r-project .unnumbered}
+<!-- ::: check-in -->
+<!-- #### Check-in 1.3: RProject {#checkin3-r-project .unnumbered} -->
 
-4.  Take a screenshot of your class directory, showing the Rproject and the folder organization, including a *week-1* or *practice-activity* folder. Upload this screenshot to the Canvas assignment.
-:::
+<!-- 4.  Take a screenshot of your class directory, showing the Rproject and the folder organization, including a *week-1* or *practice-activity* folder. Upload this screenshot to the Canvas assignment. -->
+<!-- ::: -->
 
 <br>
 
@@ -980,67 +980,67 @@ Learn to:
 -   Ask questions on Twitter
 -   Make good use of the vast and welcoming R network on the internet
 
-::: check-in
-#### Check-in 1.4: Introduction to `R` & RStudio {#checkin4-intro-to-r .unnumbered}
+<!-- ::: check-in -->
+<!-- #### Check-in 1.4: Introduction to `R` & RStudio {#checkin4-intro-to-r .unnumbered} -->
 
-Answer the following multiple choice questions on the Canvas Quiz.
+<!-- Answer the following multiple choice questions on the Canvas Quiz. -->
 
-**Question 1:** What does it mean for R to be "open-source"?
+<!-- **Question 1:** What does it mean for R to be "open-source"? -->
 
-**Question 2:** How often do you need to install a package on your computer?
+<!-- **Question 2:** How often do you need to install a package on your computer? -->
 
-**Question 3:** What is the tidyverse?
+<!-- **Question 3:** What is the tidyverse? -->
 
-**Question 4:** What is the purpose of RStudio in relation to R?
+<!-- **Question 4:** What is the purpose of RStudio in relation to R? -->
 
-Directories, paths, and projects -- use the following image to answer the next three questions.
+<!-- Directories, paths, and projects -- use the following image to answer the next three questions. -->
 
-```{r}
-#| echo: false
-#| out-width: 60%
-knitr::include_graphics("images/01-introduction/file-folder-structure-checkin1.4.PNG")
-```
-**Question 5:** When working with R projects, what is the purpose of the ".Rproj" file?
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| out-width: 60% -->
+<!-- knitr::include_graphics("images/01-introduction/file-folder-structure-checkin1.4.PNG") -->
+<!-- ``` -->
+<!-- **Question 5:** When working with R projects, what is the purpose of the ".Rproj" file? -->
 
-**Question 6:** In what order would you 'enter' the files to access my-data.csv using a relative file path from your my-331-class as "home base"?
+<!-- **Question 6:** In what order would you 'enter' the files to access my-data.csv using a relative file path from your my-331-class as "home base"? -->
 
-**Question 7:** When naming folders, sub-folders, and files, it is good practice to use spaces.
-:::
-
-<br>
-
-::: tryitout
-## PA 1: Find the Mistakes {-}
-
-You can access [PA1: Find the Mistakes](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA1-find-the-mistakes.html) one of two ways:
-
-1.  [Click here](https://posit.cloud/content/5172799) to access an RStudio Cloud project which we work on in groups on Day 1 of the course *(Note: if you do not have an RStudio (Posit) Cloud account, you will be asked to create one)*. **Make sure to save a permanent copy!**
-
-2.  If you have already installed [R, RStudio, and Quarto](#checkin3-install), you can [create a new Quarto document](#notebooks), and copy the practice activity [template](https://raw.githubusercontent.com/earobinson95/stat331-calpoly/master/practice-activities/PA1-find-the-mistakes.qmd) into the file *(Note: make sure your quarto file is on Source mode and not Visual mode when you copy the template)*.
-
-The components of the Practice Activity are described below:
-
-**Part One:**
-
-This file has many mistakes in the code. Some are errors that will prevent the file from knitting; some are mistakes that do NOT result in an error.
-
-Fix all the problems in the code chunks.
-
-**Part Two:**
-
-Follow the instructions in the file to uncover a secret message.
-
-Submit the name of the poem as the answer to the Canvas Quiz question.
-:::
-
-::: column-margin
-::: note
-Tuesday classtime will be dedicated to working through practice activities and will be due the following classday.
-:::
+<!-- **Question 7:** When naming folders, sub-folders, and files, it is good practice to use spaces. -->
+<!-- ::: -->
 
 <br>
 
-A useful video by Dr. Theobold on "Troubleshooting in R".
+<!-- ::: tryitout -->
+<!-- ## PA 1: Find the Mistakes {-} -->
 
-{{< video https://www.youtube.com/embed/pY64VvSMy5s >}} 
-:::
+<!-- You can access [PA1: Find the Mistakes](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA1-find-the-mistakes.html) one of two ways: -->
+
+<!-- 1.  [Click here](https://posit.cloud/content/5172799) to access an RStudio Cloud project which we work on in groups on Day 1 of the course *(Note: if you do not have an RStudio (Posit) Cloud account, you will be asked to create one)*. **Make sure to save a permanent copy!** -->
+
+<!-- 2.  If you have already installed [R, RStudio, and Quarto](#checkin3-install), you can [create a new Quarto document](#notebooks), and copy the practice activity [template](https://raw.githubusercontent.com/earobinson95/stat331-calpoly/master/practice-activities/PA1-find-the-mistakes.qmd) into the file *(Note: make sure your quarto file is on Source mode and not Visual mode when you copy the template)*. -->
+
+<!-- The components of the Practice Activity are described below: -->
+
+<!-- **Part One:** -->
+
+<!-- This file has many mistakes in the code. Some are errors that will prevent the file from knitting; some are mistakes that do NOT result in an error. -->
+
+<!-- Fix all the problems in the code chunks. -->
+
+<!-- **Part Two:** -->
+
+<!-- Follow the instructions in the file to uncover a secret message. -->
+
+<!-- Submit the name of the poem as the answer to the Canvas Quiz question. -->
+<!-- ::: -->
+
+<!-- ::: column-margin -->
+<!-- ::: note -->
+<!-- Tuesday classtime will be dedicated to working through practice activities and will be due the following classday. -->
+<!-- ::: -->
+
+<!-- <br> -->
+
+<!-- A useful video by Dr. Theobold on "Troubleshooting in R". -->
+
+<!-- {{< video https://www.youtube.com/embed/pY64VvSMy5s >}}  -->
+<!-- ::: -->

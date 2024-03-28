@@ -252,7 +252,6 @@ div.csl-indent {
    
   <ul>
 <li><a href="#ch3-objectives" id="toc-ch3-objectives" class="nav-link active" data-scroll-target="#ch3-objectives">Objectives</a></li>
-  <li><a href="#ch3-checkins" id="toc-ch3-checkins" class="nav-link" data-scroll-target="#ch3-checkins">Check-ins</a></li>
   <li>
 <a href="#a-quick-note-about-tibble" id="toc-a-quick-note-about-tibble" class="nav-link" data-scroll-target="#a-quick-note-about-tibble"><span class="header-section-number">3.1</span> A quick note about <code>tibble</code></a>
   <ul class="collapse">
@@ -277,9 +276,7 @@ div.csl-indent {
   <li><a href="#summarize" id="toc-summarize" class="nav-link" data-scroll-target="#summarize"><span class="header-section-number">3.6</span> <code>summarize()</code></a></li>
   <li><a href="#group_by-group-by-power" id="toc-group_by-group-by-power" class="nav-link" data-scroll-target="#group_by-group-by-power"><span class="header-section-number">3.7</span> <code>group_by()</code> Group By + (?) = Power!</a></li>
   <li><a href="#pipe" id="toc-pipe" class="nav-link" data-scroll-target="#pipe"><span class="header-section-number">3.8</span> Pipe Operator</a></li>
-  <li><a href="#checkin3-1" id="toc-checkin3-1" class="nav-link" data-scroll-target="#checkin3-1">Check-in 3.1: Data Wrangling</a></li>
   <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
-  <li><a href="#pa-3-identify-the-mystery-college" id="toc-pa-3-identify-the-mystery-college" class="nav-link" data-scroll-target="#pa-3-identify-the-mystery-college">PA 3: Identify the Mystery College</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/03-data-cleaning-and-manipulation.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
@@ -308,11 +305,8 @@ div.csl-indent {
 <li>Identify required sequence of steps for data cleaning</li>
 <li>Describe step-by-step data cleaning process in lay terms appropriately and understand the consequences of data cleaning steps</li>
 <li>Create summaries of data appropriate for analysis or display using data manipulation techniques</li>
-</ul></section><section id="ch3-checkins" class="level2 unnumbered check-in"><h2 class="unnumbered anchored" data-anchor-id="ch3-checkins">Check-ins</h2>
-<p>There is one check-in for this week:</p>
-<ul>
-<li><a href="#checkin3-1">Check-in 3.1: Data Wrangling</a></li>
-</ul></section><section id="a-quick-note-about-tibble" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="a-quick-note-about-tibble">
+</ul>
+<!-- ::: check-in --><!-- ## Check-ins {- #ch3-checkins} --><!-- There is one check-in for this week: --><!-- -   [Check-in 3.1: Data Wrangling](#checkin3-1) --><!-- ::: --></section><section id="a-quick-note-about-tibble" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="a-quick-note-about-tibble">
 <span class="header-section-number">3.1</span> A quick note about <code>tibble</code>
 </h2>
 <p>We have been talking about our data in terms of <code>data.frame</code> objects in R. This is meant to inform you there is another object type in R called <code>tibble</code>s. Essentially, Tibbles <em>are</em> data frames, but they have certain features that make them easier to work with and provide additional cool features that can be useful (e.g., see <code>nest()</code>).</p>
@@ -2509,92 +2503,83 @@ Mutate and new challenges
 <p>As with ggplot, formatting your <code>dplyr</code> code pipelines so it is readable will help both you and me!</p>
 </div>
 <p><br></p>
-</section><section id="checkin3-1" class="level2 unnumbered check-in"><h2 class="unnumbered anchored" data-anchor-id="checkin3-1">Check-in 3.1: Data Wrangling</h2>
-<p><strong>Q1: Arrange the pipeline</strong></p>
-<p>Working with the Palmer Penguins data set:</p>
-<div class="cell">
-<div class="sourceCode" id="cb27" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code># A tibble: 6 × 8
-  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
-1 Adelie  Torgersen           39.1          18.7               181        3750
-2 Adelie  Torgersen           39.5          17.4               186        3800
-3 Adelie  Torgersen           40.3          18                 195        3250
-4 Adelie  Torgersen           NA            NA                  NA          NA
-5 Adelie  Torgersen           36.7          19.3               193        3450
-6 Adelie  Torgersen           39.3          20.6               190        3650
-# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
-</div>
-</div>
-<p>Suppose we would like to study how the ratio of penguin body mass to flipper size differs across the species. Arrange the following steps into an order that accomplishes this goal (assuming the steps are connected with a |&gt; or a %&gt;%).</p>
-<p><code>arrange(med_mass_flipper_ratio)</code></p>
-<p><code>group_by(species)</code></p>
-<p><code>penguins</code></p>
-<p><code>summarize(med_mass_flipper_ratio = median(mass_flipper_ratio))</code></p>
-<p><code>mutate(mass_flipper_ratio = body_mass_g / flipper_length_mm)</code></p>
+<!-- ::: check-in -->
+<!-- ## Check-in 3.1: Data Wrangling {#checkin3-1 .unnumbered} -->
+<!-- **Q1: Arrange the pipeline** -->
+<!-- Working with the Palmer Penguins data set: -->
+<!-- ```{r} -->
+<!-- library(palmerpenguins) -->
+<!-- data(penguins) -->
+<!-- head(penguins) -->
+<!-- ``` -->
+<!-- Suppose we would like to study how the ratio of penguin body mass to flipper size differs across the species. Arrange the following steps into an order that accomplishes this goal (assuming the steps are connected with a \|\> or a %\>%). -->
+<!-- `arrange(med_mass_flipper_ratio)` -->
+<!-- `group_by(species)` -->
+<!-- `penguins` -->
+<!-- `summarize(med_mass_flipper_ratio = median(mass_flipper_ratio))` -->
+<!-- `mutate(mass_flipper_ratio = body_mass_g / flipper_length_mm)` -->
+<!-- <br> -->
+<!-- **Q2 - Q7: `dplyr` pipelines** -->
+<!-- Consider the base R code below. -->
+<!-- ```{r} -->
+<!-- mean(penguins[penguins$species == "Adelie", ]$body_mass_g, na.rm = T) -->
+<!-- ``` -->
+<!-- For each of the following `dplyr` pipelines, indicate which of the following is true: -->
+<!-- i)  It returns the exact same thing as the (above) base R code -->
+<!-- ii) It returns the correct information, but the wrong object type -->
+<!-- iii) It returns incorrect information -->
+<!-- iv) It returns an error -->
+<!-- **Q2** -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins  |> -->
+<!--   filter("body_mass_g") |> -->
+<!--   pull("Adelie") |> -->
+<!--   mean(na.rm = T) -->
+<!-- ``` -->
+<!-- **Q3** -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |> -->
+<!--   filter(species == "Adelie") |> -->
+<!--   select(body_mass_g) |> -->
+<!--   summarize(mean(body_mass_g, na.rm = T)) -->
+<!-- ``` -->
+<!-- **Q4** -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |> -->
+<!--   pull(body_mass_g) |> -->
+<!--   filter(species == "Adelie") |> -->
+<!--   mean(na.rm = T) -->
+<!-- ``` -->
+<!-- **Q5** -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |> -->
+<!--   filter(species == "Adelie") |> -->
+<!--   select(body_mass_g) |> -->
+<!--   mean(na.rm = T) -->
+<!-- ``` -->
+<!-- **Q6** -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |> -->
+<!--   filter(species == "Adelie") |> -->
+<!--   pull(body_mass_g) |> -->
+<!--   mean(na.rm = T) -->
+<!-- ``` -->
+<!-- **Q7** -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- penguins |> -->
+<!--   select(species == "Adelie") |> -->
+<!--   filter(body_mass_g) |> -->
+<!--   summarize(mean(body_mass_g, na.rm = T)) -->
+<!-- ``` -->
+<!-- ::: -->
 <p><br></p>
-<p><strong>Q2 - Q7: <code>dplyr</code> pipelines</strong></p>
-<p>Consider the base R code below.</p>
-<div class="cell">
-<div class="sourceCode" id="cb29" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">[</span><span class="va">penguins</span><span class="op">$</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span>, <span class="op">]</span><span class="op">$</span><span class="va">body_mass_g</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1] 3700.662</code></pre>
-</div>
-</div>
-<p>For each of the following <code>dplyr</code> pipelines, indicate which of the following is true:</p>
-<ol type="i">
-<li><p>It returns the exact same thing as the (above) base R code</p></li>
-<li><p>It returns the correct information, but the wrong object type</p></li>
-<li><p>It returns incorrect information</p></li>
-<li><p>It returns an error</p></li>
-</ol>
-<p><strong>Q2</strong></p>
-<div class="cell">
-<div class="sourceCode" id="cb31" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span>  <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="st">"body_mass_g"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="st">"Adelie"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span>na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Q3</strong></p>
-<div class="cell">
-<div class="sourceCode" id="cb32" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">body_mass_g</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Q4</strong></p>
-<div class="cell">
-<div class="sourceCode" id="cb33" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span>na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Q5</strong></p>
-<div class="cell">
-<div class="sourceCode" id="cb34" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span>na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Q6</strong></p>
-<div class="cell">
-<div class="sourceCode" id="cb35" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span>na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Q7</strong></p>
-<div class="cell">
-<div class="sourceCode" id="cb36" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">body_mass_g</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section><p><br></p>
-<section id="additional-resources" class="level2 unnumbered learn-more"><h2 class="unnumbered anchored" data-anchor-id="additional-resources">Additional Resources</h2>
+</section><section id="additional-resources" class="level2 unnumbered learn-more"><h2 class="unnumbered anchored" data-anchor-id="additional-resources">Additional Resources</h2>
 <ul>
 <li><p><a href="https://stat545.com/dplyr-intro.html">Introduction to dplyr</a> and <a href="https://stat545.com/dplyr-single.html">Single Table dplyr functions</a></p></li>
 <li><p>R for Data Science: <a href="https://r4ds.hadley.nz/data-transform.html">Data Transformations</a></p></li>
@@ -2602,11 +2587,13 @@ Mutate and new challenges
 <li><p>Additional practice exercises: <a href="https://stat579-at-isu.github.io/materials/03_tidyverse/01_dplyr.html#19">Intro to the tidyverse</a>, <a href="https://stat579-at-isu.github.io/materials//03_tidyverse/02_dplyr-examples.html">group_by + summarize examples</a>, <a href="https://stat579-at-isu.github.io/materials//03_tidyverse/03_dplyr-examples.html#1">group_by + mutate examples</a> (from a similar class at Iowa State)</p></li>
 <li><p><a href="https://www.youtube.com/playlist?list=PL19ev-r1GBwkuyiwnxoHTRC8TTqP8OEi8">Videos of analysis of new data from Tidy Tuesday</a> - may include use of other packages, but almost definitely includes use of <code>dplyr</code> as well.</p></li>
 </ul></section><p><br></p>
-<section id="pa-3-identify-the-mystery-college" class="level2 unnumbered tryitout"><h2 class="unnumbered anchored" data-anchor-id="pa-3-identify-the-mystery-college">PA 3: Identify the Mystery College</h2>
-<p>Today you will be using the <code>dplyr</code> package to clean a data set and then using that cleaned data set to figure out what college Ephelia has been accepted to.</p>
-<p>Visit <a href="https://earobinson95.github.io/stat331-calpoly/practice-activities/PA3-find-the-mystery-college">PA 3: Identify the Mystery College</a> for instructions.</p>
-<p>Submit the full name of the college Ephelia will attend to the Canvas Quiz.</p>
-</section><section id="references" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
+<!-- ::: tryitout -->
+<!-- ## PA 3: Identify the Mystery College {-} -->
+<!-- Today you will be using the `dplyr` package to clean a data set and then using that cleaned data set to figure out what college Ephelia has been accepted to. -->
+<!-- Visit [PA 3: Identify the Mystery College](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA3-find-the-mystery-college) for instructions. -->
+<!-- Submit the full name of the college Ephelia will attend to the Canvas Quiz. -->
+<!-- ::: -->
+<section id="references" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">

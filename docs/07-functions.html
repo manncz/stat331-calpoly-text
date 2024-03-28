@@ -251,7 +251,6 @@ div.csl-indent {
    
   <ul>
 <li><a href="#ch7-objectives" id="toc-ch7-objectives" class="nav-link active" data-scroll-target="#ch7-objectives">Objectives</a></li>
-  <li><a href="#ch7-checkins" id="toc-ch7-checkins" class="nav-link" data-scroll-target="#ch7-checkins">Check-ins</a></li>
   <li>
 <a href="#when-to-write-a-function" id="toc-when-to-write-a-function" class="nav-link" data-scroll-target="#when-to-write-a-function"><span class="header-section-number">7.1</span> When to write a function?</a>
   <ul class="collapse">
@@ -283,10 +282,12 @@ div.csl-indent {
   <li><a href="#general-debugging-strategies" id="toc-general-debugging-strategies" class="nav-link" data-scroll-target="#general-debugging-strategies"><span class="header-section-number">7.6.2</span> General Debugging Strategies</a></li>
   </ul>
 </li>
-  <li><a href="#styling-functions" id="toc-styling-functions" class="nav-link" data-scroll-target="#styling-functions"><span class="header-section-number">7.7</span> Styling Functions</a></li>
-  <li><a href="#checkin7-1" id="toc-checkin7-1" class="nav-link" data-scroll-target="#checkin7-1">Check-in 7.1: Writing Functions</a></li>
-  <li><a href="#pa-7-functions" id="toc-pa-7-functions" class="nav-link" data-scroll-target="#pa-7-functions">PA 7: Functions</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li>
+<a href="#styling-functions" id="toc-styling-functions" class="nav-link" data-scroll-target="#styling-functions"><span class="header-section-number">7.7</span> Styling Functions</a>
+  <ul class="collapse">
+<li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/07-functions.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
@@ -314,13 +315,10 @@ div.csl-indent {
 <li>Make good decisions about function arguments and returns</li>
 <li>Include side effects and / or error messages in your functions</li>
 <li>Extend your use of good R coding style</li>
-</ul></section><section id="ch7-checkins" class="level2 unnumbered check-in"><h2 class="unnumbered anchored" data-anchor-id="ch7-checkins">Check-ins</h2>
-<p>There is one check-in for this week:</p>
-<ul>
-<li><a href="#checkin7-1">Check-in 7.1: Writing Functions</a></li>
-</ul></section><p><br></p>
+</ul>
+<!-- ::: check-in --><!-- ## Check-ins {- #ch7-checkins} --><!-- There is one check-in for this week: --><!-- + [Check-in 7.1: Writing Functions](#checkin7-1) --><!-- ::: --><p><br></p>
 <p>A <strong>function</strong> is a set of actions that we group together and name. Throughout this course, you’ve used a bunch of different functions in R that are built into the language or added through packages: <code>mean</code>, <code>ggplot</code>, <code>filter</code>. In this chapter, we’ll be writing our own functions.</p>
-<section id="when-to-write-a-function" class="level2 page-columns page-full" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="when-to-write-a-function">
+</section><section id="when-to-write-a-function" class="level2 page-columns page-full" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="when-to-write-a-function">
 <span class="header-section-number">7.1</span> When to write a function?</h2>
 <p>If you’ve written the same code (with a few minor changes, like variable names) more than twice, you should probably write a function instead of copy pasting. The motivation behind this is the “don’t repeat yourself” (DRY) principle <span class="citation" data-cites="wickham2016r">(<a href="#ref-wickham2016r" role="doc-biblioref">Wickham and Grolemund 2016</a>)</span>. There are a few benefits to this rule:</p>
 <ol type="1">
@@ -372,8 +370,8 @@ div.csl-indent {
 <span><span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> </span>
 <span>  <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code> [1] 0.5506497 0.0000000 0.9010834 0.8718672 1.0000000 0.4828655 0.9211918
- [8] 0.9567885 0.7396000 0.9558597</code></pre>
+<pre data-code-line-numbers=""><code> [1] 0.12643112 0.42901602 0.97391841 0.77221475 0.07277565 0.73790707
+ [7] 0.62944150 0.00000000 1.00000000 0.27256404</code></pre>
 </div>
 </div>
 <p>Then, we make it a bit easier to read, removing duplicate computations if possible (for instance, computing <code>min</code> two times).</p>
@@ -383,8 +381,8 @@ div.csl-indent {
 <span></span>
 <span><span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="va">rng</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">rng</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">-</span> <span class="va">rng</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code> [1] 0.5506497 0.0000000 0.9010834 0.8718672 1.0000000 0.4828655 0.9211918
- [8] 0.9567885 0.7396000 0.9558597</code></pre>
+<pre data-code-line-numbers=""><code> [1] 0.12643112 0.42901602 0.97391841 0.77221475 0.07277565 0.73790707
+ [7] 0.62944150 0.00000000 1.00000000 0.27256404</code></pre>
 </div>
 </div>
 <p>Finally, we turn this code into a function</p>
@@ -396,8 +394,8 @@ div.csl-indent {
 <span></span>
 <span><span class="fu">rescale01</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code> [1] 0.5506497 0.0000000 0.9010834 0.8718672 1.0000000 0.4828655 0.9211918
- [8] 0.9567885 0.7396000 0.9558597</code></pre>
+<pre data-code-line-numbers=""><code> [1] 0.12643112 0.42901602 0.97391841 0.77221475 0.07277565 0.73790707
+ [7] 0.62944150 0.00000000 1.00000000 0.27256404</code></pre>
 </div>
 </div>
 <ul>
@@ -1058,85 +1056,8 @@ When the sub-problem has a viable solution, move on to the next sub-problem. Don
 <li><em>(Relying on other functions is fine, though)</em></li>
 <li>They should not alter the Global Environment</li>
 <li>Functions should never load or install packages!</li>
-</ul></section><section id="checkin7-1" class="level2 unnumbered check-in"><h2 class="unnumbered anchored" data-anchor-id="checkin7-1">Check-in 7.1: Writing Functions</h2>
-<p><strong>Simple Functions</strong></p>
-<ol type="1">
-<li>Fill in the necessary code to write a function called <code>times_seven()</code>. The function should take a single argument (<code>x</code>) and multiply the input by 7.</li>
-</ol>
-<ul>
-<li>This function should check that the argument is numeric.</li>
-<li>This function should also excitedly announce (print) <em>“I love sevens!”</em> if the argument to the function is a 7.</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb63" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>times_seven <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(___)</span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(___){</span>
-<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(___)</span>
-<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(___)</span>
-<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Predicting Function Behavior</strong></p>
-<ol start="2" type="1">
-<li>For the following function, <code>add_or_subtract()</code>:</li>
-</ol>
-<div class="cell">
-<div class="sourceCode" id="cb64" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">add_or_subtract</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">first_num</span>,</span>
-<span>                            <span class="va">second_num</span> <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>                            <span class="va">type</span> <span class="op">=</span> <span class="st">"add"</span><span class="op">)</span> <span class="op">{</span></span>
-<span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">"add"</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">first_num</span> <span class="op">+</span> <span class="va">second_num</span></span>
-<span>  <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">"subtract"</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">first_num</span> <span class="op">-</span> <span class="va">second_num</span></span>
-<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>    <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"Please choose `add` or `subtract` as the type."</span><span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
-<span></span>
-<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>What will be the output for the following three calls to the <code>add_or_subtract()</code> function?</p>
-<div class="cell">
-<div class="sourceCode" id="cb65" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">add_or_subtract</span><span class="op">(</span><span class="fl">5</span>, <span class="fl">6</span>, type <span class="op">=</span> <span class="st">"subtract"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">add_or_subtract</span><span class="op">(</span><span class="st">"orange"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">add_or_subtract</span><span class="op">(</span><span class="fl">5</span>, <span class="fl">6</span>, type <span class="op">=</span> <span class="st">"multiply"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol type="a">
-<li>1</li>
-<li>-1</li>
-<li>30</li>
-<li>An error defined by the function <code>add_or_subtract()</code>
-</li>
-<li>An error defined in a different function, which is called inside the <code>add_or_subtract()</code> function</li>
-</ol>
-<ol start="3" type="1">
-<li>Consider the following code:</li>
-</ol>
-<div class="cell">
-<div class="sourceCode" id="cb66" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">first_num</span>  <span class="op">&lt;-</span> <span class="fl">5</span></span>
-<span><span class="va">second_num</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
-<span></span>
-<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fl">8</span></span>
-<span></span>
-<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">add_or_subtract</span><span class="op">(</span><span class="va">first_num</span>, second_num <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">result_2</span> <span class="op">&lt;-</span> <span class="fu">add_or_subtract</span><span class="op">(</span><span class="va">first_num</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>In your Global Environment, what is the value of…</p>
-<ol type="a">
-<li>first_num</li>
-<li>second_num</li>
-<li>result</li>
-<li>result_2</li>
-</ol></section><p><br></p>
-<section id="pa-7-functions" class="level3 unnumbered tryitout"><h3 class="unnumbered anchored" data-anchor-id="pa-7-functions">PA 7: Functions</h3>
-<p>You will write several small functions, then use them to unscramble a message. Many of the functions have been started for you below, but <strong>none</strong> of them are complete as-is.</p>
-<p>Visit <a href="https://earobinson95.github.io/stat331-calpoly/practice-activities/PA7-functions.html">PA 7: Functions</a> for instructions.</p>
-<p>If you have done everything correctly, your final vector will be six numbers long. Google these six numbers to find a TV show as your final answer and submit to Canvas.</p>
-</section><section id="references" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
+<!-- ::: check-in --><!-- ## Check-in 7.1: Writing Functions {#checkin7-1 -} --><!-- **Simple Functions** --><!-- 1. Fill in the necessary code to write a function called `times_seven()`. The function should take a single argument (`x`) and multiply the input by 7. --><!--   + This function should check that the argument is numeric. --><!--   + This function should also excitedly announce (print) *“I love sevens!”* if the argument to the function is a 7. --><!-- ```{r} --><!-- #| eval: false --><!-- times_seven <- function(x){ --><!--   stopifnot(___) --><!--   if(___){ --><!--     print(___) --><!--   } --><!--   return(___) --><!-- } --><!-- ``` --><!-- **Predicting Function Behavior** --><!-- 2. For the following function, `add_or_subtract()`: --><!-- ```{r} --><!-- #| eval: false --><!-- add_or_subtract <- function(first_num, --><!--                             second_num = 2, --><!--                             type = "add") { --><!--   if (type == "add") { --><!--     first_num + second_num --><!--   } else if (type == "subtract") { --><!--     first_num - second_num --><!--   } else { --><!--     stop("Please choose `add` or `subtract` as the type.") --><!--   } --><!-- } --><!-- ``` --><!-- What will be the output for the following three calls to the `add_or_subtract()` function? --><!-- ```{r} --><!-- #| eval: false --><!-- add_or_subtract(5, 6, type = "subtract") --><!-- add_or_subtract("orange") --><!-- add_or_subtract(5, 6, type = "multiply") --><!-- ``` --><!--   a. 1 --><!--   b. -1 --><!--   c. 30 --><!--   d. An error defined by the function `add_or_subtract()` --><!--   e. An error defined in a different function, which is called inside the `add_or_subtract()` function --><!-- 3. Consider the following code: --><!-- ```{r} --><!-- #| eval: false --><!-- first_num  <- 5 --><!-- second_num <- 3 --><!-- result <- 8 --><!-- result <- add_or_subtract(first_num, second_num = 4) --><!-- result_2 <- add_or_subtract(first_num) --><!-- ``` --><!-- In your Global Environment, what is the value of... --><!-- a. first_num --><!-- b. second_num --><!-- c. result --><!-- d. result_2 --><!-- ::: --><!-- <br> --><!-- ::: tryitout --><!-- ### PA 7: Functions {-} --><!-- You will write several small functions, then use them to unscramble a message. Many of the functions have been started for you below, but **none** of them are complete as-is. --><!-- Visit [PA 7: Functions](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA7-functions.html) for instructions. --><!-- If you have done everything correctly, your final vector will be six numbers long. Google these six numbers to find a TV show as your final answer and submit to Canvas. --><!-- ::: --><section id="references" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
@@ -1150,7 +1071,7 @@ Wickham, H., and G. Grolemund. 2016. <em>R for Data Science: <span>Import</span>
 Wilson, Greg, Dhavide A Aruliah, C Titus Brown, Neil P Chue Hong, Matt Davis, Richard T Guy, Steven HD Haddock, et al. 2014. <span>“Best Practices for Scientific Computing.”</span> <em>PLoS Biology</em> 12 (1): e1001745.
 </div>
 </div>
-</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p>the 0th step is from the 1st edition, the remaining steps are from the 2nd.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Some people use cats, but I find that they don’t meet the nonjudgmental criteria. Of course, they’re equally judgmental whether your code works or not, so maybe that works if you’re a cat person, which I am not. Dogs, in my experience, can work, but often will try to comfort you when they realize you’re upset, which both helps and lessens your motivation to fix the problem. A rubber duck is the perfect dispassionate listener.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>

@@ -41,15 +41,15 @@ Most of this section is either heavily inspired by Happy Git and Github for the 
 
 <br>
 
-::: check-in
-## Check-ins {#ch6-checkins .unnumbered}
+<!-- ::: check-in -->
+<!-- ## Check-ins {#ch6-checkins .unnumbered} -->
 
-There are two check-ins for this week:
+<!-- There are two check-ins for this week: -->
 
-+ [Check-in 6.1: Install Git](#checkin6-1)
-+ [Check-in 6.2: Create a GitHub Account](#checkin6-2)
+<!-- + [Check-in 6.1: Install Git](#checkin6-1) -->
+<!-- + [Check-in 6.2: Create a GitHub Account](#checkin6-2) -->
 
-:::
+<!-- ::: -->
 
 ## What is Version Control?
 
@@ -94,18 +94,18 @@ The git material in this chapter is just going to link directly to the book "Hap
 
 <br>
 
-::: check-in
-### Check-in 6.1: Install Git {- #checkin6-1}
+<!-- ::: check-in -->
+<!-- ### Check-in 6.1: Install Git {- #checkin6-1} -->
 
-We will be working with Git/GitHub in groups during class this week. In order to be prepared, please install Git onto your computer -- we will be connecting this to RStudio together, but having this installed ahead of time avoids installation time during class.
+<!-- We will be working with Git/GitHub in groups during class this week. In order to be prepared, please install Git onto your computer -- we will be connecting this to RStudio together, but having this installed ahead of time avoids installation time during class. -->
 
-+ [Install Git for Windows](https://gitforwindows.org/)
-+ [Install Git for Macs](https://git-scm.com/downloads)
+<!-- + [Install Git for Windows](https://gitforwindows.org/) -->
+<!-- + [Install Git for Macs](https://git-scm.com/downloads) -->
 
-If you run into issues, read more about [installing Git](https://happygitwithr.com/install-git.html).
+<!-- If you run into issues, read more about [installing Git](https://happygitwithr.com/install-git.html). -->
 
-Once you have installed Git, tell me "yes" in the Canvas Quiz.
-:::
+<!-- Once you have installed Git, tell me "yes" in the Canvas Quiz. -->
+<!-- ::: -->
 
 <br>
 Now that you have a general idea of how git works and why we might use it, let's talk a bit about GitHub.
@@ -119,19 +119,19 @@ If you want, you can hook Git up to GitHub, and make a copy of your local git re
 Remember: any data you don't have in 3 different places is data you don't care about.^[Yes, I'm aware that this sounds paranoid. It's been a very rare occasion that I've needed to restore something from another backup. You don't want to take chances.]
 
 
-::: check-in
-### Check-in 6.2: Register a GitHub Account {- #checkin6-2}
+<!-- ::: check-in -->
+<!-- ### Check-in 6.2: Register a GitHub Account {- #checkin6-2} -->
 
-Follow the instructions in [Registering a GitHub Account](https://happygitwithr.com/github-acct.html) to create a **free** GitHub account.
+<!-- Follow the instructions in [Registering a GitHub Account](https://happygitwithr.com/github-acct.html) to create a **free** GitHub account. -->
 
-Copy and paste the link to your GitHub profile into the Canvas assignment.
+<!-- Copy and paste the link to your GitHub profile into the Canvas assignment. -->
 
-+ Your GitHub profile link should look like -- https://github.com/USERNAME
-+ Here is mine! [https://github.com/earobinson95](https://github.com/earobinson95)
+<!-- + Your GitHub profile link should look like -- https://github.com/USERNAME -->
+<!-- + Here is mine! [https://github.com/earobinson95](https://github.com/earobinson95) -->
 
-(Optional) You may want to check out [GitHub Education](https://education.github.com/) and sign up for the [GitHub Student Developer Pack](https://education.github.com/pack).
+<!-- (Optional) You may want to check out [GitHub Education](https://education.github.com/) and sign up for the [GitHub Student Developer Pack](https://education.github.com/pack). -->
 
-:::
+<!-- ::: -->
 
 <br>
 
@@ -176,11 +176,11 @@ In class this week, we will connect git/GitHub to RStudio so you can use version
 
 <br>
 
-::: tryitout
-### PA 6: Merge Conflicts {-}
-In class, we will work together, step-by-step in groups, to resolve merge conflicts when collaborating with GitHub. See slide instructions [here](https://earobinson95.github.io/stat331-calpoly/lecture-slides/06-version-control-exam-review/06-version-control.html#/pa-6-merge-conflicts).
+<!-- ::: tryitout -->
+<!-- ### PA 6: Merge Conflicts {-} -->
+<!-- In class, we will work together, step-by-step in groups, to resolve merge conflicts when collaborating with GitHub. See slide instructions [here](https://earobinson95.github.io/stat331-calpoly/lecture-slides/06-version-control-exam-review/06-version-control.html#/pa-6-merge-conflicts). -->
 
-In order to receive credit for this practice activity, you **must** attend class. Please email your instructor if extenuating circumstances arise.
-:::
+<!-- In order to receive credit for this practice activity, you **must** attend class. Please email your instructor if extenuating circumstances arise. -->
+<!-- ::: -->
 
 ### References {-}
