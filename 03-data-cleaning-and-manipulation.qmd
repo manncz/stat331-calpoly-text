@@ -395,19 +395,19 @@ slice_min(starwars, order_by = height, n = 5, with_ties = FALSE)   |>
 `slice_max` and `slice_min` also take a `prop` argument that gives you a certain proportion of the values:
 
 ::: ex
-The code below outputs the **shortest 1%** of characters in star wars.
+The code below outputs the **shortest 2%** of characters in star wars.
 
 ```{r slice-starwars-arrange-41}
 #| eval: false
-slice_max(.data = starwars, 
+slice_min(.data = starwars, 
           order_by = height, 
-          prop = 0.01
+          prop = 0.02
           )
 ```
 
 ```{r slice-starwars-arrange-42}
 #| echo: false
-slice_max(starwars, order_by = height, prop = .01) |>
+slice_min(starwars, order_by = height, prop = .02) |>
   kable(format = 'html')
 ```
 :::
@@ -516,11 +516,11 @@ select(starwars, name:mass, birth_year, species, homeworld)   |>
   slice(1:10) |> 
   kable(format = 'html')
 ```
-:::
+
 
 The select column is also useful for reordering the variables in your data set.
 
-:::
+
 
 Perhaps we want the `birth_year`, `sex`, `gender`, `homeworld`, and `species` to follow the `name` of the star wars character. We can use the `everything()` function to specify we want all the other variables to follow.
 
@@ -625,15 +625,15 @@ I'm not going to be able to teach you how to handle every mutate statement task 
 
 Google and StackOverflow are very common and important programming skills!
 
-![[Source](https://twitter.com/madsbrodt/status/1339127984670773251)](images/data-transformations/twitter-google-stackoverflow.png){fig-alt="A screenshot of a tweet from @madsbrodt. Tweet text: Googling and StackOverflow'ing is a natural part of programming. Don't think of it as cheating. Knowing what to search for, and which results will fit your given situation is an important skill (flame emoji)."}
+![[Source](https://twitter.com/madsbrodt/status/1339127984670773251)](images/03-data-cleaning-and-manipulation/twitter-google-stackoverflow.png){fig-alt="A screenshot of a tweet from @madsbrodt. Tweet text: Googling and StackOverflow'ing is a natural part of programming. Don't think of it as cheating. Knowing what to search for, and which results will fit your given situation is an important skill (flame emoji)."}
 
-![[Source](https://twitter.com/cszhu/status/1230954186520461312)](images/data-transformations/twitter-happy-debugging.png){fig-alt="A screenshot of a tweet from @cszhu. Tweet text: if you're not happy single, you won't be happy in a relationship. true happiness comes from closing 100 chrome tabs after solving an obscure programming bug, not from someone else."}
+![[Source](https://twitter.com/cszhu/status/1230954186520461312)](images/03-data-cleaning-and-manipulation/twitter-happy-debugging.png){fig-alt="A screenshot of a tweet from @cszhu. Tweet text: if you're not happy single, you won't be happy in a relationship. true happiness comes from closing 100 chrome tabs after solving an obscure programming bug, not from someone else."}
 
 In this textbook, the examples will expose you to solutions to common problems (or require that you do some basic reading yourself); unfortunately, there are too many common problems for us to work through line-by-line.
 
 Part of the goal of this textbook is to help you **learn how to read through a package description and evaluate whether the package will do what you want**. We're going to try to build some of those skills starting now. It would be relatively easy to teach you how to do a set list of tasks, but you'll be better statisticians and programmers if you learn the skills to solve niche problems on your own.
 
-![Apologies for the noninclusive language, but the sentiment is real. [Source](https://twitter.com/abt_programming/status/459414524303785984)](images/data-transformations/twitter-teach-program.png){fig-alt="A screenshot of a tweet from @abt_programming. Tweet text: Give a man a program, frustrate him for a day.Teach a man to program, frustrate him for a lifetime - Muhammad Waseem."}
+![Apologies for the noninclusive language, but the sentiment is real. [Source](https://twitter.com/abt_programming/status/459414524303785984)](images/03-data-cleaning-and-manipulation/twitter-teach-program.png){fig-alt="A screenshot of a tweet from @abt_programming. Tweet text: Give a man a program, frustrate him for a day.Teach a man to program, frustrate him for a lifetime - Muhammad Waseem."}
 
 </details>
 

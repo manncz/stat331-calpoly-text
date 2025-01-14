@@ -1638,16 +1638,16 @@ window.Quarto = {
 </div>
 <p><code>slice_max</code> and <code>slice_min</code> also take a <code>prop</code> argument that gives you a certain proportion of the values:</p>
 <div class="ex">
-<p>The code below outputs the <strong>shortest 1%</strong> of characters in star wars.</p>
+<p>The code below outputs the <strong>shortest 2%</strong> of characters in star wars.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_max</span>(<span class="at">.data =</span> starwars, </span>
+<div class="sourceCode cell-code" id="cb14" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_min</span>(<span class="at">.data =</span> starwars, </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">order_by =</span> height, </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">prop =</span> <span class="fl">0.01</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">prop =</span> <span class="fl">0.02</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>          )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<table class="caption-top" data-quarto-postprocess="true">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
@@ -1664,20 +1664,19 @@ window.Quarto = {
 </tr>
 </thead>
 <tbody>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
+<tr class="odd">
+<td style="text-align: left;">Yoda</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">green</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: right;">896</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Yoda's species</td>
 </tr>
-
 </tbody>
 </table>
 
@@ -1953,9 +1952,7 @@ Most <code>dplyr</code> commands work with “bare” variable names - you don�
 
 </div>
 </div>
-</div>
 <p>The select column is also useful for reordering the variables in your data set.</p>
-<p>:::</p>
 <p>Perhaps we want the <code>birth_year</code>, <code>sex</code>, <code>gender</code>, <code>homeworld</code>, and <code>species</code> to follow the <code>name</code> of the star wars character. We can use the <code>everything()</code> function to specify we want all the other variables to follow.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(<span class="at">.data =</span> starwars, name, birth_year<span class="sc">:</span>species, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2116,7 +2113,7 @@ Most <code>dplyr</code> commands work with “bare” variable names - you don�
 </div>
 </div>
 <p>Note that <code>everything()</code> won’t duplicate columns you’ve already added.</p>
-<p>:::</p>
+</div>
 <p>So for now, at least in R, you know how to cut your data down to size rowwise (with <code>filter</code>) and column-wise (with <code>select</code>).</p>
 <details class="note">
 <summary>
@@ -2518,13 +2515,13 @@ Mutate and new challenges
 <p>Google and StackOverflow are very common and important programming skills!</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/data-transformations/twitter-google-stackoverflow.png" class="img-fluid figure-img" alt="A screenshot of a tweet from @madsbrodt. Tweet text: Googling and StackOverflow'ing is a natural part of programming. Don't think of it as cheating. Knowing what to search for, and which results will fit your given situation is an important skill (flame emoji)."></p>
+<p><img src="images/03-data-cleaning-and-manipulation/twitter-google-stackoverflow.png" class="img-fluid figure-img" alt="A screenshot of a tweet from @madsbrodt. Tweet text: Googling and StackOverflow'ing is a natural part of programming. Don't think of it as cheating. Knowing what to search for, and which results will fit your given situation is an important skill (flame emoji)."></p>
 <figcaption><a href="https://twitter.com/madsbrodt/status/1339127984670773251">Source</a></figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/data-transformations/twitter-happy-debugging.png" class="img-fluid figure-img" alt="A screenshot of a tweet from @cszhu. Tweet text: if you're not happy single, you won't be happy in a relationship. true happiness comes from closing 100 chrome tabs after solving an obscure programming bug, not from someone else."></p>
+<p><img src="images/03-data-cleaning-and-manipulation/twitter-happy-debugging.png" class="img-fluid figure-img" alt="A screenshot of a tweet from @cszhu. Tweet text: if you're not happy single, you won't be happy in a relationship. true happiness comes from closing 100 chrome tabs after solving an obscure programming bug, not from someone else."></p>
 <figcaption><a href="https://twitter.com/cszhu/status/1230954186520461312">Source</a></figcaption>
 </figure>
 </div>
@@ -2532,7 +2529,7 @@ Mutate and new challenges
 <p>Part of the goal of this textbook is to help you <strong>learn how to read through a package description and evaluate whether the package will do what you want</strong>. We’re going to try to build some of those skills starting now. It would be relatively easy to teach you how to do a set list of tasks, but you’ll be better statisticians and programmers if you learn the skills to solve niche problems on your own.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/data-transformations/twitter-teach-program.png" class="img-fluid figure-img" alt="A screenshot of a tweet from @abt_programming. Tweet text: Give a man a program, frustrate him for a day.Teach a man to program, frustrate him for a lifetime - Muhammad Waseem."></p>
+<p><img src="images/03-data-cleaning-and-manipulation/twitter-teach-program.png" class="img-fluid figure-img" alt="A screenshot of a tweet from @abt_programming. Tweet text: Give a man a program, frustrate him for a day.Teach a man to program, frustrate him for a lifetime - Muhammad Waseem."></p>
 <figcaption>Apologies for the noninclusive language, but the sentiment is real. <a href="https://twitter.com/abt_programming/status/459414524303785984">Source</a></figcaption>
 </figure>
 </div>
