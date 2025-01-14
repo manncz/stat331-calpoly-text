@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.6.40">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Stat 331/531 Statistical Computing with R - 4&nbsp; Data Joins and Transformations</title>
+
+
+<title>4&nbsp; Data Joins and Transformations – Stat 331/531 Statistical Computing with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -30,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -55,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -72,6 +76,7 @@ div.csl-indent {
   margin-left: 2em;
 }</style>
 
+
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -86,19 +91,26 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-32dee248df1cfa0041543c586c7ed09c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-6eb86e081c92c5d01c7afa1be8d32804.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -107,58 +119,69 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
+}</script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+
+
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-data-joins-and-transformations.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Joins and Transformations</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-data-joins-and-transformations.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Joins and Transformations</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Stat 331/531 Statistical Computing with R</a> 
         <div class="sidebar-tools-main tools-wide">
-    <a href="https://github.com/earobinson95/stat331-calpoly-text" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/earobinson95/stat331-calpoly-text" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <div class="dropdown">
-      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-<li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
-              <i class="bi bi-bi-twitter pe-1"></i>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
             Twitter
             </a>
           </li>
           <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
-              <i class="bi bi-bi-facebook pe-1"></i>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-facebook pe-1"></i>
             Facebook
             </a>
           </li>
           <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
-              <i class="bi bi-bi-linkedin pe-1"></i>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-linkedin pe-1"></i>
             LinkedIn
             </a>
           </li>
       </ul>
-</div>
+    </div>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -170,7 +193,7 @@ div.csl-indent {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
@@ -243,45 +266,43 @@ div.csl-indent {
   </div>
 </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#ch4-objectives" id="toc-ch4-objectives" class="nav-link active" data-scroll-target="#ch4-objectives">Objectives</a></li>
+  <li><a href="#ch4-objectives" id="toc-ch4-objectives" class="nav-link active" data-scroll-target="#ch4-objectives">Objectives</a></li>
   <li><a href="#factors-with-forcats" id="toc-factors-with-forcats" class="nav-link" data-scroll-target="#factors-with-forcats"><span class="header-section-number">4.1</span> Factors with <code>forcats</code></a></li>
   <li><a href="#identifying-the-problem-messy-data" id="toc-identifying-the-problem-messy-data" class="nav-link" data-scroll-target="#identifying-the-problem-messy-data"><span class="header-section-number">4.2</span> Identifying the problem: Messy data</a></li>
-  <li>
-<a href="#pivot-operations" id="toc-pivot-operations" class="nav-link" data-scroll-target="#pivot-operations"><span class="header-section-number">4.3</span> Pivot Operations</a>
+  <li><a href="#pivot-operations" id="toc-pivot-operations" class="nav-link" data-scroll-target="#pivot-operations"><span class="header-section-number">4.3</span> Pivot Operations</a>
   <ul class="collapse">
-<li><a href="#longer" id="toc-longer" class="nav-link" data-scroll-target="#longer"><span class="header-section-number">4.3.1</span> Longer</a></li>
+  <li><a href="#longer" id="toc-longer" class="nav-link" data-scroll-target="#longer"><span class="header-section-number">4.3.1</span> Longer</a></li>
   <li><a href="#wider" id="toc-wider" class="nav-link" data-scroll-target="#wider"><span class="header-section-number">4.3.2</span> Wider</a></li>
   <li><a href="#learn-more-in-r4ds" id="toc-learn-more-in-r4ds" class="nav-link" data-scroll-target="#learn-more-in-r4ds">Learn More in R4DS</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#separating-and-uniting-variables" id="toc-separating-and-uniting-variables" class="nav-link" data-scroll-target="#separating-and-uniting-variables"><span class="header-section-number">4.4</span> Separating and Uniting Variables</a>
+  </ul></li>
+  <li><a href="#separating-and-uniting-variables" id="toc-separating-and-uniting-variables" class="nav-link" data-scroll-target="#separating-and-uniting-variables"><span class="header-section-number">4.4</span> Separating and Uniting Variables</a>
   <ul class="collapse">
-<li><a href="#learn-more-in-r4ds-1" id="toc-learn-more-in-r4ds-1" class="nav-link" data-scroll-target="#learn-more-in-r4ds-1">Learn More in R4DS</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#merging-tables" id="toc-merging-tables" class="nav-link" data-scroll-target="#merging-tables"><span class="header-section-number">4.5</span> Merging Tables</a>
+  <li><a href="#learn-more-in-r4ds-1" id="toc-learn-more-in-r4ds-1" class="nav-link" data-scroll-target="#learn-more-in-r4ds-1">Learn More in R4DS</a></li>
+  </ul></li>
+  <li><a href="#merging-tables" id="toc-merging-tables" class="nav-link" data-scroll-target="#merging-tables"><span class="header-section-number">4.5</span> Merging Tables</a>
   <ul class="collapse">
-<li><a href="#animating-joins" id="toc-animating-joins" class="nav-link" data-scroll-target="#animating-joins"><span class="header-section-number">4.5.1</span> Animating Joins</a></li>
+  <li><a href="#animating-joins" id="toc-animating-joins" class="nav-link" data-scroll-target="#animating-joins"><span class="header-section-number">4.5.1</span> Animating Joins</a></li>
   <li><a href="#learn-more-in-r4ds-2" id="toc-learn-more-in-r4ds-2" class="nav-link" data-scroll-target="#learn-more-in-r4ds-2">Learn More in R4DS</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
   </ul>
-</li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/04-data-joins-and-transformations.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/04-data-joins-and-transformations.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">
-<span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Joins and Transformations</span>
-</h1>
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Joins and Transformations</span></h1>
 </div>
 
 
@@ -294,14 +315,19 @@ div.csl-indent {
   </div>
   
 
-</header><div class="cell">
+
+</header>
+
+
+<div class="cell">
 <div class="cell-output-display">
 
 </div>
 </div>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 17 minute(s) at 200 WPM.</p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"></path></svg> Videos: 26 minutes.</p>
-<section id="ch4-objectives" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="ch4-objectives">Objectives</h2>
+<section id="ch4-objectives" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="ch4-objectives">Objectives</h2>
 <p>The first section of this chapter is heavily outsourced to <a href="https://r4ds.hadley.nz/">r4ds</a> as they do a much better job at providing examples and covering the extensive functionality of factor data types than I myself would ever be able to.</p>
 <ul>
 <li>Use <code>forcats</code> to reorder and relabel factor variables in data cleaning steps and data visualizations.</li>
@@ -314,35 +340,23 @@ div.csl-indent {
 </ul>
 <div class="note">
 <p>Functions covered this week:</p>
-<p><code><a href="https://forcats.tidyverse.org/">library(forcats)</a></code> (not an exhaustive list)</p>
+<p><code>library(forcats)</code> (not an exhaustive list)</p>
 <ul>
-<li>
-<code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code>, <code><a href="https://rdrr.io/r/base/levels.html">levels()</a></code>
-</li>
+<li><code>factor()</code>, <code>levels()</code></li>
 <li><code>fct_relevel()</code></li>
-<li>
-<code>fct_reorder()</code> <code>fct_reorder2()</code>
-</li>
+<li><code>fct_reorder()</code> <code>fct_reorder2()</code></li>
 <li><code>fct_collapse()</code></li>
 </ul>
 <p>Download the <a href="https://posit.co/wp-content/uploads/2022/10/factors-1.pdf"><code>forcats</code> cheatsheet</a>.</p>
-<p><code><a href="https://tidyr.tidyverse.org">library(tidyr)</a></code></p>
+<p><code>library(tidyr)</code></p>
 <ul>
-<li>
-<code>pivot_longer()</code>, <code>pivot_wider()</code>
-</li>
-<li>
-<code>separate()</code>, <code>unite()</code>
-</li>
+<li><code>pivot_longer()</code>, <code>pivot_wider()</code></li>
+<li><code>separate()</code>, <code>unite()</code></li>
 </ul>
-<p><code><a href="https://dplyr.tidyverse.org">library(dplyr)</a></code></p>
+<p><code>library(dplyr)</code></p>
 <ul>
-<li>
-<code>left_join()</code>, <code>right_join()</code>, <code>full_join()</code>
-</li>
-<li>
-<code>semi_join()</code>, <code>anti_join()</code>
-</li>
+<li><code>left_join()</code>, <code>right_join()</code>, <code>full_join()</code></li>
+<li><code>semi_join()</code>, <code>anti_join()</code></li>
 </ul>
 </div>
 <p><br></p>
@@ -352,9 +366,9 @@ div.csl-indent {
 <!-- + [Check-in 4.1: Functions from `forcats`](#checkin4-1) -->
 <!-- + [Check-in 4.2: Practice with Pivoting and Joins](#checkin4-2) -->
 <!-- ::: -->
-</section><section id="factors-with-forcats" class="level2 page-columns page-full" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="factors-with-forcats">
-<span class="header-section-number">4.1</span> Factors with <code>forcats</code>
-</h2>
+</section>
+<section id="factors-with-forcats" class="level2 page-columns page-full" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="factors-with-forcats"><span class="header-section-number">4.1</span> Factors with <code>forcats</code></h2>
 <p>We have been floating around the idea of <em>factor</em> data types. In this section, we will formally define factors and why they are needed for data visualization and analysis. We will then learn useful functions for working with factors in our data cleaning steps.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
@@ -368,7 +382,8 @@ div.csl-indent {
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="https://github.com/rstudio/hex-stickers/blob/main/thumbs/forcats.png?raw=true" class="img-fluid figure-img" style="width:70.0%"></p>
+<figure class="figure">
+<p><img src="https://github.com/rstudio/hex-stickers/blob/main/thumbs/forcats.png?raw=true" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -402,8 +417,9 @@ div.csl-indent {
 <!-- + largest to smallest based on counts -->
 <!-- + largest to smallest based on another variable -->
 <!-- ::: -->
-</section><section id="identifying-the-problem-messy-data" class="level2 page-columns page-full" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="identifying-the-problem-messy-data">
-<span class="header-section-number">4.2</span> Identifying the problem: Messy data</h2>
+</section>
+<section id="identifying-the-problem-messy-data" class="level2 page-columns page-full" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="identifying-the-problem-messy-data"><span class="header-section-number">4.2</span> Identifying the problem: Messy data</h2>
 <p>The illustrations below are lifted from an <a href="https://www.openscapes.org/blog/2020/10/12/tidy-data/">excellent blog post</a> <span class="citation" data-cites="lowndesTidyDataEfficiency2020">(<a href="#ref-lowndesTidyDataEfficiency2020" role="doc-biblioref">Lowndes and Horst 2020</a>)</span> about tidy data; they’re reproduced here because</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
@@ -419,66 +435,83 @@ div.csl-indent {
 </ul>
 <p>When we analyze data, however, we care much more about the fundamental structure of observations: discrete units of data collection. Each observation may have several corresponding variables that may be measured simultaneously, but fundamentally each discrete data point is what we are interested in analyzing or plotting.</p>
 <p>The structure of <strong>tidy data</strong> reflects this preference for keeping the data in a fundamental form: each observation is in its own row, any observed variables are in single columns. This format is inherently rectangular, which is also important for statistical analysis - our methods are typically designed to work with matrices of data.</p>
-<div id="fig-tidy-data-definition" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_1.jpg" class="img-fluid figure-img" alt="Stylized text providing an overview of Tidy Data. The top reads “Tidy data is a standard way of mapping the meaning of a dataset to its structure. - Hadley Wickham.” On the left reads “In tidy data: each variable forms a column; each observation forms a row; each cell is a single measurement.” There is an example table on the lower right with columns ‘id’, ‘name’ and ‘color’ with observations for different cats, illustrating tidy data structure."></p>
-<figcaption class="figure-caption">Figure&nbsp;4.1: Tidy data format, illustrated.</figcaption></figure>
+<div id="fig-tidy-data-definition" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Stylized text providing an overview of Tidy Data. The top reads “Tidy data is a standard way of mapping the meaning of a dataset to its structure. - Hadley Wickham.” On the left reads “In tidy data: each variable forms a column; each observation forms a row; each cell is a single measurement.” There is an example table on the lower right with columns ‘id’, ‘name’ and ‘color’ with observations for different cats, illustrating tidy data structure.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tidy-data-definition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://www.openscapes.org/img/blog/tidydata/tidydata_1.jpg" class="img-fluid figure-img" alt="Stylized text providing an overview of Tidy Data. The top reads “Tidy data is a standard way of mapping the meaning of a dataset to its structure. - Hadley Wickham.” On the left reads “In tidy data: each variable forms a column; each observation forms a row; each cell is a single measurement.” There is an example table on the lower right with columns ‘id’, ‘name’ and ‘color’ with observations for different cats, illustrating tidy data structure.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tidy-data-definition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: Tidy data format, illustrated.
+</figcaption>
+</figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_2.jpg" class="img-fluid figure-img" alt="There are two sets of anthropomorphized data tables. The top group of three tables are all rectangular and smiling, with a shared speech bubble reading “our columns are variables and our rows are observations!”. Text to the left of that group reads “The standard structure of tidy data means that “tidy datasets are all alike…” The lower group of four tables are all different shapes, look ragged and concerned, and have different speech bubbles reading (from left to right) “my column are values and my rows are variables”, “I have variables in columns AND in rows”, “I have multiple variables in a single column”, and “I don’t even KNOW what my deal is.” Next to the frazzled data tables is text “...but every messy dataset is messy in its own way. -Hadley Wickham.”"></p>
-<figcaption class="figure-caption">An illustration of the principle that every messy dataset is messy in its own way.</figcaption></figure>
+<figure class="figure">
+<p><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_2.jpg" class="img-fluid figure-img" alt="There are two sets of anthropomorphized data tables. The top group of three tables are all rectangular and smiling, with a shared speech bubble reading “our columns are variables and our rows are observations!”. Text to the left of that group reads “The standard structure of tidy data means that “tidy datasets are all alike…” The lower group of four tables are all different shapes, look ragged and concerned, and have different speech bubbles reading (from left to right) “my column are values and my rows are variables”, “I have variables in columns AND in rows”, “I have multiple variables in a single column”, and “I don’t even KNOW what my deal is.” Next to the frazzled data tables is text “...but every messy dataset is messy in its own way. -Hadley Wickham.”"></p>
+<figcaption>An illustration of the principle that every messy dataset is messy in its own way.</figcaption>
+</figure>
 </div>
 <p>The preference for tidy data has several practical implications: it is easier to reuse code on tidy data, allowing for analysis using a standardized set of tools (rather than having to build a custom tool for each data analysis job).</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_3.jpg" class="img-fluid figure-img" alt="On the left is a happy cute fuzzy monster holding a rectangular data frame with a tool that fits the data frame shape. On the workbench behind the monster are other data frames of similar rectangular shape, and neatly arranged tools that also look like they would fit those data frames. The workbench looks uncluttered and tidy. The text above the tidy workbench reads “When working with tidy data, we can use the same tools in similar ways for different datasets…” On the right is a cute monster looking very frustrated, using duct tape and other tools to haphazardly tie data tables together, each in a different way. The monster is in front of a messy, cluttered workbench. The text above the frustrated monster reads “...but working with untidy data often means reinventing the wheel with one-time approaches that are hard to iterate or reuse.”"></p>
-<figcaption class="figure-caption">Tidy data is easier to manage because the same tools and approaches apply to multiple datasets.</figcaption></figure>
+<figure class="figure">
+<p><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_3.jpg" class="img-fluid figure-img" alt="On the left is a happy cute fuzzy monster holding a rectangular data frame with a tool that fits the data frame shape. On the workbench behind the monster are other data frames of similar rectangular shape, and neatly arranged tools that also look like they would fit those data frames. The workbench looks uncluttered and tidy. The text above the tidy workbench reads “When working with tidy data, we can use the same tools in similar ways for different datasets…” On the right is a cute monster looking very frustrated, using duct tape and other tools to haphazardly tie data tables together, each in a different way. The monster is in front of a messy, cluttered workbench. The text above the frustrated monster reads “...but working with untidy data often means reinventing the wheel with one-time approaches that are hard to iterate or reuse.”"></p>
+<figcaption>Tidy data is easier to manage because the same tools and approaches apply to multiple datasets.</figcaption>
+</figure>
 </div>
 <p>In addition, standardized tools for data analysis means that it is easier to collaborate with others: if everyone starts with the same set of assumptions about the dataset, you can borrow methods and tools from a collaborator’s analysis and easily apply them to your own dataset.</p>
 <div id="fig-tidy-data-advantages" class="quarto-layout-panel">
-<figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tidy-data-advantages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_4.jpg" class="img-fluid figure-img" alt="Two happy looking round fuzzy monsters, each holding a similarly shaped wrench with the word “wrangle” on it. Between their tools is held up a rectangular data table labeled “TIDY.”"></p>
-<figcaption class="figure-caption">Collaboration with tidy data.</figcaption></figure>
-</div>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_5.jpg" class="img-fluid figure-img" alt="Cute fuzzy monsters putting rectangular data tables onto a conveyor belt. Along the conveyor belt line are different automated “stations” that update the data, reading “WRANGLE”, “VISUALIZE”, and “MODEL”. A monster at the end of the conveyor belt is carrying away a table that reads “Complete analysis.”"></p>
-<figcaption class="figure-caption">Tidy data enables standardized workflows.</figcaption></figure>
-</div>
-</div>
-</div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;4.2: Tidy data makes it easier to collaborate with others and analyze new data using standardized workflows.</figcaption><p></p>
+<figure class="figure">
+<p><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_4.jpg" class="img-fluid figure-img" alt="Two happy looking round fuzzy monsters, each holding a similarly shaped wrench with the word “wrangle” on it. Between their tools is held up a rectangular data table labeled “TIDY.”"></p>
+<figcaption>Collaboration with tidy data.</figcaption>
 </figure>
 </div>
-<details class="ex"><summary>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_5.jpg" class="img-fluid figure-img" alt="Cute fuzzy monsters putting rectangular data tables onto a conveyor belt. Along the conveyor belt line are different automated “stations” that update the data, reading “WRANGLE”, “VISUALIZE”, and “MODEL”. A monster at the end of the conveyor belt is carrying away a table that reads “Complete analysis.”"></p>
+<figcaption>Tidy data enables standardized workflows.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tidy-data-advantages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.2: Tidy data makes it easier to collaborate with others and analyze new data using standardized workflows.
+</figcaption>
+</figure>
+</div>
+<details class="ex">
+<summary>
 Examples: Messy Data
-</summary><p>These datasets all display the same data: TB (Tuberculosis) cases documented by the WHO (World Health Organization) in Afghanistan, Brazil, and China, between 1999 and 2000. There are 4 variables: country, year, cases, and population, but each table has a different layout.</p>
+</summary>
+<p>These datasets all display the same data: TB (Tuberculosis) cases documented by the WHO (World Health Organization) in Afghanistan, Brazil, and China, between 1999 and 2000. There are 4 variables: country, year, cases, and population, but each table has a different layout.</p>
 <ul>
 <li><p>For each of the data set, determine whether each table is tidy. If it is not, identify which rule or rules it violates.</p></li>
 <li><p>What would you have to do in order to compute a standardized TB infection rate per 100,000 people?</p></li>
 </ul>
 <p><em>All of these data sets are “built-in” to the <code>tidyverse</code> package</em></p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Table 1</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">2</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">3</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">4</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">5</a></li>
-</ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Table 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">4</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">5</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <caption>Table 1</caption>
-<thead><tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">country</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">year</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">cases</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">population</th>
-</tr></thead>
+<thead>
+<tr class="header">
+<th style="text-align: left;">country</th>
+<th style="text-align: right;">year</th>
+<th style="text-align: right;">cases</th>
+<th style="text-align: right;">population</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Afghanistan</td>
@@ -525,14 +558,16 @@ Examples: Messy Data
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <caption>Table 2</caption>
-<thead><tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">country</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">year</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">type</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">count</th>
-</tr></thead>
+<thead>
+<tr class="header">
+<th style="text-align: left;">country</th>
+<th style="text-align: right;">year</th>
+<th style="text-align: left;">type</th>
+<th style="text-align: right;">count</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Afghanistan</td>
@@ -615,13 +650,15 @@ Examples: Messy Data
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <div class="cell">
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <caption>Table 3</caption>
-<thead><tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">country</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">year</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">rate</th>
-</tr></thead>
+<thead>
+<tr class="header">
+<th style="text-align: left;">country</th>
+<th style="text-align: right;">year</th>
+<th style="text-align: left;">rate</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Afghanistan</td>
@@ -662,13 +699,15 @@ Examples: Messy Data
 <div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
 <div class="cell">
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <caption>Table 4a</caption>
-<thead><tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">country</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">1999</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">2000</th>
-</tr></thead>
+<thead>
+<tr class="header">
+<th style="text-align: left;">country</th>
+<th style="text-align: right;">1999</th>
+<th style="text-align: right;">2000</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Afghanistan</td>
@@ -689,13 +728,15 @@ Examples: Messy Data
 </table>
 </div>
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <caption>Table 4b</caption>
-<thead><tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">country</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">1999</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">2000</th>
-</tr></thead>
+<thead>
+<tr class="header">
+<th style="text-align: left;">country</th>
+<th style="text-align: right;">1999</th>
+<th style="text-align: right;">2000</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Afghanistan</td>
@@ -721,14 +762,16 @@ Examples: Messy Data
 <div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
 <div class="cell">
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <caption>Table 5</caption>
-<thead><tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">country</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">century</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">year</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">rate</th>
-</tr></thead>
+<thead>
+<tr class="header">
+<th style="text-align: left;">country</th>
+<th style="text-align: left;">century</th>
+<th style="text-align: left;">year</th>
+<th style="text-align: left;">rate</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Afghanistan</td>
@@ -775,31 +818,30 @@ Examples: Messy Data
 </div>
 </div>
 :::
-</details><p><br></p>
+</details>
+<p><br></p>
 <p>By the end of this chapter, you will have the skills needed to wrangle and transform the most common “messy” data sets into “tidy” form.</p>
-</section><section id="pivot-operations" class="level2 page-columns page-full" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="pivot-operations">
-<span class="header-section-number">4.3</span> Pivot Operations</h2>
+</section>
+<section id="pivot-operations" class="level2 page-columns page-full" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="pivot-operations"><span class="header-section-number">4.3</span> Pivot Operations</h2>
 <p>It’s fairly common for data to come in forms which are convenient for either human viewing or data entry. Unfortunately, these forms aren’t necessarily the most friendly for analysis.</p>
 <p><img src="https://github.com/gadenbuie/tidyexplain/raw/main/images/static/png/original-dfs-tidy.png" class="img-fluid"></p>
 <p>The two operations we’ll learn here are wide -&gt; long and long -&gt; wide.</p>
 <p><img src="https://github.com/gadenbuie/tidyexplain/raw/main/images/tidyr-pivoting.gif" class="img-fluid"></p>
 <p>This animation uses the functions <code>pivot_wider()</code> and <code>pivot_longer()</code> from the <code>tidyr</code> package in R – <a href="https://github.com/kelseygonzalez/tidyexplain/tree/wider_longer">Animation source</a>.</p>
-<section id="longer" class="level3 page-columns page-full" data-number="4.3.1"><h3 data-number="4.3.1" class="anchored" data-anchor-id="longer">
-<span class="header-section-number">4.3.1</span> Longer</h3>
+<section id="longer" class="level3 page-columns page-full" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="longer"><span class="header-section-number">4.3.1</span> Longer</h3>
 <p>In many cases, the data come in what we might call “wide” form - some of the column names are not names of variables, but instead, are themselves values of another variable.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/2rQZNlH2734" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </div></div><div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Picture the Operation</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><code>pivot_longer()</code></a></li>
-</ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Picture the Operation</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><code>pivot_longer()</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <p>Tables 4a and 4b (from above) are good examples of data which is in “wide” form and should be in long(er) form: the years, which are variables, are column names, and the values are cases and population respectively.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">table4a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>table4a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 3 × 3
   country     `1999` `2000`
@@ -808,7 +850,7 @@ Examples: Messy Data
 2 Brazil       37737  80488
 3 China       212258 213766</code></pre>
 </div>
-<div class="sourceCode" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">table4b</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>table4b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 3 × 3
   country         `1999`     `2000`
@@ -820,18 +862,20 @@ Examples: Messy Data
 </div>
 <p>The solution to this is to rearrange the data into “long form”: to take the columns which contain values and “stack” them, adding a variable to indicate which column each value came from. To do this, we have to duplicate the values in any column which isn’t being stacked (e.g.&nbsp;country, in both the example above and the image below).</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/04-data-joins-and-data-transformations/tidyr_pivot_longer.png" class="img-fluid figure-img" alt="A wide-to-long transformation operation, where the values of the id variables are repeated for each column which is used as a key; the values in each column are moved into a value column. There is a row of data in the transformed data frame for each combination of id variables and key variables."></p>
-<figcaption class="figure-caption">A visual representation of what the pivot_longer operation looks like in practice.</figcaption></figure>
+<figure class="figure">
+<p><img src="images/04-data-joins-and-data-transformations/tidyr_pivot_longer.png" class="img-fluid figure-img" alt="A wide-to-long transformation operation, where the values of the id variables are repeated for each column which is used as a key; the values in each column are moved into a value column. There is a row of data in the transformed data frame for each combination of id variables and key variables."></p>
+<figcaption>A visual representation of what the pivot_longer operation looks like in practice.</figcaption>
+</figure>
 </div>
 <p>Once our data are in long form, we can (if necessary) separate values that once served as column labels into actual variables, and we’ll have tidy(er) data.</p>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
-<div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">table4a</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">pivot_longer</span><span class="op">(</span>cols <span class="op">=</span> <span class="va">`1999`</span><span class="op">:</span><span class="va">`2000`</span>, </span>
-<span>               names_to <span class="op">=</span> <span class="st">"year"</span>, </span>
-<span>               values_to <span class="op">=</span> <span class="st">"cases"</span></span>
-<span>               <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>table4a <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1999</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2000</span><span class="st">`</span>, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"year"</span>, </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"cases"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>               )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 6 × 3
   country     year   cases
@@ -843,11 +887,11 @@ Examples: Messy Data
 5 China       1999  212258
 6 China       2000  213766</code></pre>
 </div>
-<div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">table4b</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">pivot_longer</span><span class="op">(</span>cols <span class="op">=</span> <span class="op">-</span><span class="va">country</span>, </span>
-<span>               names_to <span class="op">=</span> <span class="st">"year"</span>, </span>
-<span>               values_to <span class="op">=</span> <span class="st">"population"</span></span>
-<span>               <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>table4b <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>country, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"year"</span>, </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"population"</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>               )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 6 × 3
   country     year  population
@@ -863,31 +907,27 @@ Examples: Messy Data
 <p>The columns are moved to a variable with the name passed to the argument “names_to” (hopefully, that is easy to remember), and the values are moved to a variable with the name passed to the argument “values_to” (again, hopefully easy to remember).</p>
 <p>We identify ID variables (variables which we don’t want to pivot) by not including them in the pivot statement. We can do this in one of two ways:</p>
 <ul>
-<li>select only variables (columns) we want to pivot <em>(see table4a pivot)</em>
-</li>
-<li>select variables (columns) we don’t want to pivot, using <code>-</code> to remove them <em>(see table4b pivot)</em>
-</li>
+<li>select only variables (columns) we want to pivot <em>(see table4a pivot)</em></li>
+<li>select variables (columns) we don’t want to pivot, using <code>-</code> to remove them <em>(see table4b pivot)</em></li>
 </ul>
 <p>Which option is easier depends how many things you’re pivoting (and how the columns are structured).</p>
 </div>
 </div>
 </div>
-</section><section id="wider" class="level3 page-columns page-full" data-number="4.3.2"><h3 data-number="4.3.2" class="anchored" data-anchor-id="wider">
-<span class="header-section-number">4.3.2</span> Wider</h3>
+</section>
+<section id="wider" class="level3 page-columns page-full" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="wider"><span class="header-section-number">4.3.2</span> Wider</h3>
 <p>While it’s very common to need to transform data into a longer format, it’s not that uncommon to need to do the reverse operation. When an observation is scattered across multiple rows, your data is too long and needs to be made wider again.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/NKnl2WoNpK0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </div></div><div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Picture the Operation</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false"><code>pivot_wider()</code></a></li>
-</ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Picture the Operation</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false"><code>pivot_wider()</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <p>Table 2 (from above) is an example of a table that is in long format but needs to be converted to a wider layout to be “tidy” - there are separate rows for cases and population, which means that a single observation (one year, one country) has two rows.</p>
 <div class="cell">
-<div class="sourceCode" id="cb9" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">table2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>table2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 12 × 4
    country      year type            count
@@ -907,16 +947,18 @@ Examples: Messy Data
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/04-data-joins-and-data-transformations/tidyr_pivot_wider.png" class="img-fluid figure-img" alt="An illustration of the transition from long data to wide data. In the long data frame, there are alternating rows of cases and populations, with corresponding counts. In the wide data frame, for each combination of id variables country and year, there are two columns: cases, and pop, each with corresponding values. That is, the key variables (cases, pop) in the long data frame become columns in the wide data frame."></p>
-<figcaption class="figure-caption">A visual representation of what the pivot_wider operation looks like in practice.</figcaption></figure>
+<figure class="figure">
+<p><img src="images/04-data-joins-and-data-transformations/tidyr_pivot_wider.png" class="img-fluid figure-img" alt="An illustration of the transition from long data to wide data. In the long data frame, there are alternating rows of cases and populations, with corresponding counts. In the wide data frame, for each combination of id variables country and year, there are two columns: cases, and pop, each with corresponding values. That is, the key variables (cases, pop) in the long data frame become columns in the wide data frame."></p>
+<figcaption>A visual representation of what the pivot_wider operation looks like in practice.</figcaption>
+</figure>
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <div class="cell">
-<div class="sourceCode" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">table2</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from  <span class="op">=</span> <span class="va">type</span>, </span>
-<span>              values_from <span class="op">=</span> <span class="va">count</span></span>
-<span>              <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>table2 <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from  =</span> type, </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> count</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>              )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 6 × 4
   country      year  cases population
@@ -933,33 +975,36 @@ Examples: Messy Data
 </div>
 </div>
 <p><br></p>
-</section><section id="learn-more-in-r4ds" class="level3 unnumbered learn-more"><h3 class="unnumbered anchored" data-anchor-id="learn-more-in-r4ds">Learn More in R4DS</h3>
+</section>
+<section id="learn-more-in-r4ds" class="level3 unnumbered learn-more">
+<h3 class="unnumbered anchored" data-anchor-id="learn-more-in-r4ds">Learn More in R4DS</h3>
 <p>Read more about pivoting in <a href="https://r4ds.hadley.nz/data-tidy.html#sec-pivoting">r4ds</a>.</p>
-</section></section><section id="separating-and-uniting-variables" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="separating-and-uniting-variables">
-<span class="header-section-number">4.4</span> Separating and Uniting Variables</h2>
+</section>
+</section>
+<section id="separating-and-uniting-variables" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="separating-and-uniting-variables"><span class="header-section-number">4.4</span> Separating and Uniting Variables</h2>
 <p>We will talk about strings and regular expressions next week, but there’s a task that is fairly commonly encountered with functions that belong to the <code>tidyr</code> package: separating variables into two different columns <code>separate()</code> and it’s complement, <code>unite()</code>, which is useful for combining two variables into one column.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true"><code>separate_wider_delim()</code> and <code>separate_wider_position()</code></a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false"><code>unite()</code></a></li>
-</ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true"><code>separate_wider_delim()</code> and <code>separate_wider_position()</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false"><code>unite()</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/04-data-joins-and-data-transformations/tidyr_separate.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">A visual representation of what separating variables means for data set operations.</figcaption></figure>
+<figure class="figure">
+<p><img src="images/04-data-joins-and-data-transformations/tidyr_separate.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>A visual representation of what separating variables means for data set operations.</figcaption>
+</figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">table3</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">separate_wider_delim</span><span class="op">(</span>cols        <span class="op">=</span> <span class="va">rate</span>,</span>
-<span>                       names       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cases"</span>, <span class="st">"population"</span><span class="op">)</span>,</span>
-<span>                       delim       <span class="op">=</span> <span class="st">"/"</span>,</span>
-<span>                       cols_remove <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span>           <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>table3 <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_delim</span>(<span class="at">cols        =</span> rate,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">names       =</span> <span class="fu">c</span>(<span class="st">"cases"</span>, <span class="st">"population"</span>),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">delim       =</span> <span class="st">"/"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">cols_remove =</span> <span class="cn">FALSE</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>           )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 6 × 5
   country      year cases  population rate             
@@ -979,17 +1024,19 @@ Examples: Messy Data
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/04-data-joins-and-data-transformations/tidyr_unite.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">A visual representation of what uniting variables means for data set operations.</figcaption></figure>
+<figure class="figure">
+<p><img src="images/04-data-joins-and-data-transformations/tidyr_unite.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>A visual representation of what uniting variables means for data set operations.</figcaption>
+</figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb15" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">table5</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">unite</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"year"</span>,</span>
-<span>        <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">century</span>, <span class="va">year</span><span class="op">)</span>,</span>
-<span>        sep <span class="op">=</span> <span class="st">''</span></span>
-<span>        <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>table5 <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="at">col =</span> <span class="st">"year"</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>(century, year),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">sep =</span> <span class="st">''</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 6 × 3
   country     year  rate             
@@ -1006,14 +1053,19 @@ Examples: Messy Data
 </div>
 </div>
 <p><br></p>
-<section id="learn-more-in-r4ds-1" class="level3 unnumbered learn-more"><h3 class="unnumbered anchored" data-anchor-id="learn-more-in-r4ds-1">Learn More in R4DS</h3>
+<section id="learn-more-in-r4ds-1" class="level3 unnumbered learn-more">
+<h3 class="unnumbered anchored" data-anchor-id="learn-more-in-r4ds-1">Learn More in R4DS</h3>
 <p>The <code>separate_xxx()</code> is actually a family of <a href="https://lifecycle.r-lib.org/articles/stages.html#experimental">experimental</a> functions stemming from the <a href="https://lifecycle.r-lib.org/articles/stages.html#superseded-stages">superseeded</a> <code>separate()</code> function. You can read more about <code>separate_xxx()</code> and <code>unite()</code> in <a href="https://r4ds.hadley.nz/strings.html#extracting-data-from-strings">r4ds</a> and <a href="https://r4ds.had.co.nz/tidy-data.html#separating-and-uniting">r4ds</a>.</p>
-</section></section><section id="merging-tables" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="merging-tables">
-<span class="header-section-number">4.5</span> Merging Tables</h2>
+</section>
+</section>
+<section id="merging-tables" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="merging-tables"><span class="header-section-number">4.5</span> Merging Tables</h2>
 <p>The final essential data tidying and transformation skill you need to acquire is joining tables. It is common for data to be organized <strong>relationally</strong> - that is, certain aspects of the data apply to a group of data points, and certain aspects apply to individual data points, and there are relationships between the individual data points and the groups of data points that have to be documented.</p>
-<details class="ex"><summary>
+<details class="ex">
+<summary>
 Examples: Relational Data Example: Primary School Records
-</summary><p>Each individual has certain characteristics:</p>
+</summary>
+<p>Each individual has certain characteristics:</p>
 <ul>
 <li>full_name</li>
 <li>gender</li>
@@ -1070,7 +1122,7 @@ Examples: Relational Data Example: Primary School Records
 <li>number of seats</li>
 <li>AV equipment</li>
 </ul>
-<p><img src="images/04-data-joins-and-data-transformations/PrimarySchoolExample.png" class="img-fluid" alt="Primary School Database Schema"><!-- <a href="https://dbdiagram.io/embed/5ef387179ea313663b3b048e">Link to diagram of the database</a> --></p>
+<p><img src="images/04-data-joins-and-data-transformations/PrimarySchoolExample.png" class="img-fluid" alt="Primary School Database Schema"> <!-- <a href="https://dbdiagram.io/embed/5ef387179ea313663b3b048e">Link to diagram of the database</a> --></p>
 <p>We could go on, but you can see that this data is hierarchical, but also relational: - each class has both a teacher and a set of students - each class is held in a specific location that has certain equipment</p>
 <p>It would be silly to store this information in a single table (though it probably can be done) because all of the teacher information would be duplicated for each student in each class; all of the student’s individual info would be duplicated for each grade. There would be a lot of wasted storage space and the tables would be much more confusing as well.</p>
 <p>But, relational data also means we have to put in some work when we have a question that requires information from multiple tables. Suppose we want a list of all of the birthdays in a certain class. We would need to take the following steps:</p>
@@ -1082,7 +1134,8 @@ Examples: Relational Data Example: Primary School Records
 <li>look through the “individual data” table to find any individuals with matching ID numbers, and keep those individuals’ birth days.</li>
 </ul>
 <p>It is helpful to develop the ability to lay out a set of tables in a schema (because often, database schemas aren’t well documented) and mentally map out the steps that you need to combine tables to get the information you want from the information you have.</p>
-</details><p>Table joins allow us to combine information stored in different tables, keeping certain information (the stuff we need) while discarding extraneous information.</p>
+</details>
+<p>Table joins allow us to combine information stored in different tables, keeping certain information (the stuff we need) while discarding extraneous information.</p>
 <p><strong>keys</strong> are values that are found in multiple tables that can be used to connect the tables. A key (or set of keys) uniquely identify an observation. A <strong>primary key</strong> identifies an observation in its own table. A <strong>foreign key</strong> identifies an observation in another table.</p>
 <p>There are 3 main types of table joins:</p>
 <ul>
@@ -1093,20 +1146,16 @@ Ex: finding all teachers or students who have class ClassID</p></li>
 <li><p><strong>Set operations</strong>, which treat observations as set elements (e.g.&nbsp;union, intersection, etc.)<br>
 Ex: taking the union of all student and teacher IDs to get a list of individual IDs</p></li>
 </ul>
-<section id="animating-joins" class="level3" data-number="4.5.1"><h3 data-number="4.5.1" class="anchored" data-anchor-id="animating-joins">
-<span class="header-section-number">4.5.1</span> Animating Joins</h3>
+<section id="animating-joins" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="animating-joins"><span class="header-section-number">4.5.1</span> Animating Joins</h3>
 <p>Note: all of these animations are stolen from <a href="https://github.com/gadenbuie/tidyexplain" class="uri">https://github.com/gadenbuie/tidyexplain</a>.</p>
 <p>If we start with two tables, x and y,</p>
 <p><img src="https://raw.githubusercontent.com/gadenbuie/tidyexplain/master/images/static/png/original-dfs.png" class="img-fluid"></p>
-<section id="mutating-joins" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="mutating-joins">Mutating Joins</h4>
+<section id="mutating-joins" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="mutating-joins">Mutating Joins</h4>
 <p>We’re primarily going to focus on mutating joins, as filtering joins can be accomplished by … filtering … rather than by table joins.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Inner Join</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Left Join</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false">Right Join</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-4" role="tab" aria-controls="tabset-5-4" aria-selected="false">Full Join</a></li>
-</ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Inner Join</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Left Join</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false">Right Join</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-4" role="tab" aria-controls="tabset-5-4" aria-selected="false">Full Join</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <p>We can do a filtering <code>inner_join</code> to keep only rows which are in both tables (but we keep all columns)</p>
@@ -1132,7 +1181,7 @@ Ex: taking the union of all student and teacher IDs to get a list of individual 
 </div>
 <p>Every join has a “left side” and a “right side” - so in <code>some_join(A, B)</code>, A is the left side, B is the right side.</p>
 <p>Joins are differentiated based on how they treat the rows and columns of each side. In mutating joins, the columns from both sides are always kept.</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 11%">
 <col style="width: 16%">
@@ -1178,13 +1227,15 @@ Ex: taking the union of all student and teacher IDs to get a list of individual 
 </tr>
 </tbody>
 </table>
-<details class="ex"><summary>
+<details class="ex">
+<summary>
 Demonstration: Mutating Joins
-</summary><div class="cell">
-<div class="sourceCode" id="cb17" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"D"</span><span class="op">)</span>, </span>
-<span>             y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></span>
-<span>             <span class="op">)</span></span>
-<span><span class="va">t1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"D"</span>), </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>             )</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>t1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 3 × 2
   x         y
@@ -1193,10 +1244,10 @@ Demonstration: Mutating Joins
 2 B         2
 3 D         3</code></pre>
 </div>
-<div class="sourceCode" id="cb19" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t2</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span><span class="op">)</span>, </span>
-<span>             z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span></span>
-<span>             <span class="op">)</span></span>
-<span><span class="va">t2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>), </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">z =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>             )</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>t2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 3 × 2
   x         z
@@ -1208,7 +1259,7 @@ Demonstration: Mutating Joins
 </div>
 <p>An inner join keeps only rows that exist on both sides, but keeps all columns.</p>
 <div class="cell">
-<div class="sourceCode" id="cb21" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">inner_join</span><span class="op">(</span><span class="va">t1</span>, <span class="va">t2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(t1, t2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 2 × 3
   x         y     z
@@ -1219,7 +1270,7 @@ Demonstration: Mutating Joins
 </div>
 <p>A left join keeps all of the rows in the left side, and adds any columns from the right side that match rows on the left. Rows on the left that don’t match get filled in with NAs.</p>
 <div class="cell">
-<div class="sourceCode" id="cb23" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">left_join</span><span class="op">(</span><span class="va">t1</span>, <span class="va">t2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(t1, t2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 3 × 3
   x         y     z
@@ -1228,7 +1279,7 @@ Demonstration: Mutating Joins
 2 B         2     2
 3 D         3     5</code></pre>
 </div>
-<div class="sourceCode" id="cb25" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">left_join</span><span class="op">(</span><span class="va">t2</span>, <span class="va">t1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(t2, t1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 3 × 3
   x         z     y
@@ -1240,7 +1291,7 @@ Demonstration: Mutating Joins
 </div>
 <p>There is a similar construct called a right join that is equivalent to flipping the arguments in a left join. The row and column ordering may be different, but all of the same values will be there</p>
 <div class="cell">
-<div class="sourceCode" id="cb27" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">right_join</span><span class="op">(</span><span class="va">t1</span>, <span class="va">t2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">right_join</span>(t1, t2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 3 × 3
   x         y     z
@@ -1249,7 +1300,7 @@ Demonstration: Mutating Joins
 2 D         3     5
 3 C        NA     4</code></pre>
 </div>
-<div class="sourceCode" id="cb29" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">right_join</span><span class="op">(</span><span class="va">t2</span>, <span class="va">t1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">right_join</span>(t2, t1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 3 × 3
   x         z     y
@@ -1261,7 +1312,7 @@ Demonstration: Mutating Joins
 </div>
 <p>An outer join keeps everything - all rows, all columns. In dplyr, it’s known as a <code>full_join</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb31" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">full_join</span><span class="op">(</span><span class="va">t1</span>, <span class="va">t2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">full_join</span>(t1, t2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 4 × 3
   x         y     z
@@ -1272,13 +1323,13 @@ Demonstration: Mutating Joins
 4 C        NA     4</code></pre>
 </div>
 </div>
-</details><p><br></p>
-</section><section id="filtering-joins" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="filtering-joins">Filtering Joins</h4>
+</details>
+<p><br></p>
+</section>
+<section id="filtering-joins" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="filtering-joins">Filtering Joins</h4>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">Semi Join</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Anti Join</a></li>
-</ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">Semi Join</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Anti Join</a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
 <p>A semi join keeps matching rows from x and y, discarding all other rows and keeping only the columns from x.</p>
@@ -1291,9 +1342,13 @@ Demonstration: Mutating Joins
 </div>
 </div>
 <p><br></p>
-</section></section><section id="learn-more-in-r4ds-2" class="level3 unnumbered learn-more"><h3 class="unnumbered anchored" data-anchor-id="learn-more-in-r4ds-2">Learn More in R4DS</h3>
+</section>
+</section>
+<section id="learn-more-in-r4ds-2" class="level3 unnumbered learn-more">
+<h3 class="unnumbered anchored" data-anchor-id="learn-more-in-r4ds-2">Learn More in R4DS</h3>
 <p>Read more about joins in <a href="https://r4ds.hadley.nz/joins.html">r4ds</a></p>
-</section><p><br></p>
+</section>
+<p><br></p>
 <!-- ::: check-in -->
 <!-- ## Check-in 4.2: Practice with Pivoting & Joins {- #checkin4-2} -->
 <!-- Complete the code templates in the Canvas Quiz to complete these tasks. -->
@@ -1382,15 +1437,20 @@ Demonstration: Mutating Joins
 <!-- Visit [PA 4: Government Spending](https://earobinson95.github.io/stat331-calpoly/practice-activities/PA4-government-spending.html) for instructions. -->
 <!-- Submit your answer to the Canvas Quiz. -->
 <!-- ::: -->
-<section id="references" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
+<section id="references" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-lowndesTidyDataEfficiency2020" class="csl-entry" role="listitem">
 Lowndes, Julie, and Allison Horst. 2020. <span>“Tidy Data for Efficiency, Reproducibility, and Collaboration.”</span> Blog. <em>Openscapes</em>. <a href="https://www.openscapes.org/blog/2020/10/12/tidy-data//">https://www.openscapes.org/blog/2020/10/12/tidy-data//</a>.
 </div>
 </div>
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1431,6 +1491,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -1499,13 +1586,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1540,18 +1629,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1583,11 +1661,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/earobinson95\.github\.io\/stat331-calpoly-text\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1597,8 +1712,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1610,7 +1734,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1654,6 +1900,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1679,6 +1926,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1737,13 +2010,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./03-data-cleaning-and-manipulation.html" class="pagination-link">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./03-data-cleaning-and-manipulation.html" class="pagination-link" aria-label="Data Cleaning and Manipulation">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Cleaning and Manipulation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./05-special-data-types.html" class="pagination-link">
+      <a href="./05-special-data-types.html" class="pagination-link" aria-label="Special Data Types">
         <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Special Data Types</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1752,5 +2027,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<script src="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.js" defer="true"></script>
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/04-data-joins-and-transformations.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer><script src="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.js" defer="true"></script>
 </body></html>

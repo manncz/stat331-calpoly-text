@@ -504,6 +504,7 @@ You're going to learn how to make graphics by finding sample code, changing that
 In this class, we're going to use the `ggplot2` package to create graphics in R. This package is already installed as part of the `tidyverse`, but can be installed:
 
 ```{r}
+#| eval = false
 install.packages("ggplot2")
 ```
 

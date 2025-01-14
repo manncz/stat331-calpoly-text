@@ -184,18 +184,23 @@ result
 
 That is, we would **apply** or **map** the `+` function to each entry of a and b. For atomic vectors, it's easy to do this by default; with a list, however, we need to be a bit more explicit (because everything that's passed into the function may not be the same type). 
 
-::: column-margin
+
 I find the `purrr` package easier to work with, so we won't be working with the base functions (the *apply* family) in this course. You can find a [side-by-side comparison in the `purrr` tutorial](https://jennybc.github.io/purrr-tutorial/bk01_base-functions.html).
 
 <br>
 
 You can also watch Dr. Theobold's video to learn more:
 
+::: column-margin
+
 ::: youtube-video-container
 {{< video https://www.youtube.com/embed/NadUAnlrh-M >}} 
 :::
 
+:::
+
 The R package `purrr` (and similar base functions `apply`, `lapply`, `sapply`, `tapply`, and `mapply`) are based on extending "vectorized" functions to a wider variety of vector-like structures. 
+
 
 ## Functional Programming
 
@@ -357,7 +362,7 @@ library(purrr)
 
 ::: go-read
 
-`r emo::ji("book")` (REQUIRED) Please read [Sections 21.5 through 21.7 *R for Data Science*](https://r4ds.had.co.nz/iteration.html#the-map-functions)
+`r fa("book-open")` (REQUIRED) Please read [Sections 21.5 through 21.7 *R for Data Science*](https://r4ds.had.co.nz/iteration.html#the-map-functions)
 :::
 
 

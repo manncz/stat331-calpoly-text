@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.6.40">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Stat 331/531 Statistical Computing with R - 6&nbsp; Version Control</title>
+
+
+<title>6&nbsp; Version Control – Stat 331/531 Statistical Computing with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +24,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -38,6 +42,7 @@ div.csl-indent {
   margin-left: 2em;
 }</style>
 
+
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -52,19 +57,26 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-32dee248df1cfa0041543c586c7ed09c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-6eb86e081c92c5d01c7afa1be8d32804.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -73,58 +85,69 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
+}</script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+
+
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-version-control.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Version Control</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-version-control.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Version Control</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Stat 331/531 Statistical Computing with R</a> 
         <div class="sidebar-tools-main tools-wide">
-    <a href="https://github.com/earobinson95/stat331-calpoly-text" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/earobinson95/stat331-calpoly-text" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <div class="dropdown">
-      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-<li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
-              <i class="bi bi-bi-twitter pe-1"></i>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
             Twitter
             </a>
           </li>
           <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
-              <i class="bi bi-bi-facebook pe-1"></i>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-facebook pe-1"></i>
             Facebook
             </a>
           </li>
           <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
-              <i class="bi bi-bi-linkedin pe-1"></i>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-linkedin pe-1"></i>
             LinkedIn
             </a>
           </li>
       </ul>
-</div>
+    </div>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -136,7 +159,7 @@ div.csl-indent {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
@@ -209,49 +232,45 @@ div.csl-indent {
   </div>
 </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#ch6-objectives" id="toc-ch6-objectives" class="nav-link active" data-scroll-target="#ch6-objectives">Objectives</a></li>
-  <li>
-<a href="#what-is-version-control" id="toc-what-is-version-control" class="nav-link" data-scroll-target="#what-is-version-control"><span class="header-section-number">6.1</span> What is Version Control?</a>
+  <li><a href="#ch6-objectives" id="toc-ch6-objectives" class="nav-link active" data-scroll-target="#ch6-objectives">Objectives</a></li>
+  <li><a href="#what-is-version-control" id="toc-what-is-version-control" class="nav-link" data-scroll-target="#what-is-version-control"><span class="header-section-number">6.1</span> What is Version Control?</a>
   <ul class="collapse">
-<li><a href="#learn-more-about-version-control" id="toc-learn-more-about-version-control" class="nav-link" data-scroll-target="#learn-more-about-version-control">Learn more about version control</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#git" id="toc-git" class="nav-link" data-scroll-target="#git"><span class="header-section-number">6.2</span> Git</a>
+  <li><a href="#learn-more-about-version-control" id="toc-learn-more-about-version-control" class="nav-link" data-scroll-target="#learn-more-about-version-control">Learn more about version control</a></li>
+  </ul></li>
+  <li><a href="#git" id="toc-git" class="nav-link" data-scroll-target="#git"><span class="header-section-number">6.2</span> Git</a>
   <ul class="collapse">
-<li><a href="#git-basics" id="toc-git-basics" class="nav-link" data-scroll-target="#git-basics"><span class="header-section-number">6.2.1</span> Git Basics</a></li>
+  <li><a href="#git-basics" id="toc-git-basics" class="nav-link" data-scroll-target="#git-basics"><span class="header-section-number">6.2.1</span> Git Basics</a></li>
   <li><a href="#essential-reading-git" id="toc-essential-reading-git" class="nav-link" data-scroll-target="#essential-reading-git">Essential Reading: Git</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#setting-up-github" id="toc-setting-up-github" class="nav-link" data-scroll-target="#setting-up-github"><span class="header-section-number">6.3</span> GitHub: Git on the Web</a>
+  </ul></li>
+  <li><a href="#setting-up-github" id="toc-setting-up-github" class="nav-link" data-scroll-target="#setting-up-github"><span class="header-section-number">6.3</span> GitHub: Git on the Web</a>
   <ul class="collapse">
-<li><a href="#save-your-login-information" id="toc-save-your-login-information" class="nav-link" data-scroll-target="#save-your-login-information">Save your login information!</a></li>
+  <li><a href="#save-your-login-information" id="toc-save-your-login-information" class="nav-link" data-scroll-target="#save-your-login-information">Save your login information!</a></li>
   <li><a href="#optional-install-a-git-client" id="toc-optional-install-a-git-client" class="nav-link" data-scroll-target="#optional-install-a-git-client">Optional: Install a git client</a></li>
-  </ul>
-</li>
+  </ul></li>
   <li><a href="#using-version-control-with-rstudio" id="toc-using-version-control-with-rstudio" class="nav-link" data-scroll-target="#using-version-control-with-rstudio"><span class="header-section-number">6.4</span> Using Version Control (with RStudio)</a></li>
-  <li>
-<a href="#learn-more" id="toc-learn-more" class="nav-link" data-scroll-target="#learn-more">Learn More</a>
+  <li><a href="#learn-more" id="toc-learn-more" class="nav-link" data-scroll-target="#learn-more">Learn More</a>
   <ul class="collapse">
-<li><a href="#extra-resources" id="toc-extra-resources" class="nav-link" data-scroll-target="#extra-resources">Extra Resources</a></li>
-  </ul>
-</li>
+  <li><a href="#extra-resources" id="toc-extra-resources" class="nav-link" data-scroll-target="#extra-resources">Extra Resources</a></li>
+  </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/06-version-control.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/06-version-control.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">
-<span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Version Control</span>
-</h1>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Version Control</span></h1>
 </div>
 
 
@@ -264,9 +283,14 @@ div.csl-indent {
   </div>
   
 
-</header><p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 6 minute(s) at 200 WPM</p>
+
+</header>
+
+
+<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 5 minute(s) at 200 WPM</p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"></path></svg> Videos: 0 minute(s)</p>
-<section id="ch6-objectives" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="ch6-objectives">Objectives</h2>
+<section id="ch6-objectives" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="ch6-objectives">Objectives</h2>
 <p>Most of this section is either heavily inspired by Happy Git and Github for the UseR <span class="citation" data-cites="bryanHappyGitGitHub2021">(<a href="#ref-bryanHappyGitGitHub2021" role="doc-biblioref">Bryan, Hester, and The Stat 545 TAs 2021</a>)</span> or directly links to that book.</p>
 <ul>
 <li>Recognize the benefits of using version control to improve your coding practices and workflow.</li>
@@ -280,34 +304,45 @@ div.csl-indent {
 <!-- + [Check-in 6.1: Install Git](#checkin6-1) -->
 <!-- + [Check-in 6.2: Create a GitHub Account](#checkin6-2) -->
 <!-- ::: -->
-</section><section id="what-is-version-control" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="what-is-version-control">
-<span class="header-section-number">6.1</span> What is Version Control?</h2>
+</section>
+<section id="what-is-version-control" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="what-is-version-control"><span class="header-section-number">6.1</span> What is Version Control?</h2>
 <p>Version control is a system that (1) allows you to store your files in the cloud, (2) track change in those files over time, and (3) share your files with others.</p>
-<section id="learn-more-about-version-control" class="level3 unnumbered learn-more"><h3 class="unnumbered anchored" data-anchor-id="learn-more-about-version-control">Learn more about version control</h3>
+<section id="learn-more-about-version-control" class="level3 unnumbered learn-more">
+<h3 class="unnumbered anchored" data-anchor-id="learn-more-about-version-control">Learn more about version control</h3>
 <p>If you are unfamiliar with the idea of version control, this <a href="https://about.gitlab.com/topics/version-control/">article</a> describes what the principles of version control are.</p>
-</section></section><section id="git" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="git">
-<span class="header-section-number">6.2</span> Git</h2>
+</section>
+</section>
+<section id="git" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="git"><span class="header-section-number">6.2</span> Git</h2>
 <p>Git is a <strong>version control system</strong> - a structured way for tracking changes to files over the course of a project that may also make it easy to have multiple people working on the same files at the same time.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="https://www.phdcomics.com/comics/archive/phd101212s.gif" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">Version control is the answer to this file naming problem.</figcaption></figure>
+<figure class="figure">
+<p><img src="https://www.phdcomics.com/comics/archive/phd101212s.gif" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Version control is the answer to this file naming problem.</figcaption>
+</figure>
 </div>
 <p>Git manages a collection of files in a structured way - rather like “track changes” in Microsoft Word or version history in Dropbox, but much more powerful.</p>
 <p>If you are working alone, you will benefit from adopting version control because it will remove the need to add <code>_final.R</code> or <code>_final_finalforreal.qmd</code> to the end of your file names. However, most of us work in collaboration with other people (or will have to work with others eventually), so one of the goals of this program is to teach you how to use git because it is a useful tool that will make you a better collaborator.</p>
 <p>In data science programming, we use git for a similar, but slightly different purpose. We use it to keep track of changes not only to code files, but to data files, figures, reports, and other essential bits of information.</p>
 <p>Git itself is nice enough, but where git really becomes amazing is when you combine it with GitHub - an online service that makes it easy to use git across many computers, share information with collaborators, publish to the web, and more. Git is great, but GitHub is … essential.</p>
-<section id="git-basics" class="level3" data-number="6.2.1"><h3 data-number="6.2.1" class="anchored" data-anchor-id="git-basics">
-<span class="header-section-number">6.2.1</span> Git Basics</h3>
+<section id="git-basics" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="git-basics"><span class="header-section-number">6.2.1</span> Git Basics</h3>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/06-version-control/git.png" class="img-fluid figure-img" alt="Person 1: 'This is GIT. It tracks collaborative work on projects through a beautiful distributed graph theory tree model'. Person 2: 'Cool, How do we use it?' Person 1: 'No Idea. Just memorize these shell commands and type them to sync up. If you get errors, save your work elsewhere, delete the project, and download a fresh copy.'"></p>
-<figcaption class="figure-caption">If that doesn’t fix it, git.txt contains the phone number of a friend of mine who understands git. Just wait through a few minutes of ‘It’s really pretty simple, just think of branches as…’ and eventually you’ll learn the commands that will fix everything.</figcaption></figure>
+<figure class="figure">
+<p><img src="images/06-version-control/git.png" class="img-fluid figure-img" alt="Person 1: 'This is GIT. It tracks collaborative work on projects through a beautiful distributed graph theory tree model'. Person 2: 'Cool, How do we use it?' Person 1: 'No Idea. Just memorize these shell commands and type them to sync up. If you get errors, save your work elsewhere, delete the project, and download a fresh copy.'"></p>
+<figcaption>If that doesn’t fix it, git.txt contains the phone number of a friend of mine who understands git. Just wait through a few minutes of ‘It’s really pretty simple, just think of branches as…’ and eventually you’ll learn the commands that will fix everything.</figcaption>
+</figure>
 </div>
 <p>Git tracks changes to each file that it is told to monitor, and as the files change, you provide short labels describing what the changes were and why they exist (called “<strong>commits</strong>”). The log of these changes (along with the file history) is called your <strong>git commit history</strong>.</p>
 <p>When writing papers, this means you can cut material out freely, so long as the paper is being tracked by git - you can always go back and get that paragraph you cut out if you need to. You also don’t have to rename files - you can confidently save over your old files, so long as you remember to commit frequently.</p>
-</section><section id="essential-reading-git" class="level3 unnumbered go-read"><h3 class="unnumbered anchored" data-anchor-id="essential-reading-git">Essential Reading: Git</h3>
+</section>
+<section id="essential-reading-git" class="level3 unnumbered go-read">
+<h3 class="unnumbered anchored" data-anchor-id="essential-reading-git">Essential Reading: Git</h3>
 <p>The git material in this chapter is just going to link directly to the book “Happy Git with R” by Jenny Bryan. It’s amazing, amusing, and generally well written. I’m not going to try to do better.</p>
 <p><a href="https://happygitwithr.com/big-picture.html">Go read Chapter 1, until it starts to become greek (aka over your head).</a></p>
-</section><p><br></p>
+</section>
+<p><br></p>
 <!-- ::: check-in -->
 <!-- ### Check-in 6.1: Install Git {- #checkin6-1} -->
 <!-- We will be working with Git/GitHub in groups during class this week. In order to be prepared, please install Git onto your computer -- we will be connecting this to RStudio together, but having this installed ahead of time avoids installation time during class. -->
@@ -317,8 +352,9 @@ div.csl-indent {
 <!-- Once you have installed Git, tell me "yes" in the Canvas Quiz. -->
 <!-- ::: -->
 <p><br> Now that you have a general idea of how git works and why we might use it, let’s talk a bit about GitHub.</p>
-</section><section id="setting-up-github" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="setting-up-github">
-<span class="header-section-number">6.3</span> GitHub: Git on the Web</h2>
+</section>
+<section id="setting-up-github" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="setting-up-github"><span class="header-section-number">6.3</span> GitHub: Git on the Web</h2>
 <p>Git is a program that runs on your machine and keeps track of changes to files that you tell it to monitor. GitHub is a website that hosts people’s git repositories. You can use git without GitHub, but you can’t use GitHub without git.</p>
 <p>If you want, you can hook Git up to GitHub, and make a copy of your local git repository that lives in the cloud. Then, if you configure things correctly, your local repository will talk to GitHub without too much trouble. Using Github with Git allows you to <strong>easily make a cloud backup of your important code</strong>, so that even if your computer suddenly catches on fire, all of your important code files exist somewhere else.</p>
 <p>Remember: any data you don’t have in 3 different places is data you don’t care about.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
@@ -331,20 +367,28 @@ div.csl-indent {
 <!-- (Optional) You may want to check out [GitHub Education](https://education.github.com/) and sign up for the [GitHub Student Developer Pack](https://education.github.com/pack). -->
 <!-- ::: -->
 <p><br></p>
-<section id="save-your-login-information" class="level3 unnumbered watchout"><h3 class="unnumbered anchored" data-anchor-id="save-your-login-information">Save your login information!</h3>
+<section id="save-your-login-information" class="level3 unnumbered watchout">
+<h3 class="unnumbered anchored" data-anchor-id="save-your-login-information">Save your login information!</h3>
 <p>Make sure you remember your username and password so you don’t have to try to hack into your own account during class this week.</p>
 <p>Write your information down somewhere safe.</p>
-</section><section id="optional-install-a-git-client" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="optional-install-a-git-client">Optional: Install a git client</h3>
+</section>
+<section id="optional-install-a-git-client" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="optional-install-a-git-client">Optional: Install a git client</h3>
 <p><a href="https://happygitwithr.com/git-client.html">Instructions</a></p>
 <div class="my-opinion">
 <p>I personally like to use <a href="https://desktop.github.com/">GitHub Desktop</a> which allows me to interact with Git using a point-and-click interface.</p>
 </div>
-</section></section><section id="using-version-control-with-rstudio" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="using-version-control-with-rstudio">
-<span class="header-section-number">6.4</span> Using Version Control (with RStudio)</h2>
+</section>
+</section>
+<section id="using-version-control-with-rstudio" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="using-version-control-with-rstudio"><span class="header-section-number">6.4</span> Using Version Control (with RStudio)</h2>
 <p>This course will briefly introduced working with GitHub, but will not provide you with extensive practice using version control. By using version control, you will learn better habits for programming, and you’ll get access to a platform for collaboration, hosting your work online, keeping track of features and necessary changes, and more.</p>
 <p>In class this week, we will connect git/GitHub to RStudio so you can use version control for your code. We will then see what a typical git/GitHub workflow looks like.</p>
-</section><section id="learn-more" class="level2 unnumbered learn-more"><h2 class="unnumbered anchored" data-anchor-id="learn-more">Learn More</h2>
-<section id="extra-resources" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="extra-resources">Extra Resources</h3>
+</section>
+<section id="learn-more" class="level2 unnumbered learn-more">
+<h2 class="unnumbered anchored" data-anchor-id="learn-more">Learn More</h2>
+<section id="extra-resources" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="extra-resources">Extra Resources</h3>
 <ul>
 <li><p><a href="https://happygitwithr.com/index.html">Happy Git and GitHub for the useR</a> - Guide to using git, R, and RStudio together. <span class="citation" data-cites="bryanHappyGitGitHub2021">(<a href="#ref-bryanHappyGitGitHub2021" role="doc-biblioref">Bryan, Hester, and The Stat 545 TAs 2021</a>)</span></p></li>
 <li><p><a href="https://guides.github.com/activities/hello-world/">Git “Hello World” Tutorial on GitHub</a></p></li>
@@ -352,16 +396,20 @@ div.csl-indent {
 <li><p><a href="https://www.youtube.com/watch?v=BCQHnlnPusY&amp;list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV">Git and GitHub for poets</a> YouTube playlist (this is supposed to be the best introduction to Git out there…) <span class="citation" data-cites="thecodingtrainIntroductionGitGitHub2016">(<a href="#ref-thecodingtrainIntroductionGitGitHub2016" role="doc-biblioref">The Coding Train 2016</a>)</span></p></li>
 <li><p><a href="https://dev.to/erikaheidi/stage-commit-push-a-git-story-comic-a37">More advanced git concepts, in comic form</a>, by Erika Heidi <span class="citation" data-cites="ericaheidiStageCommitPush2020">(<a href="#ref-ericaheidiStageCommitPush2020" role="doc-biblioref">Erica Heidi 2020</a>)</span></p></li>
 <li><p><a href="https://towardsdatascience.com/a-quick-guide-to-using-command-line-terminal-96815b97b955">A quick guide to the command line (Terminal)</a> <span class="citation" data-cites="weiQuickGuideUsing2019">(<a href="#ref-weiQuickGuideUsing2019" role="doc-biblioref">Wei 2019</a>)</span></p></li>
-</ul></section></section><p><br></p>
+</ul>
+</section>
+</section>
+<p><br></p>
 <!-- ::: tryitout -->
 <!-- ### PA 6: Merge Conflicts {-} -->
 <!-- In class, we will work together, step-by-step in groups, to resolve merge conflicts when collaborating with GitHub. See slide instructions [here](https://earobinson95.github.io/stat331-calpoly/lecture-slides/06-version-control-exam-review/06-version-control.html#/pa-6-merge-conflicts). -->
 <!-- In order to receive credit for this practice activity, you **must** attend class. Please email your instructor if extenuating circumstances arise. -->
 <!-- ::: -->
-<section id="references" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
+<section id="references" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-bryanHappyGitGitHub2021" class="csl-entry" role="listitem">
 Bryan, Jenny, Jim Hester, and The Stat 545 TAs. 2021. <em>Happy <span>Git</span> and <span>GitHub</span> for the <span class="nocase">useR</span></em>. <a href="https://happygitwithr.com/">https://happygitwithr.com/</a>.
 </div>
@@ -378,10 +426,16 @@ Traversy Media. 2017. <em>Git &amp; <span>GitHub</span> <span>Crash</span> <span
 Wei, Jerry. 2019. <span>“A <span>Quick</span> <span>Guide</span> to <span>Using</span> <span>Command</span> <span>Line</span> (<span>Terminal</span>).”</span> <em>Towards Data Science</em>. <a href="https://towardsdatascience.com/a-quick-guide-to-using-command-line-terminal-96815b97b955">https://towardsdatascience.com/a-quick-guide-to-using-command-line-terminal-96815b97b955</a>.
 </div>
 </div>
-</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
 <ol>
 <li id="fn1"><p>Yes, I’m aware that this sounds paranoid. It’s been a very rare occasion that I’ve needed to restore something from another backup. You don’t want to take chances.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -422,6 +476,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -490,13 +571,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -531,18 +614,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -574,11 +646,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/earobinson95\.github\.io\/stat331-calpoly-text\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -588,8 +697,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -601,7 +719,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -645,6 +885,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -670,6 +911,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -728,13 +995,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./05-special-data-types.html" class="pagination-link">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./05-special-data-types.html" class="pagination-link" aria-label="Special Data Types">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Special Data Types</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./07-functions.html" class="pagination-link">
+      <a href="./07-functions.html" class="pagination-link" aria-label="Writing Functions">
         <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Writing Functions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -743,5 +1012,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<script src="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.js" defer="true"></script>
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/06-version-control.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer><script src="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.js" defer="true"></script>
 </body></html>

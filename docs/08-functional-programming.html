@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.6.40">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Stat 331/531 Statistical Computing with R - 8&nbsp; Functional Programming</title>
+
+
+<title>8&nbsp; Functional Programming – Stat 331/531 Statistical Computing with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -30,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -55,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -72,6 +76,7 @@ div.csl-indent {
   margin-left: 2em;
 }</style>
 
+
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -86,19 +91,26 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-32dee248df1cfa0041543c586c7ed09c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-6eb86e081c92c5d01c7afa1be8d32804.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -107,58 +119,98 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
+}</script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="style.css">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-functional-programming.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Functional Programming</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-functional-programming.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Functional Programming</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Stat 331/531 Statistical Computing with R</a> 
         <div class="sidebar-tools-main tools-wide">
-    <a href="https://github.com/earobinson95/stat331-calpoly-text" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/earobinson95/stat331-calpoly-text" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <div class="dropdown">
-      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-<li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
-              <i class="bi bi-bi-twitter pe-1"></i>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
             Twitter
             </a>
           </li>
           <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
-              <i class="bi bi-bi-facebook pe-1"></i>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-facebook pe-1"></i>
             Facebook
             </a>
           </li>
           <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
-              <i class="bi bi-bi-linkedin pe-1"></i>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-linkedin pe-1"></i>
             LinkedIn
             </a>
           </li>
       </ul>
-</div>
+    </div>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -170,7 +222,7 @@ div.csl-indent {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
@@ -243,47 +295,43 @@ div.csl-indent {
   </div>
 </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#ch8-objectives" id="toc-ch8-objectives" class="nav-link active" data-scroll-target="#ch8-objectives">Objectives</a></li>
-  <li>
-<a href="#introduction-to-iteration" id="toc-introduction-to-iteration" class="nav-link" data-scroll-target="#introduction-to-iteration"><span class="header-section-number">8.1</span> Introduction to Iteration</a>
+  <li><a href="#ch8-objectives" id="toc-ch8-objectives" class="nav-link active" data-scroll-target="#ch8-objectives">Objectives</a></li>
+  <li><a href="#introduction-to-iteration" id="toc-introduction-to-iteration" class="nav-link" data-scroll-target="#introduction-to-iteration"><span class="header-section-number">8.1</span> Introduction to Iteration</a>
   <ul class="collapse">
-<li><a href="#read-more" id="toc-read-more" class="nav-link" data-scroll-target="#read-more">Read more</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#review-of-lists-and-vectors" id="toc-review-of-lists-and-vectors" class="nav-link" data-scroll-target="#review-of-lists-and-vectors"><span class="header-section-number">8.2</span> Review of Lists and Vectors</a>
+  <li><a href="#read-more" id="toc-read-more" class="nav-link" data-scroll-target="#read-more">Read more</a></li>
+  </ul></li>
+  <li><a href="#review-of-lists-and-vectors" id="toc-review-of-lists-and-vectors" class="nav-link" data-scroll-target="#review-of-lists-and-vectors"><span class="header-section-number">8.2</span> Review of Lists and Vectors</a>
   <ul class="collapse">
-<li><a href="#indexing" id="toc-indexing" class="nav-link" data-scroll-target="#indexing"><span class="header-section-number">8.2.1</span> Indexing</a></li>
-  </ul>
-</li>
+  <li><a href="#indexing" id="toc-indexing" class="nav-link" data-scroll-target="#indexing"><span class="header-section-number">8.2.1</span> Indexing</a></li>
+  </ul></li>
   <li><a href="#vectorized-operations" id="toc-vectorized-operations" class="nav-link" data-scroll-target="#vectorized-operations"><span class="header-section-number">8.3</span> Vectorized Operations</a></li>
-  <li>
-<a href="#functional-programming" id="toc-functional-programming" class="nav-link" data-scroll-target="#functional-programming"><span class="header-section-number">8.4</span> Functional Programming</a>
+  <li><a href="#functional-programming" id="toc-functional-programming" class="nav-link" data-scroll-target="#functional-programming"><span class="header-section-number">8.4</span> Functional Programming</a>
   <ul class="collapse">
-<li><a href="#functional-programming-example" id="toc-functional-programming-example" class="nav-link" data-scroll-target="#functional-programming-example">Functional Programming Example</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#introduction-to-map" id="toc-introduction-to-map" class="nav-link" data-scroll-target="#introduction-to-map"><span class="header-section-number">8.5</span> Introduction to <code>map()</code></a>
+  <li><a href="#functional-programming-example" id="toc-functional-programming-example" class="nav-link" data-scroll-target="#functional-programming-example">Functional Programming Example</a></li>
+  </ul></li>
+  <li><a href="#introduction-to-map" id="toc-introduction-to-map" class="nav-link" data-scroll-target="#introduction-to-map"><span class="header-section-number">8.5</span> Introduction to <code>map()</code></a>
   <ul class="collapse">
-<li><a href="#learn-more-about-purrr" id="toc-learn-more-about-purrr" class="nav-link" data-scroll-target="#learn-more-about-purrr">Learn More About Purrr</a></li>
+  <li><a href="#learn-more-about-purrr" id="toc-learn-more-about-purrr" class="nav-link" data-scroll-target="#learn-more-about-purrr">Learn More About Purrr</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
   </ul>
-</li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/08-functional-programming.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/08-functional-programming.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">
-<span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Functional Programming</span>
-</h1>
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Functional Programming</span></h1>
 </div>
 
 
@@ -296,14 +344,25 @@ div.csl-indent {
   </div>
   
 
-</header><p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 20 minute(s) at 200 WPM</p>
+
+</header>
+
+
+<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 19 minute(s) at 200 WPM</p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"></path></svg> Videos: 29 minute(s)</p>
-<section id="ch8-objectives" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="ch8-objectives">Objectives</h2>
+<section id="ch8-objectives" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="ch8-objectives">Objectives</h2>
 <ul>
 <li>Use functional programming techniques to create code which is well organized and easier to understand and maintain</li>
 </ul>
-<!-- ::: check-in --><!-- ## Check-ins {#ch8-checkins -} --><!-- There is one check-in for this week: --><!-- + [Check-in 8.1: Functional Programming with the `map()` family](#checkin8-1) --><!-- ::: --></section><section id="introduction-to-iteration" class="level2 page-columns page-full" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="introduction-to-iteration">
-<span class="header-section-number">8.1</span> Introduction to Iteration</h2>
+<!-- ::: check-in -->
+<!-- ## Check-ins {#ch8-checkins -} -->
+<!-- There is one check-in for this week: -->
+<!-- + [Check-in 8.1: Functional Programming with the `map()` family](#checkin8-1) -->
+<!-- ::: -->
+</section>
+<section id="introduction-to-iteration" class="level2 page-columns page-full" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="introduction-to-iteration"><span class="header-section-number">8.1</span> Introduction to Iteration</h2>
 <p>We just learned the rule of “don’t repeat yourself more than two times” and to instead automate our procedures with functions in order to remove duplication of code. We have used tools such as <code>across()</code> to help eliminate this copy-paste procedure even further. This is a form of iteration in programming as <code>across()</code> “iterates” over variables, applying a function to manipulate each variable and then doing the same for the next variable.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
@@ -312,65 +371,68 @@ div.csl-indent {
 </iframe>
 </div>
 </div></div><p><code>while()</code> and <code>for()</code> loops are a common form of iteration that can be extremely useful when logically thinking through a problem, however are extremely computationally intensive. Therefore, loops will not be the focus of this chapter. If you are interested, you can go read about <a href="00-prereading.html#prereading-loops">loops</a> in the pre-reading material of this text.</p>
-<section id="read-more" class="level3 unnumbered learn-more"><h3 class="unnumbered anchored" data-anchor-id="read-more">Read more</h3>
+<section id="read-more" class="level3 unnumbered learn-more">
+<h3 class="unnumbered anchored" data-anchor-id="read-more">Read more</h3>
 <p>You can read all about <a href="https://r4ds.had.co.nz/iteration.html#iteration">iteration</a> in the previous version of R4DS.</p>
-</section></section><section id="review-of-lists-and-vectors" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="review-of-lists-and-vectors">
-<span class="header-section-number">8.2</span> Review of Lists and Vectors</h2>
+</section>
+</section>
+<section id="review-of-lists-and-vectors" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="review-of-lists-and-vectors"><span class="header-section-number">8.2</span> Review of Lists and Vectors</h2>
 <p>In the pre-reading, we introduce the different <a href="00-prereading.html#data-structures">data structures</a> we have worked with in R. We are going to do a review of some of the important data structures for this chapter.</p>
 <p>A <strong>vector</strong> is a 1-dimensional data structure that contains items of the same simple (‘atomic’) type (character, logical, integer, factor).</p>
 <div class="cell">
-<div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="va">logical_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">T</span>, <span class="cn">F</span>, <span class="cn">T</span>, <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(logical_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(T, F, T, T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1]  TRUE FALSE  TRUE  TRUE</code></pre>
 </div>
-<div class="sourceCode" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="va">numeric_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(numeric_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 3 1 4 5</code></pre>
 </div>
-<div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="va">char_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"AB"</span>, <span class="st">"ABC"</span>, <span class="st">"ABCD"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(char_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"AB"</span>, <span class="st">"ABC"</span>, <span class="st">"ABCD"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] "A"    "AB"   "ABC"  "ABCD"</code></pre>
 </div>
 </div>
 <p>You <strong>index</strong> a vector using brackets: to get the <span class="math inline">\(i\)</span>th element of the vector <code>x</code>, you would use <code>x[i]</code> in R or <code>x[i-1]</code> in python (Remember, python is 0-indexed, so the first element of the vector is at location 0).</p>
 <div class="cell">
-<div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">logical_vec</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>logical_vec[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode" id="cb9" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numeric_vec</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>numeric_vec[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 4</code></pre>
 </div>
-<div class="sourceCode" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">char_vec</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>char_vec[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] "ABC"</code></pre>
 </div>
 </div>
 <p>You can also index a vector using a logical vector:</p>
 <div class="cell">
-<div class="sourceCode" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numeric_vec</span><span class="op">[</span><span class="va">logical_vec</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>numeric_vec[logical_vec]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 3 4 5</code></pre>
 </div>
-<div class="sourceCode" id="cb15" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">char_vec</span><span class="op">[</span><span class="va">logical_vec</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>char_vec[logical_vec]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] "A"    "ABC"  "ABCD"</code></pre>
 </div>
-<div class="sourceCode" id="cb17" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">logical_vec</span><span class="op">[</span><span class="va">logical_vec</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>logical_vec[logical_vec]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] TRUE TRUE TRUE</code></pre>
 </div>
 </div>
 <p>A <strong>list</strong> is a 1-dimensional data structure that has no restrictions on what type of content is stored within it. A list is a “vector”, but it is not an atomic vector - that is, it does not necessarily contain things that are all the same type.</p>
 <div class="cell">
-<div class="sourceCode" id="cb19" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span></span>
-<span>  <span class="va">mylist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
-<span>    <span class="va">logical_vec</span>, </span>
-<span>    <span class="va">numeric_vec</span>, </span>
-<span>    third_thing <span class="op">=</span> <span class="va">char_vec</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  mylist <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    logical_vec, </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    numeric_vec, </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">third_thing =</span> char_vec[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[[1]]
 [1]  TRUE FALSE  TRUE  TRUE
@@ -383,37 +445,50 @@ $third_thing
 </div>
 </div>
 <p>List components may have names (or not), be homogeneous (or not), have the same length (or not).</p>
-<section id="indexing" class="level3" data-number="8.2.1"><h3 data-number="8.2.1" class="anchored" data-anchor-id="indexing">
-<span class="header-section-number">8.2.1</span> Indexing</h3>
+<section id="indexing" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="indexing"><span class="header-section-number">8.2.1</span> Indexing</h3>
 <p>Indexing necessarily differs between R and python, and since the list types are also somewhat different (e.g.&nbsp;lists cannot be named in python), we will treat list indexing in the two languages separately.</p>
 <div id="fig-pepper" class="quarto-layout-panel">
-<figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pepper-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/08-functional-programming/02_pepper.jpg" class="img-fluid figure-img" alt="A pepper shaker containing several individual paper packets of pepper"></p>
-<figcaption class="figure-caption">An unusual pepper shaker which we’ll call <code>pepper</code></figcaption></figure>
+<figure class="figure">
+<p><img src="images/08-functional-programming/02_pepper.jpg" class="img-fluid figure-img" alt="A pepper shaker containing several individual paper packets of pepper"></p>
+<figcaption>An unusual pepper shaker which we’ll call <code>pepper</code></figcaption>
+</figure>
 </div>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/08-functional-programming/02_pepper-1.jpg" class="img-fluid figure-img" alt="A pepper shaker containing a single individual paper packet of pepper."></p>
-<figcaption class="figure-caption">When a list is indexed with single brackets, <code>pepper[1]</code>, the return value is always a list containing the selected element(s).</figcaption></figure>
+<figure class="figure">
+<p><img src="images/08-functional-programming/02_pepper-1.jpg" class="img-fluid figure-img" alt="A pepper shaker containing a single individual paper packet of pepper."></p>
+<figcaption>When a list is indexed with single brackets, <code>pepper[1]</code>, the return value is always a list containing the selected element(s).</figcaption>
+</figure>
 </div>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/08-functional-programming/02_pepper-2.jpg" class="img-fluid figure-img" alt="A single individual paper packet of pepper, no longer contained within a pepper shaker."></p>
-<figcaption class="figure-caption">When a list is indexed with double brackets, <code>pepper[[1]]</code>, the return value is the selected element.</figcaption></figure>
+<figure class="figure">
+<p><img src="images/08-functional-programming/02_pepper-2.jpg" class="img-fluid figure-img" alt="A single individual paper packet of pepper, no longer contained within a pepper shaker."></p>
+<figcaption>When a list is indexed with double brackets, <code>pepper[[1]]</code>, the return value is the selected element.</figcaption>
+</figure>
 </div>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/08-functional-programming/02_pepper-3.jpg" class="img-fluid figure-img" alt="A pile of pepper, free from any containment structures."></p>
-<figcaption class="figure-caption">To actually access the pepper, we have to use double indexing and index both the list object and the sub-object, as in <code>pepper[[1]][[1]]</code>.</figcaption></figure>
+<figure class="figure">
+<p><img src="images/08-functional-programming/02_pepper-3.jpg" class="img-fluid figure-img" alt="A pile of pepper, free from any containment structures."></p>
+<figcaption>To actually access the pepper, we have to use double indexing and index both the list object and the sub-object, as in <code>pepper[[1]][[1]]</code>.</figcaption>
+</figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;8.1: The types of indexing are made most memorable with a fantastic visual example from <span class="citation" data-cites="r4ds">Grolemund and Wickham (<a href="#ref-r4ds" role="doc-biblioref">2017</a>)</span>, which I have repeated here.</figcaption><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pepper-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.1: The types of indexing are made most memorable with a fantastic visual example from <span class="citation" data-cites="r4ds">Grolemund and Wickham (<a href="#ref-r4ds" role="doc-biblioref">2017</a>)</span>, which I have repeated here.
+</figcaption>
 </figure>
 </div>
 <p>There are 3 ways to index a list:</p>
@@ -421,17 +496,17 @@ $third_thing
 <li>With single square brackets, just like we index atomic vectors. In this case, the return value is always a list.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb21" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mylist</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mylist[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[[1]]
 [1]  TRUE FALSE  TRUE  TRUE</code></pre>
 </div>
-<div class="sourceCode" id="cb23" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mylist</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>mylist[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[[1]]
 [1] 3 1 4 5</code></pre>
 </div>
-<div class="sourceCode" id="cb25" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mylist</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">T</span>, <span class="cn">F</span>, <span class="cn">T</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>mylist[<span class="fu">c</span>(T, F, T)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[[1]]
 [1]  TRUE FALSE  TRUE  TRUE
@@ -444,11 +519,11 @@ $third_thing
 <li>With double square brackets. In this case, the return value is the thing inside the specified position in the list, but you also can only get one entry in the main list at a time. You can also get things by name.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb27" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mylist</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>mylist[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1]  TRUE FALSE  TRUE  TRUE</code></pre>
 </div>
-<div class="sourceCode" id="cb29" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mylist</span><span class="op">[[</span><span class="st">"third_thing"</span><span class="op">]</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>mylist[[<span class="st">"third_thing"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] "A"  "AB"</code></pre>
 </div>
@@ -457,14 +532,14 @@ $third_thing
 <li>Using <code>x$name</code>. This is equivalent to using <code>x[["name"]]</code>. Note that this does not work on unnamed entries in the list.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb31" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mylist</span><span class="op">$</span><span class="va">third_thing</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>mylist<span class="sc">$</span>third_thing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] "A"  "AB"</code></pre>
 </div>
 </div>
 <p>To access the contents of a list object, we have to use double-indexing:</p>
 <div class="cell">
-<div class="sourceCode" id="cb33" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mylist</span><span class="op">[[</span><span class="st">"third_thing"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>mylist[[<span class="st">"third_thing"</span>]][[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] "A"</code></pre>
 </div>
@@ -482,45 +557,50 @@ Note
 <p>You can get a more thorough review of vectors and lists <a href="https://jennybc.github.io/purrr-tutorial/bk00_vectors-and-lists.html">from Jenny Bryan’s purrr tutorial introduction</a> <span class="citation" data-cites="bryanLessonsExamples20191021">(<a href="#ref-bryanLessonsExamples20191021" role="doc-biblioref">Bryan n.d.</a>)</span>.</p>
 </div>
 </div>
-</section></section><section id="vectorized-operations" class="level2 page-columns page-full" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="vectorized-operations">
-<span class="header-section-number">8.3</span> Vectorized Operations</h2>
+</section>
+</section>
+<section id="vectorized-operations" class="level2 page-columns page-full" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="vectorized-operations"><span class="header-section-number">8.3</span> Vectorized Operations</h2>
 <p>Operations in R are (usually) <strong>vectorized</strong> - that is, by default, they operate on vectors. This is primarily a feature that applies to atomic vectors (and we don’t even think about it):</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/sxIX9lzPjDQ" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </div></div><div class="cell">
-<div class="sourceCode" id="cb35" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">rnorm</span>(<span class="dv">10</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code> [1] 4.3605735 2.6726954 3.2503800 1.6846993 3.8238961 4.3775941 2.9211669
- [8] 4.0266903 4.3830421 0.4627222</code></pre>
+<pre data-code-line-numbers=""><code> [1]  1.10966844 -0.02203546  1.11826854  1.20485562  5.63590046  3.59198218
+ [7]  3.28814951  1.57984223  0.99012104  5.74752617</code></pre>
 </div>
 </div>
 <p>With vectorized functions, we don’t have to use a for loop to add these two vectors with 10 entries each together. In languages which don’t have implicit support for vectorized computations, this might instead look like:</p>
 <div class="cell">
-<div class="sourceCode" id="cb37" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span>
-<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">result</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">a</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">+</span> <span class="va">b</span><span class="op">[</span><span class="va">i</span><span class="op">]</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">result</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">3</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  result[i] <span class="ot">&lt;-</span> a[i] <span class="sc">+</span> b[i]</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code> [1] 1.7103006 2.1922733 2.7639597 3.5712390 3.6324717 3.8090444 4.6425329
- [8] 5.3263927 0.3569237 2.9238857</code></pre>
+<pre data-code-line-numbers=""><code> [1] 3.9540523 2.9006172 3.2878693 3.0098338 5.4685053 3.4746667 5.3620653
+ [8] 4.1150999 3.7628398 0.5682941</code></pre>
 </div>
 </div>
 <p>That is, we would <strong>apply</strong> or <strong>map</strong> the <code>+</code> function to each entry of a and b. For atomic vectors, it’s easy to do this by default; with a list, however, we need to be a bit more explicit (because everything that’s passed into the function may not be the same type).</p>
-<p>::: column-margin I find the <code>purrr</code> package easier to work with, so we won’t be working with the base functions (the <em>apply</em> family) in this course. You can find a <a href="https://jennybc.github.io/purrr-tutorial/bk01_base-functions.html">side-by-side comparison in the <code>purrr</code> tutorial</a>.</p>
+<p>I find the <code>purrr</code> package easier to work with, so we won’t be working with the base functions (the <em>apply</em> family) in this course. You can find a <a href="https://jennybc.github.io/purrr-tutorial/bk01_base-functions.html">side-by-side comparison in the <code>purrr</code> tutorial</a>.</p>
 <p><br></p>
 <p>You can also watch Dr.&nbsp;Theobold’s video to learn more:</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <div class="youtube-video-container">
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/NadUAnlrh-M" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </div>
-<p>The R package <code>purrr</code> (and similar base functions <code>apply</code>, <code>lapply</code>, <code>sapply</code>, <code>tapply</code>, and <code>mapply</code>) are based on extending “vectorized” functions to a wider variety of vector-like structures.</p>
-</section><section id="functional-programming" class="level2" data-number="8.4"><h2 data-number="8.4" class="anchored" data-anchor-id="functional-programming">
-<span class="header-section-number">8.4</span> Functional Programming</h2>
+</div></div><p>The R package <code>purrr</code> (and similar base functions <code>apply</code>, <code>lapply</code>, <code>sapply</code>, <code>tapply</code>, and <code>mapply</code>) are based on extending “vectorized” functions to a wider variety of vector-like structures.</p>
+</section>
+<section id="functional-programming" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="functional-programming"><span class="header-section-number">8.4</span> Functional Programming</h2>
 <p>The concept of <strong>functional programming</strong> is a bit hard to define rigorously at the level we’re working at, but generally, functional programming is concerned with <strong>pure functions</strong>: functions that have an input value that determines the output value and create no other side effects.</p>
 <p>What this means is that you describe every step of the computation using a function, and chain the functions together. At the end of the computations, you might save the program’s results to an object, but (in general), the goal is to not change things outside of the “pipeline” along the way.</p>
 <p>This has some advantages:</p>
@@ -528,39 +608,32 @@ Note
 <li>Easier parallelization
 <ul>
 <li>“Side effects” generally make it hard to parallelize code because e.g.&nbsp;you have to update stored objects in memory, which is hard to do with multiple threads accessing the same memory.</li>
-</ul>
-</li>
+</ul></li>
 <li>Functional programming tends to be easier to read
 <ul>
 <li>You can see output and input and don’t have to work as hard to keep track of what is stored where .</li>
-</ul>
-</li>
+</ul></li>
 <li>Easier Debugging
 <ul>
 <li>You can examine the input and output at each stage to isolate which function is introducing the problem.</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p>The introduction of the pipe in R has made chaining functions together in a functional programming-style pipeline much easier. <code>purrr</code> is just another step in this process: by making it easy to apply functions to lists of things (or to use multiple lists of things in a single function), <code>purrr</code> makes it easier to write clean, understandable, debuggable code.</p>
 <p><br></p>
-<section id="functional-programming-example" class="level3 unnumbered ex"><h3 class="unnumbered anchored" data-anchor-id="functional-programming-example">Functional Programming Example</h3>
+<section id="functional-programming-example" class="level3 unnumbered ex">
+<h3 class="unnumbered anchored" data-anchor-id="functional-programming-example">Functional Programming Example</h3>
 <p>This example is modified from the motivation section of the <a href="http://adv-r.had.co.nz/Functional-programming.html">Functional Programming chapter</a> in Advanced R <span class="citation" data-cites="wickhamFunctionalProgramming2019">(<a href="#ref-wickhamFunctionalProgramming2019" role="doc-biblioref">Wickham 2019</a>)</span>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Problem</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Naive Approach</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Writing a function</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Mapping a function</a></li>
-</ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Problem</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Naive Approach</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Writing a function</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Mapping a function</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>Suppose we want to replace every -99 in the following sample dataset with an NA. (-99 is sometimes used to indicate missingness in datasets).</p>
 <div class="cell">
-<div class="sourceCode" id="cb39" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Generate a sample dataset</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1014</span><span class="op">)</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">99</span><span class="op">)</span>, <span class="fl">6</span>, rep <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span>
-<span><span class="va">df</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a sample dataset</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1014</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">replicate</span>(<span class="dv">6</span>, <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">99</span>), <span class="dv">6</span>, <span class="at">rep =</span> <span class="cn">TRUE</span>)))</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df) <span class="ot">&lt;-</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>  a   b   c   d  e f
 1 7   5 -99   2  5 2
@@ -575,12 +648,12 @@ Note
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>The “beginner” approach is to just replace each individual -99 with an NA:</p>
 <div class="cell">
-<div class="sourceCode" id="cb41" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="va">df</span></span>
-<span><span class="va">df1</span><span class="op">[</span><span class="fl">6</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span><span class="va">df1</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span><span class="va">df1</span><span class="op">[</span><span class="fl">5</span>,<span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span></span>
-<span><span class="va">df1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>df1[<span class="dv">6</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>df1[<span class="dv">1</span>,<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>df1[<span class="dv">5</span>,<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>df1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>  a  b  c  d  e f
 1 7  5 NA  2  5 2
@@ -593,14 +666,14 @@ Note
 </div>
 <p>This is tedious, and painful, and won’t work if we have a slightly different dataset where the -99s are in different places. So instead, we might consider being a bit more general:</p>
 <div class="cell">
-<div class="sourceCode" id="cb43" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="va">df</span></span>
-<span><span class="va">df2</span><span class="op">$</span><span class="va">a</span><span class="op">[</span><span class="va">df2</span><span class="op">$</span><span class="va">a</span> <span class="op">==</span> <span class="op">-</span><span class="fl">99</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span><span class="va">df2</span><span class="op">$</span><span class="va">b</span><span class="op">[</span><span class="va">df2</span><span class="op">$</span><span class="va">b</span> <span class="op">==</span> <span class="op">-</span><span class="fl">99</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span><span class="va">df2</span><span class="op">$</span><span class="va">c</span><span class="op">[</span><span class="va">df2</span><span class="op">$</span><span class="va">c</span> <span class="op">==</span> <span class="op">-</span><span class="fl">99</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span><span class="va">df2</span><span class="op">$</span><span class="va">d</span><span class="op">[</span><span class="va">df2</span><span class="op">$</span><span class="va">d</span> <span class="op">==</span> <span class="op">-</span><span class="fl">99</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span><span class="va">df2</span><span class="op">$</span><span class="va">e</span><span class="op">[</span><span class="va">df2</span><span class="op">$</span><span class="va">e</span> <span class="op">==</span> <span class="op">-</span><span class="fl">99</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span><span class="va">df2</span><span class="op">$</span><span class="va">f</span><span class="op">[</span><span class="va">df2</span><span class="op">$</span><span class="va">f</span> <span class="op">==</span> <span class="op">-</span><span class="fl">99</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span><span class="va">df2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>df2<span class="sc">$</span>a[df2<span class="sc">$</span>a <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>df2<span class="sc">$</span>b[df2<span class="sc">$</span>b <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>df2<span class="sc">$</span>c[df2<span class="sc">$</span>c <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>df2<span class="sc">$</span>d[df2<span class="sc">$</span>d <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>df2<span class="sc">$</span>e[df2<span class="sc">$</span>e <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>df2<span class="sc">$</span>f[df2<span class="sc">$</span>f <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>  a  b  c  d  e f
 1 7  5 NA  2  5 2
@@ -616,19 +689,19 @@ Note
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <p>The standard rule is that if you copy-paste the same code 3x, then you should write a function, so let’s try that instead:</p>
 <div class="cell">
-<div class="sourceCode" id="cb45" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fix_missing</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">missing</span> <span class="op">=</span> <span class="op">-</span><span class="fl">99</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">x</span><span class="op">[</span><span class="va">x</span> <span class="op">==</span> <span class="va">missing</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span>  <span class="va">x</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">df3</span> <span class="op">&lt;-</span> <span class="va">df</span></span>
-<span><span class="va">df3</span><span class="op">$</span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu">fix_missing</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">a</span><span class="op">)</span></span>
-<span><span class="va">df3</span><span class="op">$</span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu">fix_missing</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">b</span><span class="op">)</span></span>
-<span><span class="va">df3</span><span class="op">$</span><span class="va">c</span> <span class="op">&lt;-</span> <span class="fu">fix_missing</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">c</span><span class="op">)</span></span>
-<span><span class="va">df3</span><span class="op">$</span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu">fix_missing</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">d</span><span class="op">)</span></span>
-<span><span class="va">df3</span><span class="op">$</span><span class="va">e</span> <span class="op">&lt;-</span> <span class="fu">fix_missing</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">e</span><span class="op">)</span></span>
-<span><span class="va">df3</span><span class="op">$</span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu">fix_missing</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">f</span><span class="op">)</span></span>
-<span><span class="va">df3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>fix_missing <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">missing =</span> <span class="sc">-</span><span class="dv">99</span>){</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  x[x <span class="sc">==</span> missing] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  x</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> df</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>df3<span class="sc">$</span>a <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df<span class="sc">$</span>a)</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>df3<span class="sc">$</span>b <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df<span class="sc">$</span>b)</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>df3<span class="sc">$</span>c <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df<span class="sc">$</span>c)</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>df3<span class="sc">$</span>d <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df<span class="sc">$</span>d)</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>df3<span class="sc">$</span>e <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df<span class="sc">$</span>e)</span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>df3<span class="sc">$</span>f <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df<span class="sc">$</span>f)</span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>df3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>  a  b  c  d  e f
 1 7  5 NA  2  5 2
@@ -644,16 +717,16 @@ Note
 <div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
 <p>We have a function that we want to <strong>apply</strong> or <strong>map</strong> to every column in our data frame. We could use a <code>for()</code> loop (doing this for demonstrative purposes only, I expect you to use more efficient tools in class):</p>
 <div class="cell">
-<div class="sourceCode" id="cb47" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fix_missing</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">missing</span> <span class="op">=</span> <span class="op">-</span><span class="fl">99</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">x</span><span class="op">[</span><span class="va">x</span> <span class="op">==</span> <span class="va">missing</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span>  <span class="va">x</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">df4</span> <span class="op">&lt;-</span> <span class="va">df</span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">df4</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">fix_missing</span><span class="op">(</span><span class="va">df4</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="va">df4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>fix_missing <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">missing =</span> <span class="sc">-</span><span class="dv">99</span>){</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  x[x <span class="sc">==</span> missing] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  x</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>df4 <span class="ot">&lt;-</span> df</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(df)) {</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  df4[,i] <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df4[,i])</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>df4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>  a  b  c  d  e f
 1 7  5 NA  2  5 2
@@ -667,14 +740,14 @@ Note
 <p>This is more understandable and flexible than the previous function approach as well as the naive approach - we don’t need to know the names of the columns in our data frame, or even how many there are. It is still quite a few lines of code, though.</p>
 <p>Iterating through a list (or columns of a data frame) is a very common task, so R has a shorthand function for it. You could us <code>lapply</code> from base R, but we will be learning the <code>map</code> family of functions from the <code>purrr</code> package.</p>
 <div class="cell">
-<div class="sourceCode" id="cb49" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fix_missing</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">missing</span> <span class="op">=</span> <span class="op">-</span><span class="fl">99</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">x</span><span class="op">[</span><span class="va">x</span> <span class="op">==</span> <span class="va">missing</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span>  <span class="va">x</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">df5</span> <span class="op">&lt;-</span> <span class="va">df</span></span>
-<span><span class="va">df5</span> <span class="op">&lt;-</span> <span class="fu">map_dfc</span><span class="op">(</span><span class="va">df5</span>, <span class="va">fix_missing</span><span class="op">)</span></span>
-<span><span class="va">df5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>fix_missing <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">missing =</span> <span class="sc">-</span><span class="dv">99</span>){</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  x[x <span class="sc">==</span> missing] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  x</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>df5 <span class="ot">&lt;-</span> df</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>df5 <span class="ot">&lt;-</span> <span class="fu">map_dfc</span>(df5, fix_missing)</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>df5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 6 × 6
       a     b     c     d     e     f
@@ -688,10 +761,13 @@ Note
 </div>
 </div>
 <p>By default, <code>map</code> returns a list (see below), but we can use <code>map_dfc</code> to return a data frame created by binding the columns together.</p>
-<details><summary><code>map()</code> - returns a list
-</summary><div class="cell">
-<div class="sourceCode" id="cb51" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df6</span> <span class="op">&lt;-</span> <span class="va">df</span></span>
-<span><span class="fu">map</span><span class="op">(</span><span class="va">df6</span>, <span class="va">fix_missing</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>
+<code>map()</code> - returns a list
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>df6 <span class="ot">&lt;-</span> df</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(df6, fix_missing)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>$a
 [1] 7 5 6 4 6 9
@@ -712,24 +788,26 @@ $f
 [1] 2 1 4 8 6 1</code></pre>
 </div>
 </div>
-</details><p>We’ve replaced 6 lines of code that only worked for 6 columns named <code>a</code> - <code>f</code> with a single line of code that works for any data frame with any number of rows and columns, so long as -99 indicates missing data. In addition to being shorter, this code is also somewhat easier to read and much less vulnerable to typos.</p>
+</details>
+<p>We’ve replaced 6 lines of code that only worked for 6 columns named <code>a</code> - <code>f</code> with a single line of code that works for any data frame with any number of rows and columns, so long as -99 indicates missing data. In addition to being shorter, this code is also somewhat easier to read and much less vulnerable to typos.</p>
 </div>
 </div>
 </div>
-</section></section><section id="introduction-to-map" class="level2 page-columns page-full" data-number="8.5"><h2 data-number="8.5" class="anchored" data-anchor-id="introduction-to-map">
-<span class="header-section-number">8.5</span> Introduction to <code>map()</code>
-</h2>
+</section>
+</section>
+<section id="introduction-to-map" class="level2 page-columns page-full" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="introduction-to-map"><span class="header-section-number">8.5</span> Introduction to <code>map()</code></h2>
 <div class="note">
-<p><code>purrr</code> is a part of the tidyverse, so you should already have the package installed. When you load the tidyverse with <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>, this also loads <code>purrr</code>.</p>
+<p><code>purrr</code> is a part of the tidyverse, so you should already have the package installed. When you load the tidyverse with <code>library()</code>, this also loads <code>purrr</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb53" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"purrr"</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/">purrr</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"purrr"</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><a href="https://posit.co/wp-content/uploads/2022/10/purrr.pdf">Download the <code>purrr</code> cheatsheet</a>.</p>
 </div>
 <p><br></p>
 <div class="go-read">
-<p>📖 (REQUIRED) Please read <a href="https://r4ds.had.co.nz/iteration.html#the-map-functions">Sections 21.5 through 21.7 <em>R for Data Science</em></a></p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> (REQUIRED) Please read <a href="https://r4ds.had.co.nz/iteration.html#the-map-functions">Sections 21.5 through 21.7 <em>R for Data Science</em></a></p>
 </div>
 
 <!-- ### Data Setup -->
@@ -1002,7 +1080,6 @@ $f
 <!-- Sometimes, you might need to map a function over two vectors/lists in parallel. `purrr` has you covered with the `map2` function. As with `map`, the syntax is `map2(thing1, thing2, function, other.args)`; the big difference is that `function` takes two arguments. -->
 <!-- ::: ex -->
 <!-- #### Example {-} -->
-
 <!-- Let's create a simple times-table: -->
 <!-- ```{r pivot-map} -->
 <!-- crossing(x = 1:10, y = 1:10) |> -->
@@ -1042,7 +1119,8 @@ $f
 <!-- <br> -->
 <div class="no-row-height column-margin column-container"><div class="">
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/FPD3a6IHO6w" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-</div></div><section id="learn-more-about-purrr" class="level3 unnumbered learn-more"><h3 class="unnumbered anchored" data-anchor-id="learn-more-about-purrr">Learn More About Purrr</h3>
+</div></div><section id="learn-more-about-purrr" class="level3 unnumbered learn-more">
+<h3 class="unnumbered anchored" data-anchor-id="learn-more-about-purrr">Learn More About Purrr</h3>
 <ul>
 <li><p>The Joy of Functional Programming (for Data Science): Hadley Wickham’s talk on purrr and functional programming. <a href="https://learning.acm.org/techtalks/functionalprogramming">~1h video</a> and <a href="https://learning.acm.org/binaries/content/assets/leaning-center/webinar-slides/2019/hadleywickham_techtalkslides.pdf">slides</a>.<br>
 (The Joy of Cooking meets Data Science, with illustrations by Allison Horst)</p></li>
@@ -1054,7 +1132,9 @@ $f
 <li><p><a href="https://colinfay.me/purrr-mappers/">Mappers with purrr</a> - handy ways to make your code simpler if you’re reusing functions a lot.</p></li>
 <li><p><a href="https://colinfay.me/purrr-code-optim/">Function factories - code optimization with purrr</a></p></li>
 <li><p><a href="https://colinfay.me/purrr-statistics/">Stats and Machine Learning examples with purrr</a></p></li>
-</ul></section><p><br></p>
+</ul>
+</section>
+<p><br></p>
 <!-- ::: check-in -->
 <!-- ### Check-in 8.1: Functional Programming with the `map()` family {#checkin8-1 -} -->
 <!-- ```{r} -->
@@ -1166,10 +1246,11 @@ $f
 <!-- > -->
 <!-- > Copy and paste your Full.Phrase column to show me the phrases you made! -->
 <!-- ::: -->
-<section id="references" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
+<section id="references" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-bryanLessonsExamples20191021" class="csl-entry" role="listitem">
 Bryan, Jennifer. n.d. <span>“Lessons and <span>Examples</span>.”</span> <em>Purrr Tutorial</em>. Accessed November 14, 2022. <a href="https://jennybc.github.io/purrr-tutorial/index.html">https://jennybc.github.io/purrr-tutorial/index.html</a>.
 </div>
@@ -1183,7 +1264,11 @@ Rudis, Bob. 2017. <span>“Pirating <span>Web</span> <span>Content</span> <span>
 Wickham, Hadley. 2019. <span>“Functional Programming.”</span> In <em>Advanced <span>R</span></em>, 2nd ed. The <span>R</span> Series. Chapman; Hall/CRC. <a href="http://adv-r.had.co.nz/Functional-programming.html">http://adv-r.had.co.nz/Functional-programming.html</a>.
 </div>
 </div>
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1224,6 +1309,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -1292,13 +1404,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1333,18 +1447,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1376,11 +1479,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/earobinson95\.github\.io\/stat331-calpoly-text\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1390,8 +1530,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1403,7 +1552,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1447,6 +1718,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1472,6 +1744,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1530,13 +1828,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./07-functions.html" class="pagination-link">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./07-functions.html" class="pagination-link" aria-label="Writing Functions">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Writing Functions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./09-statistical-modeling-and-simulation.html" class="pagination-link">
+      <a href="./09-statistical-modeling-and-simulation.html" class="pagination-link" aria-label="Simulating Distributions">
         <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Simulating Distributions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1545,5 +1845,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<script src="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.js" defer="true"></script>
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/08-functional-programming.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer><script src="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.js" defer="true"></script>
 </body></html>
