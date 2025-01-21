@@ -551,21 +551,22 @@ You can find other animations corresponding to filtering joins and set operation
 
 Every join has a "left side" and a "right side" - so in `some_join(A, B)`, A is the left side, B is the right side.
 
-Joins are differentiated based on how they treat the rows and columns of each side. In mutating joins, the columns from both sides are always kept.
+Joins are differentiated based on how they treat the rows and columns of each side. **In mutating joins, the columns from both sides are always kept.** The table below summarizes which rows are kept from each side of the join, for different mutating joins.
 
-+-------+-----------+------------+----------+
-|       | Left Side | Right Side |          |
-+-------+-----------+------------+----------+
-|       | Join Type | Rows       | Cols     |
-+-------+-----------+------------+----------+
-| inner | matching  | all        | matching |
-+-------+-----------+------------+----------+
-| left  | all       | all        | matching |
-+-------+-----------+------------+----------+
-| right | matching  | all        | all      |
-+-------+-----------+------------+----------+
-| outer | all       | all        | all      |
-+-------+-----------+------------+----------+
+
+```{r}
+#| echo: false
+
+data.frame(join_type  = c("inner", "left", "right", "outer"),
+           left_side  = c("matching", "all", "matching", "all"),
+           right_side = c("matching", "matching", "all", "all")) |> 
+  knitr::kable(col.names = c("Join Type", "Left Side", "Right Side")) |> 
+  add_header_above(c(" " = 1, "Rows Selected" = 2)) |> 
+  row_spec(row = 0, align = "c") |> 
+  kableExtra::kable_styling(full_width = FALSE)
+```
+
+
 
 <details class="ex">
 

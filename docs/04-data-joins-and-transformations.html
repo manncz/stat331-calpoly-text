@@ -127,6 +127,8 @@ div.csl-indent {
 }</script>
 <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="style.css">
@@ -1180,53 +1182,55 @@ Ex: taking the union of all student and teacher IDs to get a list of individual 
 </div>
 </div>
 <p>Every join has a “left side” and a “right side” - so in <code>some_join(A, B)</code>, A is the left side, B is the right side.</p>
-<p>Joins are differentiated based on how they treat the rows and columns of each side. In mutating joins, the columns from both sides are always kept.</p>
-<table class="caption-top table">
+<p>Joins are differentiated based on how they treat the rows and columns of each side. <strong>In mutating joins, the columns from both sides are always kept.</strong> The table below summarizes which rows are kept from each side of the join, for different mutating joins.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
-<col style="width: 11%">
-<col style="width: 16%">
-<col style="width: 18%">
-<col style="width: 15%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
+<th colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Rows Selected
+</div></th>
+</tr>
+<tr class="even">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Join Type</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Left Side</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Right Side</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td></td>
-<td>Left Side</td>
-<td>Right Side</td>
-<td></td>
+<td style="text-align: left;">inner</td>
+<td style="text-align: left;">matching</td>
+<td style="text-align: left;">matching</td>
 </tr>
 <tr class="even">
-<td></td>
-<td>Join Type</td>
-<td>Rows</td>
-<td>Cols</td>
+<td style="text-align: left;">left</td>
+<td style="text-align: left;">all</td>
+<td style="text-align: left;">matching</td>
 </tr>
 <tr class="odd">
-<td>inner</td>
-<td>matching</td>
-<td>all</td>
-<td>matching</td>
+<td style="text-align: left;">right</td>
+<td style="text-align: left;">matching</td>
+<td style="text-align: left;">all</td>
 </tr>
 <tr class="even">
-<td>left</td>
-<td>all</td>
-<td>all</td>
-<td>matching</td>
-</tr>
-<tr class="odd">
-<td>right</td>
-<td>matching</td>
-<td>all</td>
-<td>all</td>
-</tr>
-<tr class="even">
-<td>outer</td>
-<td>all</td>
-<td>all</td>
-<td>all</td>
+<td style="text-align: left;">outer</td>
+<td style="text-align: left;">all</td>
+<td style="text-align: left;">all</td>
 </tr>
 </tbody>
 </table>
+
+
+</div>
+</div>
 <details class="ex">
 <summary>
 Demonstration: Mutating Joins
