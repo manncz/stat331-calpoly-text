@@ -1,51 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/index.html</loc>
+    <loc>https://manncz.github.io/stat331-calpoly-text/index.html</loc>
     <lastmod>2024-12-26T14:55:59.756Z</lastmod>
   </url>
   <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/00-prereading.html</loc>
+    <loc>https://manncz.github.io/stat331-calpoly-text/00-prereading.html</loc>
     <lastmod>2024-12-26T14:55:59.521Z</lastmod>
   </url>
   <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/01-introduction.html</loc>
+    <loc>https://manncz.github.io/stat331-calpoly-text/01-introduction.html</loc>
     <lastmod>2024-12-26T14:55:59.521Z</lastmod>
   </url>
   <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/02-tidy-data-and-basics-of-graphics.html</loc>
+    <loc>https://manncz.github.io/stat331-calpoly-text/02-tidy-data-and-basics-of-graphics.html</loc>
     <lastmod>2025-01-14T22:03:38.595Z</lastmod>
   </url>
   <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/03-data-cleaning-and-manipulation.html</loc>
+    <loc>https://manncz.github.io/stat331-calpoly-text/03-data-cleaning-and-manipulation.html</loc>
     <lastmod>2025-01-14T23:37:23.249Z</lastmod>
   </url>
   <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/04-data-joins-and-transformations.html</loc>
+    <loc>https://manncz.github.io/stat331-calpoly-text/04-data-joins-and-transformations.html</loc>
     <lastmod>2025-01-21T18:26:00.394Z</lastmod>
   </url>
   <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/05-special-data-types.html</loc>
+    <loc>https://manncz.github.io/stat331-calpoly-text/05-special-data-types.html</loc>
     <lastmod>2024-12-26T14:55:59.522Z</lastmod>
   </url>
   <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/06-version-control.html</loc>
+    <loc>https://manncz.github.io/stat331-calpoly-text/06-version-control.html</loc>
     <lastmod>2024-12-26T14:55:59.522Z</lastmod>
   </url>
   <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/07-functions.html</loc>
+    <loc>https://manncz.github.io/stat331-calpoly-text/07-functions.html</loc>
     <lastmod>2024-12-26T14:55:59.522Z</lastmod>
   </url>
   <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/08-functional-programming.html</loc>
-    <lastmod>2025-01-14T22:12:17.339Z</lastmod>
+    <loc>https://manncz.github.io/stat331-calpoly-text/08-functional-programming.html</loc>
+    <lastmod>2025-04-23T16:24:26.166Z</lastmod>
   </url>
   <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/09-statistical-modeling-and-simulation.html</loc>
-    <lastmod>2024-12-26T14:55:59.523Z</lastmod>
-  </url>
-  <url>
-    <loc>https://earobinson95.github.io/stat331-calpoly-text/10-predictive-checks.html</loc>
-    <lastmod>2024-12-26T14:55:59.523Z</lastmod>
+    <loc>https://manncz.github.io/stat331-calpoly-text/09-statistical-modeling-and-simulation.html</loc>
+    <lastmod>2025-04-23T16:21:05.210Z</lastmod>
   </url>
 </urlset>

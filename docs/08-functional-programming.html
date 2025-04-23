@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Functional Programming – Stat 331/531 Statistical Computing with R</title>
+<title>8&nbsp; Iteration and Simulation – Stat 331/531 Statistical Computing with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -125,8 +125,8 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
-<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -170,7 +170,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-functional-programming.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Functional Programming</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-functional-programming.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Iteration and Simulation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -187,7 +187,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Stat 331/531 Statistical Computing with R</a> 
         <div class="sidebar-tools-main tools-wide">
-    <a href="https://github.com/earobinson95/stat331-calpoly-text" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/manncz/stat331-calpoly-text" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <div class="dropdown">
       <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
@@ -279,19 +279,13 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08-functional-programming.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Functional Programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Iteration and Simulation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09-statistical-modeling-and-simulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Simulating Distributions</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./10-predictive-checks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Predictive Checks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear Regression</span></span></a>
   </div>
 </li>
     </ul>
@@ -321,17 +315,22 @@ window.Quarto = {
   <li><a href="#introduction-to-map" id="toc-introduction-to-map" class="nav-link" data-scroll-target="#introduction-to-map"><span class="header-section-number">8.5</span> Introduction to <code>map()</code></a>
   <ul class="collapse">
   <li><a href="#learn-more-about-purrr" id="toc-learn-more-about-purrr" class="nav-link" data-scroll-target="#learn-more-about-purrr">Learn More About Purrr</a></li>
+  </ul></li>
+  <li><a href="#simulation" id="toc-simulation" class="nav-link" data-scroll-target="#simulation"><span class="header-section-number">8.6</span> Simulation</a>
+  <ul class="collapse">
+  <li><a href="#setting-a-random-number-seed" id="toc-setting-a-random-number-seed" class="nav-link" data-scroll-target="#setting-a-random-number-seed"><span class="header-section-number">8.6.1</span> Setting a Random Number Seed</a></li>
+  <li><a href="#plotting-density-distributions" id="toc-plotting-density-distributions" class="nav-link" data-scroll-target="#plotting-density-distributions"><span class="header-section-number">8.6.2</span> Plotting Density Distributions</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/08-functional-programming.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/manncz/stat331-calpoly-text/edit/main/08-functional-programming.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Functional Programming</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Iteration and Simulation</span></h1>
 </div>
 
 
@@ -348,8 +347,8 @@ window.Quarto = {
 </header>
 
 
-<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 19 minute(s) at 200 WPM</p>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"></path></svg> Videos: 29 minute(s)</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 21 minute(s) at 200 WPM</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"></path></svg> Videos: 46 minute(s)</p>
 <section id="ch8-objectives" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="ch8-objectives">Objectives</h2>
 <ul>
@@ -568,8 +567,8 @@ Note
 </div></div><div class="cell">
 <div class="sourceCode cell-code" id="cb35" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">rnorm</span>(<span class="dv">10</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code> [1]  1.10966844 -0.02203546  1.11826854  1.20485562  5.63590046  3.59198218
- [7]  3.28814951  1.57984223  0.99012104  5.74752617</code></pre>
+<pre data-code-line-numbers=""><code> [1] 4.6384505 0.1668053 3.4528681 5.4369574 4.8934323 2.8048357 2.0820594
+ [8] 3.2099186 1.6345795 1.0570841</code></pre>
 </div>
 </div>
 <p>With vectorized functions, we don’t have to use a for loop to add these two vectors with 10 entries each together. In languages which don’t have implicit support for vectorized computations, this might instead look like:</p>
@@ -584,8 +583,8 @@ Note
 <span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code> [1] 3.9540523 2.9006172 3.2878693 3.0098338 5.4685053 3.4746667 5.3620653
- [8] 4.1150999 3.7628398 0.5682941</code></pre>
+<pre data-code-line-numbers=""><code> [1] 5.316441 1.965852 2.750009 4.613588 3.445381 1.941889 1.892662 2.987151
+ [9] 4.836373 3.546474</code></pre>
 </div>
 </div>
 <p>That is, we would <strong>apply</strong> or <strong>map</strong> the <code>+</code> function to each entry of a and b. For atomic vectors, it’s easy to do this by default; with a list, however, we need to be a bit more explicit (because everything that’s passed into the function may not be the same type).</p>
@@ -1134,6 +1133,134 @@ $f
 <li><p><a href="https://colinfay.me/purrr-statistics/">Stats and Machine Learning examples with purrr</a></p></li>
 </ul>
 </section>
+</section>
+<section id="simulation" class="level2 page-columns page-full" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="simulation"><span class="header-section-number">8.6</span> Simulation</h2>
+<p>In statistics, we often want to simulate data (or create fake data) for a variety of purposes. For example, in your first statistics course, you may have flipped coins to “simulate” a 50-50 chance. In this section, we will learn how to simulate data from statistical distributions using R.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/J5XQaxmznNE" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div></div><div class="go-read">
+<p><a href="https://bookdown.org/rdpeng/rprogdatascience/simulation.html">Required Reading – <em>R Programming for Data Science</em> : Simulation</a></p>
+</div>
+<section id="setting-a-random-number-seed" class="level3" data-number="8.6.1">
+<h3 data-number="8.6.1" class="anchored" data-anchor-id="setting-a-random-number-seed"><span class="header-section-number">8.6.1</span> Setting a Random Number Seed</h3>
+<p>Functions like <code>rnorm()</code> rely on something called pseudo-randomness. Because computers can never be <em>truly</em> random, complicated processes are implemented to make “random” number generation be so unpredictable as to behave like true randomness.</p>
+<p>This means that projects involving simulation are harder to make <strong>reproducible</strong>. For example, here are two identical lines of code that give different results!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] -0.826789</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] -1.5124</code></pre>
+</div>
+</div>
+<p>Fortunately, pseudo-randomness depends on a <strong>seed</strong>, which is an arbitrary number where the randomizing process starts. Normally, R will choose the seed for you, from a pre-generated vector:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(.Random.seed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1]       10403          60 -2089519707 -1093835428 -1319683790  1392429101</code></pre>
+</div>
+</div>
+<p>However, you can also choose your own seed using the <code>set.seed()</code> function. This guarantees your results will be consistent across runs (and hopefully computers):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] -1.207066</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] -1.207066</code></pre>
+</div>
+</div>
+<p>Of course, it doesn’t mean the results will be the same in every subsequent run if you forget or reset the seed in between each line of code!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] -1.207066</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Calling rnorm() again without a seed "resets" the seed! </span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 0.2774292</code></pre>
+</div>
+</div>
+<p>It is very important to always set a seed at the <strong>beginning</strong> of a Quarto document that contains any random steps, so that your rendered results are consistent.</p>
+<div class="watchout">
+<p>Note, though, that this only guarantees your rendered results will be the same <em>if the code has not changed</em>.</p>
+<p>Changing up any part of the code will re-randomize everything that comes after it!</p>
+</div>
+<p>When writing up a report which includes results from a random generation process, in order to ensure reproducibility in your document, use <code>`r `</code> to include your output within your written description with <a href="https://bookdown.org/yihui/rmarkdown-cookbook/r-code.html">inline code</a>.</p>
+
+<details class="ex">
+<summary>
+Reproducibility: inline code example
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>my_rand <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>my_rand</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 1.084441</code></pre>
+</div>
+</div>
+<p>Using <code>r my_rand</code> will display the result within my text:</p>
+<p>My random number is 1.0844412.</p>
+<p>Alternatively, you could have put the <code>rnorm</code> code directly into the inline text <code>r rnorm(1, mean = 0, sd = 1)</code>, but this can get messy if you have a result that requires a larger chunk of code.</p>
+</details>
+</section>
+<section id="plotting-density-distributions" class="level3" data-number="8.6.2">
+<h3 data-number="8.6.2" class="anchored" data-anchor-id="plotting-density-distributions"><span class="header-section-number">8.6.2</span> Plotting Density Distributions</h3>
+<p>The code below creates a tibble <em>(read fancy data frame)</em> of 100 heights randomly simulated <em>(read drawn)</em> from a normal distribution with a mean of 67 and standard deviation of 3.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">93401</span>)</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>my_samples <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">height =</span> <span class="fu">rnorm</span>(<span class="at">n    =</span> <span class="dv">100</span>, </span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">mean =</span> <span class="dv">67</span>, </span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">sd   =</span> <span class="dv">3</span>)</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>                     )</span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>my_samples <span class="sc">|&gt;</span> </span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code># A tibble: 6 × 1
+  height
+   &lt;dbl&gt;
+1   63.1
+2   66.7
+3   68.2
+4   63.4
+5   68.9
+6   71.4</code></pre>
+</div>
+</div>
+<p>To visualize the simulated heights, we can look at the density of the values. We plot the simulated values using <code>geom_histogram()</code> and define the local <span class="math inline">\(y\)</span> aesthetic to plot calculate and plot the density of these values. We can then overlay the normal distribution curve (theoretical equation) with our specified mean and standard deviation using <code>dnorm</code> within <code>stat_function()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>my_samples <span class="sc">|&gt;</span> </span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> height)) <span class="sc">+</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), </span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">binwidth =</span> <span class="fl">1.75</span>, </span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"grey"</span></span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>                 ) <span class="sc">+</span></span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="sc">~</span> <span class="fu">dnorm</span>(.x, <span class="at">mean =</span> <span class="dv">67</span>, <span class="at">sd =</span> <span class="dv">3</span>), </span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">col =</span> <span class="st">"cornflowerblue"</span>, </span>
+<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">lwd =</span> <span class="dv">2</span></span>
+<span id="cb72-10"><a href="#cb72-10" aria-hidden="true" tabindex="-1"></a>                ) <span class="sc">+</span> </span>
+<span id="cb72-11"><a href="#cb72-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">80</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08-functional-programming_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <p><br></p>
 <!-- ::: check-in -->
 <!-- ### Check-in 8.1: Functional Programming with the `map()` family {#checkin8-1 -} -->
@@ -1246,6 +1373,7 @@ $f
 <!-- > -->
 <!-- > Copy and paste your Full.Phrase column to show me the phrases you made! -->
 <!-- ::: -->
+</section>
 <section id="references" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
 
@@ -1502,7 +1630,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/earobinson95\.github\.io\/stat331-calpoly-text\/");
+      var filterRegex = new RegExp("https:\/\/manncz\.github\.io\/stat331-calpoly-text\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -1836,8 +1964,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./09-statistical-modeling-and-simulation.html" class="pagination-link" aria-label="Simulating Distributions">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Simulating Distributions</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./09-statistical-modeling-and-simulation.html" class="pagination-link" aria-label="Linear Regression">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear Regression</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1846,5 +1974,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/earobinson95/stat331-calpoly-text/edit/main/08-functional-programming.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer><script src="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.js" defer="true"></script>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/manncz/stat331-calpoly-text/edit/main/08-functional-programming.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer><script src="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.js" defer="true"></script>
 </body></html>

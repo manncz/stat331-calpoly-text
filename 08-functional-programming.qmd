@@ -12,7 +12,7 @@ words <- bytes/10
 minutes <- words/200
 ```
 
-# Functional Programming
+# Iteration and Simulation
 
 ```{r fa-setup, include=FALSE}
 library(quarto)
@@ -27,7 +27,7 @@ library(tidyverse)
 
 `r fa("book-open")` Reading: `r ceiling(minutes)` minute(s) at 200 WPM
 
-`r fa("video")` Videos: 29 minute(s)
+`r fa("video")` Videos: 46 minute(s)
 
 ## Objectives {#ch8-objectives -}
 
@@ -813,6 +813,120 @@ library(purrr)
 - [Stats and Machine Learning examples with purrr](https://colinfay.me/purrr-statistics/)
 
 :::
+
+
+## Simulation
+
+In statistics, we often want to simulate data (or create fake data) for a variety of purposes. For example, in your first statistics course, you may have flipped coins to "simulate" a 50-50 chance. In this section, we will learn how to simulate data from statistical distributions using R.
+
+::: column-margin
+{{< video https://www.youtube.com/embed/J5XQaxmznNE >}} 
+:::
+
+::: go-read
+[Required Reading -- *R Programming for Data Science* : Simulation](https://bookdown.org/rdpeng/rprogdatascience/simulation.html)
+:::
+
+### Setting a Random Number Seed
+
+Functions like `rnorm()` rely on something called pseudo-randomness. Because computers can never be *truly* random, complicated processes are implemented to make "random" number generation be so unpredictable as to behave like true randomness.
+
+This means that projects involving simulation are harder to make **reproducible**. For example, here are two identical lines of code that give different results!
+
+```{r}
+rnorm(1, mean = 0, sd = 1)
+```
+
+```{r}
+rnorm(1, mean = 0, sd = 1)
+```
+
+Fortunately, pseudo-randomness depends on a **seed**, which is an arbitrary number where the randomizing process starts. Normally, R will choose the seed for you, from a pre-generated vector:
+
+```{r}
+head(.Random.seed)
+```
+
+However, you can also choose your own seed using the `set.seed()` function. This guarantees your results will be consistent across runs (and hopefully computers):
+
+```{r}
+set.seed(1234)
+rnorm(1, mean = 0, sd = 1)
+```
+
+```{r}
+set.seed(1234)
+rnorm(1, mean = 0, sd = 1)
+```
+
+Of course, it doesn't mean the results will be the same in every subsequent run if you forget or reset the seed in between each line of code!
+
+```{r}
+set.seed(1234)
+rnorm(1, mean = 0, sd = 1)
+
+## Calling rnorm() again without a seed "resets" the seed! 
+rnorm(1, mean = 0, sd = 1)
+```
+
+It is very important to always set a seed at the **beginning** of a Quarto document that contains any random steps, so that your rendered results are consistent.
+
+::: watchout
+Note, though, that this only guarantees your rendered results will be the same *if the code has not changed*.
+
+Changing up any part of the code will re-randomize everything that comes after it!
+:::
+
+When writing up a report which includes results from a random generation process, in order to ensure reproducibility in your document, use `` `r ` `` to include your output within your written description with [inline code](https://bookdown.org/yihui/rmarkdown-cookbook/r-code.html).
+
+</details>
+
+<details class="ex">
+
+<summary>Reproducibility: inline code example</summary>
+
+```{r}
+my_rand <- rnorm(1, mean = 0, sd = 1)
+my_rand
+```
+Using `r knitr::inline_expr('my_rand')` will display the result within my text: 
+
+My random number is `r my_rand`.
+
+Alternatively, you could have put the `rnorm` code directly into the inline text `r knitr::inline_expr('rnorm(1, mean = 0, sd = 1)')`, but this can get messy if you have a result that requires a larger chunk of code.
+
+</details>
+
+### Plotting Density Distributions
+
+The code below creates a tibble *(read fancy data frame)* of 100 heights randomly simulated *(read drawn)* from a normal distribution with a mean of 67 and standard deviation of 3.
+
+```{r}
+set.seed(93401)
+my_samples <- tibble(height = rnorm(n    = 100, 
+                                    mean = 67, 
+                                    sd   = 3)
+                     )
+my_samples |> 
+  head()
+```
+
+To visualize the simulated heights, we can look at the density of the values. We plot the simulated values using `geom_histogram()` and define the local $y$ aesthetic to plot calculate and plot the density of these values. We can then overlay the normal distribution curve (theoretical equation) with our specified mean and standard deviation using `dnorm` within `stat_function()`
+
+```{r}
+my_samples |> 
+  ggplot(aes(x = height)) +
+  geom_histogram(aes(y = ..density..), 
+                 binwidth = 1.75, 
+                 fill = "grey"
+                 ) +
+  stat_function(fun = ~ dnorm(.x, mean = 67, sd = 3), 
+                col = "cornflowerblue", 
+                lwd = 2
+                ) + 
+  xlim(c(55, 80))
+```
+
 
 <br>
 
