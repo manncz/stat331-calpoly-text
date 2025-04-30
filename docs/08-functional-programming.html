@@ -308,18 +308,16 @@ window.Quarto = {
   <li><a href="#indexing" id="toc-indexing" class="nav-link" data-scroll-target="#indexing"><span class="header-section-number">8.2.1</span> Indexing</a></li>
   </ul></li>
   <li><a href="#vectorized-operations" id="toc-vectorized-operations" class="nav-link" data-scroll-target="#vectorized-operations"><span class="header-section-number">8.3</span> Vectorized Operations</a></li>
-  <li><a href="#functional-programming" id="toc-functional-programming" class="nav-link" data-scroll-target="#functional-programming"><span class="header-section-number">8.4</span> Functional Programming</a>
+  <li><a href="#introduction-to-map" id="toc-introduction-to-map" class="nav-link" data-scroll-target="#introduction-to-map"><span class="header-section-number">8.4</span> Introduction to <code>map()</code></a>
   <ul class="collapse">
-  <li><a href="#functional-programming-example" id="toc-functional-programming-example" class="nav-link" data-scroll-target="#functional-programming-example">Functional Programming Example</a></li>
-  </ul></li>
-  <li><a href="#introduction-to-map" id="toc-introduction-to-map" class="nav-link" data-scroll-target="#introduction-to-map"><span class="header-section-number">8.5</span> Introduction to <code>map()</code></a>
-  <ul class="collapse">
+  <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading"><span class="header-section-number">8.4.1</span> Required Reading</a></li>
   <li><a href="#learn-more-about-purrr" id="toc-learn-more-about-purrr" class="nav-link" data-scroll-target="#learn-more-about-purrr">Learn More About Purrr</a></li>
   </ul></li>
-  <li><a href="#simulation" id="toc-simulation" class="nav-link" data-scroll-target="#simulation"><span class="header-section-number">8.6</span> Simulation</a>
+  <li><a href="#simulation" id="toc-simulation" class="nav-link" data-scroll-target="#simulation"><span class="header-section-number">8.5</span> Simulation</a>
   <ul class="collapse">
-  <li><a href="#setting-a-random-number-seed" id="toc-setting-a-random-number-seed" class="nav-link" data-scroll-target="#setting-a-random-number-seed"><span class="header-section-number">8.6.1</span> Setting a Random Number Seed</a></li>
-  <li><a href="#plotting-density-distributions" id="toc-plotting-density-distributions" class="nav-link" data-scroll-target="#plotting-density-distributions"><span class="header-section-number">8.6.2</span> Plotting Density Distributions</a></li>
+  <li><a href="#required-reading-1" id="toc-required-reading-1" class="nav-link" data-scroll-target="#required-reading-1"><span class="header-section-number">8.5.1</span> Required Reading</a></li>
+  <li><a href="#setting-a-random-number-seed" id="toc-setting-a-random-number-seed" class="nav-link" data-scroll-target="#setting-a-random-number-seed"><span class="header-section-number">8.5.2</span> Setting a Random Number Seed</a></li>
+  <li><a href="#plotting-density-distributions" id="toc-plotting-density-distributions" class="nav-link" data-scroll-target="#plotting-density-distributions"><span class="header-section-number">8.5.3</span> Plotting Density Distributions</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
@@ -347,7 +345,7 @@ window.Quarto = {
 </header>
 
 
-<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 21 minute(s) at 200 WPM</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> Reading: 19 minute(s) at 200 WPM</p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"></path></svg> Videos: 46 minute(s)</p>
 <section id="ch8-objectives" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="ch8-objectives">Objectives</h2>
@@ -567,8 +565,8 @@ Note
 </div></div><div class="cell">
 <div class="sourceCode cell-code" id="cb35" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">rnorm</span>(<span class="dv">10</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code> [1] 4.6384505 0.1668053 3.4528681 5.4369574 4.8934323 2.8048357 2.0820594
- [8] 3.2099186 1.6345795 1.0570841</code></pre>
+<pre data-code-line-numbers=""><code> [1] 3.1279011 0.8117717 3.3118322 1.3914590 3.3758025 3.6953706 2.3839779
+ [8] 3.0462192 3.0782028 2.0299290</code></pre>
 </div>
 </div>
 <p>With vectorized functions, we don’t have to use a for loop to add these two vectors with 10 entries each together. In languages which don’t have implicit support for vectorized computations, this might instead look like:</p>
@@ -583,8 +581,8 @@ Note
 <span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code> [1] 5.316441 1.965852 2.750009 4.613588 3.445381 1.941889 1.892662 2.987151
- [9] 4.836373 3.546474</code></pre>
+<pre data-code-line-numbers=""><code> [1] 3.903898 4.807578 4.536762 4.475939 3.782858 2.861930 7.850846 1.761996
+ [9] 4.372558 2.404663</code></pre>
 </div>
 </div>
 <p>That is, we would <strong>apply</strong> or <strong>map</strong> the <code>+</code> function to each entry of a and b. For atomic vectors, it’s easy to do this by default; with a list, however, we need to be a bit more explicit (because everything that’s passed into the function may not be the same type).</p>
@@ -598,213 +596,19 @@ Note
 </div>
 </div></div><p>The R package <code>purrr</code> (and similar base functions <code>apply</code>, <code>lapply</code>, <code>sapply</code>, <code>tapply</code>, and <code>mapply</code>) are based on extending “vectorized” functions to a wider variety of vector-like structures.</p>
 </section>
-<section id="functional-programming" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="functional-programming"><span class="header-section-number">8.4</span> Functional Programming</h2>
-<p>The concept of <strong>functional programming</strong> is a bit hard to define rigorously at the level we’re working at, but generally, functional programming is concerned with <strong>pure functions</strong>: functions that have an input value that determines the output value and create no other side effects.</p>
-<p>What this means is that you describe every step of the computation using a function, and chain the functions together. At the end of the computations, you might save the program’s results to an object, but (in general), the goal is to not change things outside of the “pipeline” along the way.</p>
-<p>This has some advantages:</p>
-<ul>
-<li>Easier parallelization
-<ul>
-<li>“Side effects” generally make it hard to parallelize code because e.g.&nbsp;you have to update stored objects in memory, which is hard to do with multiple threads accessing the same memory.</li>
-</ul></li>
-<li>Functional programming tends to be easier to read
-<ul>
-<li>You can see output and input and don’t have to work as hard to keep track of what is stored where .</li>
-</ul></li>
-<li>Easier Debugging
-<ul>
-<li>You can examine the input and output at each stage to isolate which function is introducing the problem.</li>
-</ul></li>
-</ul>
-<p>The introduction of the pipe in R has made chaining functions together in a functional programming-style pipeline much easier. <code>purrr</code> is just another step in this process: by making it easy to apply functions to lists of things (or to use multiple lists of things in a single function), <code>purrr</code> makes it easier to write clean, understandable, debuggable code.</p>
-<p><br></p>
-<section id="functional-programming-example" class="level3 unnumbered ex">
-<h3 class="unnumbered anchored" data-anchor-id="functional-programming-example">Functional Programming Example</h3>
-<p>This example is modified from the motivation section of the <a href="http://adv-r.had.co.nz/Functional-programming.html">Functional Programming chapter</a> in Advanced R <span class="citation" data-cites="wickhamFunctionalProgramming2019">(<a href="#ref-wickhamFunctionalProgramming2019" role="doc-biblioref">Wickham 2019</a>)</span>.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Problem</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Naive Approach</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Writing a function</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Mapping a function</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>Suppose we want to replace every -99 in the following sample dataset with an NA. (-99 is sometimes used to indicate missingness in datasets).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb39" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a sample dataset</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1014</span>)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">replicate</span>(<span class="dv">6</span>, <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">99</span>), <span class="dv">6</span>, <span class="at">rep =</span> <span class="cn">TRUE</span>)))</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df) <span class="ot">&lt;-</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>  a   b   c   d  e f
-1 7   5 -99   2  5 2
-2 5   5   5   3  6 1
-3 6   8   5   9  9 4
-4 4   2   2   6  6 8
-5 6   7   6 -99 10 6
-6 9 -99   4   7  5 1</code></pre>
-</div>
-</div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>The “beginner” approach is to just replace each individual -99 with an NA:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb41" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>df1[<span class="dv">6</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>df1[<span class="dv">1</span>,<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>df1[<span class="dv">5</span>,<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>df1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>  a  b  c  d  e f
-1 7  5 NA  2  5 2
-2 5  5  5  3  6 1
-3 6  8  5  9  9 4
-4 4  2  2  6  6 8
-5 6  7  6 NA 10 6
-6 9 NA  4  7  5 1</code></pre>
-</div>
-</div>
-<p>This is tedious, and painful, and won’t work if we have a slightly different dataset where the -99s are in different places. So instead, we might consider being a bit more general:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb43" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>df2<span class="sc">$</span>a[df2<span class="sc">$</span>a <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>df2<span class="sc">$</span>b[df2<span class="sc">$</span>b <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>df2<span class="sc">$</span>c[df2<span class="sc">$</span>c <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>df2<span class="sc">$</span>d[df2<span class="sc">$</span>d <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>df2<span class="sc">$</span>e[df2<span class="sc">$</span>e <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>df2<span class="sc">$</span>f[df2<span class="sc">$</span>f <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>  a  b  c  d  e f
-1 7  5 NA  2  5 2
-2 5  5  5  3  6 1
-3 6  8  5  9  9 4
-4 4  2  2  6  6 8
-5 6  7  6 NA 10 6
-6 9 NA  4  7  5 1</code></pre>
-</div>
-</div>
-<p>This requires a few more lines of code, but is able to handle any data frame with 6 columns <code>a</code> - <code>f</code>. It also requires a lot of copy-paste and can leave you vulnerable to making mistakes.</p>
-</div>
-<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<p>The standard rule is that if you copy-paste the same code 3x, then you should write a function, so let’s try that instead:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb45" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>fix_missing <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">missing =</span> <span class="sc">-</span><span class="dv">99</span>){</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  x[x <span class="sc">==</span> missing] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  x</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> df</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>df3<span class="sc">$</span>a <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df<span class="sc">$</span>a)</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>df3<span class="sc">$</span>b <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df<span class="sc">$</span>b)</span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>df3<span class="sc">$</span>c <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df<span class="sc">$</span>c)</span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>df3<span class="sc">$</span>d <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df<span class="sc">$</span>d)</span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>df3<span class="sc">$</span>e <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df<span class="sc">$</span>e)</span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>df3<span class="sc">$</span>f <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df<span class="sc">$</span>f)</span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>df3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>  a  b  c  d  e f
-1 7  5 NA  2  5 2
-2 5  5  5  3  6 1
-3 6  8  5  9  9 4
-4 4  2  2  6  6 8
-5 6  7  6 NA 10 6
-6 9 NA  4  7  5 1</code></pre>
-</div>
-</div>
-<p>This still requires a lot of copy-paste, and doesn’t actually make the code more readable. We can more easily change the missing value, though, which is a bonus.</p>
-</div>
-<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
-<p>We have a function that we want to <strong>apply</strong> or <strong>map</strong> to every column in our data frame. We could use a <code>for()</code> loop (doing this for demonstrative purposes only, I expect you to use more efficient tools in class):</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb47" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>fix_missing <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">missing =</span> <span class="sc">-</span><span class="dv">99</span>){</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  x[x <span class="sc">==</span> missing] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  x</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>df4 <span class="ot">&lt;-</span> df</span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(df)) {</span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  df4[,i] <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df4[,i])</span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>df4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>  a  b  c  d  e f
-1 7  5 NA  2  5 2
-2 5  5  5  3  6 1
-3 6  8  5  9  9 4
-4 4  2  2  6  6 8
-5 6  7  6 NA 10 6
-6 9 NA  4  7  5 1</code></pre>
-</div>
-</div>
-<p>This is more understandable and flexible than the previous function approach as well as the naive approach - we don’t need to know the names of the columns in our data frame, or even how many there are. It is still quite a few lines of code, though.</p>
-<p>Iterating through a list (or columns of a data frame) is a very common task, so R has a shorthand function for it. You could us <code>lapply</code> from base R, but we will be learning the <code>map</code> family of functions from the <code>purrr</code> package.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb49" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>fix_missing <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">missing =</span> <span class="sc">-</span><span class="dv">99</span>){</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  x[x <span class="sc">==</span> missing] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  x</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>df5 <span class="ot">&lt;-</span> df</span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>df5 <span class="ot">&lt;-</span> <span class="fu">map_dfc</span>(df5, fix_missing)</span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>df5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code># A tibble: 6 × 6
-      a     b     c     d     e     f
-  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1     7     5    NA     2     5     2
-2     5     5     5     3     6     1
-3     6     8     5     9     9     4
-4     4     2     2     6     6     8
-5     6     7     6    NA    10     6
-6     9    NA     4     7     5     1</code></pre>
-</div>
-</div>
-<p>By default, <code>map</code> returns a list (see below), but we can use <code>map_dfc</code> to return a data frame created by binding the columns together.</p>
-<details>
-<summary>
-<code>map()</code> - returns a list
-</summary>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb51" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>df6 <span class="ot">&lt;-</span> df</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(df6, fix_missing)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>$a
-[1] 7 5 6 4 6 9
-
-$b
-[1]  5  5  8  2  7 NA
-
-$c
-[1] NA  5  5  2  6  4
-
-$d
-[1]  2  3  9  6 NA  7
-
-$e
-[1]  5  6  9  6 10  5
-
-$f
-[1] 2 1 4 8 6 1</code></pre>
-</div>
-</div>
-</details>
-<p>We’ve replaced 6 lines of code that only worked for 6 columns named <code>a</code> - <code>f</code> with a single line of code that works for any data frame with any number of rows and columns, so long as -99 indicates missing data. In addition to being shorter, this code is also somewhat easier to read and much less vulnerable to typos.</p>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="introduction-to-map" class="level2 page-columns page-full" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="introduction-to-map"><span class="header-section-number">8.5</span> Introduction to <code>map()</code></h2>
+<section id="introduction-to-map" class="level2 page-columns page-full" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="introduction-to-map"><span class="header-section-number">8.4</span> Introduction to <code>map()</code></h2>
 <div class="note">
 <p><code>purrr</code> is a part of the tidyverse, so you should already have the package installed. When you load the tidyverse with <code>library()</code>, this also loads <code>purrr</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"purrr"</span>)</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"purrr"</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><a href="https://posit.co/wp-content/uploads/2022/10/purrr.pdf">Download the <code>purrr</code> cheatsheet</a>.</p>
 </div>
 <p><br></p>
+<section id="required-reading" class="level3 page-columns page-full" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="required-reading"><span class="header-section-number">8.4.1</span> Required Reading</h3>
 <div class="go-read">
 <p><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path></svg> (REQUIRED) Please read <a href="https://r4ds.had.co.nz/iteration.html#the-map-functions">Sections 21.5 through 21.7 <em>R for Data Science</em></a></p>
 </div>
@@ -1118,7 +922,8 @@ $f
 <!-- <br> -->
 <div class="no-row-height column-margin column-container"><div class="">
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/FPD3a6IHO6w" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-</div></div><section id="learn-more-about-purrr" class="level3 unnumbered learn-more">
+</div></div></section>
+<section id="learn-more-about-purrr" class="level3 unnumbered learn-more">
 <h3 class="unnumbered anchored" data-anchor-id="learn-more-about-purrr">Learn More About Purrr</h3>
 <ul>
 <li><p>The Joy of Functional Programming (for Data Science): Hadley Wickham’s talk on purrr and functional programming. <a href="https://learning.acm.org/techtalks/functionalprogramming">~1h video</a> and <a href="https://learning.acm.org/binaries/content/assets/leaning-center/webinar-slides/2019/hadleywickham_techtalkslides.pdf">slides</a>.<br>
@@ -1134,62 +939,65 @@ $f
 </ul>
 </section>
 </section>
-<section id="simulation" class="level2 page-columns page-full" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="simulation"><span class="header-section-number">8.6</span> Simulation</h2>
+<section id="simulation" class="level2 page-columns page-full" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="simulation"><span class="header-section-number">8.5</span> Simulation</h2>
 <p>In statistics, we often want to simulate data (or create fake data) for a variety of purposes. For example, in your first statistics course, you may have flipped coins to “simulate” a 50-50 chance. In this section, we will learn how to simulate data from statistical distributions using R.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/J5XQaxmznNE" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-</div></div><div class="go-read">
+</div></div><section id="required-reading-1" class="level3" data-number="8.5.1">
+<h3 data-number="8.5.1" class="anchored" data-anchor-id="required-reading-1"><span class="header-section-number">8.5.1</span> Required Reading</h3>
+<div class="go-read">
 <p><a href="https://bookdown.org/rdpeng/rprogdatascience/simulation.html">Required Reading – <em>R Programming for Data Science</em> : Simulation</a></p>
 </div>
-<section id="setting-a-random-number-seed" class="level3" data-number="8.6.1">
-<h3 data-number="8.6.1" class="anchored" data-anchor-id="setting-a-random-number-seed"><span class="header-section-number">8.6.1</span> Setting a Random Number Seed</h3>
+</section>
+<section id="setting-a-random-number-seed" class="level3" data-number="8.5.2">
+<h3 data-number="8.5.2" class="anchored" data-anchor-id="setting-a-random-number-seed"><span class="header-section-number">8.5.2</span> Setting a Random Number Seed</h3>
 <p>Functions like <code>rnorm()</code> rely on something called pseudo-randomness. Because computers can never be <em>truly</em> random, complicated processes are implemented to make “random” number generation be so unpredictable as to behave like true randomness.</p>
 <p>This means that projects involving simulation are harder to make <strong>reproducible</strong>. For example, here are two identical lines of code that give different results!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1] -0.826789</code></pre>
+<pre data-code-line-numbers=""><code>[1] 1.791665</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1] -1.5124</code></pre>
+<pre data-code-line-numbers=""><code>[1] -2.225902</code></pre>
 </div>
 </div>
 <p>Fortunately, pseudo-randomness depends on a <strong>seed</strong>, which is an arbitrary number where the randomizing process starts. Normally, R will choose the seed for you, from a pre-generated vector:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(.Random.seed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(.Random.seed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1]       10403          60 -2089519707 -1093835428 -1319683790  1392429101</code></pre>
+<pre data-code-line-numbers=""><code>[1]       10403          84  1067328271  -441114602   222997184 -1672147837</code></pre>
 </div>
 </div>
 <p>However, you can also choose your own seed using the <code>set.seed()</code> function. This guarantees your results will be consistent across runs (and hopefully computers):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] -1.207066</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb62" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] -1.207066</code></pre>
 </div>
 </div>
 <p>Of course, it doesn’t mean the results will be the same in every subsequent run if you forget or reset the seed in between each line of code!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] -1.207066</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb66" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Calling rnorm() again without a seed "resets" the seed! </span></span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Calling rnorm() again without a seed "resets" the seed! </span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 0.2774292</code></pre>
 </div>
@@ -1206,8 +1014,8 @@ $f
 Reproducibility: inline code example
 </summary>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb68" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>my_rand <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>my_rand</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>my_rand <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>my_rand</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 1.084441</code></pre>
 </div>
@@ -1217,17 +1025,17 @@ Reproducibility: inline code example
 <p>Alternatively, you could have put the <code>rnorm</code> code directly into the inline text <code>r rnorm(1, mean = 0, sd = 1)</code>, but this can get messy if you have a result that requires a larger chunk of code.</p>
 </details>
 </section>
-<section id="plotting-density-distributions" class="level3" data-number="8.6.2">
-<h3 data-number="8.6.2" class="anchored" data-anchor-id="plotting-density-distributions"><span class="header-section-number">8.6.2</span> Plotting Density Distributions</h3>
+<section id="plotting-density-distributions" class="level3" data-number="8.5.3">
+<h3 data-number="8.5.3" class="anchored" data-anchor-id="plotting-density-distributions"><span class="header-section-number">8.5.3</span> Plotting Density Distributions</h3>
 <p>The code below creates a tibble <em>(read fancy data frame)</em> of 100 heights randomly simulated <em>(read drawn)</em> from a normal distribution with a mean of 67 and standard deviation of 3.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb70" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">93401</span>)</span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>my_samples <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">height =</span> <span class="fu">rnorm</span>(<span class="at">n    =</span> <span class="dv">100</span>, </span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">mean =</span> <span class="dv">67</span>, </span>
-<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">sd   =</span> <span class="dv">3</span>)</span>
-<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>                     )</span>
-<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>my_samples <span class="sc">|&gt;</span> </span>
-<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">93401</span>)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>my_samples <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">height =</span> <span class="fu">rnorm</span>(<span class="at">n    =</span> <span class="dv">100</span>, </span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">mean =</span> <span class="dv">67</span>, </span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">sd   =</span> <span class="dv">3</span>)</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>                     )</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>my_samples <span class="sc">|&gt;</span> </span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 6 × 1
   height
@@ -1242,21 +1050,21 @@ Reproducibility: inline code example
 </div>
 <p>To visualize the simulated heights, we can look at the density of the values. We plot the simulated values using <code>geom_histogram()</code> and define the local <span class="math inline">\(y\)</span> aesthetic to plot calculate and plot the density of these values. We can then overlay the normal distribution curve (theoretical equation) with our specified mean and standard deviation using <code>dnorm</code> within <code>stat_function()</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb72" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>my_samples <span class="sc">|&gt;</span> </span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> height)) <span class="sc">+</span></span>
-<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), </span>
-<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">binwidth =</span> <span class="fl">1.75</span>, </span>
-<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"grey"</span></span>
-<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>                 ) <span class="sc">+</span></span>
-<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="sc">~</span> <span class="fu">dnorm</span>(.x, <span class="at">mean =</span> <span class="dv">67</span>, <span class="at">sd =</span> <span class="dv">3</span>), </span>
-<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">col =</span> <span class="st">"cornflowerblue"</span>, </span>
-<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">lwd =</span> <span class="dv">2</span></span>
-<span id="cb72-10"><a href="#cb72-10" aria-hidden="true" tabindex="-1"></a>                ) <span class="sc">+</span> </span>
-<span id="cb72-11"><a href="#cb72-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">80</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>my_samples <span class="sc">|&gt;</span> </span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> height)) <span class="sc">+</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), </span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">binwidth =</span> <span class="fl">1.75</span>, </span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"grey"</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>                 ) <span class="sc">+</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="sc">~</span> <span class="fu">dnorm</span>(.x, <span class="at">mean =</span> <span class="dv">67</span>, <span class="at">sd =</span> <span class="dv">3</span>), </span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">col =</span> <span class="st">"cornflowerblue"</span>, </span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">lwd =</span> <span class="dv">2</span></span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>                ) <span class="sc">+</span> </span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">80</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="08-functional-programming_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="08-functional-programming_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1387,9 +1195,6 @@ Grolemund, Garrett, and Hadley Wickham. 2017. <em>R for <span>Data</span> <span>
 </div>
 <div id="ref-rudisPiratingWebContent2017" class="csl-entry" role="listitem">
 Rudis, Bob. 2017. <span>“Pirating <span>Web</span> <span>Content</span> <span>Responsibly</span> <span>With</span> <span>R</span>.”</span> <em>Rud.is</em>. <a href="https://rud.is/b/2017/09/19/pirating-web-content-responsibly-with-r/">https://rud.is/b/2017/09/19/pirating-web-content-responsibly-with-r/</a>.
-</div>
-<div id="ref-wickhamFunctionalProgramming2019" class="csl-entry" role="listitem">
-Wickham, Hadley. 2019. <span>“Functional Programming.”</span> In <em>Advanced <span>R</span></em>, 2nd ed. The <span>R</span> Series. Chapman; Hall/CRC. <a href="http://adv-r.had.co.nz/Functional-programming.html">http://adv-r.had.co.nz/Functional-programming.html</a>.
 </div>
 </div>
 </section>
