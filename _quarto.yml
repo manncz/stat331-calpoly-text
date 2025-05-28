@@ -18,6 +18,7 @@ book:
     - 07-functions.qmd
     - 08-functional-programming.qmd
     - 09-statistical-modeling-and-simulation.qmd
+    - 10b-cv-maps.qmd
   site-url: https://manncz.github.io/stat331-calpoly-text/
   repo-url: https://github.com/manncz/stat331-calpoly-text
   repo-branch: main
