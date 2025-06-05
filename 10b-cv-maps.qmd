@@ -105,18 +105,18 @@ After this split, the training data has 274 observations and the test data has 6
 Now, we will fit the model with the **training data** only.
 
 ```{r}
-test_model <- lm(bill_length_mm ~ bill_depth_mm, 
+train_model <- lm(bill_length_mm ~ bill_depth_mm, 
                data = train_dat
                )
 
-summary(test_model)
+summary(train_model)
 ```
 
 Finally, we will generate predictions for the test data using the `predict()` function with this model and calculate the $R^2$ for the test data.
 
 ```{r}
 # generate predictions from model on the test data
-test_preds <- predict(test_model, newdata = test_dat)
+test_preds <- predict(train_model, newdata = test_dat)
 
 #R^2 is the variance of the predictions divided by the variance of the outcome
 var(test_preds)/var(test_dat$bill_length_mm)
@@ -199,9 +199,10 @@ for(x in 1:k){
   
   # generate predictions for the held-out fold data
   fold_preds <- predict(it_lm, newdata = fold_dat)
+  fold_resid <- fold_dat$bill_length_mm - fold_preds
 
   # calculate R2 for the held-out fold data and save it
-  cv_r2[x] <- var(fold_preds)/var(fold_dat$bill_length_mm)
+  cv_r2[x] <- 1 - var(fold_resid)/var(fold_dat$bill_length_mm)
   
 }
 ```

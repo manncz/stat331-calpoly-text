@@ -403,11 +403,11 @@ window.Quarto = {
 <p>After this split, the training data has 274 observations and the test data has 68 observations.</p>
 <p>Now, we will fit the model with the <strong>training data</strong> only.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>test_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> bill_depth_mm, </span>
+<div class="sourceCode cell-code" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>train_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> bill_depth_mm, </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> train_dat</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>               )</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(test_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(train_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>
 Call:
@@ -432,7 +432,7 @@ F-statistic: 11.08 on 1 and 272 DF,  p-value: 0.0009956</code></pre>
 <p>Finally, we will generate predictions for the test data using the <code>predict()</code> function with this model and calculate the <span class="math inline">\(R^2\)</span> for the test data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate predictions from model on the test data</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>test_preds <span class="ot">&lt;-</span> <span class="fu">predict</span>(test_model, <span class="at">newdata =</span> test_dat)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>test_preds <span class="ot">&lt;-</span> <span class="fu">predict</span>(train_model, <span class="at">newdata =</span> test_dat)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#R^2 is the variance of the predictions divided by the variance of the outcome</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(test_preds)<span class="sc">/</span><span class="fu">var</span>(test_dat<span class="sc">$</span>bill_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -506,26 +506,27 @@ F-statistic: 11.08 on 1 and 272 DF,  p-value: 0.0009956</code></pre>
 <span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># generate predictions for the held-out fold data</span></span>
 <span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  fold_preds <span class="ot">&lt;-</span> <span class="fu">predict</span>(it_lm, <span class="at">newdata =</span> fold_dat)</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate R2 for the held-out fold data and save it</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>  cv_r2[x] <span class="ot">&lt;-</span> <span class="fu">var</span>(fold_preds)<span class="sc">/</span><span class="fu">var</span>(fold_dat<span class="sc">$</span>bill_length_mm)</span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  fold_resid <span class="ot">&lt;-</span> fold_dat<span class="sc">$</span>bill_length_mm <span class="sc">-</span> fold_preds</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate R2 for the held-out fold data and save it</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>  cv_r2[x] <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">var</span>(fold_resid)<span class="sc">/</span><span class="fu">var</span>(fold_dat<span class="sc">$</span>bill_length_mm)</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>From the code above, we now have a vector with 10 <span class="math inline">\(R^2\)</span> metrics, one for each fold:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>cv_r2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code> [1] 0.07567637 0.03318402 0.06509677 0.04802629 0.08970194 0.03361553
- [7] 0.06360639 0.04417216 0.05706283 0.07062948</code></pre>
+<pre data-code-line-numbers=""><code> [1]  0.022161322  0.074526752  0.005153824  0.037946677  0.008674541
+ [6]  0.056378949  0.062376655 -0.035528118  0.095382668  0.240694062</code></pre>
 </div>
 </div>
 <p>As a final validation metric, we will look at the average <span class="math inline">\(R^2\)</span>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(cv_r2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1] 0.05807718</code></pre>
+<pre data-code-line-numbers=""><code>[1] 0.05677673</code></pre>
 </div>
 </div>
 <p>The original <span class="math inline">\(R^2\)</span> found from the full dataset was 0.055, so again here we don’t see particular evidence of over or under-fitting since the 10-fold CV <span class="math inline">\(R^2\)</span> was similar.</p>
