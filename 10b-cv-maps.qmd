@@ -85,7 +85,7 @@ penguins <- penguins |>
 First we need to split the data! I will use the 80/20 suggested split. We can randomly sample 20% of the penguins for the test set and then use the rest for the training set. 
 
 ```{r}
-set.seed(14)
+set.seed(145)
 
 # randomly sample 20% of indices
 test.idx <- sample(1:nrow(penguins), 
@@ -115,14 +115,29 @@ summary(train_model)
 Finally, we will generate predictions for the test data using the `predict()` function with this model and calculate the $R^2$ for the test data.
 
 ```{r}
+# write a function to calculate the R2
+r2_calc <- function(obs, pred){
+  
+  sse <- sum((obs - pred)^2)
+  sst <- sum((obs - mean(obs))^2)
+  
+  r2 <- 1 - sse/sst
+  
+  return(r2)
+}
+```
+
+
+```{r}
 # generate predictions from model on the test data
 test_preds <- predict(train_model, newdata = test_dat)
 
-#R^2 is the variance of the predictions divided by the variance of the outcome
-var(test_preds)/var(test_dat$bill_length_mm)
+#R^2 is 1 - sse/sst
+
+r2_calc(obs = test_dat$bill_length_mm, pred = test_preds)
 ```
 
-Thus our test or validation $R^2$ is `r round(var(test_preds)/var(test_dat$bill_length_mm), 4)`. The $R^2$ for the training data was 0.0391. Since the testing and training metrics are pretty similar, there isn't evidence of overfitting.
+Thus our test or validation $R^2$ is `r round(r2_calc(obs = test_dat$bill_length_mm, pred = test_preds), 4)`. The $R^2$ for the training data was 0.0391. Since the testing and training metrics are pretty similar, there isn't evidence of overfitting.
 
 
 ### Cross-Validation
@@ -172,8 +187,7 @@ The code below implements 10-fold cross validation using a for-loop. This is jus
 
 ```{r}
 #| code-fold: true
-
-# 5-fold CV as a for-loop
+# 10-fold CV as a for-loop
 # only for educational purposes!
 
 # k = 10
@@ -199,10 +213,10 @@ for(x in 1:k){
   
   # generate predictions for the held-out fold data
   fold_preds <- predict(it_lm, newdata = fold_dat)
-  fold_resid <- fold_dat$bill_length_mm - fold_preds
 
   # calculate R2 for the held-out fold data and save it
-  cv_r2[x] <- 1 - var(fold_resid)/var(fold_dat$bill_length_mm)
+  cv_r2[x] <- r2_calc(obs = fold_dat$bill_length_mm,
+                      pred = fold_preds)
   
 }
 ```
